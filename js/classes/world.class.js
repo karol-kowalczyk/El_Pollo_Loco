@@ -10,23 +10,64 @@ class World {
         new Cloud()
     ];
     backgroundObjects = [ // variable namens backgroundobjects, wo jeweils in einem array, bereits drei classen verfuegbar sind, und jeweils ein path zum Bild als variable weitergegeben wurde und 
-        new BackgroundObject('../El_Pollo_Loco/img_pollo_locco/img/5_background/layers/3_third_layer/1.png', 0), // ein Wert 0 wird ebenfalls als variable weitergegeben. Im Moment wissen wir nicht
-        new BackgroundObject('../El_Pollo_Loco/img_pollo_locco/img/5_background/layers/2_second_layer/1.png', 0), // auf was sich der Wert 0 bezieht.
-        new BackgroundObject('../El_Pollo_Loco/img_pollo_locco/img/5_background/layers/1_first_layer/1.png', 0) 
+        new BackgroundObject('../El_Pollo_Loco/img_pollo_locco/img/5_background/layers/air.png', -719*2),   // ein Wert 0 wird ebenfalls als variable weitergegeben. Im Moment wissen wir nicht
+        new BackgroundObject('../El_Pollo_Loco/img_pollo_locco/img/5_background/layers/3_third_layer/1.png', -719*2), // auf was sich der Wert 0 bezieht.
+        new BackgroundObject('../El_Pollo_Loco/img_pollo_locco/img/5_background/layers/2_second_layer/1.png', -719*2), 
+        new BackgroundObject('../El_Pollo_Loco/img_pollo_locco/img/5_background/layers/1_first_layer/1.png', -719*2), 
+        new BackgroundObject('../El_Pollo_Loco/img_pollo_locco/img/5_background/layers/air.png', -719),
+        new BackgroundObject('../El_Pollo_Loco/img_pollo_locco/img/5_background/layers/3_third_layer/2.png', -719), 
+        new BackgroundObject('../El_Pollo_Loco/img_pollo_locco/img/5_background/layers/2_second_layer/2.png', -719), 
+        new BackgroundObject('../El_Pollo_Loco/img_pollo_locco/img/5_background/layers/1_first_layer/2.png', -719),
+
+        new BackgroundObject('../El_Pollo_Loco/img_pollo_locco/img/5_background/layers/air.png', 0), 
+        new BackgroundObject('../El_Pollo_Loco/img_pollo_locco/img/5_background/layers/3_third_layer/1.png', 0), 
+        new BackgroundObject('../El_Pollo_Loco/img_pollo_locco/img/5_background/layers/2_second_layer/1.png', 0), 
+        new BackgroundObject('../El_Pollo_Loco/img_pollo_locco/img/5_background/layers/1_first_layer/1.png', 0), 
+        new BackgroundObject('../El_Pollo_Loco/img_pollo_locco/img/5_background/layers/air.png', 719),
+        new BackgroundObject('../El_Pollo_Loco/img_pollo_locco/img/5_background/layers/3_third_layer/2.png', 719), 
+        new BackgroundObject('../El_Pollo_Loco/img_pollo_locco/img/5_background/layers/2_second_layer/2.png', 719), 
+        new BackgroundObject('../El_Pollo_Loco/img_pollo_locco/img/5_background/layers/1_first_layer/2.png', 719),
+
+        new BackgroundObject('../El_Pollo_Loco/img_pollo_locco/img/5_background/layers/air.png', 719*2),
+        new BackgroundObject('../El_Pollo_Loco/img_pollo_locco/img/5_background/layers/3_third_layer/1.png', 719*2),
+        new BackgroundObject('../El_Pollo_Loco/img_pollo_locco/img/5_background/layers/2_second_layer/1.png', 719*2), 
+        new BackgroundObject('../El_Pollo_Loco/img_pollo_locco/img/5_background/layers/1_first_layer/1.png', 719*2), 
+        new BackgroundObject('../El_Pollo_Loco/img_pollo_locco/img/5_background/layers/air.png', 719*3),
+        new BackgroundObject('../El_Pollo_Loco/img_pollo_locco/img/5_background/layers/3_third_layer/2.png', 719*3), 
+        new BackgroundObject('../El_Pollo_Loco/img_pollo_locco/img/5_background/layers/2_second_layer/2.png', 719*3), 
+        new BackgroundObject('../El_Pollo_Loco/img_pollo_locco/img/5_background/layers/1_first_layer/2.png', 719*3),
+
+        new BackgroundObject('../El_Pollo_Loco/img_pollo_locco/img/5_background/layers/air.png', 719*4), 
+        new BackgroundObject('../El_Pollo_Loco/img_pollo_locco/img/5_background/layers/3_third_layer/1.png', 719*4),
+        new BackgroundObject('../El_Pollo_Loco/img_pollo_locco/img/5_background/layers/2_second_layer/1.png', 719*4), 
+        new BackgroundObject('../El_Pollo_Loco/img_pollo_locco/img/5_background/layers/1_first_layer/1.png', 719*4), 
+        new BackgroundObject('../El_Pollo_Loco/img_pollo_locco/img/5_background/layers/air.png', 719*5),
+        new BackgroundObject('../El_Pollo_Loco/img_pollo_locco/img/5_background/layers/3_third_layer/2.png', 719*5), 
+        new BackgroundObject('../El_Pollo_Loco/img_pollo_locco/img/5_background/layers/2_second_layer/2.png', 719*5), 
+        new BackgroundObject('../El_Pollo_Loco/img_pollo_locco/img/5_background/layers/1_first_layer/2.png', 719*5)
        
     ];
-    backgroundSky = [ // variable backgroundSky, welcher eigentlich auch haette in dem Object backgroundObject hineingekonnt, jedoch wollte ich es auslagern, da der Himmel nicht so sehr in die 
-        new BackgroundSky('../El_Pollo_Loco/img_pollo_locco/img/5_background/layers/air.png', 0, 0), // Landschaften reinpasst. Ist Ebenfalls im Array.
-    ];
+    // backgroundSky = [ // variable backgroundSky, welcher eigentlich auch haette in dem Object backgroundObject hineingekonnt, jedoch wollte ich es auslagern, da der Himmel nicht so sehr in die 
+    //     new BackgroundSky('../El_Pollo_Loco/img_pollo_locco/img/5_background/layers/air.png', 0, 0), // Landschaften reinpasst. Ist Ebenfalls im Array.
+    //     new BackgroundSky('../El_Pollo_Loco/img_pollo_locco/img/5_background/layers/air.png', 0, 720) // Landschaften reinpasst. Ist Ebenfalls im Array.
+    // ];
     canvas; // eine neue Variable namens 'canvas'. Eine hatten wir bereits in der game.js. Kein Plan was dies bedeutet
     ctx; // eine Variable namen ctx;, welche in Objektorientierter Programmierung fuer "Canvas Rendering Context" steht. Ist ein Objekt welch Methoden und Eigentschaften bereitstellt um
     // Grafiken auf einem HTML Canvas Element (die schwarze box in der index.html) zu zeischnen und zu manipulieren. i.d.R wird ctx; mit canvas verwendet um 2D grafiken auf einer Web zu erstellen.
+    keybard;
+    camera_x = 0;
 
-    constructor(canvas) { // constructor functionen um Instanzen in einer Klasse zu erstellen. Hier werden die Instanzen von ctx gestllt fuer die 2d Grafik und canvas wird = canvas gestellt.
+    constructor(canvas, keyboard) { // constructor functionen um Instanzen in einer Klasse zu erstellen. Hier werden die Instanzen von ctx gestllt fuer die 2d Grafik und canvas wird = canvas gestellt.
         this.ctx = canvas.getContext('2d'); // this. wird auf die obrige Variable ctx zugegriffen. Ohne das this. wuerde eine neue Variable namens ctx innerhalb der function generiert werden.
         this.canvas = canvas; // this. wird die Variable canvas von oben hergeleitet und der variable canvas aus dem Parameter in der function uebergeben. 
         //Der Wert wird von canvas von oben aus dem Paramter nach canvas unten rechts weitergeleitet bis zu this.canvas nach unten links weitergegeben.
+        this.keyboard = keyboard;
         this.draw(); // function draw wird ausgefuehrt. this. steht da vor, weil wir keine neue  function schreiben sondern auf eine function in der Classe zugreifen, welche bereits generiert ist.
+        this.setWorld();
+    }
+
+    setWorld() {
+        this.character.world = this;
     }
 
     draw() { // function draw() ohne Parameter fuehrt weitere functionen aus.
@@ -34,11 +75,15 @@ class World {
         // das damit im Canvas etwas gezeichnet bzw was entfernt, also einfluss drauf genommen wird. 
         // Mit der Methode .clearRect() loeschen wir die Animation davor. Die Parameter loeschen alles was dacor drinne war.
 
-        this.addObjectsToMap(this.backgroundSky); // this. wird auf eine function mit den Namen 'addObjectsToMap()' zugegriffen, wo der Parameter die variable background sky ist.
-        this.addObjectsToMap(this.backgroundObjects);
+        this.ctx.translate(this.camera_x, 0);
+        
+       
+        this.addObjectsToMap(this.backgroundObjects);  // this. wird auf eine function mit den Namen 'addObjectsToMap()' zugegriffen, wo der Parameter die variable background sky ist.
         this.addObjectsToMap(this.enemies);
         this.addObjectsToMap(this.clouds);
         this.addToMap(this.character);
+
+        this.ctx.translate(-this.camera_x, 0);
         
         
         let self = this; // hier wird das schluesselwort this in eine variable gepackt, da die methode requestAnimationFrame, dieses so nimmt erkennt. Ist ein Trick um den Bug zu entgehen.
@@ -54,6 +99,18 @@ class World {
     }
 
     addToMap(mo) { // function addToMap fuegt die jeweiligen Objekte in das Canvas mithilfe von ctx hinzu. Dabei hilft die Mehthode drawImage() weiter.
+        if(mo.otherDirection) {
+            this.ctx.save();
+            this.ctx.translate(mo.width, 0);
+            this.ctx.scale(-1,1);
+            mo.x = mo.x * -1;
+        }
         this.ctx.drawImage(mo.img, mo.x, mo.y, mo.width, mo.height); // in den Parametern die uebergeben werden, wird der Parameter mo, mit den jeweiligen variabekn wie img, x, y etc definiert
-    } // da diese in der classe moveable objects definiert werden und sich da drauf beziehen.
+        // da diese in der classe moveable objects definiert werden und sich da drauf beziehen.
+        if(mo.otherDirection) {
+            mo.x = mo.x * -1;
+            this.ctx.restore();
+        }
+    } 
+
 }

@@ -12,9 +12,9 @@ class Cloud extends MoveableObject {
     }
 
     animate() { // jedes mal wenn sich die seite neu laed (spater wenn sich die Objekte bewegen), wird die Position der Wolke veraendert.
-        setInterval( () => { // Methode set interval fuehrt eine function aus, was hier nur die Klammern () sind staende davor mal function
-            this.x -= 0.15; // veraendert die Position der Wolken um 0.1 pixel
-        }, 1000/60); // so laeuft es 60frames per second also 60fps
+        this.moveLeft();
         
     }
+
+  
 }

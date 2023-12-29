@@ -15,6 +15,7 @@ class Character extends MoveableObject { // classe Character erbt Eigenschaften 
         ];   // ist ein Array, deswegen nur eckige Klammern und kein JSON, wo wir Runde-Klammern haetten.
 
     world;
+    walking_sound = new Audio('../El_Pollo_Loco/img_pollo_locco/img/audio/walking.mp3');;
 
     constructor() { // initialisiert wird automatisch aufgerufen, deswegen konstructor, und dieser legt fest, wie die Klasse aussehen und funktionieren soll
         super().loadImage('../El_Pollo_Loco/img_pollo_locco/img/2_character_pepe/2_walk/W-21.png'); // mit super() wird von der UeberClasse geerbt und so
@@ -28,26 +29,26 @@ class Character extends MoveableObject { // classe Character erbt Eigenschaften 
     animate() {
 
         setInterval(() => {
-            if (this.world.keyboard.RIGHT) {
+            this.walking_sound.pause();
+            if (this.world.keyboard.RIGHT && this.x < this.world.level.level_end_x) {
                 this.x += this.speed;
                 this.otherDirection = false;
+                this.walking_sound.play();
             }
 
-            if (this.world.keyboard.LEFT) {
+            if (this.world.keyboard.LEFT && this.x > 0) {
                 this.x -= this.speed;
                 this.otherDirection = true;
+                this.walking_sound.play();
             }
-            this.world.camera_x = - this.x;
+            this.world.camera_x = - this.x + 100;
         }, 1000 / 60);
 
         setInterval(() => {
 
             if (this.world.keyboard.RIGHT || this.world.keyboard.LEFT) {
                 // walk animation
-                let i = this.currentImage % this.IMAGES_WALKING.length; // let i = 0 % 6; => 1, // eine Undendliche Reihe die wir hier haben 
-                let path = this.IMAGES_WALKING[i];
-                this.img = this.imageCache[path];
-                this.currentImage++;
+                this.playAnimation(this.IMAGES_WALKING);
             }
         }, 50);
     }

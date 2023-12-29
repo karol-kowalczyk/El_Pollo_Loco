@@ -27,6 +27,14 @@ class MoveableObject { // classe namens 'MoveableObject'.
         });
     }
 
+    playAnimation(images) {
+        let i = this.currentImage % this.IMAGES_WALKING.length; // let i = 0 % 6; => 1, // eine Undendliche Reihe die wir hier haben 
+        let path = images[i];
+        this.img = this.imageCache[path];
+        this.currentImage++;
+    }
+    
+
     moveRight() { // function moveRight fuehrt in der console den String 'Moving right' aus.
         console.log('Moving right');
     }

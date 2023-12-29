@@ -1,52 +1,18 @@
 class World {
 
-    character = new Character(); // Variable namens 'character' hat den Wert 'new Charater()', welche die Erstelleung eines neuen Objects von der Classe Character iniziert.
-    enemies = [  // Variable namens 'enemies' hat den Wert eines arrays. In diesem Array sind drei Werte erstmal drinnen. Jedes von denen heisst 'new Chicken()', 
-        new Chicken(), // was den Wert von dem Object new.Chicken hat. bei der Ausfuehrung der Variable enemies, wird jedes mal, drei neue Objekte mit der Klasse new Chicken() erstellt.
-        new Chicken(),
-        new Chicken(),
-    ];
-    clouds = [ // Variable clouds hat ebenfalls ein array, wo jedoch nur eine Classe drinnen ist, was demnach bedeutet, dass nur ein Objekt generiert wird, beim Aufruf der Variablen.
-        new Cloud()
-    ];
-    backgroundObjects = [ // variable namens backgroundobjects, wo jeweils in einem array, bereits drei classen verfuegbar sind, und jeweils ein path zum Bild als variable weitergegeben wurde und 
-        new BackgroundObject('../El_Pollo_Loco/img_pollo_locco/img/5_background/layers/air.png', -719*2),   // ein Wert 0 wird ebenfalls als variable weitergegeben. Im Moment wissen wir nicht
-        new BackgroundObject('../El_Pollo_Loco/img_pollo_locco/img/5_background/layers/3_third_layer/1.png', -719*2), // auf was sich der Wert 0 bezieht.
-        new BackgroundObject('../El_Pollo_Loco/img_pollo_locco/img/5_background/layers/2_second_layer/1.png', -719*2), 
-        new BackgroundObject('../El_Pollo_Loco/img_pollo_locco/img/5_background/layers/1_first_layer/1.png', -719*2), 
-        new BackgroundObject('../El_Pollo_Loco/img_pollo_locco/img/5_background/layers/air.png', -719),
-        new BackgroundObject('../El_Pollo_Loco/img_pollo_locco/img/5_background/layers/3_third_layer/2.png', -719), 
-        new BackgroundObject('../El_Pollo_Loco/img_pollo_locco/img/5_background/layers/2_second_layer/2.png', -719), 
-        new BackgroundObject('../El_Pollo_Loco/img_pollo_locco/img/5_background/layers/1_first_layer/2.png', -719),
+    character = new Character();
+    level = level1;
+    // Variable namens 'character' hat den Wert 'new Charater()', welche die Erstelleung eines neuen Objects von der Classe Character iniziert.
+    enemies = level1.enemies; // Variable namens 'enemies' hat den Wert eines arrays. In diesem Array sind drei Werte erstmal drinnen. Jedes von denen heisst 'new Chicken()', 
+    // was den Wert von dem Object new.Chicken hat. bei der Ausfuehrung der Variable enemies, wird jedes mal, drei neue Objekte mit der Klasse new Chicken() erstellt.
 
-        new BackgroundObject('../El_Pollo_Loco/img_pollo_locco/img/5_background/layers/air.png', 0), 
-        new BackgroundObject('../El_Pollo_Loco/img_pollo_locco/img/5_background/layers/3_third_layer/1.png', 0), 
-        new BackgroundObject('../El_Pollo_Loco/img_pollo_locco/img/5_background/layers/2_second_layer/1.png', 0), 
-        new BackgroundObject('../El_Pollo_Loco/img_pollo_locco/img/5_background/layers/1_first_layer/1.png', 0), 
-        new BackgroundObject('../El_Pollo_Loco/img_pollo_locco/img/5_background/layers/air.png', 719),
-        new BackgroundObject('../El_Pollo_Loco/img_pollo_locco/img/5_background/layers/3_third_layer/2.png', 719), 
-        new BackgroundObject('../El_Pollo_Loco/img_pollo_locco/img/5_background/layers/2_second_layer/2.png', 719), 
-        new BackgroundObject('../El_Pollo_Loco/img_pollo_locco/img/5_background/layers/1_first_layer/2.png', 719),
-
-        new BackgroundObject('../El_Pollo_Loco/img_pollo_locco/img/5_background/layers/air.png', 719*2),
-        new BackgroundObject('../El_Pollo_Loco/img_pollo_locco/img/5_background/layers/3_third_layer/1.png', 719*2),
-        new BackgroundObject('../El_Pollo_Loco/img_pollo_locco/img/5_background/layers/2_second_layer/1.png', 719*2), 
-        new BackgroundObject('../El_Pollo_Loco/img_pollo_locco/img/5_background/layers/1_first_layer/1.png', 719*2), 
-        new BackgroundObject('../El_Pollo_Loco/img_pollo_locco/img/5_background/layers/air.png', 719*3),
-        new BackgroundObject('../El_Pollo_Loco/img_pollo_locco/img/5_background/layers/3_third_layer/2.png', 719*3), 
-        new BackgroundObject('../El_Pollo_Loco/img_pollo_locco/img/5_background/layers/2_second_layer/2.png', 719*3), 
-        new BackgroundObject('../El_Pollo_Loco/img_pollo_locco/img/5_background/layers/1_first_layer/2.png', 719*3),
-
-        new BackgroundObject('../El_Pollo_Loco/img_pollo_locco/img/5_background/layers/air.png', 719*4), 
-        new BackgroundObject('../El_Pollo_Loco/img_pollo_locco/img/5_background/layers/3_third_layer/1.png', 719*4),
-        new BackgroundObject('../El_Pollo_Loco/img_pollo_locco/img/5_background/layers/2_second_layer/1.png', 719*4), 
-        new BackgroundObject('../El_Pollo_Loco/img_pollo_locco/img/5_background/layers/1_first_layer/1.png', 719*4), 
-        new BackgroundObject('../El_Pollo_Loco/img_pollo_locco/img/5_background/layers/air.png', 719*5),
-        new BackgroundObject('../El_Pollo_Loco/img_pollo_locco/img/5_background/layers/3_third_layer/2.png', 719*5), 
-        new BackgroundObject('../El_Pollo_Loco/img_pollo_locco/img/5_background/layers/2_second_layer/2.png', 719*5), 
-        new BackgroundObject('../El_Pollo_Loco/img_pollo_locco/img/5_background/layers/1_first_layer/2.png', 719*5)
+    clouds = level1.clouds; // Variable clouds hat ebenfalls ein array, wo jedoch nur eine Classe drinnen ist, was demnach bedeutet, dass nur ein Objekt generiert wird, beim Aufruf der Variablen.
+        
+    
+    backgroundObjects = level1.backgroundObjects; // variable namens backgroundobjects, wo jeweils in einem array, bereits drei classen verfuegbar sind, und jeweils ein path zum Bild als variable weitergegeben wurde und 
+        
        
-    ];
+
     // backgroundSky = [ // variable backgroundSky, welcher eigentlich auch haette in dem Object backgroundObject hineingekonnt, jedoch wollte ich es auslagern, da der Himmel nicht so sehr in die 
     //     new BackgroundSky('../El_Pollo_Loco/img_pollo_locco/img/5_background/layers/air.png', 0, 0), // Landschaften reinpasst. Ist Ebenfalls im Array.
     //     new BackgroundSky('../El_Pollo_Loco/img_pollo_locco/img/5_background/layers/air.png', 0, 720) // Landschaften reinpasst. Ist Ebenfalls im Array.
@@ -78,9 +44,9 @@ class World {
         this.ctx.translate(this.camera_x, 0);
         
        
-        this.addObjectsToMap(this.backgroundObjects);  // this. wird auf eine function mit den Namen 'addObjectsToMap()' zugegriffen, wo der Parameter die variable background sky ist.
-        this.addObjectsToMap(this.enemies);
-        this.addObjectsToMap(this.clouds);
+        this.addObjectsToMap(this.level.backgroundObjects);  // this. wird auf eine function mit den Namen 'addObjectsToMap()' zugegriffen, wo der Parameter die variable background sky ist.
+        this.addObjectsToMap(this.level.enemies);
+        this.addObjectsToMap(this.level.clouds);
         this.addToMap(this.character);
 
         this.ctx.translate(-this.camera_x, 0);

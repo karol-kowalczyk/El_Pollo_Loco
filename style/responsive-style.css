@@ -1,4 +1,3 @@
-
 /* responsive */
 @media only screen and (max-width: 720px) {
     canvas {
@@ -6,7 +5,7 @@
     }
 }
 
-@media  only screen and (max-height: 480px) {
+@media only screen and (max-height: 480px) {
     canvas {
         height: 100svh;
         overflow-y: hidden;
@@ -17,7 +16,7 @@
     }
 }
 
-@media  only screen and (min-height: 480px) {
+@media only screen and (min-height: 480px) {
     canvas {
         height: 100svh;
         overflow-y: hidden;

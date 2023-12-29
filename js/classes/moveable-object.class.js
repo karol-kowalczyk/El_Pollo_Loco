@@ -1,47 +1,77 @@
-class MoveableObject { // classe namens 'MoveableObject'.
-    x = 10; // variable x mit dem Wert 10, welcher allgemein gelten soll und auf welche sich die function addToMap() mit den Parametern in der Datei world.class.js bezogen wurde.
-    y = 137; // x und y sind hier die Positionen im Canvas im Coordinaten -system, wo der punkt 0/0 oben links sich befindet.
-    img; // variable img ohne Wert.
-    width = 100; // Breite des Objekts
-    height = 150; // hohe des Objekts - PS. pixxel also px werden autmoatisch dazugegeben.
-    imageCache = {}; // leeres JSON, wo die Bilder drin gespeichert werden.
-    currentImage = 0;
+class MoveableObject extends DrawableObject { // classe namens 'MoveableObject'.
+  
+  
+   
     speed = 0.15;
     otherDirection = false;
+    speedY = 0;
+    acceleration = 3;
+    energy = 100;
+    lastHit = 0;
 
-    loadImage(path) { // function loadImage mit dem parameter path
-        this.img = new Image(); // hier wird sich mit this. auf die zuvor leere variable img bezogen und damit wurde ein in Javascript vordefinierte Klasse new Image() zugeordnet.
-        this.img.src = path; // hier wird die source um das Bild anzuzeigen, dem Parameter path zugeordnet, welche auch als Parameter oben angegeben ist.
+    applyGravity() {
+        setInterval(() => {
+            if (this.isAboveGround() || this.speedY > 0) {
+                this.y -= this.speedY;
+                this.speedY -= this.acceleration;
+            }
+        }, 1000 / 25);
+    }
+
+    isAboveGround() {
+        return this.y < 120;
     }
 
 
-    /**
-     * 
-     * @param {Array} arr - ['img/image1.png', 'img/image1.png', ...] ganz viele Bilder sollen in das array rein 
-     */
-    loadImages(arr) {
-        arr.forEach((path) => {
-            let img = new Image();
-            img.src = path;
-            this.imageCache[path] = img;
-        });
+
+    //character.isCollidin(chicken);
+    isColliding(mo) {
+        return this.x + this.width > mo.x &&
+        this.y + this.height > mo.y &&
+        this.x < mo.x &&
+        this.y < mo.y + mo.height;
+    }
+
+    hit() {
+        this.energy -= 5;
+        if(this.energy <= 0) {
+            this.energy = 0;
+        } else {
+            this.lastHit = new Date().getTime();
+        }
+    }
+
+    isHurt() {
+        let timepassed = new Date().getTime() - this.lastHit; //  Differenci in ms
+        timepassed = timepassed / 1000; // Difference in s
+        return timepassed < 0.5;
+    }
+
+    isDead() {
+        return this.energy == 0;
     }
 
     playAnimation(images) {
-        let i = this.currentImage % this.IMAGES_WALKING.length; // let i = 0 % 6; => 1, // eine Undendliche Reihe die wir hier haben 
+        let i = this.currentImage % images.length; // let i = 0 % 6; => 1, // eine Undendliche Reihe die wir hier haben 
         let path = images[i];
         this.img = this.imageCache[path];
         this.currentImage++;
     }
-    
+
 
     moveRight() { // function moveRight fuehrt in der console den String 'Moving right' aus.
-        console.log('Moving right');
+        this.x += this.speed;
     }
 
     moveLeft() {
-        setInterval( () => { // Methode set interval fuehrt eine function aus, was hier nur die Klammern () sind staende davor mal function
-            this.x -= this.speed; // veraendert die Position der Wolken um 0.1 pixel
-        }, 1000/60); // so laeuft es 60frames per second also 60fps
+        // Methode set interval fuehrt eine function aus, was hier nur die Klammern () sind staende davor mal function
+        this.x -= this.speed;
+        // veraendert die Position der Wolken um 0.1 pixel
+        // so laeuft es 60frames per second also 60fps
+    }
+
+
+    jump() {
+        this.speedY = 40;
     }
 }

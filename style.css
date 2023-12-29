@@ -1,9 +1,23 @@
 canvas {
     background-color: black;
+    display: block;
 }
 
 body {
     display: flex;
     align-items: center;
     flex-direction: column;
+    font-family: 'zabars', sans-serif;
+    background-image: url('../El_Pollo_Loco/img_pollo_locco/img/10_background/desert.jpg');
+}
+
+h1 {
+    font-size: 112px;
+    letter-spacing: 3px;
+    text-shadow: 3px 3px 6px rgba(241, 185, 30, 0.8);
+    margin-bottom: 32px;
+}
+
+.d-none {
+    display: none;
 }

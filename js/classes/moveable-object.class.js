@@ -1,7 +1,7 @@
 class MoveableObject extends DrawableObject { // classe namens 'MoveableObject'.
-  
-  
-   
+
+
+
     speed = 0.15;
     otherDirection = false;
     speedY = 0;
@@ -19,22 +19,24 @@ class MoveableObject extends DrawableObject { // classe namens 'MoveableObject'.
     }
 
     isAboveGround() {
-        return this.y < 120;
+        if (this instanceof ThrowableObject) {
+            return true;
+        } else {
+            return this.y < 120;
+        }
     }
-
-
 
     //character.isCollidin(chicken);
     isColliding(mo) {
         return this.x + this.width > mo.x &&
-        this.y + this.height > mo.y &&
-        this.x < mo.x &&
-        this.y < mo.y + mo.height;
+            this.y + this.height > mo.y &&
+            this.x < mo.x &&
+            this.y < mo.y + mo.height;
     }
 
     hit() {
         this.energy -= 5;
-        if(this.energy <= 0) {
+        if (this.energy <= 0) {
             this.energy = 0;
         } else {
             this.lastHit = new Date().getTime();

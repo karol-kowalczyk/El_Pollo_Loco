@@ -1,7 +1,4 @@
-class MoveableObject extends DrawableObject { // classe namens 'MoveableObject'.
-
-
-
+class MoveableObject extends DrawableObject { 
     speed = 0.15;
     otherDirection = false;
     speedY = 0;

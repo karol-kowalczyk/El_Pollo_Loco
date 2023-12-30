@@ -70,33 +70,3 @@ window.addEventListener("keyup", (event) => {
     }
 
 });
-
-window.addEventListener('resize', function() {
-    // Überprüfe die Fensterhöhe
-    if (window.innerHeight < 480) {
-        // Wenn die Fensterhöhe kleiner als 480px ist, rufe responsiveDevice() auf
-        responsiveDevice();
-    } else {
-        // Andernfalls tue nichts oder füge hier optionalen Code hinzu
-    }
-});
-
-window.addEventListener('load', function() {
-    // Überprüfe die Fensterhöhe
-    if (window.innerHeight < 480) {
-        // Wenn die Fensterhöhe kleiner als 480px ist, rufe responsiveDevice() auf
-        responsiveDevice();
-    } else {
-        // Andernfalls tue nichts oder füge hier optionalen Code hinzu
-    }
-});
-
-// function responsiveDevice() {
-//     if(window.innerHeight < 480 ) {
-//         let h1Element = document.querySelectorAll('h1');
-
-//         h1Element.forEach((h1) => {
-//             h1.classList.add('d-none');
-//         });
-//     } 
-// }

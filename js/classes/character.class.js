@@ -57,7 +57,6 @@ class Character extends MoveableObject { // classe Character erbt Eigenschaften 
     }
 
     animate() {
-
         setInterval(() => {
 
             this.walking_sound.pause();

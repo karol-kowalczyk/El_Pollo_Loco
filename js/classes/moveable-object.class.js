@@ -69,7 +69,6 @@ class MoveableObject extends DrawableObject {
         // so laeuft es 60frames per second also 60fps
     }
 
-
     jump() {
         this.speedY = 40;
     }

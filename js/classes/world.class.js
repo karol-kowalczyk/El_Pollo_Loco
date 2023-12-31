@@ -10,9 +10,9 @@ class World {
     keybard;
     camera_x = 0;
     statusBar = new StatusBar();
-    throwableObjects = [
-
-    ];
+    coinBar = new CoinBar();
+    bottleBar = new BottleBar();
+    throwableObjects = [];
 
     constructor(canvas, keyboard) {
         this.ctx = canvas.getContext('2d');
@@ -25,8 +25,6 @@ class World {
 
     run() {
         setInterval(() => {
-
-
             this.checkCollisions();
             this.checkThrowObjects();
 
@@ -58,21 +56,20 @@ class World {
         this.ctx.translate(this.camera_x, 0);
 
         this.addObjectsToMap(this.level.backgroundObjects);
-        this.addToMap(this.character);
-
+        this.addObjectsToMap(this.level.clouds);
+        this.addObjectsToMap(this.level.enemies);
         this.ctx.translate(-this.camera_x, 0);
         // Space for fixed objects
         this.addToMap(this.statusBar);
+        this.addToMap(this.coinBar);
+        this.addToMap(this.bottleBar);
         this.ctx.translate(this.camera_x, 0);
 
-        this.addObjectsToMap(this.level.clouds);
-        this.addObjectsToMap(this.level.enemies);
+        this.addToMap(this.character);
+
         this.addObjectsToMap(this.throwableObjects);
-
-
-
+        
         this.ctx.translate(-this.camera_x, 0);
-
 
         let self = this;
         requestAnimationFrame(function () {
@@ -94,7 +91,6 @@ class World {
         mo.draw(this.ctx);
 
         mo.drawFrame(this.ctx);
-
 
 
         if (mo.otherDirection) {

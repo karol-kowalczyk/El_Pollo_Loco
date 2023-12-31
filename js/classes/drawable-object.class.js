@@ -1,11 +1,10 @@
 class DrawableObject {
-    x = 10;
+    x = 100;
     y = 137;
     width = 100;
     height = 150;
     imageCache = {};
     currentImage = 0;
-
 
     loadImage(path) {
         this.img = new Image();
@@ -24,10 +23,7 @@ class DrawableObject {
             ctx.rect(this.x, this.y, this.width, this.height);
             ctx.stroke();
         }
-
     }
-
-
 
     /**
  * 
@@ -40,5 +36,4 @@ class DrawableObject {
             this.imageCache[path] = img;
         });
     }
-
 }

@@ -42,7 +42,6 @@ class Character extends MoveableObject { // classe Character erbt Eigenschaften 
         '../El_Pollo_Loco/img_pollo_locco/img/2_character_pepe/4_hurt/H-43.png'
     ]
 
-
     world;
     walking_sound = new Audio('../El_Pollo_Loco/img_pollo_locco/img/audio/walking.mp3');;
 

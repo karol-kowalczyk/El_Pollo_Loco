@@ -1,6 +1,5 @@
 class StatusBar extends DrawableObject {
 
-
     IMAGES = [
         '../El_Pollo_Loco/img_pollo_locco/img/7_statusbars/1_statusbar/2_statusbar_health/green/0.png', // 0
         '../El_Pollo_Loco/img_pollo_locco/img/7_statusbars/1_statusbar/2_statusbar_health/green/20.png', // 1

@@ -70,3 +70,25 @@ window.addEventListener("keyup", (event) => {
     }
 
 });
+
+function fullscreen() {
+    let fullscreen = document.getElementById('canvas-container');
+    enterFullscreen(fullscreen);
+}
+
+function enterFullscreen(element) {
+   if(element.requestFullscreen) {
+    element.requestFullscreen();
+   } else if (element.msReuestFullScreen) {
+    element.webkitRequestFullscreen();
+   }
+   
+}
+
+function exitFullscreen() {
+    if(document.exitFullscreen) {
+        document.exitFullscreen();
+    } else if(document.webkitExitFullscreen) {
+        document.webkitExitFullscreen();
+    }
+}

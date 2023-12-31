@@ -1,23 +1,74 @@
-canvas {
-    background-color: black;
-    display: block;
-}
-
 body {
     display: flex;
     align-items: center;
     flex-direction: column;
     font-family: 'zabars', sans-serif;
     background-image: url('../El_Pollo_Loco/img_pollo_locco/img/10_background/desert.jpg');
+    height: 95vh;
+}
+
+canvas {
+    background-color: black;
+    display: block;
+}
+
+#content {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
 }
 
 h1 {
     font-size: 112px;
     letter-spacing: 3px;
     text-shadow: 3px 3px 6px rgba(241, 185, 30, 0.8);
-    margin-bottom: 32px;
+    top: 0;
+    margin-left: 5%;
+    margin-top: 20px;
+    text-align: center;
+}
+
+#canvas-container {
+    height: 480px;
+    width: 720px;
+    display: flex;
+
+    align-items: flex-end;
+    justify-content: flex-end;
+}
+
+.canvas-icons-div {
+    position: absolute;
+
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 8px;
+    height: 48px;
+    width: 236px;
 }
 
 .d-none {
     display: none;
+}
+
+.div-icons {
+    cursor: pointer;
+    height: 32px;
+    width: 32px;
+}
+
+#sound-icon:hover {
+    height: 36px;
+    width: 36px;
+}
+
+#gamepad-icon:hover {
+    height: 36px;
+    width: 36px;
+}
+
+#fullscreen-icon:hover {
+    height: 36px;
+    width: 36px;
 }

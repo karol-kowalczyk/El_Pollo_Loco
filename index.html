@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,7 +11,7 @@
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="fonts/fonts.css">
     <link rel="stylesheet" href="./style/responsive-style.css">
-    
+
     <script src="./js/classes/drawable-object.class.js"></script>
     <script src="./js/classes/moveable-object.class.js"></script>
     <script src="./js/classes/character.class.js"></script>
@@ -32,16 +33,26 @@
     <script src="./js/classes/throwable-object.class.js"></script>
     <script src="./js/classes/endboss.class.js"></script>
     <script src="./js/levels/level1.js"></script>
-    
+
 
     <script src="js/game.js"></script>
 </head>
+
 <body onload="init()">
-    <h1>El Pollo Loco</h1>
+    <div id="content">
+        <h1>El Pollo Loco</h1>
 
+        <div id="canvas-container">
+            <div class="canvas-icons-div">
+                <img id="gamepad-icon" class="div-icons" src="./img_pollo_locco/img/10_background/game-pad.png" alt="gamepad">
+                <img id="sound-icon" class="div-icons" src="/El_Pollo_Loco/img_pollo_locco/img/10_background/speaker-filled-audio.png" alt="speaker">
+                <img id="fullscreen-icon" onclick="fullscreen()" class="div-icons" src="/El_Pollo_Loco/img_pollo_locco/img/10_background/fullscreen.png" alt="fullscreen">
+            </div>
+            <canvas id="canvas" width="720" height="480">
 
-    <canvas id="canvas" width="720" height="480">
-
-    </canvas>
+            </canvas>
+        </div>
+    </div>
 </body>
-</html>=
+
+</html>

@@ -1,5 +1,4 @@
 class World {
-
     character = new Character();
     level = level1;
     enemies = level1.enemies;
@@ -12,6 +11,7 @@ class World {
     statusBar = new StatusBar();
     coinBar = new CoinBar();
     bottleBar = new BottleBar();
+    endbossBar = new EndbossStatusBar();
     throwableObjects = [];
 
     constructor(canvas, keyboard) {
@@ -61,6 +61,7 @@ class World {
         this.ctx.translate(-this.camera_x, 0);
         // Space for fixed objects
         this.addToMap(this.statusBar);
+        this.addToMap(this.endbossBar);
         this.addToMap(this.coinBar);
         this.addToMap(this.bottleBar);
         this.ctx.translate(this.camera_x, 0);

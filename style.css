@@ -41,15 +41,20 @@ h1 {
     position: absolute;
 
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: center;
     padding: 8px;
-    height: 48px;
-    width: 236px;
+    height: 56px;
+    width: 200px;
 }
 
 .d-none {
     display: none;
+}
+
+.icon-div {
+    height: 36px;
+    width: 36px;
 }
 
 .div-icons {

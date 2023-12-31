@@ -20,7 +20,7 @@ class BabyChicken extends MoveableObject {
         this.loadImages(this.IMAGES_WALKING);
         this.loadImages(this.IMAGES_JUMPING);
 
-        this.x = 3000 + Math.random() * 3000; // hier wird die variable x, also die Position im Graphen auf der x-achse neu zugeteilt, und mit einem random wert erstellt
+        this.x = 3000 + Math.random() * 6000; // hier wird die variable x, also die Position im Graphen auf der x-achse neu zugeteilt, und mit einem random wert erstellt
         // damit jedes Huhn, von den dreien die generiert werden, anders positioniert werden.
         this.speed = 0.22 + Math.random() * 2;
         

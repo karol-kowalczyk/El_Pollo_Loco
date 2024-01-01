@@ -12,7 +12,7 @@ class Character extends MoveableObject { // classe Character erbt Eigenschaften 
         '../El_Pollo_Loco/img_pollo_locco/img/2_character_pepe/2_walk/W-24.png',
         '../El_Pollo_Loco/img_pollo_locco/img/2_character_pepe/2_walk/W-25.png',
         '../El_Pollo_Loco/img_pollo_locco/img/2_character_pepe/2_walk/W-26.png'
-    ];   // ist ein Array, deswegen nur eckige Klammern und kein JSON, wo wir Runde-Klammern haetten.
+    ]; 
 
     IMAGES_JUMPING = [
         '../El_Pollo_Loco/img_pollo_locco/img/2_character_pepe/3_jump/J-31.png',
@@ -43,7 +43,7 @@ class Character extends MoveableObject { // classe Character erbt Eigenschaften 
     ]
 
     world;
-    walking_sound = new Audio('../El_Pollo_Loco/img_pollo_locco/img/audio/walking.mp3');;
+    walking_sound = new Audio('../El_Pollo_Loco/img_pollo_locco/img/audio/walking.mp3');
 
     constructor() { // initialisiert wird automatisch aufgerufen, deswegen konstructor, und dieser legt fest, wie die Klasse aussehen und funktionieren soll
         super().loadImage('../El_Pollo_Loco/img_pollo_locco/img/2_character_pepe/2_walk/W-21.png'); // mit super() wird von der UeberClasse geerbt und so

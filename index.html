@@ -42,21 +42,48 @@
     <div id="content">
         <h1>El Pollo Loco</h1>
 
-        <div id="canvas-container">
+        <div id="canvas-container" onclick="closeInstruction()">
+            <audio autoplay id="loading-screen-music" src="./img_pollo_locco/img/audio/loading_screen.mp3"></audio>
+            <div id="game-instruction" class="d-none" onclick="event.stopPropagation();">
+                <div id="game-instruction-header">
+                    <div class="empty">X</div>
+                    <h2>Controls</h2>
+                    <div onclick="closeInstruction()" class="exit">X</div>
+                </div>
+                <div class="instruction-div">
+                    <div class="keyboard-buttons">
+                        <p>Move Left</p><img class="instruction-icons"
+                            src="./img_pollo_locco/img/10_background/left-arrow.png" alt="left">
+                    </div>
+                    <div class="keyboard-buttons">
+                        <p>Move Right</p><img class="instruction-icons"
+                            src="./img_pollo_locco/img/10_background/right-arrow.png" alt="right">
+                    </div>
+                    <div class="keyboard-button-space">
+                        <p>Jump</p><img class="instruction-icons"
+                            src="./img_pollo_locco/img/10_background/keyboard-space.png" alt="jump">
+                    </div>
+                    <div class="keyboard-buttons">
+                        <p>Throw Bottle</p><img class="instruction-icons"
+                            src="./img_pollo_locco/img/10_background/d-button.svg" alt="throw bottle">
+                    </div>
+                </div>
+            </div>
             <div class="canvas-icons-div">
                 <div class="icon-div">
-                    <img id="gamepad-icon" class="div-icons" src="./img_pollo_locco/img/10_background/game-pad.png"
-                        alt="gamepad">
+                    <img onclick="openGameInstruction(event)" id="gamepad-icon" class="div-icons"
+                        src="./img_pollo_locco/img/10_background/game-pad.png" alt="gamepad">
                 </div>
                 <div class="icon-div">
-                    <img id="sound-icon" class="div-icons"
-                        src="/El_Pollo_Loco/img_pollo_locco/img/10_background/speaker-filled-audio.png" alt="speaker">
+                    <img onclick="toggleIcon()" id="sound-icon" class="div-icons" src="/El_Pollo_Loco/img_pollo_locco/img/10_background/speaker-mute.png" alt="speaker">
                 </div>
                 <div class="icon-div">
                     <img id="fullscreen-icon" onclick="fullscreen()" class="div-icons"
                         src="/El_Pollo_Loco/img_pollo_locco/img/10_background/fullscreen.png" alt="fullscreen">
                 </div>
+
             </div>
+
             <canvas id="canvas" width="720" height="480">
 
             </canvas>

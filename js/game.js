@@ -131,3 +131,12 @@ function togglePlay() {
        loadingScreenMusic.play();
     }
  }
+
+ function closeStartScreen() {
+    let startScreenImg = document.getElementById('start-screen-img');
+    let startButton = document.getElementById('start-button');
+
+    startScreenImg.classList.add('d-none')
+    startButton.classList.add('d-none')
+
+ }

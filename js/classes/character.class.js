@@ -42,16 +42,42 @@ class Character extends MoveableObject { // classe Character erbt Eigenschaften 
         '../El_Pollo_Loco/img_pollo_locco/img/2_character_pepe/4_hurt/H-43.png'
     ]
 
+    IMAGES_SNORING = [
+        '../El_Pollo_Loco/img_pollo_locco/img/2_character_pepe/1_idle/idle/I-1.png',
+        '../El_Pollo_Loco/img_pollo_locco/img/2_character_pepe/1_idle/idle/I-2.png',
+        '../El_Pollo_Loco/img_pollo_locco/img/2_character_pepe/1_idle/idle/I-3.png',
+        '../El_Pollo_Loco/img_pollo_locco/img/2_character_pepe/1_idle/idle/I-4.png',
+        '../El_Pollo_Loco/img_pollo_locco/img/2_character_pepe/1_idle/idle/I-5.png',
+        '../El_Pollo_Loco/img_pollo_locco/img/2_character_pepe/1_idle/idle/I-6.png',
+        '../El_Pollo_Loco/img_pollo_locco/img/2_character_pepe/1_idle/idle/I-7.png',
+        '../El_Pollo_Loco/img_pollo_locco/img/2_character_pepe/1_idle/idle/I-8.png',
+        '../El_Pollo_Loco/img_pollo_locco/img/2_character_pepe/1_idle/idle/I-9.png',
+        '../El_Pollo_Loco/img_pollo_locco/img/2_character_pepe/1_idle/idle/I-10.png',
+        '../El_Pollo_Loco/img_pollo_locco/img/2_character_pepe/1_idle/long_idle/I-11.png',
+        '../El_Pollo_Loco/img_pollo_locco/img/2_character_pepe/1_idle/long_idle/I-12.png',
+        '../El_Pollo_Loco/img_pollo_locco/img/2_character_pepe/1_idle/long_idle/I-13.png',
+        '../El_Pollo_Loco/img_pollo_locco/img/2_character_pepe/1_idle/long_idle/I-14.png',
+        '../El_Pollo_Loco/img_pollo_locco/img/2_character_pepe/1_idle/long_idle/I-15.png',
+        '../El_Pollo_Loco/img_pollo_locco/img/2_character_pepe/1_idle/long_idle/I-16.png',
+        '../El_Pollo_Loco/img_pollo_locco/img/2_character_pepe/1_idle/long_idle/I-17.png',
+        '../El_Pollo_Loco/img_pollo_locco/img/2_character_pepe/1_idle/long_idle/I-18.png',
+        '../El_Pollo_Loco/img_pollo_locco/img/2_character_pepe/1_idle/long_idle/I-19.png',
+        '../El_Pollo_Loco/img_pollo_locco/img/2_character_pepe/1_idle/long_idle/I-20.png'
+    ]
+
     world;
     walking_sound = new Audio('../El_Pollo_Loco/img_pollo_locco/img/audio/walking.mp3');
+    snoring_sound = new Audio('../El_Pollo_Loco/img_pollo_locco/img/audio/Cartoon_Snoring_SOUND_EFFECT.mp3')
 
     constructor() { // initialisiert wird automatisch aufgerufen, deswegen konstructor, und dieser legt fest, wie die Klasse aussehen und funktionieren soll
         super().loadImage('../El_Pollo_Loco/img_pollo_locco/img/2_character_pepe/2_walk/W-21.png'); // mit super() wird von der UeberClasse geerbt und so
         // kann die function loadImage ausgefuehrt und uebernommen werden. In der moveable-object.class.js wurde die function erstellt mit dem Parameter path, welcher hier erstellt wird.
         this.loadImages(this.IMAGES_WALKING);
         this.loadImages(this.IMAGES_JUMPING);
+
         this.loadImages(this.IMAGES_DEAD);
         this.loadImages(this.IMAGES_HURT);
+        this.loadImages(this.IMAGES_SNORING);
         this.applyGravity();
         this.animate();
     }
@@ -91,7 +117,12 @@ class Character extends MoveableObject { // classe Character erbt Eigenschaften 
                 if (this.world.keyboard.RIGHT || this.world.keyboard.LEFT) {
                     // walk animation
                     this.playAnimation(this.IMAGES_WALKING);
+                } else if(!this.world.keyboard.RIGHT && !this.world.keyboard.LEFT && !this.world.keyboard.SPACE && !this.world.keyboard.D) {
+                    //snoring animation
+                    this.playAnimation(this.IMAGES_SNORING);
+                    this.snoring_sound.play();
                 }
+                
             }
         }, 50);
     }

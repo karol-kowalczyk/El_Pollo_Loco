@@ -139,6 +139,5 @@ function closeStartScreen() {
     startScreenImg.classList.add('d-none')
     startButton.classList.add('d-none')
 
-
-    initLevel();
+    init();
 }

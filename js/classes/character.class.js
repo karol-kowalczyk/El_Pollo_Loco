@@ -12,7 +12,7 @@ class Character extends MoveableObject { // classe Character erbt Eigenschaften 
         '../El_Pollo_Loco/img_pollo_locco/img/2_character_pepe/2_walk/W-24.png',
         '../El_Pollo_Loco/img_pollo_locco/img/2_character_pepe/2_walk/W-25.png',
         '../El_Pollo_Loco/img_pollo_locco/img/2_character_pepe/2_walk/W-26.png'
-    ]; 
+    ];
 
     IMAGES_JUMPING = [
         '../El_Pollo_Loco/img_pollo_locco/img/2_character_pepe/3_jump/J-31.png',
@@ -43,15 +43,6 @@ class Character extends MoveableObject { // classe Character erbt Eigenschaften 
     ]
 
     IMAGES_SNORING = [
-        '../El_Pollo_Loco/img_pollo_locco/img/2_character_pepe/1_idle/idle/I-1.png',
-        '../El_Pollo_Loco/img_pollo_locco/img/2_character_pepe/1_idle/idle/I-2.png',
-        '../El_Pollo_Loco/img_pollo_locco/img/2_character_pepe/1_idle/idle/I-3.png',
-        '../El_Pollo_Loco/img_pollo_locco/img/2_character_pepe/1_idle/idle/I-4.png',
-        '../El_Pollo_Loco/img_pollo_locco/img/2_character_pepe/1_idle/idle/I-5.png',
-        '../El_Pollo_Loco/img_pollo_locco/img/2_character_pepe/1_idle/idle/I-6.png',
-        '../El_Pollo_Loco/img_pollo_locco/img/2_character_pepe/1_idle/idle/I-7.png',
-        '../El_Pollo_Loco/img_pollo_locco/img/2_character_pepe/1_idle/idle/I-8.png',
-        '../El_Pollo_Loco/img_pollo_locco/img/2_character_pepe/1_idle/idle/I-9.png',
         '../El_Pollo_Loco/img_pollo_locco/img/2_character_pepe/1_idle/idle/I-10.png',
         '../El_Pollo_Loco/img_pollo_locco/img/2_character_pepe/1_idle/long_idle/I-11.png',
         '../El_Pollo_Loco/img_pollo_locco/img/2_character_pepe/1_idle/long_idle/I-12.png',
@@ -67,7 +58,8 @@ class Character extends MoveableObject { // classe Character erbt Eigenschaften 
 
     world;
     walking_sound = new Audio('../El_Pollo_Loco/img_pollo_locco/img/audio/walking.mp3');
-    snoring_sound = new Audio('../El_Pollo_Loco/img_pollo_locco/img/audio/Cartoon_Snoring_SOUND_EFFECT.mp3')
+    snoring_sound = new Audio('../El_Pollo_Loco/img_pollo_locco/img/audio/Cartoon_Snoring_SOUND_EFFECT.mp3');
+    endgame_sound = new Audio('../El_Pollo_Loco/img_pollo_locco/img/audio/End_Boss_Music.mp3');
 
     constructor() { // initialisiert wird automatisch aufgerufen, deswegen konstructor, und dieser legt fest, wie die Klasse aussehen und funktionieren soll
         super().loadImage('../El_Pollo_Loco/img_pollo_locco/img/2_character_pepe/2_walk/W-21.png'); // mit super() wird von der UeberClasse geerbt und so
@@ -80,6 +72,7 @@ class Character extends MoveableObject { // classe Character erbt Eigenschaften 
         this.loadImages(this.IMAGES_SNORING);
         this.applyGravity();
         this.animate();
+        this.endgame();
     }
 
     animate() {
@@ -93,12 +86,12 @@ class Character extends MoveableObject { // classe Character erbt Eigenschaften 
             }
 
             if (this.world.keyboard.LEFT && this.x > 0) {
-                this.otherDirection = true; 
+                this.otherDirection = true;
                 this.moveLeft();
                 this.walking_sound.play();
             }
 
-            if(this.world.keyboard.SPACE && !this.isAboveGround()) {
+            if (this.world.keyboard.SPACE && !this.isAboveGround()) {
                 this.jump();
             }
 
@@ -107,9 +100,9 @@ class Character extends MoveableObject { // classe Character erbt Eigenschaften 
 
         setInterval(() => {
 
-            if(this.isDead()) {
+            if (this.isDead()) {
                 this.playAnimation(this.IMAGES_DEAD);
-            } else if(this.isHurt()) {
+            } else if (this.isHurt()) {
                 this.playAnimation(this.IMAGES_HURT);
             } else if (this.isAboveGround()) {
                 this.playAnimation(this.IMAGES_JUMPING);
@@ -117,14 +110,35 @@ class Character extends MoveableObject { // classe Character erbt Eigenschaften 
                 if (this.world.keyboard.RIGHT || this.world.keyboard.LEFT) {
                     // walk animation
                     this.playAnimation(this.IMAGES_WALKING);
-                } else if(!this.world.keyboard.RIGHT && !this.world.keyboard.LEFT && !this.world.keyboard.SPACE && !this.world.keyboard.D) {
-                    //snoring animation
-                    this.playAnimation(this.IMAGES_SNORING);
-                    this.snoring_sound.play();
                 }
-                
             }
         }, 50);
+
+        setInterval(() => {
+            if (!this.world.keyboard.RIGHT && !this.world.keyboard.LEFT && !this.world.keyboard.SPACE && !this.world.keyboard.D) {
+                //snoring animation
+
+                this.snoring();
+
+            }
+        }, 300);
     }
 
+    snoring() {
+
+        this.snoring_sound.pause();
+        setInterval(() => {
+            this.playAnimation(this.IMAGES_SNORING);
+            this.snoring_sound.play();
+        }, 3000);
+
+    }
+
+    endgame() {
+        if (this.x == 7000) {
+            this.endgame_sound.play();
+        }
+
+        console.log(this.x);
+    }
 }

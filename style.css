@@ -10,6 +10,7 @@ body {
 canvas {
     background-color: black;
     display: block;
+    z-index: -1;
 }
 
 #content {
@@ -211,4 +212,11 @@ p {
     100% {
         transform: skew(-20deg) scale(1);
     }
+}
+
+#start-screen-img {
+    height: 480px;
+    width: 720px;
+    position: absolute;
+    z-index: 0;
 }

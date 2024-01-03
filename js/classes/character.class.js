@@ -95,11 +95,6 @@ class Character extends MoveableObject { // classe Character erbt Eigenschaften 
                 this.jump();
             }
 
-        if (this.x >= 2000) {
-            this.endgame_sound.play();
-            console.log(this.x);
-        }
-
             this.world.camera_x = - this.x + 100;
         }, 1000 / 60);
 
@@ -139,4 +134,11 @@ class Character extends MoveableObject { // classe Character erbt Eigenschaften 
 
     }
 
-    endgame();
+    endgame() {
+        if (this.x == 7000) {
+            this.endgame_sound.play();
+        }
+
+        console.log(this.x);
+    }
+}

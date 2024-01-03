@@ -135,7 +135,7 @@ class Character extends MoveableObject { // classe Character erbt Eigenschaften 
     }
 
     endgame() {
-        if (this.x == 7000) {
+        if (this.x >= 2000) {
             this.endgame_sound.play();
         }
 

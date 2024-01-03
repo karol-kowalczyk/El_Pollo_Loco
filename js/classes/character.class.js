@@ -72,7 +72,6 @@ class Character extends MoveableObject { // classe Character erbt Eigenschaften 
         this.loadImages(this.IMAGES_SNORING);
         this.applyGravity();
         this.animate();
-        this.endgame();
     }
 
     animate() {
@@ -94,6 +93,11 @@ class Character extends MoveableObject { // classe Character erbt Eigenschaften 
             if (this.world.keyboard.SPACE && !this.isAboveGround()) {
                 this.jump();
             }
+
+            if (this.x >= 7000) {
+                this.endgame();
+            }
+
 
             this.world.camera_x = - this.x + 100;
         }, 1000 / 60);
@@ -135,10 +139,7 @@ class Character extends MoveableObject { // classe Character erbt Eigenschaften 
     }
 
     endgame() {
-        if (this.x == 7000) {
-            this.endgame_sound.play();
-        }
-
-        console.log(this.x);
+        this.endgame_sound.play();
     }
-}
+
+} 

@@ -5,6 +5,7 @@ class MoveableObject extends DrawableObject {
     acceleration = 3;
     energy = 100;
     lastHit = 0;
+    lastHeal = 0;
 
     applyGravity() {
         setInterval(() => {
@@ -31,12 +32,35 @@ class MoveableObject extends DrawableObject {
             this.y < mo.y + mo.height;
     }
 
+    //bottle.isColliding(chicken)
+
+    
+
     hit() {
         this.energy -= 5;
         if (this.energy <= 0) {
             this.energy = 0;
         } else {
             this.lastHit = new Date().getTime();
+        }
+    }
+
+    bigHit() {
+        this.energy -= 35;
+        if (this.energy <= 0) {
+            this.energy = 0;
+            this.jumpToEndScreen();
+        } else {
+            this.lastHit = new Date().getTime();
+        }
+    }
+
+    contactWithLifeItem() {
+        this.energy += 20;
+        if (this.energy >= 100) {
+            this.energy = 100;
+        } else {
+            this.lastHeal = new Date().getTime();
         }
     }
 

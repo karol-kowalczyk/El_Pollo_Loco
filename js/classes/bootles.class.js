@@ -13,5 +13,10 @@ class Bottle extends MoveableObject {
         // damit jedes Huhn, von den dreien die generiert werden, anders positioniert werden.
         this.y = 320 + Math.random() * -10;
 
+        this.animate();
+    }
+
+    animate() {
+        
     }
 }

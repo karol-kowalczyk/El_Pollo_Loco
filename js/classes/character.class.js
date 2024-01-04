@@ -67,6 +67,11 @@ class Character extends MoveableObject { // classe Character erbt Eigenschaften 
         this.loadImages(this.IMAGES_WALKING);
         this.loadImages(this.IMAGES_JUMPING);
 
+        this.lastKeyPressTime = Date.now();
+        setInterval(() => {
+            this.checkCharacterIdle();
+        }, 1000);
+
         this.loadImages(this.IMAGES_DEAD);
         this.loadImages(this.IMAGES_HURT);
         this.loadImages(this.IMAGES_SNORING);
@@ -82,6 +87,7 @@ class Character extends MoveableObject { // classe Character erbt Eigenschaften 
                 this.otherDirection = false;
                 this.moveRight();
                 this.walking_sound.play();
+                this.snoring_sound.pause();
             }
 
             if (this.world.keyboard.LEFT && this.x > 0) {
@@ -94,15 +100,18 @@ class Character extends MoveableObject { // classe Character erbt Eigenschaften 
                 this.jump();
             }
 
-            if (this.x >= 7000) {
+            if (this.x >= 6800) {
                 this.endgame();
-            }
+                this.world.endbossBar.isVisible  = true;
 
+    
+            }
 
             this.world.camera_x = - this.x + 100;
         }, 1000 / 60);
 
         setInterval(() => {
+
 
             if (this.isDead()) {
                 this.playAnimation(this.IMAGES_DEAD);
@@ -117,25 +126,40 @@ class Character extends MoveableObject { // classe Character erbt Eigenschaften 
                 }
             }
         }, 50);
+    }
 
-        setInterval(() => {
-            if (!this.world.keyboard.RIGHT && !this.world.keyboard.LEFT && !this.world.keyboard.SPACE && !this.world.keyboard.D) {
-                //snoring animation
+    checkCharacterIdle() {
+        const currentTime = Date.now();
 
-                this.snoring();
-
-            }
-        }, 300);
+        // Überprüfe, ob der Charakter stillsteht oder verletzt/verstorben ist
+        if (!this.isHurt() && !this.isDead() && currentTime - this.lastKeyPressTime >= 3000) {
+            // Führe die Snoring-Funktion aus, wenn der Charakter stillsteht
+            this.snoring();
+        }
     }
 
     snoring() {
-
-        this.snoring_sound.pause();
-        setInterval(() => {
+        if (!this.isHurt() && !this.isDead()) {
+            super.isHurt();
+            super.isDead();
             this.playAnimation(this.IMAGES_SNORING);
             this.snoring_sound.play();
-        }, 3000);
+        }
+    }
 
+    moveRight() {
+        super.moveRight();
+        this.lastKeyPressTime = Date.now();
+    }
+
+    moveLeft() {
+        super.moveLeft();
+        this.lastKeyPressTime = Date.now();
+    }
+
+    jump() {
+        super.jump();
+        this.lastKeyPressTime = Date.now();
     }
 
     endgame() {

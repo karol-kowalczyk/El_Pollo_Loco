@@ -13,7 +13,7 @@ class World {
     bottleBar = new BottleBar();
     endbossBar = new EndbossStatusBar();
     throwableObjects = [];
-    
+
 
     // startScreen.src = '../El_Pollo_Loco/img_pollo_locco/img/9_intro_outro_screens/start/startscreen_2.png';
 
@@ -64,7 +64,9 @@ class World {
         this.ctx.translate(-this.camera_x, 0);
         // Space for fixed objects
         this.addToMap(this.statusBar);
-        this.addToMap(this.endbossBar);
+        if (this.endbossBar.isVisible === true) {
+            this.addToMap(this.endbossBar);
+        }
         this.addToMap(this.coinBar);
         this.addToMap(this.bottleBar);
         this.ctx.translate(this.camera_x, 0);
@@ -72,7 +74,7 @@ class World {
         this.addToMap(this.character);
 
         this.addObjectsToMap(this.throwableObjects);
-        
+
         this.ctx.translate(-this.camera_x, 0);
 
         let self = this;

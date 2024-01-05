@@ -32,7 +32,9 @@ level1 = new Level([
     new BabyChickenJumping(),
     new BabyChickenJumping(),
     new BabyChickenJumping(),
-    new Endboss(),
+],[
+
+new Endboss()
 ],
     [
         new Cloud(),

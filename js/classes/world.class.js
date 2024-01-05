@@ -12,7 +12,6 @@ class World {
     coinBar = new CoinBar();
     bottleBar = new BottleBar();
     endbossBar = new EndbossStatusBar();
-    endboss = new Endboss();
     throwableObjects = [];
 
     collectHeartSound = new Audio('../El_Pollo_Loco/img_pollo_locco/img/audio/pick_heart.mp3');

@@ -3,6 +3,7 @@ class World {
     level = level1;
     enemies = level1.enemies;
     clouds = level1.clouds;
+    endboss = level1.endboss[0];
     backgroundObjects = level1.backgroundObjects;
     canvas;
     ctx;
@@ -74,6 +75,7 @@ class World {
         this.addObjectsToMap(this.level.backgroundObjects);
         this.addObjectsToMap(this.level.clouds);
         this.addObjectsToMap(this.level.enemies);
+        this.addToMap(this.endboss);
         this.ctx.translate(-this.camera_x, 0);
         // Space for fixed objects
         this.addToMap(this.statusBar);

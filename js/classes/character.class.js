@@ -107,6 +107,8 @@ class Character extends MoveableObject { // classe Character erbt Eigenschaften 
                 this.world.endbossBar.isVisible  = true;
             }
 
+            
+
             this.world.camera_x = - this.x + 100;
         }, 1000 / 60);
 

@@ -15,6 +15,8 @@ class World {
     endboss = new Endboss();
     throwableObjects = [];
 
+    collectHeartSound = new Audio('../El_Pollo_Loco/img_pollo_locco/img/audio/pick_heart.mp3');
+
 
     // startScreen.src = '../El_Pollo_Loco/img_pollo_locco/img/9_intro_outro_screens/start/startscreen_2.png';
 
@@ -33,6 +35,7 @@ class World {
             this.checkThrowObjects();
 
         }, 200);
+
     }
 
     checkThrowObjects() {
@@ -47,6 +50,16 @@ class World {
             if (this.character.isColliding(enemy)) {
                 this.character.hit();
                 this.statusBar.setPercentage(this.character.energy);
+            }
+        });
+    }
+
+    checkCollectHeart() {
+        this.level.hearts.forEach((heart) => {
+            if(this.character.isColliding(heart)) {
+                
+                
+                
             }
         });
     }

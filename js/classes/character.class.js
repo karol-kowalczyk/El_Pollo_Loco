@@ -72,6 +72,8 @@ class Character extends MoveableObject { // classe Character erbt Eigenschaften 
             this.checkCharacterIdle();
         }, 1000);
 
+        this.isEndbossWalking;
+
         this.loadImages(this.IMAGES_DEAD);
         this.loadImages(this.IMAGES_HURT);
         this.loadImages(this.IMAGES_SNORING);
@@ -100,11 +102,9 @@ class Character extends MoveableObject { // classe Character erbt Eigenschaften 
                 this.jump();
             }
 
-            if (this.x >= 6800) {
+            if (this.x >= 6400) {
                 this.endgame();
                 this.world.endbossBar.isVisible  = true;
-
-    
             }
 
             this.world.camera_x = - this.x + 100;

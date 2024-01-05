@@ -12,6 +12,7 @@ class World {
     coinBar = new CoinBar();
     bottleBar = new BottleBar();
     endbossBar = new EndbossStatusBar();
+    endboss = new Endboss();
     throwableObjects = [];
 
 
@@ -66,6 +67,7 @@ class World {
         this.addToMap(this.statusBar);
         if (this.endbossBar.isVisible === true) {
             this.addToMap(this.endbossBar);
+            this.endboss.isEndbossWalking = true;
         }
         this.addToMap(this.coinBar);
         this.addToMap(this.bottleBar);

@@ -14,7 +14,7 @@ class Chicken extends MoveableObject {
 
         this.x = 2700 + Math.random() * 8000; // hier wird die variable x, also die Position im Graphen auf der x-achse neu zugeteilt, und mit einem random wert erstellt
         // damit jedes Huhn, von den dreien die generiert werden, anders positioniert werden.
-        this.speed = 0.15 + Math.random() * 2;
+        this.speed = 1.15 + Math.random() * 2;
         
         this.animate();
     }

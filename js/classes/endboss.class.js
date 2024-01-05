@@ -27,30 +27,28 @@ class Endboss extends MoveableObject {
         super().loadImage(this.IMAGES_LOOKING[0]);
         this.loadImages(this.IMAGES_LOOKING);
         this.loadImages(this.IMAGES_WALKING);
-        this.x = 6800;
-        this.speed = 0.15 + Math.random() * 2;
+        this.x = 7100;
+        this.speed = 0.5;
         setInterval(() => {
-        if(this.isEndbossWalking == true) {
-            this.animate();
-        }
-    }, 1000/60);
+            if (this.isEndbossWalking == true) {
+                this.animate();
+            }
+        }, 200);
     }
 
     animate() {
-        this.moveLeft();
-        setInterval(() => {
-            this.playAnimation(this.IMAGES_WALKING);
-
-        }, 300);
-
         setInterval(() => {
             this.moveLeft();
-        }, 1000 / 60);
 
+        }, 250);
 
         setInterval(() => {
             this.playAnimation(this.IMAGES_LOOKING);
-        }, 1000);
 
+        }, 400);
+
+        setInterval(() => {
+            this.playAnimation(this.IMAGES_WALKING);
+        }, 600);
     }
 }

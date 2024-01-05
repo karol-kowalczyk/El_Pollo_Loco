@@ -3,6 +3,10 @@ class World {
     level = level1;
     enemies = level1.enemies;
     clouds = level1.clouds;
+    coins = level1.coins;
+    hearts = level1.hearts;
+    bottles = level1.bottles;
+    endboss = level1.endboss[0];
     backgroundObjects = level1.backgroundObjects;
     canvas;
     ctx;
@@ -12,7 +16,6 @@ class World {
     coinBar = new CoinBar();
     bottleBar = new BottleBar();
     endbossBar = new EndbossStatusBar();
-    endboss = new Endboss();
     throwableObjects = [];
 
     collectHeartSound = new Audio('../El_Pollo_Loco/img_pollo_locco/img/audio/pick_heart.mp3');
@@ -75,6 +78,10 @@ class World {
         this.addObjectsToMap(this.level.backgroundObjects);
         this.addObjectsToMap(this.level.clouds);
         this.addObjectsToMap(this.level.enemies);
+        this.addObjectsToMap(this.level.coins);
+        this.addObjectsToMap(this.level.bottles);
+        this.addObjectsToMap(this.level.hearts);
+        this.addToMap(this.endboss);
         this.ctx.translate(-this.camera_x, 0);
         // Space for fixed objects
         this.addToMap(this.statusBar);

@@ -58,7 +58,7 @@ class World {
         this.level.hearts.forEach((heart) => {
             if(this.character.isColliding(heart)) {
                 
-                
+            
                 
             }
         });

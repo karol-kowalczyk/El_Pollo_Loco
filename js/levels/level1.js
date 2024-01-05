@@ -1,5 +1,5 @@
-level1 = new Level([
-
+level1 = new Level(
+[
     new Chicken(),
     new Chicken(),
     new Chicken(),
@@ -32,25 +32,25 @@ level1 = new Level([
     new BabyChickenJumping(),
     new BabyChickenJumping(),
     new BabyChickenJumping(),
-],[
-
-new Endboss()
 ],
-    [
-        new Cloud(),
-        new Cloud(),
-        new Cloud(),
-        new Cloud(),
-        new Cloud(),
-        new Cloud(),
-        new Cloud(),
-        new Cloud(),
-        new Cloud(),
-        new Cloud(),
-        new Cloud(),
-        new Cloud(),
-
-    ], [new Heart(),
+[
+    new Endboss()
+],
+[
+    new Cloud(),
+    new Cloud(),
+    new Cloud(),
+    new Cloud(),
+    new Cloud(),
+    new Cloud(),
+    new Cloud(),
+    new Cloud(),
+    new Cloud(),
+    new Cloud(),
+    new Cloud(),
+    new Cloud(),
+], 
+[   
     new Heart(),
     new Heart(),
     new Heart(),
@@ -60,7 +60,10 @@ new Endboss()
     new Heart(),
     new Heart(),
     new Heart(),
-    new Heart()], [new Bottle(),
+    new Heart(),
+    new Heart()
+], 
+[   
     new Bottle(),
     new Bottle(),
     new Bottle(),
@@ -70,23 +73,26 @@ new Endboss()
     new Bottle(),
     new Bottle(),
     new Bottle(),
-    new Bottle()],
-    [
-        new Coins(),
-        new Coins(),
-        new Coins(),
-        new Coins(),
-        new Coins(),
-        new Coins(),
-        new Coins(),
-        new Coins(),
-        new Coins(),
-        new Coins(),
-        new Coins(),
-        new Coins(),
-        new Coins(),
-        new Coins(),]
-    [
+    new Bottle(),
+    new Bottle()
+],
+[
+    new Coins(),
+    new Coins(),
+    new Coins(),
+    new Coins(),
+    new Coins(),
+    new Coins(),
+    new Coins(),
+    new Coins(),
+    new Coins(),
+    new Coins(),
+    new Coins(),
+    new Coins(),
+    new Coins(),
+    new Coins(),
+],
+[
     new BackgroundObject('../El_Pollo_Loco/img_pollo_locco/img/5_background/layers/air.png', -719),
     new BackgroundObject('../El_Pollo_Loco/img_pollo_locco/img/5_background/layers/3_third_layer/2.png', -719),
     new BackgroundObject('../El_Pollo_Loco/img_pollo_locco/img/5_background/layers/2_second_layer/2.png', -719),

@@ -1,6 +1,6 @@
 class Coins extends DrawableObject {
 
-    y = 50;
+    y = 250;
     width = 200;
     height = 200;
     IMAGES_COINS = [
@@ -15,7 +15,6 @@ class Coins extends DrawableObject {
 
         this.x = 100 + Math.random() * 10000; // hier wird die variable x, also die Position im Graphen auf der x-achse neu zugeteilt, und mit einem random wert erstellt
         // damit jedes Huhn, von den dreien die generiert werden, anders positioniert werden.
-        this.y = this.y * Math.random() * 5;
         this.animate();
 
     }

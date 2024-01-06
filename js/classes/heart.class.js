@@ -1,12 +1,13 @@
 class Heart extends DrawableObject {
 
-    y = 100;
+    y = 10;
     width = 100;
     height = 100;
     IMAGES_HEALTH = [
         '../El_Pollo_Loco/img_pollo_locco/img/7_statusbars/3_icons/icon_health.png',
         '../El_Pollo_Loco/img_pollo_locco/img/7_statusbars/3_icons/icon_health_2.png'
     ];
+    
 
     constructor() {
         super().loadImage(this.IMAGES_HEALTH[0]);
@@ -15,7 +16,6 @@ class Heart extends DrawableObject {
         // damit jedes Huhn, von den dreien die generiert werden, anders positioniert werden.
         this.y = this.y * Math.random() * 2;
         this.animate();
-
     }
 
     animate() {
@@ -29,5 +29,7 @@ class Heart extends DrawableObject {
         let path = images[i];
         this.img = this.imageCache[path];
         this.currentImage++;
+        
     }
+
 }

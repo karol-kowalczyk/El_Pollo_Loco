@@ -9,7 +9,7 @@ class CoinBar extends DrawableObject {
         '../El_Pollo_Loco/img_pollo_locco/img/7_statusbars/1_statusbar/1_statusbar_coin/blue/0.png',
     ];
 
-    percentage = 100;
+    percentage = 0;
 
 
     constructor() {
@@ -19,7 +19,7 @@ class CoinBar extends DrawableObject {
         this.width = 190;
         this.x = 10;
         this.y = 35;
-        this.setPercentage(100);
+        this.setPercentage(0);
     }
 
 
@@ -34,17 +34,17 @@ class CoinBar extends DrawableObject {
 
     resolveImageIndex() {
         if (this.percentage == 100) {
-            return 5;
-        } else if (this.percentage > 80) {
-            return 4;
-        } else if (this.percentage > 60) {
-            return 3;
-        } else if (this.percentage > 40) {
-            return 2;
-        } else if (this.percentage > 20) {
-            return 1;
-        } else {
             return 0;
+        } else if (this.percentage > 80) {
+            return 1;
+        } else if (this.percentage > 60) {
+            return 2;
+        } else if (this.percentage > 40) {
+            return 3;
+        } else if (this.percentage > 20) {
+            return 4;
+        } else {
+            return 5;
         }
     }
 }

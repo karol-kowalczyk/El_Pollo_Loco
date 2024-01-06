@@ -18,7 +18,7 @@ class World {
     endbossBar = new EndbossStatusBar();
     throwableObjects = [];
 
-    collectHeartSound = new Audio('../El_Pollo_Loco/img_pollo_locco/img/audio/pick_heart.mp3');
+    
 
 
     // startScreen.src = '../El_Pollo_Loco/img_pollo_locco/img/9_intro_outro_screens/start/startscreen_2.png';
@@ -32,11 +32,24 @@ class World {
         this.run();
     }
 
+    collectHeartSound = new Audio('../El_Pollo_Loco/img_pollo_locco/img/audio/pick_heart.mp3');
+    
+    collectBottleSound = new Audio('../El_Pollo_Loco/img_pollo_locco/img/audio/pick_bottle.mp3');
+    
+    playCollectHeartSound() {
+        this.collectHeartSound.play();
+    }
+
+
+    playCollectBottleSound() {
+        this.collectBottleSound.play();
+    }
+
     run() {
         setInterval(() => {
             this.checkCollisions();
             this.checkThrowObjects();
-
+            this.checkCollectItems();
         }, 200);
 
     }
@@ -53,16 +66,28 @@ class World {
             if (this.character.isColliding(enemy)) {
                 this.character.hit();
                 this.statusBar.setPercentage(this.character.energy);
+                
             }
         });
     }
 
-    checkCollectHeart() {
+    checkCollectItems() {
         this.level.hearts.forEach((heart) => {
-            if(this.character.isColliding(heart)) {
-                
-            
-                
+            if(this.character.isCollidingItems(heart)) {
+                this.playCollectHeartSound();
+            }
+        });
+
+        this.level.coins.forEach((coin) => {
+            if(this.character.isCollidingItems(coin)) {
+                this.character.collectCoin();
+                this.coinBar.setPercentage(this.character.coin);
+            }
+        });
+        
+        this.level.bottles.forEach((bottle) => {
+            if(this.character.isCollidingItems(bottle)) {
+                this.playCollectBottleSound();
             }
         });
     }

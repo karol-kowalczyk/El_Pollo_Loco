@@ -1,4 +1,4 @@
-class MoveableObject extends DrawableObject { 
+class MoveableObject extends DrawableObject {
     speed = 0.15;
     otherDirection = false;
     speedY = 0;
@@ -6,6 +6,7 @@ class MoveableObject extends DrawableObject {
     energy = 100;
     lastHit = 0;
     lastHeal = 0;
+    coin = 0;
 
     applyGravity() {
         setInterval(() => {
@@ -32,9 +33,29 @@ class MoveableObject extends DrawableObject {
             this.y < mo.y + mo.height;
     }
 
-    //bottle.isColliding(chicken)
+    isCollidingItems(item) {
+        return this.x + this.width - 90 > item.x &&
+            this.y + 30 + this.height - 90 > item.y + 30 &&
+            this.x < item.x &&
+            this.y + 30 < item.y + 30 + item.height - 90;
+    }
 
-    
+    collectCoin() {
+        this.coin += 5;
+        if (this.coin >= 100) {
+            this.coin = 100;
+        }
+
+        if (this.coin < 100) {
+            this.playCollectCoinSound();
+        }
+    }
+
+    playCollectCoinSound() {
+        this.collectCoinSound.play();
+    }
+
+    collectCoinSound = new Audio('../El_Pollo_Loco/img_pollo_locco/img/audio/super-mario-coin-sound.mp3');
 
     hit() {
         this.energy -= 5;

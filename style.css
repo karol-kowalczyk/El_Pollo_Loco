@@ -4,6 +4,7 @@ body {
     flex-direction: column;
     font-family: 'zabars', sans-serif;
     background-image: url('../El_Pollo_Loco/img_pollo_locco/img/10_background/desert.jpg');
+    background-repeat:repeat;
     height: 95vh;
 }
 
@@ -25,7 +26,7 @@ h1 {
     text-shadow: 3px 3px 6px rgba(241, 185, 30, 0.8);
     top: 0;
     width: 720px;
-    margin-top: 20px;
+    margin: 20px 0;
     text-align: center;
 }
 
@@ -38,7 +39,7 @@ h1 {
     justify-content: flex-end;
 
     position: absolute;
-    top: 50%;
+    top: 55%;
     left: 50%;
     transform: translate(-50%, -50%);
     z-index: 999;

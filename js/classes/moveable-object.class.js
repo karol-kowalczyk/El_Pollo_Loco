@@ -90,7 +90,7 @@ class MoveableObject extends DrawableObject {
         }
     }
 
-    
+
 
     hit() {
         this.energy -= 5;
@@ -151,5 +151,18 @@ class MoveableObject extends DrawableObject {
 
     jump() {
         this.speedY = 40;
+    }
+
+    muteEverySound() {
+        collectHeartSound.pause();
+        collectCoinSound.pause();
+        collectBottleSound.pause();
+    }
+
+    checkIfItsMute() {
+        const soundIcon = document.getElementById('sound-icon');
+        if (soundIcon.src == '../El_Pollo_Loco/img_pollo_locco/img/10_background/speaker-mute.png') {
+            this.muteEverySound();  // Call the method using 'this'
+        }
     }
 }

@@ -32,19 +32,6 @@ class World {
         this.run();
     }
 
-    collectHeartSound = new Audio('../El_Pollo_Loco/img_pollo_locco/img/audio/pick_heart.mp3');
-    
-    collectBottleSound = new Audio('../El_Pollo_Loco/img_pollo_locco/img/audio/pick_bottle.mp3');
-    
-    playCollectHeartSound() {
-        this.collectHeartSound.play();
-    }
-
-
-    playCollectBottleSound() {
-        this.collectBottleSound.play();
-    }
-
     run() {
         setInterval(() => {
             this.checkCollisions();
@@ -74,7 +61,8 @@ class World {
     checkCollectItems() {
         this.level.hearts.forEach((heart) => {
             if(this.character.isCollidingItems(heart)) {
-                this.playCollectHeartSound();
+                this.character.collectHeart();
+                this.statusBar.setPercentage(this.character.energy);
             }
         });
 
@@ -87,7 +75,8 @@ class World {
         
         this.level.bottles.forEach((bottle) => {
             if(this.character.isCollidingItems(bottle)) {
-                this.playCollectBottleSound();
+                this.character.collectBottle();
+                this.bottleBar.setPercentage(this.character.bottle);
             }
         });
     }

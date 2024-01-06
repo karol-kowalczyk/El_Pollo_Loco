@@ -7,6 +7,24 @@ class MoveableObject extends DrawableObject {
     lastHit = 0;
     lastHeal = 0;
     coin = 0;
+    bottle = 0;
+
+    collectHeartSound = new Audio('../El_Pollo_Loco/img_pollo_locco/img/audio/pick_heart.mp3');
+    collectCoinSound = new Audio('../El_Pollo_Loco/img_pollo_locco/img/audio/super-mario-coin-sound.mp3');
+    collectBottleSound = new Audio('../El_Pollo_Loco/img_pollo_locco/img/audio/pick_bottle.mp3');
+
+    playCollectCoinSound() {
+        this.collectCoinSound.play();
+    }
+
+    playCollectBottleSound() {
+        this.collectBottleSound.play();
+    }
+
+    playCollectHeartSound() {
+        this.collectHeartSound.play();
+    }
+
 
     applyGravity() {
         setInterval(() => {
@@ -41,7 +59,7 @@ class MoveableObject extends DrawableObject {
     }
 
     collectCoin() {
-        this.coin += 5;
+        this.coin += 10;
         if (this.coin >= 100) {
             this.coin = 100;
         }
@@ -51,11 +69,29 @@ class MoveableObject extends DrawableObject {
         }
     }
 
-    playCollectCoinSound() {
-        this.collectCoinSound.play();
+    collectBottle() {
+        this.bottle += 10;
+        if (this.bottle >= 100) {
+            this.bottle = 100;
+        }
+
+        if (this.bottle < 100) {
+            this.playCollectBottleSound();
+        }
     }
 
-    collectCoinSound = new Audio('../El_Pollo_Loco/img_pollo_locco/img/audio/super-mario-coin-sound.mp3');
+    collectHeart() {
+        this.energy += 5;
+        if (this.energy >= 100) {
+            this.energy = 100;
+        }
+
+        if (this.energy < 100) {
+            this.playCollectHeartSound();
+        }
+    }
+
+    
 
     hit() {
         this.energy -= 5;

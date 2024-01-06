@@ -56,6 +56,13 @@ class World {
                 
             }
         });
+
+        this.level.endboss.forEach((boss) =>  {
+            if(this.character.isColliding(boss)) {
+                this.character.hit();
+                this.statusBar.setPercentage(this.character.energy);
+            }
+        });
     }
 
     checkCollectItems() {

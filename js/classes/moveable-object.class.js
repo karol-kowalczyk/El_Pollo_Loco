@@ -25,7 +25,6 @@ class MoveableObject extends DrawableObject {
         this.collectHeartSound.play();
     }
 
-
     applyGravity() {
         setInterval(() => {
             if (this.isAboveGround() || this.speedY > 0) {

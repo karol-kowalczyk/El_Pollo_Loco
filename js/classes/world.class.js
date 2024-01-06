@@ -18,8 +18,6 @@ class World {
     endbossBar = new EndbossStatusBar();
     throwableObjects = [];
 
-    
-
 
     // startScreen.src = '../El_Pollo_Loco/img_pollo_locco/img/9_intro_outro_screens/start/startscreen_2.png';
 
@@ -34,7 +32,8 @@ class World {
 
     run() {
         setInterval(() => {
-            this.checkCollisions();
+            this.checkCollisionsWithEnemys();
+            this.checkCollisionsWithEndboss();
             this.checkThrowObjects();
             this.checkCollectItems();
         }, 200);
@@ -43,22 +42,29 @@ class World {
 
     checkThrowObjects() {
         if (this.keyboard.D) {
-            let bottle = new ThrowableObject(this.character.x + 100, this.character.y + 100);
+            let bottle = new ThrowableObject(this.character.x + 100, this.character.y + 20);
             this.throwableObjects.push(bottle);
+            let intervalId = setInterval(() => {
+                if (bottle.y >= 280) {
+                    bottle.splashedBottle();
+                    clearInterval(intervalId); // Übergebe die Interval-ID an clearInterval
+                }
+            }, 200);
         }
     }
 
-    checkCollisions() {
-        this.level.enemies.forEach((enemy) => {
-            if (this.character.isColliding(enemy)) {
+    checkCollisionsWithEndboss() {
+        this.level.endboss.forEach((boss) => {
+            if (this.character.isColliding(boss)) {
                 this.character.hit();
                 this.statusBar.setPercentage(this.character.energy);
-                
             }
         });
+    }
 
-        this.level.endboss.forEach((boss) =>  {
-            if(this.character.isColliding(boss)) {
+    checkCollisionsWithEnemys() {
+        this.level.enemies.forEach((enemy) => {
+            if (this.character.isColliding(enemy)) {
                 this.character.hit();
                 this.statusBar.setPercentage(this.character.energy);
             }
@@ -67,21 +73,21 @@ class World {
 
     checkCollectItems() {
         this.level.hearts.forEach((heart) => {
-            if(this.character.isCollidingItems(heart)) {
+            if (this.character.isCollidingItems(heart)) {
                 this.character.collectHeart();
                 this.statusBar.setPercentage(this.character.energy);
             }
         });
 
         this.level.coins.forEach((coin) => {
-            if(this.character.isCollidingItems(coin)) {
+            if (this.character.isCollidingItems(coin)) {
                 this.character.collectCoin();
                 this.coinBar.setPercentage(this.character.coin);
             }
         });
-        
+
         this.level.bottles.forEach((bottle) => {
-            if(this.character.isCollidingItems(bottle)) {
+            if (this.character.isCollidingItems(bottle)) {
                 this.character.collectBottle();
                 this.bottleBar.setPercentage(this.character.bottle);
             }

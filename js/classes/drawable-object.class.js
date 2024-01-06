@@ -41,7 +41,7 @@ class DrawableObject {
         }
 
 
-        if (this instanceof Bottle) {
+        if (this instanceof Bottle || this instanceof ThrowableObject) {
             ctx.beginPath();
             ctx.lineWidth = '5';
             ctx.strokeStyle = 'blue';

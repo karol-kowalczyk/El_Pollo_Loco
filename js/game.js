@@ -14,7 +14,6 @@ function init() {
     canvas = document.getElementById('canvas'); // Variablen 'canvas' die id ‘canvas’ hinzugefuegt mit document.getElementById('canvas').
     world = new World(canvas, keyboard); // Der Variablen 'world' wird die Classe World hinzugefuegt, mit dem Parameter canvas (also dem Element Canvas im index.html teil, also der div canvas).
 
-
     console.log('My character is', world.character); // in der Console wird der String ('My charactr is') ausgefuehrt und dahinter die Variable world mit den Eigenschaften des jeweiligen characters in der Classe Charactwr
 }
 
@@ -140,4 +139,11 @@ function closeStartScreen() {
     startButton.classList.add('d-none')
 
     init();
+    pauseLoadingScreenMusic();
+}
+
+function pauseLoadingScreenMusic() {
+    let loadingScreenMusic = document.getElementById('loading-screen-music');
+    loadingScreenMusic.pause();
+    document.getElementById('sound-icon').src = '/El_Pollo_Loco/img_pollo_locco/img/10_background/speaker-mute.png';
 }

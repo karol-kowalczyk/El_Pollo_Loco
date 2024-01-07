@@ -28,4 +28,8 @@ class Bottle extends MoveableObject {
         this.img = this.imageCache[path];
         this.currentImage++;
     }
+    replaceX() {
+        this.x = -1000;
+    }
+    
 }

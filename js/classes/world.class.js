@@ -76,9 +76,13 @@ class World {
             if (this.character.isCollidingItems(heart)) {
                 this.character.collectHeart();
                 this.statusBar.setPercentage(this.character.energy);
+                if (heart instanceof Heart) {
+                    if (this.character.energy < 100)
+                        heart.replaceX();
+                }
             }
         });
-    
+
         this.level.coins.forEach((coin) => {
             if (this.character.isCollidingItems(coin)) {
                 this.character.collectCoin();
@@ -89,11 +93,15 @@ class World {
                 }
             }
         });
-    
+
         this.level.bottles.forEach((bottle) => {
             if (this.character.isCollidingItems(bottle)) {
                 this.character.collectBottle();
                 this.bottleBar.setPercentage(this.character.bottle);
+                if (bottle instanceof Bottle) {
+                    if (this.character.bottle < 100)
+                        bottle.replaceX();
+                }
             }
         });
     }
@@ -169,5 +177,5 @@ class World {
         this.ctx.restore();
     }
 
-    
+
 }

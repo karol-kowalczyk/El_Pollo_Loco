@@ -32,4 +32,8 @@ class Heart extends DrawableObject {
         
     }
 
+    replaceX() {
+        this.x = -1000;
+    }
+
 }

@@ -46,4 +46,8 @@ class BottleBar extends DrawableObject {
             return 5;
         }
     }
+
+    getPercentage() {
+        return this.percentage;
+    }
 }

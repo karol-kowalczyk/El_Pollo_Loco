@@ -137,11 +137,19 @@ function closeStartScreen() {
     startScreenImg.classList.add('d-none')
     startButton.classList.add('d-none')
 
+    // if (moveableObject.iconClicked === 0) {
+    //     moveableObject.mute = false; 
+    //     moveableObject.iconClicked = 1;
+    // } else {
+    //     moveableObject.mute = true;
+    //     moveableObject.iconClicked = 0;
+    // }
+
     init();
 }
 
 function pauseLoadingScreenMusic() {
     let loadingScreenMusic = document.getElementById('loading-screen-music');
-    loadingScreenMusic.pause();  
-    document.getElementById('sound-icon').src = '/El_Pollo_Loco/img_pollo_locco/img/10_background/speaker-mute.png';
+    // loadingScreenMusic.pause();  
+    // document.getElementById('sound-icon').src = '/El_Pollo_Loco/img_pollo_locco/img/10_background/speaker-mute.png';
 }

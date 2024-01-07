@@ -9,6 +9,10 @@ class MoveableObject extends DrawableObject {
     coin = 0;
     bottle = 0;
     mute = true;
+    iconClicked = 0;
+
+
+
 
     collectHeartSound = new Audio('../El_Pollo_Loco/img_pollo_locco/img/audio/pick_heart.mp3');
     collectCoinSound = new Audio('../El_Pollo_Loco/img_pollo_locco/img/audio/super-mario-coin-sound.mp3');
@@ -65,10 +69,7 @@ class MoveableObject extends DrawableObject {
         }
 
         if (this.coin < 100) {
-            if(document.getElementById('sound-icon').src == '../speaker-filled-audio.png') {
             this.playCollectCoinSound();
-            console.log(document.getElementById('sound-icon').src);
-            }
         }
     }
 
@@ -93,8 +94,6 @@ class MoveableObject extends DrawableObject {
             this.playCollectHeartSound();
         }
     }
-
-
 
     hit() {
         this.energy -= 5;

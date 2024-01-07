@@ -78,14 +78,18 @@ class World {
                 this.statusBar.setPercentage(this.character.energy);
             }
         });
-
+    
         this.level.coins.forEach((coin) => {
             if (this.character.isCollidingItems(coin)) {
                 this.character.collectCoin();
                 this.coinBar.setPercentage(this.character.coin);
+                if (coin instanceof Coins) {
+                    if (this.character.coin < 100)
+                        coin.replaceX();
+                }
             }
         });
-
+    
         this.level.bottles.forEach((bottle) => {
             if (this.character.isCollidingItems(bottle)) {
                 this.character.collectBottle();
@@ -164,4 +168,6 @@ class World {
         mo.x = mo.x * -1;
         this.ctx.restore();
     }
+
+    
 }

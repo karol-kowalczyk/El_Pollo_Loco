@@ -16,6 +16,35 @@
     }
 }
 
+@media only screen and (max-height: 680px) {
+    #canvas-container {
+        height: 480px;
+        width: 720px;
+        display: flex;
+        align-items: flex-end;
+        justify-content: flex-end;
+        position: absolute;
+        top: 60%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 999;
+    }
+
+}
+
+@media only screen and (max-height: 630px) {
+    h1 {
+        margin: 0;
+        font-size: 98px;
+    }
+}
+
+@media only screen and (max-height: 580px) {
+    h1 {
+        margin: 0;
+    }
+}
+
 @media only screen and (min-height: 480px) {
     
     body {

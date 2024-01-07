@@ -9,10 +9,13 @@ let keyboard = new Keyboard();
  * 
  */
 function init() {
+
     canvas = document.getElementById('canvas'); // Variablen 'canvas' die id ‘canvas’ hinzugefuegt mit document.getElementById('canvas').
+    initLevel();
     world = new World(canvas, keyboard); // Der Variablen 'world' wird die Classe World hinzugefuegt, mit dem Parameter canvas (also dem Element Canvas im index.html teil, also der div canvas).
 
     console.log('My character is', world.character); // in der Console wird der String ('My charactr is') ausgefuehrt und dahinter die Variable world mit den Eigenschaften des jeweiligen characters in der Classe Charactwr
+
 }
 
 window.addEventListener("keydown", (event) => {
@@ -68,18 +71,29 @@ window.addEventListener("keyup", (event) => {
 
 });
 
-function fullscreen() {
-    let fullscreen = document.getElementById('canvas-container');
-    enterFullscreen(fullscreen);
+let fullScreen = false;
+
+function toggleScreenSize() {
+    fullScreen = !fullScreen; // Umkehrung des Zustands (toggle)
+    if (fullScreen) {
+        enterFullscreen(document.getElementById('canvas-container')); // Hier können Sie das gewünschte Element übergeben, in diesem Fall das gesamte Dokument
+        document.getElementById('start-screen-img').style.width = '100%';
+        document.getElementById('start-screen-img').style.height = '100%';
+        document.getElementById('canvas').style.width = '100%';
+        document.getElementById('canvas').style.height = '100%';
+    } else {
+        exitFullscreen();
+    }
 }
 
 function enterFullscreen(element) {
     if (element.requestFullscreen) {
         element.requestFullscreen();
-    } else if (element.msReuestFullScreen) {
+    } else if (element.msRequestFullscreen) {      // für IE11 (entfernen bis 15. Juni 2022)
+        element.msRequestFullscreen();
+    } else if (element.webkitRequestFullscreen) {  // iOS Safari
         element.webkitRequestFullscreen();
     }
-
 }
 
 function exitFullscreen() {
@@ -134,22 +148,10 @@ function closeStartScreen() {
     let startScreenImg = document.getElementById('start-screen-img');
     let startButton = document.getElementById('start-button');
 
-    startScreenImg.classList.add('d-none')
-    startButton.classList.add('d-none')
-
-    // if (moveableObject.iconClicked === 0) {
-    //     moveableObject.mute = false; 
-    //     moveableObject.iconClicked = 1;
-    // } else {
-    //     moveableObject.mute = true;
-    //     moveableObject.iconClicked = 0;
-    // }
-
-    init();
-}
-
-function pauseLoadingScreenMusic() {
-    let loadingScreenMusic = document.getElementById('loading-screen-music');
-    // loadingScreenMusic.pause();  
-    // document.getElementById('sound-icon').src = '/El_Pollo_Loco/img_pollo_locco/img/10_background/speaker-mute.png';
+    // Verzögerung von 2000 Millisekunden (2 Sekunden)
+    setTimeout(function () {
+        startScreenImg.classList.add('d-none');
+        startButton.classList.add('d-none');
+        init(); // Beispielhaft hier init() aufgerufen, falls es nach der Verzögerung ausgeführt werden soll
+    }, 90);
 }

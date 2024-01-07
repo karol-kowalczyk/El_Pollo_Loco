@@ -2,8 +2,6 @@ let canvas; // Variable namens 'canvas', die keinem Wert bisher zugeordnet wurde
 let world; // Variable namens 'world', die keinem Wert bisher zugeordnet wurde.
 let keyboard = new Keyboard();
 
-
-
 /**
  * 
  * Initializes the application by setting up the canvas and creating a world with a character.
@@ -15,7 +13,6 @@ function init() {
     world = new World(canvas, keyboard); // Der Variablen 'world' wird die Classe World hinzugefuegt, mit dem Parameter canvas (also dem Element Canvas im index.html teil, also der div canvas).
 
     console.log('My character is', world.character); // in der Console wird der String ('My charactr is') ausgefuehrt und dahinter die Variable world mit den Eigenschaften des jeweiligen characters in der Classe Charactwr
-    checkMusic();
 }
 
 window.addEventListener("keydown", (event) => {
@@ -127,6 +124,7 @@ function togglePlay() {
 
     if (isPlaying) {
         loadingScreenMusic.pause();
+
     } else {
         loadingScreenMusic.play();
     }
@@ -140,18 +138,10 @@ function closeStartScreen() {
     startButton.classList.add('d-none')
 
     init();
-    pauseLoadingScreenMusic();
 }
 
 function pauseLoadingScreenMusic() {
     let loadingScreenMusic = document.getElementById('loading-screen-music');
     loadingScreenMusic.pause();  
     document.getElementById('sound-icon').src = '/El_Pollo_Loco/img_pollo_locco/img/10_background/speaker-mute.png';
-}
-
-function checkMusic() {
-    setInterval(() => {
-        const moveableObject = new MoveableObject(); // Erstelle eine Instanz der MoveableObject-Klasse
-        moveableObject.checkIfItsMute(); // Rufe die Methode checkIfItsMute() auf der Instanz auf
-    }, 1000 / 60);
 }

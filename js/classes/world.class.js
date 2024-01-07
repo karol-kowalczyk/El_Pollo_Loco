@@ -164,7 +164,4 @@ class World {
         mo.x = mo.x * -1;
         this.ctx.restore();
     }
-
-
-
 }

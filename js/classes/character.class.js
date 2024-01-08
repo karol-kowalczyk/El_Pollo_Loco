@@ -60,6 +60,7 @@ class Character extends MoveableObject { // classe Character erbt Eigenschaften 
     walking_sound = new Audio('../El_Pollo_Loco/img_pollo_locco/img/audio/walking.mp3');
     snoring_sound = new Audio('../El_Pollo_Loco/img_pollo_locco/img/audio/Cartoon_Snoring_SOUND_EFFECT.mp3');
     endgame_sound = new Audio('../El_Pollo_Loco/img_pollo_locco/img/audio/End_Boss_Music.mp3');
+    lost_sound = new Audio('../El_Pollo_Loco/img_pollo_locco/img/audio/lost_game.mp3');
 
     constructor() { // initialisiert wird automatisch aufgerufen, deswegen konstructor, und dieser legt fest, wie die Klasse aussehen und funktionieren soll
         super().loadImage('../El_Pollo_Loco/img_pollo_locco/img/2_character_pepe/2_walk/W-21.png'); // mit super() wird von der UeberClasse geerbt und so
@@ -82,8 +83,10 @@ class Character extends MoveableObject { // classe Character erbt Eigenschaften 
     }
 
     animate() {
-        setInterval(() => {
+        let walkingInterval;
+        let animationInterval;
 
+        walkingInterval = setInterval(() => {
             this.walking_sound.pause();
             if (this.world.keyboard.RIGHT && this.x < this.world.level.level_end_x) {
                 this.otherDirection = false;
@@ -104,19 +107,22 @@ class Character extends MoveableObject { // classe Character erbt Eigenschaften 
 
             if (this.x >= 6400) {
                 this.endgame();
-                this.world.endbossBar.isVisible  = true;
+                this.world.endbossBar.isVisible = true;
             }
-
-            
 
             this.world.camera_x = - this.x + 100;
         }, 1000 / 60);
 
-        setInterval(() => {
-
-
+        animationInterval = setInterval(() => {
             if (this.isDead()) {
                 this.playAnimation(this.IMAGES_DEAD);
+
+                // Setzen Sie das Timeout nur dann, wenn die Bedingung isDead erfüllt ist
+                setTimeout(() => {
+                    clearInterval(animationInterval);
+                    clearInterval(walkingInterval);
+                    this.endscreen();
+                }, 500);
             } else if (this.isHurt()) {
                 this.playAnimation(this.IMAGES_HURT);
             } else if (this.isAboveGround()) {
@@ -166,6 +172,22 @@ class Character extends MoveableObject { // classe Character erbt Eigenschaften 
 
     endgame() {
         this.endgame_sound.play();
+        let bgMusic = document.getElementById('loading-screen-music');
+        bgMusic.pause();
+    }
+
+    muteEndgame() {
+        this.endgame_sound.pause();
+    }
+
+    endscreen() {
+        let img = document.getElementById('start-screen-img');
+        img.src = '../El_Pollo_Loco/img_pollo_locco/img/9_intro_outro_screens/game_over/game over.png';
+        img.classList.remove('d-none');
+        this.lost_sound.play();
+        let restartBtn = document.getElementById('restart-button');
+        restartBtn.classList.remove('d-none');
+        this.muteEndgame();
     }
 
 } 

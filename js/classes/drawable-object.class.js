@@ -16,7 +16,7 @@ class DrawableObject {
     }
 
     drawFrame(ctx) {
-        if (this instanceof Chicken || this instanceof Endboss || this instanceof BabyChicken || this instanceof BabyChickenJumping) {
+        if (this instanceof Chicken|| this instanceof BabyChicken || this instanceof BabyChickenJumping) {
             ctx.beginPath();
             ctx.lineWidth = '5';
             ctx.strokeStyle = 'blue';
@@ -54,6 +54,14 @@ class DrawableObject {
             ctx.lineWidth = '5';
             ctx.strokeStyle = 'blue';
             ctx.rect(this.x + 30, this.y +120, this.width - 60, this.height - 140);
+            ctx.stroke();
+        }
+        
+        if (this instanceof Endboss ) {
+            ctx.beginPath();
+            ctx.lineWidth = '5';
+            ctx.strokeStyle = 'blue';
+            ctx.rect(this.x, this.y + 70, this.width - 60, this.height -100);
             ctx.stroke();
         }
     }

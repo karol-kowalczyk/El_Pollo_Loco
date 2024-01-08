@@ -13,7 +13,6 @@ function init() {
     canvas = document.getElementById('canvas'); // Variablen 'canvas' die id ‘canvas’ hinzugefuegt mit document.getElementById('canvas').
     initLevel();
     world = new World(canvas, keyboard); // Der Variablen 'world' wird die Classe World hinzugefuegt, mit dem Parameter canvas (also dem Element Canvas im index.html teil, also der div canvas).
-
     console.log('My character is', world.character); // in der Console wird der String ('My charactr is') ausgefuehrt und dahinter die Variable world mit den Eigenschaften des jeweiligen characters in der Classe Charactwr
 
 }
@@ -147,11 +146,16 @@ function togglePlay() {
 function closeStartScreen() {
     let startScreenImg = document.getElementById('start-screen-img');
     let startButton = document.getElementById('start-button');
+    let bgMusic = document.getElementById('loading-screen-music');
 
-    // Verzögerung von 2000 Millisekunden (2 Sekunden)
     setTimeout(function () {
         startScreenImg.classList.add('d-none');
         startButton.classList.add('d-none');
-        init(); // Beispielhaft hier init() aufgerufen, falls es nach der Verzögerung ausgeführt werden soll
-    }, 90);
+        bgMusic.src = '../El_Pollo_Loco/img_pollo_locco/img/audio/background.mp3';
+        init();
+    }, 180);
+}
+
+function restartGame() {
+    location.reload();
 }

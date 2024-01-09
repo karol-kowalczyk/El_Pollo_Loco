@@ -40,8 +40,6 @@ class World {
 
     }
 
-    isFirstThrow = true;
-
     checkThrowObjects() {
         let currentBottleLength = this.bottleBar.getPercentage();
 

@@ -57,10 +57,12 @@ class Character extends MoveableObject { // classe Character erbt Eigenschaften 
     ]
 
     world;
+    
     walking_sound = new Audio('../El_Pollo_Loco/img_pollo_locco/img/audio/walking.mp3');
     snoring_sound = new Audio('../El_Pollo_Loco/img_pollo_locco/img/audio/Cartoon_Snoring_SOUND_EFFECT.mp3');
     endgame_sound = new Audio('../El_Pollo_Loco/img_pollo_locco/img/audio/End_Boss_Music.mp3');
     lost_sound = new Audio('../El_Pollo_Loco/img_pollo_locco/img/audio/lost_game.mp3');
+    background_music = new Audio('../El_Pollo_Loco/img_pollo_locco/img/audio/background.mp3');
 
     constructor() { // initialisiert wird automatisch aufgerufen, deswegen konstructor, und dieser legt fest, wie die Klasse aussehen und funktionieren soll
         super().loadImage('../El_Pollo_Loco/img_pollo_locco/img/2_character_pepe/2_walk/W-21.png'); // mit super() wird von der UeberClasse geerbt und so
@@ -78,13 +80,23 @@ class Character extends MoveableObject { // classe Character erbt Eigenschaften 
         this.loadImages(this.IMAGES_DEAD);
         this.loadImages(this.IMAGES_HURT);
         this.loadImages(this.IMAGES_SNORING);
+        this.playBackgroundMusic();
         this.applyGravity();
+
+    
         this.animate();
+        
+
+        setInterval(() => {
+            this.checkIfSoundIsMute();
+            
+        }, 1000 / 60);
     }
 
     animate() {
         let walkingInterval;
         let animationInterval;
+        this.playBackgroundMusic();
 
         walkingInterval = setInterval(() => {
             this.walking_sound.pause();
@@ -111,6 +123,7 @@ class Character extends MoveableObject { // classe Character erbt Eigenschaften 
             }
 
             this.world.camera_x = - this.x + 100;
+            
         }, 1000 / 60);
 
         animationInterval = setInterval(() => {
@@ -172,12 +185,11 @@ class Character extends MoveableObject { // classe Character erbt Eigenschaften 
 
     endgame() {
         this.endgame_sound.play();
-        let bgMusic = document.getElementById('loading-screen-music');
-        bgMusic.pause();
+        this.background_music.pause();
     }
 
     muteEndgame() {
-        this.endgame_sound.pause();
+        this.background_music.pause();
     }
 
     endscreen() {
@@ -188,6 +200,36 @@ class Character extends MoveableObject { // classe Character erbt Eigenschaften 
         let restartBtn = document.getElementById('restart-button');
         restartBtn.classList.remove('d-none');
         this.muteEndgame();
+        this.mute_ingameSound();
     }
 
+    soundIcon = document.getElementById('sound-icon');
+
+    checkIfSoundIsMute() {
+        // Extrahiere nur den Dateinamen aus dem absoluten Pfad
+        let iconFileName = this.extractFileNameFromPath(document.getElementById('sound-icon').src);
+    
+        // Vergleiche den Dateinamen
+        if (iconFileName === 'speaker-mute.png') {
+            this.snoring_sound.pause();
+            this.walking_sound.pause()
+            this.endgame_sound.pause()
+            this.lost_sound.pause() 
+            this.muteEverySound();
+        } 
+
+        if (iconFileName !== 'speaker-mute.png') {
+            this.playBackgroundMusic();
+        } 
+    }
+    
+    extractFileNameFromPath(path) {
+        // Teile den Pfad an den Schrägstrichen auf und nimm den letzten Teil (Dateiname)
+        let pathParts = path.split('/');
+        return pathParts[pathParts.length - 1];
+    }
+
+    playBackgroundMusic() {
+        this.background_music.play();
+    }
 } 

@@ -14,6 +14,7 @@ class MoveableObject extends DrawableObject {
     collectHeartSound = new Audio('../El_Pollo_Loco/img_pollo_locco/img/audio/pick_heart.mp3');
     collectCoinSound = new Audio('../El_Pollo_Loco/img_pollo_locco/img/audio/super-mario-coin-sound.mp3');
     collectBottleSound = new Audio('../El_Pollo_Loco/img_pollo_locco/img/audio/pick_bottle.mp3');
+    
 
     playCollectCoinSound() {
         this.collectCoinSound.play();
@@ -137,7 +138,6 @@ class MoveableObject extends DrawableObject {
         this.currentImage++;
     }
 
-
     moveRight() { // function moveRight fuehrt in der console den String 'Moving right' aus.
         this.x += this.speed;
     }
@@ -157,5 +157,7 @@ class MoveableObject extends DrawableObject {
         this.collectHeartSound.pause();
         this.collectCoinSound.pause();
         this.collectBottleSound.pause();
+        this.background_music.pause();
     }
+
 }

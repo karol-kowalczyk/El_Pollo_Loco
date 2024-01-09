@@ -85,6 +85,13 @@ class MoveableObject extends DrawableObject {
         }
     }
 
+    throwBottles() {
+        this.bottle -= 20;
+        if (this.bottle <=0) {
+            this.bottle = 0;
+        }
+    }
+
     collectHeart() {
         this.energy += 20;
         if (this.energy >= 100) {
@@ -103,7 +110,7 @@ class MoveableObject extends DrawableObject {
         } else {
             this.lastHit = new Date().getTime();
         }
-    }
+     }
 
     bigHit() {
         this.energy -= 20;
@@ -132,6 +139,7 @@ class MoveableObject extends DrawableObject {
 
     isDead() {
         return this.energy == 0;
+        
     }
 
     playAnimation(images) {

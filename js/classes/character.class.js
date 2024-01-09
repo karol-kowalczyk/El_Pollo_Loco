@@ -57,7 +57,7 @@ class Character extends MoveableObject { // classe Character erbt Eigenschaften 
     ]
 
     world;
-    
+
     walking_sound = new Audio('../El_Pollo_Loco/img_pollo_locco/img/audio/walking.mp3');
     snoring_sound = new Audio('../El_Pollo_Loco/img_pollo_locco/img/audio/Cartoon_Snoring_SOUND_EFFECT.mp3');
     endgame_sound = new Audio('../El_Pollo_Loco/img_pollo_locco/img/audio/End_Boss_Music.mp3');
@@ -83,13 +83,13 @@ class Character extends MoveableObject { // classe Character erbt Eigenschaften 
         this.playBackgroundMusic();
         this.applyGravity();
 
-    
+
         this.animate();
-        
+
 
         setInterval(() => {
             this.checkIfSoundIsMute();
-            
+
         }, 1);
     }
 
@@ -123,13 +123,12 @@ class Character extends MoveableObject { // classe Character erbt Eigenschaften 
             }
 
             this.world.camera_x = - this.x + 100;
-            
+
         }, 1000 / 60);
 
         animationInterval = setInterval(() => {
             if (this.isDead()) {
                 this.playAnimation(this.IMAGES_DEAD);
-
                 // Setzen Sie das Timeout nur dann, wenn die Bedingung isDead erfüllt ist
                 setTimeout(() => {
                     clearInterval(animationInterval);
@@ -208,21 +207,17 @@ class Character extends MoveableObject { // classe Character erbt Eigenschaften 
     checkIfSoundIsMute() {
         // Extrahiere nur den Dateinamen aus dem absoluten Pfad
         let iconFileName = this.extractFileNameFromPath(document.getElementById('sound-icon').src);
-    
+
         // Vergleiche den Dateinamen
         if (iconFileName === 'speaker-mute.png') {
             this.snoring_sound.pause();
-            this.walking_sound.pause()
-            this.endgame_sound.pause()
-            this.lost_sound.pause() 
+            this.walking_sound.pause();
+            this.endgame_sound.pause();
+            this.lost_sound.pause()
             this.muteEverySound();
-        } 
-
-        if (iconFileName !== 'speaker-mute.png') {
-            this.playBackgroundMusic();
-        } 
+        }
     }
-    
+
     extractFileNameFromPath(path) {
         // Teile den Pfad an den Schrägstrichen auf und nimm den letzten Teil (Dateiname)
         let pathParts = path.split('/');
@@ -230,6 +225,7 @@ class Character extends MoveableObject { // classe Character erbt Eigenschaften 
     }
 
     playBackgroundMusic() {
-        this.background_music.play();
+
+            this.background_music.play();
     }
 } 

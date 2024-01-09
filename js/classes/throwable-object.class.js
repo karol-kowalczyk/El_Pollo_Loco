@@ -28,23 +28,37 @@ class ThrowableObject extends MoveableObject {
 
     }
 
+
     throw() {
         this.speedY = 30;
         this.applyGravity();
         setInterval(() => {
             this.x += 10;
         }, 25);
-    
+
         this.intervalId = setInterval(() => {
             this.playAnimation(this.IMAGES_ROTATE);
         }, 1);
     }
 
+    extractFileNameFromPath(path) {
+        // Teile den Pfad an den Schrägstrichen auf und nimm den letzten Teil (Dateiname)
+        let pathParts = path.split('/');
+        return pathParts[pathParts.length - 1];
+    }
+
     splashedBottle() {
         clearInterval(this.intervalId);
         this.loadImage(this.IMAGES_SPLASH[2]);
-        this.splashedBottleSound.play();
+        let iconFileName = this.extractFileNameFromPath(document.getElementById('sound-icon').src);
 
+        // Vergleiche den Dateinamen
+        if (iconFileName === 'speaker-mute.png') {
+
+            this.splashedBottleSound.pause();
+
+        } else {
+            this.splashedBottleSound.play();
+        }
     }
-
 }

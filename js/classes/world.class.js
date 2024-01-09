@@ -30,6 +30,7 @@ class World {
         this.run();
     }
 
+
     run() {
         setInterval(() => {
             this.checkCollisionsWithEnemys();
@@ -46,22 +47,18 @@ class World {
         if (this.keyboard.D && currentBottleLength > 0) {
             let bottle = new ThrowableObject(this.character.x + 100, this.character.y + 20);
             this.throwableObjects.push(bottle);
-            console.log(currentBottleLength);
-            // Hier auf den aktuellen Wert von percentage zugreifen
-            currentBottleLength = currentBottleLength - 20;
-            console.log('Updated Bottle Length:', currentBottleLength);
-
+            this.character.throwBottles();
             // Setze die aktualisierte Länge in der BottleBar
-            this.bottleBar.setPercentage(currentBottleLength);
+            this.bottleBar.setPercentage(currentBottleLength-20);
 
             let intervalId = setInterval(() => {
                 if (bottle.y >= 280) {
                     bottle.splashedBottle();
                     clearInterval(intervalId);
-
                 }
             }, 200);
         }
+
     }
 
     checkCollisionsWithEndboss() {
@@ -187,6 +184,5 @@ class World {
         mo.x = mo.x * -1;
         this.ctx.restore();
     }
-
 
 }

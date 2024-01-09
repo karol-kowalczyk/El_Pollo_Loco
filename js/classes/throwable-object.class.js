@@ -24,10 +24,9 @@ class ThrowableObject extends MoveableObject {
         this.y = y;
         this.height = 100;
         this.width = 100;
-
         this.throw(100, 150);
-    }
 
+    }
 
     throw() {
         this.speedY = 30;

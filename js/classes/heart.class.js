@@ -32,7 +32,7 @@ class Heart extends DrawableObject {
         
     }
 
-    replaceX() {
+    removeFromMap() {
         this.x = -1000;
     }
 

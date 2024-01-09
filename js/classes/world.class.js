@@ -41,13 +41,24 @@ class World {
     }
 
     checkThrowObjects() {
-        if (this.keyboard.D) {
+        let currentBottleLength = this.bottleBar.getPercentage();
+        
+        if (this.keyboard.D && currentBottleLength > 0) {
             let bottle = new ThrowableObject(this.character.x + 100, this.character.y + 20);
             this.throwableObjects.push(bottle);
+            console.log(currentBottleLength);
+    
             let intervalId = setInterval(() => {
                 if (bottle.y >= 280) {
                     bottle.splashedBottle();
-                    clearInterval(intervalId); // Übergebe die Interval-ID an clearInterval
+                    clearInterval(intervalId);
+    
+                    // Hier auf den aktuellen Wert von percentage zugreifen
+                    let updatedBottleLength = currentBottleLength - 10;
+                    console.log('Updated Bottle Length:', updatedBottleLength);
+    
+                    // Setze die aktualisierte Länge in der BottleBar
+                    this.bottleBar.setPercentage(updatedBottleLength);
                 }
             }, 200);
         }
@@ -78,7 +89,7 @@ class World {
                 this.statusBar.setPercentage(this.character.energy);
                 if (heart instanceof Heart) {
                     if (this.character.energy < 100)
-                        heart.replaceX();
+                        heart.removeFromMap();
                 }
             }
         });
@@ -89,7 +100,7 @@ class World {
                 this.coinBar.setPercentage(this.character.coin);
                 if (coin instanceof Coins) {
                     if (this.character.coin < 100)
-                        coin.replaceX();
+                        coin.removeFromMap();
                 }
             }
         });
@@ -100,7 +111,7 @@ class World {
                 this.bottleBar.setPercentage(this.character.bottle);
                 if (bottle instanceof Bottle) {
                     if (this.character.bottle < 100)
-                        bottle.replaceX();
+                        bottle.removeFromMap();
                 }
             }
         });

@@ -28,7 +28,7 @@ class Bottle extends MoveableObject {
         this.img = this.imageCache[path];
         this.currentImage++;
     }
-    replaceX() {
+    removeFromMap() {
         this.x = -1000;
     }
     

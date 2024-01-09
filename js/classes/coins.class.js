@@ -30,7 +30,7 @@ class Coins extends DrawableObject {
         this.currentImage++;
     }
 
-    replaceX() {
+    removeFromMap() {
         this.x = -1000;
     }
 }

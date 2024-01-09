@@ -90,7 +90,7 @@ class Character extends MoveableObject { // classe Character erbt Eigenschaften 
         setInterval(() => {
             this.checkIfSoundIsMute();
             
-        }, 1000 / 60);
+        }, 1);
     }
 
     animate() {
@@ -200,7 +200,7 @@ class Character extends MoveableObject { // classe Character erbt Eigenschaften 
         let restartBtn = document.getElementById('restart-button');
         restartBtn.classList.remove('d-none');
         this.muteEndgame();
-        this.mute_ingameSound();
+        this.background_music.pause();
     }
 
     soundIcon = document.getElementById('sound-icon');

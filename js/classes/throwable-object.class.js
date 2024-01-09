@@ -34,10 +34,10 @@ class ThrowableObject extends MoveableObject {
         setInterval(() => {
             this.x += 10;
         }, 25);
-
+    
         this.intervalId = setInterval(() => {
-            this.playAnimation(this.IMAGES_ROTATE); // Calls the method from the superclass
-        }, 1000 / 10);
+            this.playAnimation(this.IMAGES_ROTATE);
+        }, 1);
     }
 
     splashedBottle() {

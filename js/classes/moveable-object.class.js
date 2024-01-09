@@ -7,9 +7,9 @@ class MoveableObject extends DrawableObject {
     lastHit = 0;
     lastHeal = 0;
     coin = 0;
-    bottle = 0;
     mute = true;
     iconClicked = 0;
+    bottle = 0;
 
     collectHeartSound = new Audio('../El_Pollo_Loco/img_pollo_locco/img/audio/pick_heart.mp3');
     collectCoinSound = new Audio('../El_Pollo_Loco/img_pollo_locco/img/audio/super-mario-coin-sound.mp3');
@@ -61,7 +61,7 @@ class MoveableObject extends DrawableObject {
     }
 
     collectCoin() {
-        this.coin += 10;
+        this.coin += 20;
         if (this.coin >= 100) {
             this.coin = 100;
         }
@@ -71,19 +71,22 @@ class MoveableObject extends DrawableObject {
         }
     }
 
+    
     collectBottle() {
-        this.bottle += 10;
+        this.bottle += 20;
         if (this.bottle >= 100) {
             this.bottle = 100;
         }
-
+    
         if (this.bottle < 100) {
             this.playCollectBottleSound();
+    
+        
         }
     }
 
     collectHeart() {
-        this.energy += 5;
+        this.energy += 20;
         if (this.energy >= 100) {
             this.energy = 100;
         }
@@ -94,7 +97,7 @@ class MoveableObject extends DrawableObject {
     }
 
     hit() {
-        this.energy -= 5;
+        this.energy -= 10;
         if (this.energy <= 0) {
             this.energy = 0;
         } else {
@@ -103,7 +106,7 @@ class MoveableObject extends DrawableObject {
     }
 
     bigHit() {
-        this.energy -= 35;
+        this.energy -= 20;
         if (this.energy <= 0) {
             this.energy = 0;
             this.jumpToEndScreen();

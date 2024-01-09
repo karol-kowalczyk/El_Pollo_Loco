@@ -40,25 +40,27 @@ class World {
 
     }
 
+    isFirstThrow = true;
+
     checkThrowObjects() {
         let currentBottleLength = this.bottleBar.getPercentage();
-        
+
         if (this.keyboard.D && currentBottleLength > 0) {
             let bottle = new ThrowableObject(this.character.x + 100, this.character.y + 20);
             this.throwableObjects.push(bottle);
             console.log(currentBottleLength);
-    
+            // Hier auf den aktuellen Wert von percentage zugreifen
+            currentBottleLength = currentBottleLength - 20;
+            console.log('Updated Bottle Length:', currentBottleLength);
+
+            // Setze die aktualisierte Länge in der BottleBar
+            this.bottleBar.setPercentage(currentBottleLength);
+
             let intervalId = setInterval(() => {
                 if (bottle.y >= 280) {
                     bottle.splashedBottle();
                     clearInterval(intervalId);
-    
-                    // Hier auf den aktuellen Wert von percentage zugreifen
-                    let updatedBottleLength = currentBottleLength - 10;
-                    console.log('Updated Bottle Length:', updatedBottleLength);
-    
-                    // Setze die aktualisierte Länge in der BottleBar
-                    this.bottleBar.setPercentage(updatedBottleLength);
+
                 }
             }, 200);
         }

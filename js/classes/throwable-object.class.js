@@ -61,4 +61,5 @@ class ThrowableObject extends MoveableObject {
             this.splashedBottleSound.play();
         }
     }
+
 }

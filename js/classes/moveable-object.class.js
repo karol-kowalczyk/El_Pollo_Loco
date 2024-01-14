@@ -4,7 +4,9 @@ class MoveableObject extends DrawableObject {
     speedY = 0;
     acceleration = 3;
     energy = 100;
+    bossEnergy = 100;
     lastHit = 0;
+    lastBossHit = 0;
     lastHeal = 0;
     coin = 0;
     mute = true;
@@ -14,7 +16,7 @@ class MoveableObject extends DrawableObject {
     collectHeartSound = new Audio('../El_Pollo_Loco/img_pollo_locco/img/audio/pick_heart.mp3');
     collectCoinSound = new Audio('../El_Pollo_Loco/img_pollo_locco/img/audio/super-mario-coin-sound.mp3');
     collectBottleSound = new Audio('../El_Pollo_Loco/img_pollo_locco/img/audio/pick_bottle.mp3');
-    
+
 
     playCollectCoinSound() {
         this.collectCoinSound.play();
@@ -60,6 +62,13 @@ class MoveableObject extends DrawableObject {
             this.y + 30 < item.y + 30 + item.height - 90;
     }
 
+    isCollidingThrownItems(mo) {
+        return this.x + this.width  > mo.x &&
+            this.y + this.height > mo.y &&
+            this.x < mo.x + mo.width &&
+            this.y < mo.y + mo.height;
+    }
+
     collectCoin() {
         this.coin += 20;
         if (this.coin >= 100) {
@@ -71,23 +80,23 @@ class MoveableObject extends DrawableObject {
         }
     }
 
-    
+
     collectBottle() {
         this.bottle += 20;
         if (this.bottle >= 100) {
             this.bottle = 100;
         }
-    
+
         if (this.bottle < 100) {
             this.playCollectBottleSound();
-    
-        
+
+
         }
     }
 
     throwBottles() {
         this.bottle -= 20;
-        if (this.bottle <=0) {
+        if (this.bottle <= 0) {
             this.bottle = 0;
         }
     }
@@ -110,7 +119,7 @@ class MoveableObject extends DrawableObject {
         } else {
             this.lastHit = new Date().getTime();
         }
-     }
+    }
 
     bigHit() {
         this.energy -= 20;
@@ -119,6 +128,15 @@ class MoveableObject extends DrawableObject {
             this.jumpToEndScreen();
         } else {
             this.lastHit = new Date().getTime();
+        }
+    }
+
+    bossHit() {
+        this.bossEnergy -= 25;
+        if (this.bossEnergy <= 0) {
+            this.bossEnergy = 0;
+        } else {
+            this.lastBossHit = new Date().getTime();
         }
     }
 
@@ -139,7 +157,7 @@ class MoveableObject extends DrawableObject {
 
     isDead() {
         return this.energy == 0;
-        
+
     }
 
     playAnimation(images) {

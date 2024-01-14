@@ -41,13 +41,22 @@ class DrawableObject {
         }
 
 
-        if (this instanceof Bottle || this instanceof ThrowableObject) {
+        if (this instanceof Bottle) {
             ctx.beginPath();
             ctx.lineWidth = '5';
             ctx.strokeStyle = 'blue';
             ctx.rect(this.x +60, this.y +60, this.width -120, this.height -120);
             ctx.stroke();
         }
+
+        if (this instanceof ThrowableObject) {
+            ctx.beginPath();
+            ctx.lineWidth = '5';
+            ctx.strokeStyle = 'blue';
+            ctx.rect(this.x +120, this.y +120, this.width -240, this.height -240);
+            ctx.stroke();
+        }
+ 
  
         if (this instanceof Character ) {
             ctx.beginPath();

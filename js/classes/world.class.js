@@ -17,6 +17,7 @@ class World {
     bottleBar = new BottleBar();
     endbossBar = new EndbossStatusBar();
     throwableObjects = [];
+    bigEndBoss = new Endboss();
 
 
     // startScreen.src = '../El_Pollo_Loco/img_pollo_locco/img/9_intro_outro_screens/start/startscreen_2.png';
@@ -48,6 +49,7 @@ class World {
             let bottle = new ThrowableObject(this.character.x + 100, this.character.y + 20);
             this.throwableObjects.push(bottle);
             this.character.throwBottles();
+            
             // Setze die aktualisierte Länge in der BottleBar
             this.bottleBar.setPercentage(currentBottleLength-20);
 
@@ -56,10 +58,23 @@ class World {
                     bottle.splashedBottle();
                     clearInterval(intervalId);
                 }
-            }, 200);
+                
+                this.checkThrownObjectCollision(bottle);
+
+            }, 600);
         }
 
     }
+
+    checkThrownObjectCollision(bottle) {
+        this.level.endboss.forEach((boss) => {
+            if (bottle.isCollidingThrownItems(boss)) {
+                this.bigEndBoss.bossHit();
+                this.endbossBar.setPercentage(this.bigEndBoss.bossEnergy);
+            }
+        });
+    }
+
 
     checkCollisionsWithEndboss() {
         this.level.endboss.forEach((boss) => {

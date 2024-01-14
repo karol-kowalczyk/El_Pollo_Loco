@@ -23,6 +23,20 @@ class Endboss extends MoveableObject {
         '../El_Pollo_Loco/img_pollo_locco/img/4_enemie_boss_chicken/1_walk/G4.png'
     ];
 
+    win_sound = new Audio('../El_Pollo_Loco/img_pollo_locco/img/audio/game-won.wav');
+    endscreenWin() {
+        let img = document.getElementById('start-screen-img');
+        img.src = '../El_Pollo_Loco/img_pollo_locco/img/9_intro_outro_screens/game_over/you_won.png';
+        img.classList.remove('d-none');
+        img.classList.add('opacity');
+        this.win_sound.play();
+        let restartBtn = document.getElementById('restart-button');
+        restartBtn.classList.remove('d-none');
+        this.muteEndgame();
+        this.background_music.pause();
+        this.energy(100);
+    }
+
     constructor() {
         super().loadImage(this.IMAGES_LOOKING[0]);
         this.loadImages(this.IMAGES_LOOKING);
@@ -32,6 +46,12 @@ class Endboss extends MoveableObject {
         setInterval(() => {
             if (this.isEndbossWalking == true) {
                 this.animate();
+            } else {
+                setInterval(() => {
+                    if (this.isEndbossDead()) {
+                        this.endscreenWin();
+                    }
+                }, 10);
             }
         }, 200);
     }
@@ -41,6 +61,8 @@ class Endboss extends MoveableObject {
             this.moveLeft();
 
         }, 250);
+
+
 
         // not looking good.
         // setInterval(() => {

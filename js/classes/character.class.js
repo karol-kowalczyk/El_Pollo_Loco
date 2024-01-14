@@ -63,6 +63,7 @@ class Character extends MoveableObject { // classe Character erbt Eigenschaften 
     endgame_sound = new Audio('../El_Pollo_Loco/img_pollo_locco/img/audio/End_Boss_Music.mp3');
     lost_sound = new Audio('../El_Pollo_Loco/img_pollo_locco/img/audio/lost_game.mp3');
     background_music = new Audio('../El_Pollo_Loco/img_pollo_locco/img/audio/background.mp3');
+    
 
     constructor() { // initialisiert wird automatisch aufgerufen, deswegen konstructor, und dieser legt fest, wie die Klasse aussehen und funktionieren soll
         super().loadImage('../El_Pollo_Loco/img_pollo_locco/img/2_character_pepe/2_walk/W-21.png'); // mit super() wird von der UeberClasse geerbt und so
@@ -145,6 +146,7 @@ class Character extends MoveableObject { // classe Character erbt Eigenschaften 
                     this.playAnimation(this.IMAGES_WALKING);
                 }
             }
+
         }, 50);
     }
 
@@ -202,6 +204,17 @@ class Character extends MoveableObject { // classe Character erbt Eigenschaften 
         this.background_music.pause();
     }
 
+    endscreenWin() {
+        let img = document.getElementById('start-screen-img');
+        img.src = '../El_Pollo_Loco/img_pollo_locco/img/9_intro_outro_screens/game_over/you_won.png';
+        img.classList.remove('d-none');
+        this.win_sound.play();
+        let restartBtn = document.getElementById('restart-button');
+        restartBtn.classList.remove('d-none');
+        this.muteEndgame();
+        this.background_music.pause();
+    }
+
     soundIcon = document.getElementById('sound-icon');
 
     checkIfSoundIsMute() {
@@ -226,6 +239,8 @@ class Character extends MoveableObject { // classe Character erbt Eigenschaften 
 
     playBackgroundMusic() {
 
-            this.background_music.play();
+        this.background_music.play();
     }
+
+
 } 

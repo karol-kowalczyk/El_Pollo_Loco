@@ -4,7 +4,7 @@ body {
     flex-direction: column;
     font-family: 'zabars', sans-serif;
     background-image: url('../El_Pollo_Loco/img_pollo_locco/img/10_background/desert.jpg');
-    background-repeat:repeat;
+    background-repeat: repeat;
     height: 95vh;
 }
 
@@ -15,11 +15,11 @@ canvas {
 }
 
 .canvas {
-    position:fixed !important;
-    left:0 !important;
-    top:0 !important;
-    width:100% !important;
-    height:100% !important;
+    position: fixed !important;
+    left: 0 !important;
+    top: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
 }
 
 #content {
@@ -161,7 +161,8 @@ p {
     font-size: 32px;
     font-weight: 700;
     font-family: 'Courier New', Courier, monospace;
-    color: rgb(212, 164, 18);;
+    color: rgb(212, 164, 18);
+    ;
 }
 
 .audio-icon {
@@ -177,11 +178,15 @@ p {
     gap: 56px;
 }
 
- #start-button {
+.opacity {
+    opacity: 0.85;
+}
+
+#start-button {
     position: absolute;
     top: 5%;
     left: 39%;
-    background-color: rgb(255,204,1);
+    background-color: rgb(255, 204, 1);
     color: white;
     font-size: 48px;
     text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.6);
@@ -199,11 +204,11 @@ p {
     background-color: #FFB900;
 }
 
- #restart-button {
+#restart-button {
     position: absolute;
     top: 76%;
     left: 37%;
-    background-color: rgb(255,204,1);
+    background-color: rgb(255, 204, 1);
     color: white;
     font-size: 36px;
     text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.6);

@@ -20,7 +20,7 @@ class World {
     bigEndBoss = new Endboss();
 
 
-    // startScreen.src = '../El_Pollo_Loco/img_pollo_locco/img/9_intro_outro_screens/start/startscreen_2.png';
+    // startw.src = '../El_Pollo_Loco/img_pollo_locco/img/9_intro_outro_screens/start/startscreen_2.png';
 
     constructor(canvas, keyboard) {
         this.ctx = canvas.getContext('2d');

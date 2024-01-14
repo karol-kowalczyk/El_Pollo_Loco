@@ -121,15 +121,17 @@ class MoveableObject extends DrawableObject {
         }
     }
 
+
+
     bigHit() {
         this.energy -= 20;
         if (this.energy <= 0) {
             this.energy = 0;
-            this.jumpToEndScreen();
         } else {
             this.lastHit = new Date().getTime();
         }
     }
+
 
     bossHit() {
         this.bossEnergy -= 25;
@@ -157,7 +159,10 @@ class MoveableObject extends DrawableObject {
 
     isDead() {
         return this.energy == 0;
+    }
 
+    isEndbossDead() {
+        return this.bossEnergy == 0;
     }
 
     playAnimation(images) {

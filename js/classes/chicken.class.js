@@ -8,6 +8,10 @@ class Chicken extends MoveableObject {
         '../El_Pollo_Loco/img_pollo_locco/img/3_enemies_chicken/chicken_normal/1_walk/3_w.png',
     ];
 
+    IMAGES_DEATH = [
+        '../El_Pollo_Loco/img_pollo_locco/img/3_enemies_chicken/chicken_normal/2_dead/dead.png'
+    ]
+
     constructor() {
         super().loadImage('../El_Pollo_Loco/img_pollo_locco/img/3_enemies_chicken/chicken_normal/1_walk/1_w.png');
         this.loadImages(this.IMAGES_WALKING);
@@ -21,8 +25,6 @@ class Chicken extends MoveableObject {
 
 
     animate() {
-        let walkingInterval;
-
         this.moveLeft();
         setInterval(() => {
             this.playAnimation(this.IMAGES_WALKING);
@@ -33,5 +35,4 @@ class Chicken extends MoveableObject {
             this.moveLeft();
         }, 1000 / 60);
     }
-
 }

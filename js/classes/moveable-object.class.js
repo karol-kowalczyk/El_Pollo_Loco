@@ -13,22 +13,22 @@ class MoveableObject extends DrawableObject {
     iconClicked = 0;
     bottle = 0;
 
-    collectHeartSound = new Audio('../El_Pollo_Loco/img_pollo_locco/img/audio/pick_heart.mp3');
-    collectCoinSound = new Audio('../El_Pollo_Loco/img_pollo_locco/img/audio/super-mario-coin-sound.mp3');
-    collectBottleSound = new Audio('../El_Pollo_Loco/img_pollo_locco/img/audio/pick_bottle.mp3');
+    // collectHeartSound = new Audio('../El_Pollo_Loco/img_pollo_locco/img/audio/pick_heart.mp3');
+    // collectCoinSound = new Audio('../El_Pollo_Loco/img_pollo_locco/img/audio/super-mario-coin-sound.mp3');
+    // collectBottleSound = new Audio('../El_Pollo_Loco/img_pollo_locco/img/audio/pick_bottle.mp3');
 
 
-    playCollectCoinSound() {
-        this.collectCoinSound.play();
-    }
+    // playCollectCoinSound() {
+    //     this.collectCoinSound.play();
+    // }
 
-    playCollectBottleSound() {
-        this.collectBottleSound.play();
-    }
+    // playCollectBottleSound() {
+    //     this.collectBottleSound.play();
+    // }
 
-    playCollectHeartSound() {
-        this.collectHeartSound.play();
-    }
+    // playCollectHeartSound() {
+    //     this.collectHeartSound.play();
+    // }
 
     applyGravity() {
         setInterval(() => {

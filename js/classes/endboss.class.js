@@ -85,10 +85,10 @@ class Endboss extends MoveableObject {
         }, 600);
     }
 
-    animate_death() {
-        setTimeout(function() {
-            // Hier kommt der Code, der nach dem Timeout ausgeführt werden soll
-            this.playAnimation(this.IMAGES_DEATH);
-        }, 600)
-    }
+    // animate_death() {
+    //     setTimeout(function() {
+    //         // Hier kommt der Code, der nach dem Timeout ausgeführt werden soll
+    //         this.playAnimation(this.IMAGES_DEATH);
+    //     }, 600)
+    // }
 }

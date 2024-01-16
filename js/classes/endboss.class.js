@@ -23,10 +23,16 @@ class Endboss extends MoveableObject {
         '../El_Pollo_Loco/img_pollo_locco/img/4_enemie_boss_chicken/1_walk/G4.png'
     ];
 
-    IMAGES_DEATH = [
+    IMAGES_DEAD = [
         '../El_Pollo_Loco/img_pollo_locco/img/4_enemie_boss_chicken/5_dead/G24.png',
         '../El_Pollo_Loco/img_pollo_locco/img/4_enemie_boss_chicken/5_dead/G25.png',
         '../El_Pollo_Loco/img_pollo_locco/img/4_enemie_boss_chicken/5_dead/G26.png'
+    ];
+
+    IMAGES_HURT = [
+        '../El_Pollo_Loco/img_pollo_locco/img/4_enemie_boss_chicken/4_hurt/G21.png',
+        '../El_Pollo_Loco/img_pollo_locco/img/4_enemie_boss_chicken/5_dead/G22.png',
+        '../El_Pollo_Loco/img_pollo_locco/img/4_enemie_boss_chicken/5_dead/G23.png'
     ];
 
     win_sound = new Audio('../El_Pollo_Loco/img_pollo_locco/img/audio/game-won.wav');
@@ -40,7 +46,7 @@ class Endboss extends MoveableObject {
         restartBtn.classList.remove('d-none');
         // this.muteEndgame();
         // this.background_music.pause();
-       
+
 
     }
 
@@ -48,47 +54,29 @@ class Endboss extends MoveableObject {
         super().loadImage(this.IMAGES_LOOKING[0]);
         this.loadImages(this.IMAGES_LOOKING);
         this.loadImages(this.IMAGES_WALKING);
-        this.loadImages(this.IMAGES_DEATH);
+        this.loadImages(this.IMAGES_DEAD);
         this.x = 7100;
         this.speed = 0.5;
-        setInterval(() => {
-            if (this.isEndbossWalking == true) {
-                this.animate();
-            } else {
-                setInterval(() => {
-                    if (this.isEndbossDead()) {
-                        this.endscreenWin();
-                        this.animate_death();
-                    }
-                }, 10);
-            }
-        }, 200);
+
 
     }
 
     animate() {
-        setInterval(() => {
-            this.moveLeft();
+        let animationInterval;
 
-        }, 250);
+        animationInterval = setInterval(() => {
+            if (this.isEndbossDead()) {
+                this.playAnimation(this.IMAGES_DEAD);
+                setTimeout(() => {
+                    this.endscreenWin()
+                }, 500);
+            } else if (this.bossHit()) {
 
+            } else {
+                this.moveLeft();
+                this.playAnimation(this.IMAGES_WALKING);
+            }
+        }, 50);
 
-
-        // not looking good.
-        // setInterval(() => {
-        //     this.playAnimation(this.IMAGES_LOOKING);
-
-        // }, 100);
-
-        setInterval(() => {
-            this.playAnimation(this.IMAGES_WALKING);
-        }, 600);
     }
-
-    // animate_death() {
-    //     setTimeout(function() {
-    //         // Hier kommt der Code, der nach dem Timeout ausgeführt werden soll
-    //         this.playAnimation(this.IMAGES_DEATH);
-    //     }, 600)
-    // }
 }

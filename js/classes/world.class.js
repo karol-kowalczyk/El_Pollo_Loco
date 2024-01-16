@@ -150,6 +150,7 @@ class World {
         if (this.endbossBar.isVisible === true) {
             this.addToMap(this.endbossBar);
             this.endboss.isEndbossWalking = true;
+            this.endboss.animate();
         }
         this.addToMap(this.coinBar);
         this.addToMap(this.bottleBar);

@@ -86,12 +86,7 @@ class Character extends MoveableObject { // classe Character erbt Eigenschaften 
 
 
         this.animate();
-
-
-        setInterval(() => {
-            this.checkIfSoundIsMute();
-
-        }, 1);
+        
     }
 
     animate() {

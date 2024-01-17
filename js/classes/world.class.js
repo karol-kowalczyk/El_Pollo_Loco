@@ -147,9 +147,10 @@ class World {
         this.ctx.translate(-this.camera_x, 0);
         // Space for fixed objects
         this.addToMap(this.statusBar);
-        if (this.endbossBar.isVisible === true) {
+        if (this.endbossBar.isVisible == true) {
             this.addToMap(this.endbossBar);
             this.endboss.isEndbossWalking = true;
+
         }
         this.addToMap(this.coinBar);
         this.addToMap(this.bottleBar);

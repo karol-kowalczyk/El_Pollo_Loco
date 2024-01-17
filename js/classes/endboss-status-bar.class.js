@@ -12,8 +12,6 @@ class EndbossStatusBar extends DrawableObject {
     percentage = 100;
     isVisible = false;
 
-
-    
     constructor() {
         super();
         this.loadImages(this.IMAGES);
@@ -44,7 +42,7 @@ class EndbossStatusBar extends DrawableObject {
             return 1;
         } else {
             return 0;
-            
+
         }
     }
 

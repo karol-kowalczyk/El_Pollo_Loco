@@ -2,7 +2,6 @@ class Endboss extends MoveableObject {
     height = 450;
     width = 450;
     y = 0;
-    isVisible = false;
     isEndbossWalking = false;
 
     IMAGES_LOOKING = [
@@ -56,18 +55,35 @@ class Endboss extends MoveableObject {
         this.loadImages(this.IMAGES_WALKING);
         this.loadImages(this.IMAGES_DEAD);
         this.x = 7100;
-        this.speed = 0.5;
+        this.speed = 0.1;
 
-        this.animate();
+        
+        setInterval(() => {
+            if (this.isEndbossWalking == true) {
+                this.animate();
+            }
+        }, );
     }
+
 
     animate() {
-        this.moveLeft();
         setInterval(() => {
             this.playAnimation(this.IMAGES_WALKING);
-        }, 300);
-        setInterval(() => {
-            this.moveLeft();
-        }, 1000 / 60);
+        }, 0.1);
+
     }
+
+    // animateHurtBoss() {
+    //     if (!this.hurtAnimationStarted) {
+    //         this.playAnimation(this.IMAGES_HURT);
+    //         this.hurtAnimationStarted = true;
+
+    //         // Fügen Sie hier Code hinzu, um nach dem Ende der Animation
+    //         // die Variable hurtAnimationStarted auf false zurückzusetzen.
+    //         // Dies könnte z.B. mit Hilfe von setTimeout oder setInterval erfolgen.
+    //         setTimeout(() => {
+    //             this.hurtAnimationStarted = false;
+    //         }, /* Hier die Dauer der Animation in Millisekunden */);
+    //     }
+    // }
 }

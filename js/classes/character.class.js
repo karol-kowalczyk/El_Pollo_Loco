@@ -3,6 +3,7 @@ class Character extends MoveableObject { // classe Character erbt Eigenschaften 
     width = 200; // die Breite wird diesem Object neu zugewiesen. Also wurde diese zwar von der moveable-object.class.js 
     height = 300; // Classe uebernommen aber ueberschrieben da diese anscheinen nicht passt
     speed = 10;
+    speedY = 0.1;
     y = -180;
 
     IMAGES_WALKING = [
@@ -25,6 +26,9 @@ class Character extends MoveableObject { // classe Character erbt Eigenschaften 
         '../El_Pollo_Loco/img_pollo_locco/img/2_character_pepe/3_jump/J-38.png',
         '../El_Pollo_Loco/img_pollo_locco/img/2_character_pepe/3_jump/J-39.png'
     ];
+
+    IMAGE_STANDING = ['../El_Pollo_Loco/img_pollo_locco/img/2_character_pepe/3_jump/J-31.png',
+    '../El_Pollo_Loco/img_pollo_locco/img/2_character_pepe/3_jump/J-31.png'];
 
     IMAGES_DEAD = [
         '../El_Pollo_Loco/img_pollo_locco/img/2_character_pepe/5_dead/D-51.png',
@@ -111,6 +115,7 @@ class Character extends MoveableObject { // classe Character erbt Eigenschaften 
 
             if (this.world.keyboard.SPACE && !this.isAboveGround()) {
                 this.jump();
+                console.log(this.y);
             }
 
             if (this.x >= 6400) {
@@ -123,7 +128,9 @@ class Character extends MoveableObject { // classe Character erbt Eigenschaften 
         }, 1000 / 60);
 
         animationInterval = setInterval(() => {
-            if (this.isDead()) {
+
+
+           if (this.isDead()) {
                 this.playAnimation(this.IMAGES_DEAD);
                 // Setzen Sie das Timeout nur dann, wenn die Bedingung isDead erfüllt ist
                 setTimeout(() => {
@@ -133,13 +140,18 @@ class Character extends MoveableObject { // classe Character erbt Eigenschaften 
                 }, 500);
             } else if (this.isHurt()) {
                 this.playAnimation(this.IMAGES_HURT);
-            } else if (this.isAboveGround()) {
+            }              else if (this.world.keyboard.RIGHT || this.world.keyboard.LEFT) {
+                {
+                  this.isWalking = true;
+                  // walk animation
+                  this.playAnimation(this.IMAGES_WALKING);
+                  
+              } 
+            }
+            else if (this.isAboveGround()) {
                 this.playAnimation(this.IMAGES_JUMPING);
-            } else {
-                if (this.world.keyboard.RIGHT || this.world.keyboard.LEFT) {
-                    // walk animation
-                    this.playAnimation(this.IMAGES_WALKING);
-                }
+            } else if (!this.isAboveGround()) {
+                this.playAnimation(this.IMAGE_STANDING);
             }
 
         }, 50);
@@ -173,10 +185,13 @@ class Character extends MoveableObject { // classe Character erbt Eigenschaften 
         super.moveLeft();
         this.lastKeyPressTime = Date.now();
     }
-
+  
     jump() {
+
         super.jump();
         this.lastKeyPressTime = Date.now();
+
+
     }
 
     endgame() {

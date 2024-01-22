@@ -185,6 +185,7 @@ class MoveableObject extends DrawableObject {
 
     jump() {
         this.speedY = 40;
+        this.y = 120;
     }
 
     muteEverySound() {

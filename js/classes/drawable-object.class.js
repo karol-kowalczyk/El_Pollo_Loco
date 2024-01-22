@@ -40,7 +40,6 @@ class DrawableObject {
             ctx.stroke();
         }
 
-
         if (this instanceof Bottle) {
             ctx.beginPath();
             ctx.lineWidth = '5';

@@ -153,11 +153,16 @@ function closeStartScreen() {
     let bgMusic = document.getElementById('loading-screen-music');
 
     setTimeout(function () {
-        startScreenImg.classList.add('d-none');
+        startScreenImg.classList.add('itemHidden');
         startButton.classList.add('d-none');
         bgMusic.src = '/El_Pollo_Loco/img_pollo_locco/img/audio/nothing.mp3';
         init();
     }, 180);
+
+    setTimeout(function () {
+        startScreenImg.classList.remove('itemHidden');
+        startScreenImg.classList.add('d-none');
+    }, 1500); // 20 Sekunden in Millisekunden umgerechnet
 }
 
 function restartGame() {

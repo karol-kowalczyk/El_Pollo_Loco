@@ -182,6 +182,12 @@ p {
     opacity: 0.85;
 }
 
+.itemHidden {
+    opacity: 0;
+    transition: opacity 2s;
+}
+
+
 #start-button {
     position: absolute;
     top: 5%;

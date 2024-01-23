@@ -41,4 +41,8 @@ class BabyChicken extends MoveableObject {
 
     }
 
+    removeFromMap() {
+        this.x = -1000;
+    }
+
 }

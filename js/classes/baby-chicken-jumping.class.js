@@ -52,4 +52,8 @@ class BabyChickenJumping extends MoveableObject {
             }
         }, 10000 / 15);
     }
+
+    removeFromMap() {
+        this.x = -1000;
+    }
 }

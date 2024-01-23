@@ -35,4 +35,9 @@ class Chicken extends MoveableObject {
             this.moveLeft();
         }, 1000 / 60);
     }
+
+    removeFromMap() {
+        this.x = -1000;
+    }
+
 }

@@ -48,12 +48,44 @@ class MoveableObject extends DrawableObject {
     }
 
     //character.isCollidin(chicken);
-    isColliding(mo) {
-        return this.x + this.width > mo.x &&
-            this.y + this.height > mo.y &&
-            this.x < mo.x &&
-            this.y < mo.y + mo.height;
+    // isColliding(mo) {
+    //     return this.x + this.width > mo.x &&
+    //         this.y + this.height > mo.y &&
+    //         this.x < mo.x &&
+    //         this.y < mo.y + mo.height;
+    // }
+
+    //  character gets hit
+    // isColliding(obj) {
+    //     return this.x + this.width > obj.x && 
+    //     this.x < obj.x + obj.width &&
+    //     this.y + this.height > obj.y;
+    // }
+
+    // // jebac niemcow
+    // isOverlappingFromTop(obj) {
+    //     return this.x + this.width < obj.x + obj.width &&
+            
+    //         this.y < obj.y + obj.height;
+    // }
+
+    isColliding(obj) {
+        return (
+            this.x + this.width > obj.x && // rechte Seite des Charakters in der Höhe mit linker Seite des Objekts
+            this.x < obj.x + obj.width  // linke Seite des Charakters in der Höhe mit rechter Seite des Objekts
+
+        );
     }
+
+        isOverlappingFromTop(obj) {
+
+            return (
+                this.y + this.height > obj.y // untere Seite des Charakters in der Breite mit oberer Seite des Objekts
+                // obere Seite des Charakters in der Breite mit unterer Seite des Objekts
+            );
+    }
+
+
 
     isCollidingItems(item) {
         return this.x + this.width - 90 > item.x &&
@@ -63,7 +95,7 @@ class MoveableObject extends DrawableObject {
     }
 
     isCollidingThrownItems(mo) {
-        return this.x + this.width  > mo.x &&
+        return this.x + this.width > mo.x &&
             this.y + this.height > mo.y &&
             this.x < mo.x + mo.width &&
             this.y < mo.y + mo.height;
@@ -120,7 +152,6 @@ class MoveableObject extends DrawableObject {
             this.lastHit = new Date().getTime();
         }
     }
-
 
 
     bigHit() {

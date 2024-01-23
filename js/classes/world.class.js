@@ -88,12 +88,17 @@ class World {
     checkCollisionsWithEnemys() {
         this.level.enemies.forEach((enemy) => {
             if (this.character.isColliding(enemy)) {
-                this.character.hit();
-                this.statusBar.setPercentage(this.character.energy);
+                if (this.character.isOverlappingFromTop(enemy)) {
+                    this.character.hit();
+                    this.statusBar.setPercentage(this.character.energy);
+                } else {
+
+                    console.log('jebac niemcow');
+                }
             }
         });
     }
-
+    
     checkCollectItems() {
         this.level.hearts.forEach((heart) => {
             if (this.character.isCollidingItems(heart)) {

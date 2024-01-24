@@ -93,7 +93,7 @@ class World {
                     this.statusBar.setPercentage(this.character.energy);
                 } else {
 
-                    console.log('jebac niemcow');
+                    console.log('jump on top');
                 }
             }
         });

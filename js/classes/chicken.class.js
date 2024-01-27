@@ -12,6 +12,12 @@ class Chicken extends MoveableObject {
         '../El_Pollo_Loco/img_pollo_locco/img/3_enemies_chicken/chicken_normal/2_dead/dead.png',
         '../El_Pollo_Loco/img_pollo_locco/img/3_enemies_chicken/chicken_normal/2_dead/dead.png',
         '../El_Pollo_Loco/img_pollo_locco/img/3_enemies_chicken/chicken_normal/2_dead/dead.png',
+        '../El_Pollo_Loco/img_pollo_locco/img/3_enemies_chicken/chicken_normal/2_dead/dead.png',
+        '../El_Pollo_Loco/img_pollo_locco/img/3_enemies_chicken/chicken_normal/2_dead/dead.png',
+        '../El_Pollo_Loco/img_pollo_locco/img/3_enemies_chicken/chicken_normal/2_dead/dead.png',
+        '../El_Pollo_Loco/img_pollo_locco/img/3_enemies_chicken/chicken_normal/2_dead/dead.png',
+        '../El_Pollo_Loco/img_pollo_locco/img/3_enemies_chicken/chicken_normal/2_dead/dead.png',
+        '../El_Pollo_Loco/img_pollo_locco/img/3_enemies_chicken/chicken_normal/2_dead/dead.png',
         '../El_Pollo_Loco/img_pollo_locco/img/3_enemies_chicken/chicken_normal/2_dead/dead.png'
     ]
 
@@ -42,13 +48,11 @@ class Chicken extends MoveableObject {
     
     removeFromMap() {
         // Führe playAnimation nach 3 Sekunden aus
-        setTimeout(() => {
             this.playAnimation(this.IMAGES_DEATH);
             
             // Führe this.x = -1000; nach weiteren 3 Sekunden aus
             setTimeout(() => {
-                this.x = -1000;
-            }, 3000); // 3000 Millisekunden (3 Sekunden) Verzögerung für this.x = -1000;
-        }, 3000); // 3000 Millisekunden (3 Sekunden) Verzögerung für this.playAnimation(this.IMAGES_DEATH);
+                this.x = -1000; // 3000 Millisekunden (3 Sekunden) Verzögerung für this.x = -1000;
+        }, 200); // 3000 Millisekunden (3 Sekunden) Verzögerung für this.playAnimation(this.IMAGES_DEATH);
     }
 }

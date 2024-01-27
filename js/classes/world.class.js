@@ -88,15 +88,14 @@ class World {
     checkCollisionsWithEnemys() {
         this.level.enemies.forEach((enemy) => {
             if (this.character.isColliding(enemy)) {
-                if (this.character.isOverlappingFromTop(enemy)) {
                     this.character.hit();
                     this.statusBar.setPercentage(this.character.energy);
-                } else {
+                } else if(this.character.isOverlappingFromTop(enemy)) {
                     enemy.removeFromMap();
                     
                 }
             }
-        });
+        );
     }
     
     checkCollectItems() {

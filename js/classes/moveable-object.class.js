@@ -80,9 +80,9 @@ class MoveableObject extends DrawableObject {
         isOverlappingFromTop(obj) {
 
             return (
-                this.y + this.height > obj.y // untere Seite des Charakters in der Breite mit oberer Seite des Objekts
+                this.y + this.height > obj.y + obj.height // untere Seite des Charakters in der Breite mit oberer Seite des Objekts
                 // obere Seite des Charakters in der Breite mit unterer Seite des Objekts
-            );
+            );    
     }
 
 

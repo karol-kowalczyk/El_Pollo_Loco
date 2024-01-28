@@ -16,7 +16,7 @@ class DrawableObject {
     }
 
     drawFrame(ctx) {
-        if (this instanceof Chicken|| this instanceof BabyChicken || this instanceof BabyChickenJumping) {
+        if (this instanceof Chicken|| this instanceof BabyChicken) {
             ctx.beginPath();
             ctx.lineWidth = '5';
             ctx.strokeStyle = 'blue';

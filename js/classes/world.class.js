@@ -93,7 +93,7 @@ class World {
     
         this.level.enemies.forEach((enemy) => {
             if (bottle.isCollidingThrownItems(enemy)) {
-                enemy.isAnimating = false;
+
                 enemy.removeFromMap();
                 bottle.splashedBottle();
             }
@@ -181,7 +181,7 @@ class World {
         this.addToMap(this.statusBar);
         if (this.endbossBar.isVisible == true) {
             this.addToMap(this.endbossBar);
-           
+            this.bigEndBoss.isEndbossWalking = true;
         }
         this.addToMap(this.coinBar);
         this.addToMap(this.bottleBar);

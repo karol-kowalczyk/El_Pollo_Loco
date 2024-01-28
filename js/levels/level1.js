@@ -19,18 +19,6 @@ function initLevel() { level1 = new Level(
     new BabyChicken(),
     new BabyChicken(),
     new BabyChicken(),
-    new BabyChickenJumping(),
-    new BabyChickenJumping(),
-    new BabyChickenJumping(),
-    new BabyChickenJumping(),
-    new BabyChickenJumping(),
-    new BabyChickenJumping(),
-    new BabyChickenJumping(),
-    new BabyChickenJumping(),
-    new BabyChickenJumping(),
-    new BabyChickenJumping(),
-    new BabyChickenJumping(),
-
 ],
 [
     new Endboss()

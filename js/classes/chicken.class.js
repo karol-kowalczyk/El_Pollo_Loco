@@ -55,7 +55,7 @@ class Chicken extends MoveableObject {
         // `this.x` nach 3 Sekunden setzen
         setTimeout(() => {
             this.x = -1000;
-        }, 900);
+        }, 800);
 
         // `this.playAnimation(this.IMAGES_DEATH)` nach weiteren 3 Sekunden ausführen
         setTimeout(() => {

@@ -28,7 +28,14 @@ class Character extends MoveableObject { // classe Character erbt Eigenschaften 
     ];
 
     IMAGE_STANDING = ['../El_Pollo_Loco/img_pollo_locco/img/2_character_pepe/3_jump/J-31.png',
-        '../El_Pollo_Loco/img_pollo_locco/img/2_character_pepe/3_jump/J-31.png'];
+        '../El_Pollo_Loco/img_pollo_locco/img/2_character_pepe/3_jump/J-31.png',
+        '../El_Pollo_Loco/img_pollo_locco/img/2_character_pepe/3_jump/J-31.png',
+        '../El_Pollo_Loco/img_pollo_locco/img/2_character_pepe/3_jump/J-31.png',
+        '../El_Pollo_Loco/img_pollo_locco/img/2_character_pepe/3_jump/J-31.png',
+        '../El_Pollo_Loco/img_pollo_locco/img/2_character_pepe/3_jump/J-31.png',
+        '../El_Pollo_Loco/img_pollo_locco/img/2_character_pepe/3_jump/J-31.png',
+        '../El_Pollo_Loco/img_pollo_locco/img/2_character_pepe/3_jump/J-31.png'
+    ];
 
     IMAGES_DEAD = [
         '../El_Pollo_Loco/img_pollo_locco/img/2_character_pepe/5_dead/D-51.png',
@@ -57,7 +64,8 @@ class Character extends MoveableObject { // classe Character erbt Eigenschaften 
         '../El_Pollo_Loco/img_pollo_locco/img/2_character_pepe/1_idle/long_idle/I-17.png',
         '../El_Pollo_Loco/img_pollo_locco/img/2_character_pepe/1_idle/long_idle/I-18.png',
         '../El_Pollo_Loco/img_pollo_locco/img/2_character_pepe/1_idle/long_idle/I-19.png',
-        '../El_Pollo_Loco/img_pollo_locco/img/2_character_pepe/1_idle/long_idle/I-20.png'
+        '../El_Pollo_Loco/img_pollo_locco/img/2_character_pepe/1_idle/long_idle/I-20.png',
+
     ]
 
     world;
@@ -123,6 +131,7 @@ class Character extends MoveableObject { // classe Character erbt Eigenschaften 
                 this.world.endbossBar.isVisible = true;
             }
 
+
             this.world.camera_x = - this.x + 100;
 
         }, 1000 / 60);
@@ -147,32 +156,31 @@ class Character extends MoveableObject { // classe Character erbt Eigenschaften 
                     this.playAnimation(this.IMAGES_WALKING);
 
                 }
-            }
-            else if (this.isAboveGround()) {
-                this.playAnimation(this.IMAGES_JUMPING);
-            } else if (!this.isAboveGround()) {
-                this.playAnimation(this.IMAGE_STANDING);
+
             }
 
-        }, 50);
+            else if (this.isAboveGround()) {
+                this.playAnimation(this.IMAGES_JUMPING);
+            } else if (!this.isAboveGround() && !this.world.keyboard.RIGHT && !this.world.keyboard.LEFT) {
+                this.playAnimation(this.IMAGE_STANDING)
+                this.checkCharacterIdle();
+                 
+
+
+            }
+
+
+        }, 100);
     }
 
     checkCharacterIdle() {
         const currentTime = Date.now();
 
         // Überprüfe, ob der Charakter stillsteht oder verletzt/verstorben ist
-        if (!this.isHurt() && !this.isDead() && currentTime - this.lastKeyPressTime >= 3000) {
+        if (!this.isHurt() && !this.isDead() && currentTime - this.lastKeyPressTime >= 2500) {
             // Führe die Snoring-Funktion aus, wenn der Charakter stillsteht
-            this.snoring();
-        }
-    }
-
-    snoring() {
-        if (!this.isHurt() && !this.isDead()) {
-            super.isHurt();
-            super.isDead();
             this.playAnimation(this.IMAGES_SNORING);
-            // this.snoring_sound.play();
+            this.snoring_sound.play();
         }
     }
 

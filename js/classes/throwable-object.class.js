@@ -15,11 +15,13 @@ class ThrowableObject extends MoveableObject {
         '../El_Pollo_Loco/img_pollo_locco/img/6_salsa_bottle/bottle_rotation/3_bottle_rotation.png',
         '../El_Pollo_Loco/img_pollo_locco/img/6_salsa_bottle/bottle_rotation/4_bottle_rotation.png',
     ];
+
     splashedBottleSound = new Audio('../El_Pollo_Loco/img_pollo_locco/img/audio/splashed_bottle.mp3');
 
     constructor(x, y) {
         super().loadImage(this.IMAGES_ROTATE[1]);
         this.loadImages(this.IMAGES_ROTATE);
+        this.loadImages(this.IMAGES_SPLASH);
         this.x = x;
         this.y = y;
         this.height = 100;
@@ -49,9 +51,11 @@ class ThrowableObject extends MoveableObject {
 
     splashedBottle() {
         clearInterval(this.intervalId);
-        this.loadImage(this.IMAGES_SPLASH[2]);
+        
         let iconFileName = this.extractFileNameFromPath(document.getElementById('sound-icon').src);
-
+        
+        this.playAnimation(this.IMAGES_SPLASH);
+       
         // Vergleiche den Dateinamen
         if (iconFileName === 'speaker-mute.png') {
 

@@ -18,6 +18,7 @@ class World {
     endbossBar = new EndbossStatusBar();
     throwableObjects = [];
     bigEndBoss = new Endboss();
+    chicken = new Chicken();
 
 
     // startw.src = '../El_Pollo_Loco/img_pollo_locco/img/9_intro_outro_screens/start/startscreen_2.png';
@@ -61,18 +62,27 @@ class World {
 
                 this.checkThrownObjectCollision(bottle);
 
-            }, 600);
+            }, 150);
         }
 
     }
 
+    canExecute = true;
+
     checkThrownObjectCollision(bottle) {
-        this.level.endboss.forEach((boss) => {
-            if (bottle.isCollidingThrownItems(boss)) {
-                this.bigEndBoss.bossHit();
-                this.endbossBar.setPercentage(this.bigEndBoss.bossEnergy);
-            }
-        });
+        if (this.canExecute) {
+            this.level.endboss.forEach((boss) => {
+                if (bottle.isCollidingThrownItems(boss)) {
+                    this.bigEndBoss.bossHit();
+                    this.endbossBar.setPercentage(this.bigEndBoss.bossEnergy);
+                    bottle.splashedBottle();
+                    this.canExecute = false;
+                    setTimeout(() => {
+                        this.canExecute = true;
+                    }, 1000); // 1000 Millisekunden entsprechen 1 Sekunde
+                }
+            });
+        }
     }
 
 
@@ -87,17 +97,17 @@ class World {
 
     checkCollisionsWithEnemys() {
         this.level.enemies.forEach((enemy) => {
-            if (this.character.isColliding(enemy)) {
-                if (this.character.isOverlappingFromTop(enemy)) {
-                    this.character.hit();
-                    this.statusBar.setPercentage(this.character.energy);
-                }
-                 else {
-                    enemy.removeFromMap();
-
-                }
+            if (this.character.isColliding(enemy) && this.character.y >= 120) {
+                
+                this.character.hit();
+                this.statusBar.setPercentage(this.character.energy);
             }
-    });
+            else if (this.character.isColliding(enemy)) {
+                enemy.removeFromMap();
+              
+                // Greifen Sie auf die Variable chickenEnergy über die Instanz zu
+            }
+        });
     }
 
     checkCollectItems() {

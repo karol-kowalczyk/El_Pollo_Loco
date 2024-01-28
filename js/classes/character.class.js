@@ -62,11 +62,11 @@ class Character extends MoveableObject { // classe Character erbt Eigenschaften 
 
     world;
 
-    // walking_sound = new Audio('../El_Pollo_Loco/img_pollo_locco/img/audio/walking.mp3');
-    // snoring_sound = new Audio('../El_Pollo_Loco/img_pollo_locco/img/audio/Cartoon_Snoring_SOUND_EFFECT.mp3');
-    // endgame_sound = new Audio('../El_Pollo_Loco/img_pollo_locco/img/audio/End_Boss_Music.mp3');
-    // lost_sound = new Audio('../El_Pollo_Loco/img_pollo_locco/img/audio/lost_game.mp3');
-    // background_music = new Audio('../El_Pollo_Loco/img_pollo_locco/img/audio/background.mp3');
+    walking_sound = new Audio('../El_Pollo_Loco/img_pollo_locco/img/audio/walking.mp3');
+    snoring_sound = new Audio('../El_Pollo_Loco/img_pollo_locco/img/audio/Cartoon_Snoring_SOUND_EFFECT.mp3');
+    endgame_sound = new Audio('../El_Pollo_Loco/img_pollo_locco/img/audio/End_Boss_Music.mp3');
+    lost_sound = new Audio('../El_Pollo_Loco/img_pollo_locco/img/audio/lost_game.mp3');
+    background_music = new Audio('../El_Pollo_Loco/img_pollo_locco/img/audio/background.mp3');
     
 
     constructor() { // initialisiert wird automatisch aufgerufen, deswegen konstructor, und dieser legt fest, wie die Klasse aussehen und funktionieren soll
@@ -85,7 +85,7 @@ class Character extends MoveableObject { // classe Character erbt Eigenschaften 
         this.loadImages(this.IMAGES_DEAD);
         this.loadImages(this.IMAGES_HURT);
         this.loadImages(this.IMAGES_SNORING);
-        // this.playBackgroundMusic();
+        this.playBackgroundMusic();
         this.applyGravity();
 
 
@@ -96,21 +96,21 @@ class Character extends MoveableObject { // classe Character erbt Eigenschaften 
     animate() {
         let walkingInterval;
         let animationInterval;
-        // this.playBackgroundMusic();
+        this.playBackgroundMusic();
 
         walkingInterval = setInterval(() => {
-            // this.walking_sound.pause();
+            this.walking_sound.pause();
             if (this.world.keyboard.RIGHT && this.x < this.world.level.level_end_x) {
                 this.otherDirection = false;
                 this.moveRight();
-                // this.walking_sound.play();
-                // this.snoring_sound.pause();
+                this.walking_sound.play();
+                this.snoring_sound.pause();
             }
 
             if (this.world.keyboard.LEFT && this.x > 0) {
                 this.otherDirection = true;
                 this.moveLeft();
-                // this.walking_sound.play();
+                this.walking_sound.play();
             }
 
             if (this.world.keyboard.SPACE && !this.isAboveGround()) {
@@ -195,23 +195,23 @@ class Character extends MoveableObject { // classe Character erbt Eigenschaften 
     }
 
     endgame() {
-        // this.endgame_sound.play();
-        // this.background_music.pause();
+        this.endgame_sound.play();
+        this.background_music.pause();
     }
 
     muteEndgame() {
-        // this.background_music.pause();
+        this.background_music.pause();
     }
 
     endscreen() {
         let img = document.getElementById('start-screen-img');
         img.src = '../El_Pollo_Loco/img_pollo_locco/img/9_intro_outro_screens/game_over/game over.png';
         img.classList.remove('d-none');
-        // this.lost_sound.play();
+        this.lost_sound.play();
         let restartBtn = document.getElementById('restart-button');
         restartBtn.classList.remove('d-none');
-        // this.muteEndgame();
-        // this.background_music.pause();
+        this.muteEndgame();
+        this.background_music.pause();
     }
 
     soundIcon = document.getElementById('sound-icon');
@@ -221,13 +221,13 @@ class Character extends MoveableObject { // classe Character erbt Eigenschaften 
         let iconFileName = this.extractFileNameFromPath(document.getElementById('sound-icon').src);
 
         // Vergleiche den Dateinamen
-        // if (iconFileName === 'speaker-mute.png') {
-        //     this.snoring_sound.pause();
-        //     this.walking_sound.pause();
-        //     this.endgame_sound.pause();
-        //     this.lost_sound.pause()
-        //     this.muteEverySound();
-        // }
+        if (iconFileName === 'speaker-mute.png') {
+            this.snoring_sound.pause();
+            this.walking_sound.pause();
+            this.endgame_sound.pause();
+            this.lost_sound.pause()
+            this.muteEverySound();
+        }
     }
 
     extractFileNameFromPath(path) {
@@ -236,10 +236,10 @@ class Character extends MoveableObject { // classe Character erbt Eigenschaften 
         return pathParts[pathParts.length - 1];
     }
 
-    // playBackgroundMusic() {
+    playBackgroundMusic() {
 
-    //     this.background_music.play();
-    // }
+        this.background_music.play();
+    }
 
 
 } 

@@ -2,6 +2,8 @@ class Chicken extends MoveableObject {
 
     height = 100;
     y = 320;
+    isAnimating = true;
+
     IMAGES_WALKING = [
         '../El_Pollo_Loco/img_pollo_locco/img/3_enemies_chicken/chicken_normal/1_walk/1_w.png',
         '../El_Pollo_Loco/img_pollo_locco/img/3_enemies_chicken/chicken_normal/1_walk/2_w.png',
@@ -10,15 +12,6 @@ class Chicken extends MoveableObject {
 
     IMAGES_DEATH = [
         '../El_Pollo_Loco/img_pollo_locco/img/3_enemies_chicken/chicken_normal/2_dead/dead.png',
-        '../El_Pollo_Loco/img_pollo_locco/img/3_enemies_chicken/chicken_normal/2_dead/dead.png',
-        '../El_Pollo_Loco/img_pollo_locco/img/3_enemies_chicken/chicken_normal/2_dead/dead.png',
-        '../El_Pollo_Loco/img_pollo_locco/img/3_enemies_chicken/chicken_normal/2_dead/dead.png',
-        '../El_Pollo_Loco/img_pollo_locco/img/3_enemies_chicken/chicken_normal/2_dead/dead.png',
-        '../El_Pollo_Loco/img_pollo_locco/img/3_enemies_chicken/chicken_normal/2_dead/dead.png',
-        '../El_Pollo_Loco/img_pollo_locco/img/3_enemies_chicken/chicken_normal/2_dead/dead.png',
-        '../El_Pollo_Loco/img_pollo_locco/img/3_enemies_chicken/chicken_normal/2_dead/dead.png',
-        '../El_Pollo_Loco/img_pollo_locco/img/3_enemies_chicken/chicken_normal/2_dead/dead.png',
-        '../El_Pollo_Loco/img_pollo_locco/img/3_enemies_chicken/chicken_normal/2_dead/dead.png'
     ]
 
     constructor() {
@@ -33,26 +26,28 @@ class Chicken extends MoveableObject {
         this.animate();
     }
 
-
     animate() {
+        if (!this.isAnimating) return; // Wenn die Animation gestoppt ist, brechen Sie ab
+        
+        this.playAnimation(this.IMAGES_WALKING);
         this.moveLeft();
-        setInterval(() => {
-            this.playAnimation(this.IMAGES_WALKING);
 
-        }, 300);
-
-        setInterval(() => {
-            this.moveLeft();
-        }, 1000 / 60);
+        // Animationsrahmen wiederholen
+        requestAnimationFrame(() => this.animate());
     }
-    
+
     removeFromMap() {
-        // Führe playAnimation nach 3 Sekunden aus
+        // Animation stoppen
+        this.isAnimating = false;
+
+        // `this.x` nach 3 Sekunden setzen
+        setTimeout(() => {
+            this.x = -1000;
+        }, 1000);
+
+        // `this.playAnimation(this.IMAGES_DEATH)` nach weiteren 3 Sekunden ausführen
+        setTimeout(() => {
             this.playAnimation(this.IMAGES_DEATH);
-            
-            // Führe this.x = -1000; nach weiteren 3 Sekunden aus
-            setTimeout(() => {
-                this.x = -1000; // 3000 Millisekunden (3 Sekunden) Verzögerung für this.x = -1000;
-        }, 200); // 3000 Millisekunden (3 Sekunden) Verzögerung für this.playAnimation(this.IMAGES_DEATH);
+        }, 500); // 3000 Millisekunden Verzögerung für this.playAnimation(this.IMAGES_DEATH)
     }
 }

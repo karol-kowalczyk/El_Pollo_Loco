@@ -13,22 +13,29 @@ class MoveableObject extends DrawableObject {
     iconClicked = 0;
     bottle = 0;
 
-    // collectHeartSound = new Audio('../El_Pollo_Loco/img_pollo_locco/img/audio/pick_heart.mp3');
-    // collectCoinSound = new Audio('../El_Pollo_Loco/img_pollo_locco/img/audio/super-mario-coin-sound.mp3');
-    // collectBottleSound = new Audio('../El_Pollo_Loco/img_pollo_locco/img/audio/pick_bottle.mp3');
+    offset = {
+        top: 0,
+        left: 0,
+        right: 0,
+        bottom: -100
+    };
+
+    collectHeartSound = new Audio('../El_Pollo_Loco/img_pollo_locco/img/audio/pick_heart.mp3');
+    collectCoinSound = new Audio('../El_Pollo_Loco/img_pollo_locco/img/audio/super-mario-coin-sound.mp3');
+    collectBottleSound = new Audio('../El_Pollo_Loco/img_pollo_locco/img/audio/pick_bottle.mp3');
 
 
-    // playCollectCoinSound() {
-    //     this.collectCoinSound.play();
-    // }
+    playCollectCoinSound() {
+        this.collectCoinSound.play();
+    }
 
-    // playCollectBottleSound() {
-    //     this.collectBottleSound.play();
-    // }
+    playCollectBottleSound() {
+        this.collectBottleSound.play();
+    }
 
-    // playCollectHeartSound() {
-    //     this.collectHeartSound.play();
-    // }
+    playCollectHeartSound() {
+        this.collectHeartSound.play();
+    }
 
     applyGravity() {
         setInterval(() => {
@@ -47,29 +54,26 @@ class MoveableObject extends DrawableObject {
         }
     }
 
-    //character.isCollidin(chicken);
-    // isColliding(mo) {
-    //     return this.x + this.width > mo.x &&
-    //         this.y + this.height > mo.y &&
-    //         this.x < mo.x &&
-    //         this.y < mo.y + mo.height;
+
+    isColliding(mo) {
+        return this.x + this.width - this.offset.right > mo.x + mo.offset.left &&
+            this.y + this.height - this.offset.bottom > mo.y + mo.offset.top &&
+            this.x + this.offset.left < mo.x + mo.width - mo.offset.right &&
+            this.y + this.offset.top < mo.y + mo.height - mo.offset.bottom;
+    }
+
+    // isColliding(obj) {
+    //     return (
+    //         this.x + this.width - this.offset.right > obj.x + obj.offset.left && 
+    //         this.x < obj.x + obj.width - obj.offset.right
+    //     );
     // }
 
-    isColliding(obj) {
-        return (
-            this.x + this.width > obj.x &&
-            this.x < obj.x + obj.width 
-        );
-    }
-
-        isOverlappingFromTop(obj) {
-
-            return (
-                this.y + this.height > obj.y + obj.height 
-            );    
-    }
-
-
+    //     isOverlappingFromTop(obj) {
+    //         return (
+    //             this.y + this.height - this.offset.bottom > obj.y + obj.offset.top
+    //         );    
+    // }
 
     isCollidingItems(item) {
         return this.x + this.width - 90 > item.x &&
@@ -95,7 +99,6 @@ class MoveableObject extends DrawableObject {
             this.playCollectCoinSound();
         }
     }
-
 
     collectBottle() {
         this.bottle += 20;

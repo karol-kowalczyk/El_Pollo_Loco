@@ -4,6 +4,7 @@ class Chicken extends MoveableObject {
     y = 320;
     isAnimating = true;
 
+
     IMAGES_WALKING = [
         '../El_Pollo_Loco/img_pollo_locco/img/3_enemies_chicken/chicken_normal/1_walk/1_w.png',
         '../El_Pollo_Loco/img_pollo_locco/img/3_enemies_chicken/chicken_normal/1_walk/2_w.png',

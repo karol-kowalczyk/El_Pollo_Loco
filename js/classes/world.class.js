@@ -79,6 +79,7 @@ class World {
     checkThrownObjectCollision(bottle) {
         this.level.endboss.forEach((boss) => {
             if (bottle.isCollidingThrownItems(boss)) {
+                this.bigEndBoss.isEndbossHurt = true;
                 if (!this.bigEndBoss.hitTimeout) {
                     bottle.splashedBottle();
                     this.bigEndBoss.bossHit();
@@ -179,8 +180,7 @@ class World {
         this.addToMap(this.statusBar);
         if (this.endbossBar.isVisible == true) {
             this.addToMap(this.endbossBar);
-            this.endboss.isEndbossWalking = true;
-
+           
         }
         this.addToMap(this.coinBar);
         this.addToMap(this.bottleBar);

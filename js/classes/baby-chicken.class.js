@@ -4,7 +4,7 @@ class BabyChicken extends MoveableObject {
     height = 50;
     y = 360;
     isAnimating = true;
-
+    
     IMAGES_WALKING = [
         '../El_Pollo_Loco/img_pollo_locco/img/3_enemies_chicken/chicken_small/1_walk/1_w.png',
         '../El_Pollo_Loco/img_pollo_locco/img/3_enemies_chicken/chicken_small/1_walk/2_w.png',
@@ -26,6 +26,7 @@ class BabyChicken extends MoveableObject {
         this.loadImages(this.IMAGES_WALKING);
         this.loadImages(this.IMAGES_JUMPING);
         this.loadImages(this.IMAGES_DEATH);
+
 
         this.x = 3000 + Math.random() * 6000; // hier wird die variable x, also die Position im Graphen auf der x-achse neu zugeteilt, und mit einem random wert erstellt
         // damit jedes Huhn, von den dreien die generiert werden, anders positioniert werden.

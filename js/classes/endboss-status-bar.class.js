@@ -1,5 +1,7 @@
 class EndbossStatusBar extends DrawableObject {
 
+    endboss = new Endboss();
+
     IMAGES = [
         '../El_Pollo_Loco/img_pollo_locco/img/7_statusbars/2_statusbar_endboss/blue/blue0.png',
         '../El_Pollo_Loco/img_pollo_locco/img/7_statusbars/2_statusbar_endboss/blue/blue20.png',
@@ -41,11 +43,9 @@ class EndbossStatusBar extends DrawableObject {
         } else if (this.percentage >= 20) {
             return 1;
         } else {
+            this.endboss.endscreenWin();
             return 0;
 
         }
     }
-
-
-
 }

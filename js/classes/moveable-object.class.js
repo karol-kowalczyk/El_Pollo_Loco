@@ -12,6 +12,8 @@ class MoveableObject extends DrawableObject {
     mute = true;
     iconClicked = 0;
     bottle = 0;
+    
+
 
     offset = {
         top: 0,
@@ -139,6 +141,7 @@ class MoveableObject extends DrawableObject {
 
     hit() {
         this.energy -= 10;
+
         if (this.energy <= 0) {
             this.energy = 0;
         } else {
@@ -208,11 +211,6 @@ class MoveableObject extends DrawableObject {
     }
 
     jump() {
-        this.speedY = 40;
-        this.y = 120;
-    }
-
-    jumpOnEnemy() {
         if (!this.enemyJumped) { // Überprüfen, ob die Methode bereits aufgerufen wurde
             this.speedY = 40;
             this.y = 120;
@@ -222,7 +220,7 @@ class MoveableObject extends DrawableObject {
             // Starten des Timers für die erneute Ausführung der Methode nach 1 Sekunde
             this.jumpTimeout = setTimeout(() => {
                 this.enemyJumped = false; // Zurücksetzen der Flagge nach Ablauf der Zeit
-            }, 1000);
+            }, 800);
         }
     }
 

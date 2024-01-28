@@ -35,14 +35,21 @@ class World {
 
     run() {
         setInterval(() => {
-            this.checkCollisionsWithEndboss();
-            this.checkCollectItems();
-        }, 20);
-
-        setInterval(() => {
+            
             this.checkCollisionsWithEnemys();
             this.checkThrowObjects();
-        }, 100)
+        }, 300);
+
+
+        setInterval(() => {
+
+            this.checkCollectItems();
+        }, 10);
+
+        setInterval(() => {
+            this.checkCollisionsWithEndboss();
+            
+        }, 500);
     }
 
     checkThrowObjects() {
@@ -69,33 +76,27 @@ class World {
 
     }
 
-    canExecute = true;
-
     checkThrownObjectCollision(bottle) {
-        if (this.canExecute) {
-            this.level.endboss.forEach((boss) => {
-                if (bottle.isCollidingThrownItems(boss)) {
+        this.level.endboss.forEach((boss) => {
+            if (bottle.isCollidingThrownItems(boss)) {
+                if (!this.bigEndBoss.hitTimeout) {
+                    bottle.splashedBottle();
                     this.bigEndBoss.bossHit();
                     this.endbossBar.setPercentage(this.bigEndBoss.bossEnergy);
-                    bottle.splashedBottle();
-                    this.canExecute = false;
-                    setTimeout(() => {
-                        this.canExecute = true;
-                    }, 1000); // 1000 Millisekunden entsprechen 1 Sekunde
+                    this.bigEndBoss.hitTimeout = setTimeout(() => {
+                        this.bigEndBoss.hitTimeout = null;
+                    }, 1500);
                 }
-            });
-        }
+            }
+        });
+    
+        this.level.enemies.forEach((enemy) => {
+            if (bottle.isCollidingThrownItems(enemy)) {
+                enemy.removeFromMap();
+                bottle.splashedBottle();
+            }
+        });
     }
-
-    checkThrownObjectCollision(bottle) {
-            this.level.enemies.forEach((enemie) => {
-                if (bottle.isCollidingThrownItems(enemie)) {
-                    enemie.removeFromMap();
-                    bottle.splashedBottle();
-                }
-            });
-    }
-
 
     checkCollisionsWithEndboss() {
         this.level.endboss.forEach((boss) => {
@@ -106,20 +107,19 @@ class World {
         });
     }
 
+    
+
     checkCollisionsWithEnemys() {
         this.level.enemies.forEach((enemy) => {
             if (this.character.isColliding(enemy) && this.character.y >= 120) {
-                
+
                 this.character.hit();
                 this.statusBar.setPercentage(this.character.energy);
+                
             }
             else if (this.character.isColliding(enemy)) {
                 enemy.removeFromMap();
-                this.character.jumpOnEnemy();
-                
-               
-              
-                // Greifen Sie auf die Variable chickenEnergy über die Instanz zu
+                this.character.jump();
             }
         });
     }

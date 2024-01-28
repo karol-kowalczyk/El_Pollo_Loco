@@ -55,33 +55,17 @@ class MoveableObject extends DrawableObject {
     //         this.y < mo.y + mo.height;
     // }
 
-    //  character gets hit
-    // isColliding(obj) {
-    //     return this.x + this.width > obj.x && 
-    //     this.x < obj.x + obj.width &&
-    //     this.y + this.height > obj.y;
-    // }
-
-    // // jebac niemcow
-    // isOverlappingFromTop(obj) {
-    //     return this.x + this.width < obj.x + obj.width &&
-            
-    //         this.y < obj.y + obj.height;
-    // }
-
     isColliding(obj) {
         return (
-            this.x + this.width > obj.x && // rechte Seite des Charakters in der Höhe mit linker Seite des Objekts
-            this.x < obj.x + obj.width  // linke Seite des Charakters in der Höhe mit rechter Seite des Objekts
-
+            this.x + this.width > obj.x &&
+            this.x < obj.x + obj.width 
         );
     }
 
         isOverlappingFromTop(obj) {
 
             return (
-                this.y + this.height > obj.y + obj.height // untere Seite des Charakters in der Breite mit oberer Seite des Objekts
-                // obere Seite des Charakters in der Breite mit unterer Seite des Objekts
+                this.y + this.height > obj.y + obj.height 
             );    
     }
 

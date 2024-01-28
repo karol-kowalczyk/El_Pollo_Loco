@@ -49,16 +49,16 @@ class World {
             let bottle = new ThrowableObject(this.character.x + 100, this.character.y + 20);
             this.throwableObjects.push(bottle);
             this.character.throwBottles();
-            
+
             // Setze die aktualisierte Länge in der BottleBar
-            this.bottleBar.setPercentage(currentBottleLength-20);
+            this.bottleBar.setPercentage(currentBottleLength - 20);
 
             let intervalId = setInterval(() => {
                 if (bottle.y >= 280) {
                     bottle.splashedBottle();
                     clearInterval(intervalId);
                 }
-                
+
                 this.checkThrownObjectCollision(bottle);
 
             }, 600);
@@ -88,16 +88,18 @@ class World {
     checkCollisionsWithEnemys() {
         this.level.enemies.forEach((enemy) => {
             if (this.character.isColliding(enemy)) {
+                if (this.character.isOverlappingFromTop(enemy)) {
                     this.character.hit();
                     this.statusBar.setPercentage(this.character.energy);
-                } else if(this.character.isOverlappingFromTop(enemy)) {
+                }
+                 else {
                     enemy.removeFromMap();
-                    
+
                 }
             }
-        );
+    });
     }
-    
+
     checkCollectItems() {
         this.level.hearts.forEach((heart) => {
             if (this.character.isCollidingItems(heart)) {

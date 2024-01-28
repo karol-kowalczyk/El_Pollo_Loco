@@ -37,13 +37,17 @@ class BabyChicken extends MoveableObject {
     }
 
     animate() {
-        if (!this.isAnimating) return; // Wenn die Animation gestoppt ist, brechen Sie ab
         
-        this.playAnimation(this.IMAGES_WALKING);
-        this.moveLeft();
-
-        // Animationsrahmen wiederholen
-        requestAnimationFrame(() => this.animate());
+        setInterval(() => {
+            
+            if (this.isAnimating) {
+                this.playAnimation(this.IMAGES_WALKING);
+                this.moveLeft();
+                } else {
+                    this.removeFromMap();
+                }
+        
+        }, 1000);
     }
 
     removeFromMap() {

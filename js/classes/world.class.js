@@ -93,6 +93,7 @@ class World {
     
         this.level.enemies.forEach((enemy) => {
             if (bottle.isCollidingThrownItems(enemy)) {
+                enemy.isAnimating = false;
                 enemy.removeFromMap();
                 bottle.splashedBottle();
             }

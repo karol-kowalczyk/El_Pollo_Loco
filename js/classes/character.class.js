@@ -28,7 +28,7 @@ class Character extends MoveableObject { // classe Character erbt Eigenschaften 
     ];
 
     IMAGE_STANDING = ['../El_Pollo_Loco/img_pollo_locco/img/2_character_pepe/3_jump/J-31.png',
-    '../El_Pollo_Loco/img_pollo_locco/img/2_character_pepe/3_jump/J-31.png'];
+        '../El_Pollo_Loco/img_pollo_locco/img/2_character_pepe/3_jump/J-31.png'];
 
     IMAGES_DEAD = [
         '../El_Pollo_Loco/img_pollo_locco/img/2_character_pepe/5_dead/D-51.png',
@@ -67,7 +67,7 @@ class Character extends MoveableObject { // classe Character erbt Eigenschaften 
     endgame_sound = new Audio('../El_Pollo_Loco/img_pollo_locco/img/audio/End_Boss_Music.mp3');
     lost_sound = new Audio('../El_Pollo_Loco/img_pollo_locco/img/audio/lost_game.mp3');
     background_music = new Audio('../El_Pollo_Loco/img_pollo_locco/img/audio/background.mp3');
-    
+
 
     constructor() { // initialisiert wird automatisch aufgerufen, deswegen konstructor, und dieser legt fest, wie die Klasse aussehen und funktionieren soll
         super().loadImage('../El_Pollo_Loco/img_pollo_locco/img/2_character_pepe/2_walk/W-21.png'); // mit super() wird von der UeberClasse geerbt und so
@@ -90,7 +90,7 @@ class Character extends MoveableObject { // classe Character erbt Eigenschaften 
 
 
         this.animate();
-        
+
     }
 
     animate() {
@@ -130,7 +130,7 @@ class Character extends MoveableObject { // classe Character erbt Eigenschaften 
         animationInterval = setInterval(() => {
 
 
-           if (this.isDead()) {
+            if (this.isDead()) {
                 this.playAnimation(this.IMAGES_DEAD);
                 // Setzen Sie das Timeout nur dann, wenn die Bedingung isDead erfüllt ist
                 setTimeout(() => {
@@ -140,13 +140,13 @@ class Character extends MoveableObject { // classe Character erbt Eigenschaften 
                 }, 500);
             } else if (this.isHurt()) {
                 this.playAnimation(this.IMAGES_HURT);
-            }              else if (this.world.keyboard.RIGHT || this.world.keyboard.LEFT) {
+            } else if (this.world.keyboard.RIGHT || this.world.keyboard.LEFT) {
                 {
-                  this.isWalking = true;
-                  // walk animation
-                  this.playAnimation(this.IMAGES_WALKING);
-                  
-              } 
+                    this.isWalking = true;
+                    // walk animation
+                    this.playAnimation(this.IMAGES_WALKING);
+
+                }
             }
             else if (this.isAboveGround()) {
                 this.playAnimation(this.IMAGES_JUMPING);
@@ -185,7 +185,7 @@ class Character extends MoveableObject { // classe Character erbt Eigenschaften 
         super.moveLeft();
         this.lastKeyPressTime = Date.now();
     }
-  
+
     jump() {
 
         super.jump();

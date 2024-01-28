@@ -35,12 +35,14 @@ class World {
 
     run() {
         setInterval(() => {
-            this.checkCollisionsWithEnemys();
             this.checkCollisionsWithEndboss();
-            this.checkThrowObjects();
             this.checkCollectItems();
-        }, 200);
+        }, 20);
 
+        setInterval(() => {
+            this.checkCollisionsWithEnemys();
+            this.checkThrowObjects();
+        }, 100)
     }
 
     checkThrowObjects() {
@@ -85,6 +87,15 @@ class World {
         }
     }
 
+    checkThrownObjectCollision(bottle) {
+            this.level.enemies.forEach((enemie) => {
+                if (bottle.isCollidingThrownItems(enemie)) {
+                    enemie.removeFromMap();
+                    bottle.splashedBottle();
+                }
+            });
+    }
+
 
     checkCollisionsWithEndboss() {
         this.level.endboss.forEach((boss) => {
@@ -104,6 +115,9 @@ class World {
             }
             else if (this.character.isColliding(enemy)) {
                 enemy.removeFromMap();
+                this.character.jumpOnEnemy();
+                
+               
               
                 // Greifen Sie auf die Variable chickenEnergy über die Instanz zu
             }

@@ -20,6 +20,12 @@ class MoveableObject extends DrawableObject {
         bottom: -100
     };
 
+    constructor() {
+        super();
+        this.enemyJumped = false; // Flagge, um zu überprüfen, ob die Methode jumpOnEnemy() bereits aufgerufen wurde
+        this.jumpTimeout = null;
+    }
+
     collectHeartSound = new Audio('../El_Pollo_Loco/img_pollo_locco/img/audio/pick_heart.mp3');
     collectCoinSound = new Audio('../El_Pollo_Loco/img_pollo_locco/img/audio/super-mario-coin-sound.mp3');
     collectBottleSound = new Audio('../El_Pollo_Loco/img_pollo_locco/img/audio/pick_bottle.mp3');
@@ -205,6 +211,21 @@ class MoveableObject extends DrawableObject {
         this.speedY = 40;
         this.y = 120;
     }
+
+    jumpOnEnemy() {
+        if (!this.enemyJumped) { // Überprüfen, ob die Methode bereits aufgerufen wurde
+            this.speedY = 40;
+            this.y = 120;
+            this.acceleration = 2.5;
+            this.enemyJumped = true; // Setzen der Flagge auf true, um anzuzeigen, dass die Methode ausgeführt wurde
+            
+            // Starten des Timers für die erneute Ausführung der Methode nach 1 Sekunde
+            this.jumpTimeout = setTimeout(() => {
+                this.enemyJumped = false; // Zurücksetzen der Flagge nach Ablauf der Zeit
+            }, 1000);
+        }
+    }
+
 
     muteEverySound() {
         this.collectHeartSound.pause();

@@ -49,5 +49,9 @@ class Chicken extends MoveableObject {
         setTimeout(() => {
             this.playAnimation(this.IMAGES_DEATH);
         }, 500); // 3000 Millisekunden Verzögerung für this.playAnimation(this.IMAGES_DEATH)
+
+        // Hit- und isHurt-Funktionen deaktivieren
+        // this.hit = function() { return false; }; // Leere Funktion
+        // this.isHurt = function() { return false; }; // Immer false zurückgeben
     }
 }

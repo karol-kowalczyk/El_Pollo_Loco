@@ -4,6 +4,7 @@ class Endboss extends MoveableObject {
     y = 0;
     isEndbossWalking = false;
     isEndbossHurt = false;
+    animationInterval;
 
     IMAGES_LOOKING = [
         '../El_Pollo_Loco/img_pollo_locco/img/4_enemie_boss_chicken/2_alert/G5.png',

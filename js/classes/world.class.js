@@ -45,6 +45,7 @@ class World {
             this.checkCollisionsWithEndboss();
             
         }, 500);
+
     }
 
     checkThrowObjects() {
@@ -60,22 +61,15 @@ class World {
                     clearInterval(intervalId);
                 }
                 this.checkThrownObjectCollision(bottle);
-            }, 150);
+            }, 1000);
         }
     }
 
     checkThrownObjectCollision(bottle) {
         this.level.endboss.forEach((boss) => {
             if (bottle.isCollidingThrownItems(boss)) {
-                this.bigEndBoss.isEndbossHurt = true;
-                if (!this.bigEndBoss.hitTimeout) {
-                    bottle.splashedBottle();
-                    this.bigEndBoss.bossHit();
-                    this.endbossBar.setPercentage(this.bigEndBoss.bossEnergy);
-                    this.bigEndBoss.hitTimeout = setTimeout(() => {
-                        this.bigEndBoss.hitTimeout = null;
-                    }, 1500);
-                }
+                this.bigEndBoss.bossHit();
+                this.endbossBar.setPercentage(this.bigEndBoss.bossEnergy);
             }
         });
     

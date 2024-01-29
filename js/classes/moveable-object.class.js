@@ -12,7 +12,7 @@ class MoveableObject extends DrawableObject {
     mute = true;
     iconClicked = 0;
     bottle = 0;
-    
+
     offset = {
         top: 0,
         left: 0,
@@ -129,7 +129,6 @@ class MoveableObject extends DrawableObject {
         }
     }
 
-
     bigHit() {
         this.energy -= 20;
         if (this.energy <= 0) {
@@ -147,6 +146,7 @@ class MoveableObject extends DrawableObject {
         } else {
             this.lastBossHit = new Date().getTime();
         }
+
     }
 
     contactWithLifeItem() {
@@ -192,7 +192,7 @@ class MoveableObject extends DrawableObject {
             this.speedY = 40;
             this.y = 120;
             this.acceleration = 2.5;
-            this.enemyJumped = true; 
+            this.enemyJumped = true;
             this.jumpTimeout = setTimeout(() => {
                 this.enemyJumped = false;
             }, 800);

@@ -4,7 +4,9 @@ class Endboss extends MoveableObject {
     y = 0;
    
     isEndbossHurt = false;
-    animateInterval;
+
+    hitCount = -1;
+    intervalRef;
 
     IMAGES_LOOKING = [
         '../El_Pollo_Loco/img_pollo_locco/img/4_enemie_boss_chicken/2_alert/G5.png',
@@ -50,29 +52,45 @@ class Endboss extends MoveableObject {
         this.x = 7100;
         this.speed = 1.5;
       this.animate();
+      
     }
 
     animate() {
-        this.animateInterval = setInterval(() => {
+        this.intervalRef = setInterval(() => {
             if (this.isEndbossWalking == true) {
                 this.moveLeft();
                 if (this.isEndbossHurt == true) {
                     this.playAnimation(this.IMAGES_BOSS_HURT);
+                    this.hitCount++;
                     this.speed += 1;
                     setTimeout(() => {
                         this.isEndbossHurt = false;
-                    }, 1000);
+                        // Bei einer false-Einstellung den Zähler erhöhen
+                       
+                        // Überprüfen, ob der Zähler vier ist
+                        if (this.hitCount >= 20) {
+                            // Intervall löschen
+                            clearInterval(this.intervalRef);
+                            // Funktion aufrufen, um den Endboss zu animieren
+                            this.animateDeadBossChicken();
+                        }
+                    }, 800);
+                } else if (this.isEndbossWalking == false) {
+                    this.playAnimation(this.IMAGES_DEAD);
                 } else {
                     this.playAnimation(this.IMAGES_WALKING);
-                }   
+                }
             }
         }, 125)
     }
 
+    animateDeadBossChicken() {
+       this.playAnimation(this.IMAGES_DEAD);
+       this.speed = 0;
+    }
+
     endscreenWin() {
-        clearInterval(this.animateInterval); // Hier wird das Intervall gelöscht
-        this.playAnimation(this.IMAGES_DEAD);
-        this.speed = 0;
+        setTimeout(() => {
         let img = document.getElementById('start-screen-img');
         img.src = '../El_Pollo_Loco/img_pollo_locco/img/9_intro_outro_screens/game_over/you_won.png';
         img.classList.remove('d-none');
@@ -80,5 +98,13 @@ class Endboss extends MoveableObject {
         this.win_sound.play();
         let restartBtn = document.getElementById('restart-button');
         restartBtn.classList.remove('d-none');
+        this.toStartScreen();
+        }, 1000);
+    }
+
+    toStartScreen() {
+        setTimeout(() => {
+            location.reload();
+    }, 5000)
     }
 }  

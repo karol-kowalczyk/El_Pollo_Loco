@@ -20,6 +20,7 @@ class World {
     throwableObjects = [];
     bigEndBoss = new Endboss();
     chicken = new Chicken();
+    
 
     constructor(canvas, keyboard) {
         this.ctx = canvas.getContext('2d');

@@ -118,7 +118,6 @@ class Character extends MoveableObject {
 
             if (this.world.keyboard.SPACE && !this.isAboveGround()) {
                 this.jump();
-                console.log(this.y);
             }
 
             if (this.x >= 6400) {

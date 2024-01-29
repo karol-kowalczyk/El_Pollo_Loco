@@ -141,7 +141,7 @@ class MoveableObject extends DrawableObject {
 
     bossHit() {
         this.bossEnergy -= 25;
-        if (this.bossEnergy <= 0) {
+        if (this.bossEnergy <= 0) { 
             this.bossEnergy = 0;
         } else {
             this.lastBossHit = new Date().getTime();

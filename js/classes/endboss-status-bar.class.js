@@ -42,7 +42,12 @@ class EndbossStatusBar extends DrawableObject {
         } else if (this.percentage >= 20) {
             return 1;
         } else {
+
+
+
             this.endboss.endscreenWin();
+
+
             return 0;
         }
     }

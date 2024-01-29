@@ -69,6 +69,7 @@ class World {
         this.level.endboss.forEach((boss) => {
             if (bottle.isCollidingThrownItems(boss)) {
                 this.bigEndBoss.bossHit();
+                this.endboss.isEndbossHurt = true;
                 this.endbossBar.setPercentage(this.bigEndBoss.bossEnergy);
             }
         });
@@ -155,8 +156,9 @@ class World {
         this.ctx.translate(-this.camera_x, 0);
         this.addToMap(this.statusBar);
         if (this.endbossBar.isVisible == true) {
+            this.endboss.isEndbossWalking = true;
             this.addToMap(this.endbossBar);
-            this.bigEndBoss.isEndbossWalking = true;
+            
         }
         this.addToMap(this.coinBar);
         this.addToMap(this.bottleBar);
@@ -167,7 +169,7 @@ class World {
         let self = this;
         requestAnimationFrame(function () {
             self.draw();
-        });
+        },);
     }
 
     addObjectsToMap(objects) {

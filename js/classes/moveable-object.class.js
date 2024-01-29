@@ -12,6 +12,7 @@ class MoveableObject extends DrawableObject {
     mute = true;
     iconClicked = 0;
     bottle = 0;
+    isEndbossWalking = false;
 
     offset = {
         top: 0,
@@ -138,7 +139,6 @@ class MoveableObject extends DrawableObject {
         }
     }
 
-
     bossHit() {
         this.bossEnergy -= 25;
         if (this.bossEnergy <= 0) {
@@ -146,7 +146,6 @@ class MoveableObject extends DrawableObject {
         } else {
             this.lastBossHit = new Date().getTime();
         }
-
     }
 
     contactWithLifeItem() {

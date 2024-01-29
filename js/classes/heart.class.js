@@ -12,15 +12,14 @@ class Heart extends DrawableObject {
     constructor() {
         super().loadImage(this.IMAGES_HEALTH[0]);
         this.loadImages(this.IMAGES_HEALTH);
-        this.x = 1200 + Math.random() * 10000; // hier wird die variable x, also die Position im Graphen auf der x-achse neu zugeteilt, und mit einem random wert erstellt
-        // damit jedes Huhn, von den dreien die generiert werden, anders positioniert werden.
+        this.x = 1200 + Math.random() * 10000; 
         this.y = this.y * Math.random() * 2;
         this.animate();
     }
 
     animate() {
         setInterval(() => {
-            this.playAnimation(this.IMAGES_HEALTH); // Calls the method from the superclass
+            this.playAnimation(this.IMAGES_HEALTH);
         }, 1000 / 2);
     }
 
@@ -29,11 +28,9 @@ class Heart extends DrawableObject {
         let path = images[i];
         this.img = this.imageCache[path];
         this.currentImage++;
-        
     }
 
     removeFromMap() {
         this.x = -1000;
     }
-
 }

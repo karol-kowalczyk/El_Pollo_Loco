@@ -1,4 +1,5 @@
 class World {
+
     character = new Character();
     level = level1;
     enemies = level1.enemies;
@@ -20,9 +21,6 @@ class World {
     bigEndBoss = new Endboss();
     chicken = new Chicken();
 
-
-    // startw.src = '../El_Pollo_Loco/img_pollo_locco/img/9_intro_outro_screens/start/startscreen_2.png';
-
     constructor(canvas, keyboard) {
         this.ctx = canvas.getContext('2d');
         this.canvas = canvas;
@@ -32,14 +30,11 @@ class World {
         this.run();
     }
 
-
     run() {
         setInterval(() => {
-            
             this.checkCollisionsWithEnemys();
             this.checkThrowObjects();
         }, 300);
-
 
         setInterval(() => {
 
@@ -54,26 +49,19 @@ class World {
 
     checkThrowObjects() {
         let currentBottleLength = this.bottleBar.getPercentage();
-
         if (this.keyboard.D && currentBottleLength > 0) {
             let bottle = new ThrowableObject(this.character.x + 100, this.character.y + 20);
             this.throwableObjects.push(bottle);
             this.character.throwBottles();
-
-            // Setze die aktualisierte Länge in der BottleBar
             this.bottleBar.setPercentage(currentBottleLength - 20);
-
             let intervalId = setInterval(() => {
                 if (bottle.y >= 280) {
                     bottle.splashedBottle();
                     clearInterval(intervalId);
                 }
-
                 this.checkThrownObjectCollision(bottle);
-
             }, 150);
         }
-
     }
 
     checkThrownObjectCollision(bottle) {
@@ -93,7 +81,6 @@ class World {
     
         this.level.enemies.forEach((enemy) => {
             if (bottle.isCollidingThrownItems(enemy)) {
-
                 enemy.removeFromMap();
                 bottle.splashedBottle();
             }
@@ -109,15 +96,11 @@ class World {
         });
     }
 
-    
-
     checkCollisionsWithEnemys() {
         this.level.enemies.forEach((enemy) => {
             if (this.character.isColliding(enemy) && this.character.y >= 120) {
-
                 this.character.hit();
                 this.statusBar.setPercentage(this.character.energy);
-                
             }
             else if (this.character.isColliding(enemy)) {
                 enemy.removeFromMap();
@@ -168,7 +151,6 @@ class World {
     draw() {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height)
         this.ctx.translate(this.camera_x, 0);
-
         this.addObjectsToMap(this.level.backgroundObjects);
         this.addObjectsToMap(this.level.clouds);
         this.addObjectsToMap(this.level.enemies);
@@ -177,7 +159,6 @@ class World {
         this.addObjectsToMap(this.level.hearts);
         this.addToMap(this.endboss);
         this.ctx.translate(-this.camera_x, 0);
-        // Space for fixed objects
         this.addToMap(this.statusBar);
         if (this.endbossBar.isVisible == true) {
             this.addToMap(this.endbossBar);
@@ -186,13 +167,9 @@ class World {
         this.addToMap(this.coinBar);
         this.addToMap(this.bottleBar);
         this.ctx.translate(this.camera_x, 0);
-
         this.addToMap(this.character);
-
         this.addObjectsToMap(this.throwableObjects);
-
         this.ctx.translate(-this.camera_x, 0);
-
         let self = this;
         requestAnimationFrame(function () {
             self.draw();
@@ -211,9 +188,7 @@ class World {
         }
 
         mo.draw(this.ctx);
-
         mo.drawFrame(this.ctx);
-
 
         if (mo.otherDirection) {
             this.flipImageBack(mo);
@@ -231,5 +206,4 @@ class World {
         mo.x = mo.x * -1;
         this.ctx.restore();
     }
-
 }

@@ -1,7 +1,6 @@
 class BottleBar extends DrawableObject {
 
     IMAGES_BOTTLEBAR = [
-    
         '../El_Pollo_Loco/img_pollo_locco/img/7_statusbars/1_statusbar/3_statusbar_bottle/orange/100.png',    
         '../El_Pollo_Loco/img_pollo_locco/img/7_statusbars/1_statusbar/3_statusbar_bottle/orange/80.png',    
         '../El_Pollo_Loco/img_pollo_locco/img/7_statusbars/1_statusbar/3_statusbar_bottle/orange/60.png',    
@@ -22,11 +21,8 @@ class BottleBar extends DrawableObject {
         this.setPercentage(0);
     }
 
-    // hier nochmal schauen, ob alles so auch passt und ob alles richtig ist
-
-    // setPercentage(50)
     setPercentage(percentage) {
-        this.percentage = percentage; // => 0 und 5 ermitteln
+        this.percentage = percentage;
         let path = this.IMAGES_BOTTLEBAR[this.resolveImageIndex()];
         this.img = this.imageCache[path];
     }
@@ -50,5 +46,4 @@ class BottleBar extends DrawableObject {
     getPercentage() {
         return this.percentage;
     }
-
 }

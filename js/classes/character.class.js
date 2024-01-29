@@ -1,7 +1,7 @@
-class Character extends MoveableObject { // classe Character erbt Eigenschaften von der UeberKlasse MoveableObject 
+class Character extends MoveableObject {
 
-    width = 200; // die Breite wird diesem Object neu zugewiesen. Also wurde diese zwar von der moveable-object.class.js 
-    height = 300; // Classe uebernommen aber ueberschrieben da diese anscheinen nicht passt
+    width = 200;
+    height = 300;
     speed = 10;
     speedY = 0.1;
     y = -180;
@@ -77,9 +77,8 @@ class Character extends MoveableObject { // classe Character erbt Eigenschaften 
     background_music = new Audio('../El_Pollo_Loco/img_pollo_locco/img/audio/background.mp3');
 
 
-    constructor() { // initialisiert wird automatisch aufgerufen, deswegen konstructor, und dieser legt fest, wie die Klasse aussehen und funktionieren soll
-        super().loadImage('../El_Pollo_Loco/img_pollo_locco/img/2_character_pepe/2_walk/W-21.png'); // mit super() wird von der UeberClasse geerbt und so
-        // kann die function loadImage ausgefuehrt und uebernommen werden. In der moveable-object.class.js wurde die function erstellt mit dem Parameter path, welcher hier erstellt wird.
+    constructor() {
+        super().loadImage('../El_Pollo_Loco/img_pollo_locco/img/2_character_pepe/2_walk/W-21.png'); 
         this.loadImages(this.IMAGES_WALKING);
         this.loadImages(this.IMAGES_JUMPING);
 
@@ -89,16 +88,12 @@ class Character extends MoveableObject { // classe Character erbt Eigenschaften 
         }, 1000);
 
         this.isEndbossWalking;
-
         this.loadImages(this.IMAGES_DEAD);
         this.loadImages(this.IMAGES_HURT);
         this.loadImages(this.IMAGES_SNORING);
         this.playBackgroundMusic();
         this.applyGravity();
-
-
         this.animate();
-
     }
 
     animate() {
@@ -137,11 +132,8 @@ class Character extends MoveableObject { // classe Character erbt Eigenschaften 
         }, 1000 / 60);
 
         animationInterval = setInterval(() => {
-
-
             if (this.isDead()) {
                 this.playAnimation(this.IMAGES_DEAD);
-                // Setzen Sie das Timeout nur dann, wenn die Bedingung isDead erfüllt ist
                 setTimeout(() => {
                     clearInterval(animationInterval);
                     clearInterval(walkingInterval);
@@ -152,33 +144,21 @@ class Character extends MoveableObject { // classe Character erbt Eigenschaften 
             } else if (this.world.keyboard.RIGHT || this.world.keyboard.LEFT) {
                 {
                     this.isWalking = true;
-                    // walk animation
                     this.playAnimation(this.IMAGES_WALKING);
-
                 }
-
-            }
-
-            else if (this.isAboveGround()) {
+            } else if (this.isAboveGround()) {
                 this.playAnimation(this.IMAGES_JUMPING);
             } else if (!this.isAboveGround() && !this.world.keyboard.RIGHT && !this.world.keyboard.LEFT) {
                 this.playAnimation(this.IMAGE_STANDING)
                 this.checkCharacterIdle();
-                 
-
-
             }
-
 
         }, 100);
     }
 
     checkCharacterIdle() {
         const currentTime = Date.now();
-
-        // Überprüfe, ob der Charakter stillsteht oder verletzt/verstorben ist
         if (!this.isHurt() && !this.isDead() && currentTime - this.lastKeyPressTime >= 2500) {
-            // Führe die Snoring-Funktion aus, wenn der Charakter stillsteht
             this.playAnimation(this.IMAGES_SNORING);
             this.snoring_sound.play();
         }
@@ -195,11 +175,8 @@ class Character extends MoveableObject { // classe Character erbt Eigenschaften 
     }
 
     jump() {
-
         super.jump();
         this.lastKeyPressTime = Date.now();
-
-
     }
 
     endgame() {
@@ -225,10 +202,7 @@ class Character extends MoveableObject { // classe Character erbt Eigenschaften 
     soundIcon = document.getElementById('sound-icon');
 
     checkIfSoundIsMute() {
-        // Extrahiere nur den Dateinamen aus dem absoluten Pfad
         let iconFileName = this.extractFileNameFromPath(document.getElementById('sound-icon').src);
-
-        // Vergleiche den Dateinamen
         if (iconFileName === 'speaker-mute.png') {
             this.snoring_sound.pause();
             this.walking_sound.pause();
@@ -239,15 +213,12 @@ class Character extends MoveableObject { // classe Character erbt Eigenschaften 
     }
 
     extractFileNameFromPath(path) {
-        // Teile den Pfad an den Schrägstrichen auf und nimm den letzten Teil (Dateiname)
         let pathParts = path.split('/');
         return pathParts[pathParts.length - 1];
     }
 
     playBackgroundMusic() {
-
         this.background_music.play();
     }
-
 
 } 

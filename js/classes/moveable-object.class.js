@@ -13,8 +13,6 @@ class MoveableObject extends DrawableObject {
     iconClicked = 0;
     bottle = 0;
     
-
-
     offset = {
         top: 0,
         left: 0,
@@ -24,7 +22,7 @@ class MoveableObject extends DrawableObject {
 
     constructor() {
         super();
-        this.enemyJumped = false; // Flagge, um zu überprüfen, ob die Methode jumpOnEnemy() bereits aufgerufen wurde
+        this.enemyJumped = false;
         this.jumpTimeout = null;
     }
 
@@ -62,26 +60,12 @@ class MoveableObject extends DrawableObject {
         }
     }
 
-
     isColliding(mo) {
         return this.x + this.width - this.offset.right > mo.x + mo.offset.left &&
             this.y + this.height - this.offset.bottom > mo.y + mo.offset.top &&
             this.x + this.offset.left < mo.x + mo.width - mo.offset.right &&
             this.y + this.offset.top < mo.y + mo.height - mo.offset.bottom;
     }
-
-    // isColliding(obj) {
-    //     return (
-    //         this.x + this.width - this.offset.right > obj.x + obj.offset.left && 
-    //         this.x < obj.x + obj.width - obj.offset.right
-    //     );
-    // }
-
-    //     isOverlappingFromTop(obj) {
-    //         return (
-    //             this.y + this.height - this.offset.bottom > obj.y + obj.offset.top
-    //         );    
-    // }
 
     isCollidingItems(item) {
         return this.x + this.width - 90 > item.x &&
@@ -113,11 +97,8 @@ class MoveableObject extends DrawableObject {
         if (this.bottle >= 100) {
             this.bottle = 100;
         }
-
         if (this.bottle < 100) {
             this.playCollectBottleSound();
-
-
         }
     }
 
@@ -141,7 +122,6 @@ class MoveableObject extends DrawableObject {
 
     hit() {
         this.energy -= 10;
-
         if (this.energy <= 0) {
             this.energy = 0;
         } else {
@@ -179,8 +159,8 @@ class MoveableObject extends DrawableObject {
     }
 
     isHurt() {
-        let timepassed = new Date().getTime() - this.lastHit; //  Differenci in ms
-        timepassed = timepassed / 1000; // Difference in s
+        let timepassed = new Date().getTime() - this.lastHit;
+        timepassed = timepassed / 1000;
         return timepassed < 0.5;
     }
 
@@ -193,37 +173,31 @@ class MoveableObject extends DrawableObject {
     }
 
     playAnimation(images) {
-        let i = this.currentImage % images.length; // let i = 0 % 6; => 1, // eine Undendliche Reihe die wir hier haben 
+        let i = this.currentImage % images.length;
         let path = images[i];
         this.img = this.imageCache[path];
         this.currentImage++;
     }
 
-    moveRight() { // function moveRight fuehrt in der console den String 'Moving right' aus.
+    moveRight() {
         this.x += this.speed;
     }
 
     moveLeft() {
-        // Methode set interval fuehrt eine function aus, was hier nur die Klammern () sind staende davor mal function
         this.x -= this.speed;
-        // veraendert die Position der Wolken um 0.1 pixel
-        // so laeuft es 60frames per second also 60fps
     }
 
     jump() {
-        if (!this.enemyJumped) { // Überprüfen, ob die Methode bereits aufgerufen wurde
+        if (!this.enemyJumped) {
             this.speedY = 40;
             this.y = 120;
             this.acceleration = 2.5;
-            this.enemyJumped = true; // Setzen der Flagge auf true, um anzuzeigen, dass die Methode ausgeführt wurde
-            
-            // Starten des Timers für die erneute Ausführung der Methode nach 1 Sekunde
+            this.enemyJumped = true; 
             this.jumpTimeout = setTimeout(() => {
-                this.enemyJumped = false; // Zurücksetzen der Flagge nach Ablauf der Zeit
+                this.enemyJumped = false;
             }, 800);
         }
     }
-
 
     muteEverySound() {
         this.collectHeartSound.pause();
@@ -231,5 +205,4 @@ class MoveableObject extends DrawableObject {
         this.collectBottleSound.pause();
         this.background_music.pause();
     }
-
 }

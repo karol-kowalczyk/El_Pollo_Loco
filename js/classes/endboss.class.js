@@ -40,7 +40,6 @@ class Endboss extends MoveableObject {
 
     win_sound = new Audio('../El_Pollo_Loco/img_pollo_locco/img/audio/game-won.wav');
 
-
     constructor() {
         super().loadImage(this.IMAGES_LOOKING[0]);
         this.loadImages(this.IMAGES_LOOKING);
@@ -49,15 +48,11 @@ class Endboss extends MoveableObject {
         this.loadImages(this.IMAGES_BOSS_HURT);
         this.x = 7100;
         this.speed = 1.5;
-
         this.animate();
-
-
     }
 
     animate() {
         setInterval(() => {
-
             if (this.isEndbossHurt) {
                 this.playAnimation(this.IMAGES_BOSS_HURT);
                
@@ -65,7 +60,6 @@ class Endboss extends MoveableObject {
                 this.playAnimation(this.IMAGES_WALKING);
                 this.moveLeft();
             }
-
         }, 50);
     }
 

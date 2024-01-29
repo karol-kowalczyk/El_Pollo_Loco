@@ -1,4 +1,5 @@
 class DrawableObject {
+
     x = 100;
     y = 137;
     width = 100;
@@ -56,7 +57,6 @@ class DrawableObject {
             ctx.stroke();
         }
  
- 
         if (this instanceof Character ) {
             ctx.beginPath();
             ctx.lineWidth = '5';
@@ -74,10 +74,6 @@ class DrawableObject {
         }
     }
 
-    /**
- * 
- * @param {Array} arr - ['img/image1.png', 'img/image1.png', ...] ganz viele Bilder sollen in das array rein 
- */
     loadImages(arr) {
         arr.forEach((path) => {
             let img = new Image();

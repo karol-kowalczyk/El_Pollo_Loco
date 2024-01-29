@@ -139,5 +139,4 @@ function initLevel() { level1 = new Level(
     new BackgroundObject('../El_Pollo_Loco/img_pollo_locco/img/5_background/layers/2_second_layer/2.png', 719 * 11),
     new BackgroundObject('../El_Pollo_Loco/img_pollo_locco/img/5_background/layers/1_first_layer/2.png', 719 * 11)
     ]
-    
 )};

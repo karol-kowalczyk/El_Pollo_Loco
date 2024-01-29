@@ -1,5 +1,5 @@
-let canvas; // Variable namens 'canvas', die keinem Wert bisher zugeordnet wurde.
-let world; // Variable namens 'world', die keinem Wert bisher zugeordnet wurde.
+let canvas;
+let world;
 let keyboard = new Keyboard();
 
 /**
@@ -9,14 +9,10 @@ let keyboard = new Keyboard();
  * 
  */
 function init() {
-
-    canvas = document.getElementById('canvas'); // Variablen 'canvas' die id ‘canvas’ hinzugefuegt mit document.getElementById('canvas').
+    canvas = document.getElementById('canvas');
     initLevel();
-    world = new World(canvas, keyboard); // Der Variablen 'world' wird die Classe World hinzugefuegt, mit dem Parameter canvas (also dem Element Canvas im index.html teil, also der div canvas).
-    console.log('My character is', world.character); // in der Console wird der String ('My charactr is') ausgefuehrt und dahinter die Variable world mit den Eigenschaften des jeweiligen characters in der Classe Charactwr
-
-    // Rufe die Methode icon_muted() auf der Instanz auf
-
+    world = new World(canvas, keyboard);
+    console.log('My character is', world.character);
 }
 
 window.addEventListener("keydown", (event) => {
@@ -70,15 +66,14 @@ window.addEventListener("keyup", (event) => {
     if (event.keyCode == 68) {
         keyboard.D = false;
     }
-
 });
 
 let fullScreen = false;
 
 function toggleScreenSize() {
-    fullScreen = !fullScreen; // Umkehrung des Zustands (toggle)
+    fullScreen = !fullScreen;
     if (fullScreen) {
-        enterFullscreen(document.getElementById('canvas-container')); // Hier können Sie das gewünschte Element übergeben, in diesem Fall das gesamte Dokument
+        enterFullscreen(document.getElementById('canvas-container'));
         document.getElementById('start-screen-img').style.width = '100%';
         document.getElementById('start-screen-img').style.height = '100%';
         document.getElementById('canvas').style.width = '100%';
@@ -91,9 +86,9 @@ function toggleScreenSize() {
 function enterFullscreen(element) {
     if (element.requestFullscreen) {
         element.requestFullscreen();
-    } else if (element.msRequestFullscreen) {      // für IE11 (entfernen bis 15. Juni 2022)
+    } else if (element.msRequestFullscreen) {
         element.msRequestFullscreen();
-    } else if (element.webkitRequestFullscreen) {  // iOS Safari
+    } else if (element.webkitRequestFullscreen) {
         element.webkitRequestFullscreen();
     }
 }
@@ -162,7 +157,7 @@ function closeStartScreen() {
     setTimeout(function () {
         startScreenImg.classList.remove('itemHidden');
         startScreenImg.classList.add('d-none');
-    }, 1500); // 20 Sekunden in Millisekunden umgerechnet
+    }, 1500);
 }
 
 function restartGame() {

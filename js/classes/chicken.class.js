@@ -24,17 +24,13 @@ class Chicken extends MoveableObject {
         this.loadImages(this.IMAGES_WALKING);
         this.loadImages(this.IMAGES_DEATH);
 
-        this.x = 2700 + Math.random() * 8000; // hier wird die variable x, also die Position im Graphen auf der x-achse neu zugeteilt, und mit einem random wert erstellt
-        // damit jedes Huhn, von den dreien die generiert werden, anders positioniert werden.
+        this.x = 2700 + Math.random() * 8000;
         this.speed = 25 + Math.random() * 2;
-
         this.animate();
     }
 
     animate() {
-        
         setInterval(() => {
-            
             if (this.isAnimating) {
                 this.playAnimation(this.IMAGES_WALKING);
                 this.moveLeft();
@@ -43,27 +39,15 @@ class Chicken extends MoveableObject {
                 }
         
         }, 1000);
- 
-        // Animationsrahmen wiederholen
-        
     }
 
     removeFromMap() {
-        // Animation stoppen
-        
-
-        // `this.x` nach 3 Sekunden setzen
         setTimeout(() => {
             this.x = -1000;
         }, 800);
 
-        // `this.playAnimation(this.IMAGES_DEATH)` nach weiteren 3 Sekunden ausführen
         setTimeout(() => {
             this.playAnimation(this.IMAGES_DEATH);
-        }, 400); // 3000 Millisekunden Verzögerung für this.playAnimation(this.IMAGES_DEATH)
-
-        // Hit- und isHurt-Funktionen deaktivieren
-        // this.hit = function() { return false; }; // Leere Funktion
-        // this.isHurt = function() { return false; }; // Immer false zurückgeben
+        }, 400); 
     }
 }

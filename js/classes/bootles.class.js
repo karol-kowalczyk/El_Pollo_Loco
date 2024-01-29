@@ -1,4 +1,5 @@
 class Bottle extends MoveableObject {
+
     width = 100;
     height = 100;
     IMAGES_BOTTLES = [
@@ -8,9 +9,7 @@ class Bottle extends MoveableObject {
 
     constructor() {
         super().loadImage(this.IMAGES_BOTTLES[0]);
-
-        this.x = 200 + Math.random() * 10000; // hier wird die variable x, also die Position im Graphen auf der x-achse neu zugeteilt, und mit einem random wert erstellt
-        // damit jedes Huhn, von den dreien die generiert werden, anders positioniert werden.
+        this.x = 200 + Math.random() * 10000; 
         this.y = 320 + Math.random() * -10;
         this.loadImages(this.IMAGES_BOTTLES);
         this.animate();
@@ -28,8 +27,8 @@ class Bottle extends MoveableObject {
         this.img = this.imageCache[path];
         this.currentImage++;
     }
+
     removeFromMap() {
         this.x = -1000;
     }
-    
 }

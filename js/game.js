@@ -1,6 +1,7 @@
 let canvas;
 let world;
 let keyboard = new Keyboard();
+let fullScreen = false;
 
 /**
  * 
@@ -67,8 +68,6 @@ window.addEventListener("keyup", (event) => {
         keyboard.D = false;
     }
 });
-
-let fullScreen = false;
 
 function toggleScreenSize() {
     fullScreen = !fullScreen;

@@ -14,8 +14,9 @@ function init() {
     initLevel();
     world = new World(canvas, keyboard);
     console.log('My character is', world.character);
-    pressBtns();
 }
+
+
 
 window.addEventListener("keydown", (event) => {
     if (event.keyCode == 39) {
@@ -70,70 +71,61 @@ window.addEventListener("keyup", (event) => {
     }
 });
 
-
-function pressBtns() {
-    document.getElementById('left-arrow').addEventListener('touchstart', (e) => {
-        e.preventDefault();
-        keyboard.LEFT = true;
-    })
-
-    document.getElementById('right-arrow').addEventListener('touchstart', (e) => {
-        e.preventDefault();
-        keyboard.RIGHT = true;
-    })
-
-    document.getElementById('jump-btn').addEventListener('touchstart', (e) => {
-        e.preventDefault();
-        keyboard.SPACE = true;
-    })
-
-    document.getElementById('throw-btn').addEventListener('touchstart', (e) => {
-        e.preventDefault();
-        keyboard.SPACE = true;
-    })
+function setKey(key, state) {
+    keyboard[key] = state;
 }
 
-function pressBtns() {
-    document.getElementById('left-arrow').addEventListener('touchstart', (e) => {
-        e.preventDefault();
-        keyboard.LEFT = true;
-    })
 
-    document.getElementById('left-arrow').addEventListener('touchend', (e) => {
-        e.preventDefault();
-        keyboard.LEFT = false;
-    })
+// function pressLeftArrow() {
+//     document.getElementById('left-arrow').addEventListener('touchstart', (e) => {
+//         e.preventDefault();
+//         keyboard.LEFT = true;
+//     })
 
-    document.getElementById('right-arrow').addEventListener('touchstart', (e) => {
-        e.preventDefault();
-        keyboard.RIGHT = true;
-    })
+//     document.getElementById('left-arrow').addEventListener('touchend', (e) => {
+//         e.preventDefault();
+//         keyboard.LEFT = false;
+//     })
 
-    document.getElementById('right-arrow').addEventListener('touchend', (e) => {
-        e.preventDefault();
-        keyboard.RIGHT = false;
-    })
+// }
 
-    document.getElementById('jump-btn').addEventListener('touchstart', (e) => {
-        e.preventDefault();
-        keyboard.SPACE = true;
-    })
+// function pressRightArrow() {
+//     document.getElementById('right-arrow').addEventListener('touchstart', (e) => {
+//         e.preventDefault();
+//         keyboard.RIGHT = true;
+//     })
 
-    document.getElementById('jump-btn').addEventListener('touchend', (e) => {
-        e.preventDefault();
-        keyboard.SPACE = false;
-    })
+//     document.getElementById('right-arrow').addEventListener('touchend', (e) => {
+//         e.preventDefault();
+//         keyboard.RIGHT = false;
+//     })
+// }
 
-    document.getElementById('throw-btn').addEventListener('touchstart', (e) => {
-        e.preventDefault();
-        keyboard.SPACE = true;
-    })
+// function pressJumpBtn() {
+//     document.getElementById('jump-btn').addEventListener('touchstart', (e) => {
+//         e.preventDefault();
+//         keyboard.SPACE = true;
+//     })
 
-    document.getElementById('throw-btn').addEventListener('touchend', (e) => {
-        e.preventDefault();
-        keyboard.SPACE = false;
-    })
-}
+//     document.getElementById('jump-btn').addEventListener('touchend', (e) => {
+//         e.preventDefault();
+//         keyboard.SPACE = false;
+//     })
+// }
+
+// function throwBottle() {
+
+//     document.getElementById('throw-btn').addEventListener('touchstart', (e) => {
+//         e.preventDefault();
+//         keyboard.SPACE = true;
+//     })
+
+//     document.getElementById('throw-btn').addEventListener('touchend', (e) => {
+//         e.preventDefault();
+//         keyboard.SPACE = false;
+//     })
+// }
+
 
 function toggleScreenSize() {
     fullScreen = !fullScreen;
@@ -197,7 +189,7 @@ function changeIcon() {
 function togglePlay() {
     let loadingScreenMusic = document.getElementById('loading-screen-music');
     let isPlaying = !loadingScreenMusic.paused;
-    
+
 
     if (isPlaying) {
         loadingScreenMusic.pause();

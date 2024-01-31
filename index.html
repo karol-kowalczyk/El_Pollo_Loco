@@ -34,7 +34,6 @@
     <script src="./js/classes/endboss.class.js"></script>
     <script src="./js/levels/level1.js"></script>
     <script src="js/game.js"></script>
-    <script src="js/game.js"></script>
 </head>
 
 <body>
@@ -88,20 +87,20 @@
             </div>
 
             <div class="phone-icons-div">
-                <div class="icon-div">
-                    <img onclick="openGameInstruction(event)" id="left-arrow" class="phone-icons"
+                <div class="icon-div" ontouchstart="setKey('LEFT', true)" ontouchend="setKey('LEFT', false)">
+                    <img  id="left-arrow" class="phone-icons"
                         src="./img_pollo_locco/img/11_phone/left-phone.png" alt="left-arrow">
                 </div>
-                <div class="icon-div">
-                    <img onclick="toggleIcon()" id="right-arrow" class="phone-icons"
+                <div class="icon-div" ontouchstart="setKey('RIGHT', true)" ontouchend="setKey('RIGHT', false)">
+                    <img  id="right-arrow" class="phone-icons"
                         src="/El_Pollo_Loco/img_pollo_locco/img/11_phone/right-phone.png" alt="right-arrow">
                 </div>
-                <div class="icon-div">
-                    <img id="jump-btn" onclick="toggleScreenSize()" class="phone-icons"
+                <div class="icon-div" ontouchstart="setKey('SPACE', true)" ontouchend="setKey('SPACE', false)">
+                    <img id="jump-btn"  class="phone-icons"
                         src="/El_Pollo_Loco/img_pollo_locco/img/11_phone/space_phone.png" alt="jump">
                 </div>
-                <div class="icon-div">
-                    <img id="throw-btn" onclick="toggleScreenSize()" class="phone-icons"
+                <div class="icon-div"  ontouchstart="setKey('D', true)" ontouchend="setKey('D', false)">
+                    <img id="throw-btn"  class="phone-icons"
                         src="/El_Pollo_Loco/img_pollo_locco/img/11_phone/throw-phone.png" alt="throw-bottle">
                 </div>
             </div>

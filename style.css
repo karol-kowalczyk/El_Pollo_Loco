@@ -65,6 +65,18 @@ h1 {
     z-index: 2;
 }
 
+.phone-icons-div {
+    position: absolute;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px;
+    height: 56px;
+    width: 160px;
+    z-index: 2;
+}
+
 .d-none {
     display: none !important;
 }
@@ -184,9 +196,8 @@ p {
 
 .itemHidden {
     opacity: 0;
-    transition: opacity 2s;
+    transition: opacity 3s;
 }
-
 
 #start-button {
     position: absolute;

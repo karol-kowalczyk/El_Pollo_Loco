@@ -1,6 +1,6 @@
 class Heart extends DrawableObject {
 
-    y = 10;
+    y = 60;
     width = 100;
     height = 100;
     IMAGES_HEALTH = [

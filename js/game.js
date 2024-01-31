@@ -14,6 +14,7 @@ function init() {
     initLevel();
     world = new World(canvas, keyboard);
     console.log('My character is', world.character);
+    pressBtns();
 }
 
 window.addEventListener("keydown", (event) => {
@@ -68,6 +69,71 @@ window.addEventListener("keyup", (event) => {
         keyboard.D = false;
     }
 });
+
+
+function pressBtns() {
+    document.getElementById('left-arrow').addEventListener('touchstart', (e) => {
+        e.preventDefault();
+        keyboard.LEFT = true;
+    })
+
+    document.getElementById('right-arrow').addEventListener('touchstart', (e) => {
+        e.preventDefault();
+        keyboard.RIGHT = true;
+    })
+
+    document.getElementById('jump-btn').addEventListener('touchstart', (e) => {
+        e.preventDefault();
+        keyboard.SPACE = true;
+    })
+
+    document.getElementById('throw-btn').addEventListener('touchstart', (e) => {
+        e.preventDefault();
+        keyboard.SPACE = true;
+    })
+}
+
+function pressBtns() {
+    document.getElementById('left-arrow').addEventListener('touchstart', (e) => {
+        e.preventDefault();
+        keyboard.LEFT = true;
+    })
+
+    document.getElementById('left-arrow').addEventListener('touchend', (e) => {
+        e.preventDefault();
+        keyboard.LEFT = false;
+    })
+
+    document.getElementById('right-arrow').addEventListener('touchstart', (e) => {
+        e.preventDefault();
+        keyboard.RIGHT = true;
+    })
+
+    document.getElementById('right-arrow').addEventListener('touchend', (e) => {
+        e.preventDefault();
+        keyboard.RIGHT = false;
+    })
+
+    document.getElementById('jump-btn').addEventListener('touchstart', (e) => {
+        e.preventDefault();
+        keyboard.SPACE = true;
+    })
+
+    document.getElementById('jump-btn').addEventListener('touchend', (e) => {
+        e.preventDefault();
+        keyboard.SPACE = false;
+    })
+
+    document.getElementById('throw-btn').addEventListener('touchstart', (e) => {
+        e.preventDefault();
+        keyboard.SPACE = true;
+    })
+
+    document.getElementById('throw-btn').addEventListener('touchend', (e) => {
+        e.preventDefault();
+        keyboard.SPACE = false;
+    })
+}
 
 function toggleScreenSize() {
     fullScreen = !fullScreen;

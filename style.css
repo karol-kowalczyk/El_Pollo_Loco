@@ -62,19 +62,45 @@ h1 {
     padding: 8px;
     height: 56px;
     width: 160px;
-    z-index: 2;
+    z-index: 3;
 }
 
 .phone-icons-div {
     position: absolute;
-
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 8px;
+    padding-right: 296px;
     height: 56px;
-    width: 160px;
+    width: 396px;
     z-index: 2;
+}
+
+.phone-icons {
+    cursor: pointer;
+    height: 32px;
+    width: 32px;
+}
+
+#left-arrow:hover {
+    height: 36px;
+    width: 36px;
+}
+
+#right-arrow:hover {
+    height: 36px;
+    width: 36px;
+}
+
+#jump-btn:hover {
+    height: 36px;
+    width: 36px;
+}
+
+#throw-btn:hover {
+    height: 36px;
+    width: 36px;
 }
 
 .d-none {

@@ -20,7 +20,6 @@ class World {
     throwableObjects = [];
     bigEndBoss = new Endboss();
     chicken = new Chicken();
-    
 
     constructor(canvas, keyboard) {
         this.ctx = canvas.getContext('2d');
@@ -36,6 +35,10 @@ class World {
             this.checkCollisionsWithEnemys();
             this.checkThrowObjects();
         }, 300);
+
+        setInterval(() => {
+            this.checkThrowObjects();
+        }, 200);
 
         setInterval(() => {
 

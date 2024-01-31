@@ -30,7 +30,6 @@ class ThrowableObject extends MoveableObject {
 
     }
 
-
     throw() {
         this.speedY = 30;
         this.applyGravity();
@@ -40,7 +39,7 @@ class ThrowableObject extends MoveableObject {
 
         this.intervalId = setInterval(() => {
             this.playAnimation(this.IMAGES_ROTATE);
-        }, 1);
+        }, 2.5);
     }
 
     extractFileNameFromPath(path) {
@@ -56,11 +55,8 @@ class ThrowableObject extends MoveableObject {
         
         this.playAnimation(this.IMAGES_SPLASH);
        
-        // Vergleiche den Dateinamen
         if (iconFileName === 'speaker-mute.png') {
-
             this.splashedBottleSound.pause();
-
         } else {
             this.splashedBottleSound.play();
         }

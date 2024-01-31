@@ -1,5 +1,5 @@
 class MoveableObject extends DrawableObject {
-    speed = 5.15;
+    speed = 2.15;
     otherDirection = false;
     speedY = 0;
     acceleration = 3;
@@ -30,7 +30,6 @@ class MoveableObject extends DrawableObject {
     collectHeartSound = new Audio('../El_Pollo_Loco/img_pollo_locco/img/audio/pick_heart.mp3');
     collectCoinSound = new Audio('../El_Pollo_Loco/img_pollo_locco/img/audio/super-mario-coin-sound.mp3');
     collectBottleSound = new Audio('../El_Pollo_Loco/img_pollo_locco/img/audio/pick_bottle.mp3');
-
 
     playCollectCoinSound() {
         this.collectCoinSound.play();
@@ -188,7 +187,7 @@ class MoveableObject extends DrawableObject {
 
     jump() {
         if (!this.enemyJumped) {
-            this.speedY = 40;
+            this.speedY = 30;
             this.y = 120;
             this.acceleration = 2.5;
             this.enemyJumped = true;

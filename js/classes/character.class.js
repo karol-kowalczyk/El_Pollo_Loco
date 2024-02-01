@@ -81,6 +81,8 @@ class Character extends MoveableObject {
         this.loadImages(this.IMAGES_WALKING);
         this.loadImages(this.IMAGES_JUMPING);
 
+        this.endbossInstance = new Endboss();
+
         this.lastKeyPressTime = Date.now();
         setInterval(() => {
             this.checkCharacterIdle();
@@ -102,7 +104,7 @@ class Character extends MoveableObject {
 
         walkingInterval = setInterval(() => {
             this.walking_sound.pause();
-            if (this.world.keyboard.RIGHT && this.x < this.world.level.level_end_x) {
+            if (this.world.keyboard.RIGHT && this.x < this.endbossInstance.x) {
                 this.otherDirection = false;
                 this.moveRight();
                 this.walking_sound.play();

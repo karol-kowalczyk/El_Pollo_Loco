@@ -75,58 +75,6 @@ function setKey(key, state) {
     keyboard[key] = state;
 }
 
-
-// function pressLeftArrow() {
-//     document.getElementById('left-arrow').addEventListener('touchstart', (e) => {
-//         e.preventDefault();
-//         keyboard.LEFT = true;
-//     })
-
-//     document.getElementById('left-arrow').addEventListener('touchend', (e) => {
-//         e.preventDefault();
-//         keyboard.LEFT = false;
-//     })
-
-// }
-
-// function pressRightArrow() {
-//     document.getElementById('right-arrow').addEventListener('touchstart', (e) => {
-//         e.preventDefault();
-//         keyboard.RIGHT = true;
-//     })
-
-//     document.getElementById('right-arrow').addEventListener('touchend', (e) => {
-//         e.preventDefault();
-//         keyboard.RIGHT = false;
-//     })
-// }
-
-// function pressJumpBtn() {
-//     document.getElementById('jump-btn').addEventListener('touchstart', (e) => {
-//         e.preventDefault();
-//         keyboard.SPACE = true;
-//     })
-
-//     document.getElementById('jump-btn').addEventListener('touchend', (e) => {
-//         e.preventDefault();
-//         keyboard.SPACE = false;
-//     })
-// }
-
-// function throwBottle() {
-
-//     document.getElementById('throw-btn').addEventListener('touchstart', (e) => {
-//         e.preventDefault();
-//         keyboard.SPACE = true;
-//     })
-
-//     document.getElementById('throw-btn').addEventListener('touchend', (e) => {
-//         e.preventDefault();
-//         keyboard.SPACE = false;
-//     })
-// }
-
-
 function toggleScreenSize() {
     fullScreen = !fullScreen;
     if (fullScreen) {

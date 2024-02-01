@@ -21,7 +21,7 @@ class DrawableObject {
             ctx.beginPath();
             ctx.lineWidth = '5';
             ctx.strokeStyle = 'blue';
-            ctx.rect(this.x, this.y, this.width, this.height);
+          
             ctx.stroke();
         }
 
@@ -29,7 +29,7 @@ class DrawableObject {
             ctx.beginPath();
             ctx.lineWidth = '5';
             ctx.strokeStyle = 'blue';
-            ctx.rect(this.x, this.y +30, this.width, this.height -40);
+           
             ctx.stroke();
         }
 
@@ -37,7 +37,7 @@ class DrawableObject {
             ctx.beginPath();
             ctx.lineWidth = '5';
             ctx.strokeStyle = 'blue';
-            ctx.rect(this.x +90, this.y +90, this.width -180, this.height -180);
+         
             ctx.stroke();
         }
 
@@ -45,7 +45,7 @@ class DrawableObject {
             ctx.beginPath();
             ctx.lineWidth = '5';
             ctx.strokeStyle = 'blue';
-            ctx.rect(this.x +60, this.y +60, this.width -120, this.height -120);
+            
             ctx.stroke();
         }
 
@@ -53,7 +53,7 @@ class DrawableObject {
             ctx.beginPath();
             ctx.lineWidth = '5';
             ctx.strokeStyle = 'blue';
-            ctx.rect(this.x +120, this.y +120, this.width -240, this.height -240);
+           
             ctx.stroke();
         }
  
@@ -61,7 +61,7 @@ class DrawableObject {
             ctx.beginPath();
             ctx.lineWidth = '5';
             ctx.strokeStyle = 'blue';
-            ctx.rect(this.x + 30, this.y +120, this.width - 60, this.height - 140);
+           
             ctx.stroke();
         }
         
@@ -69,7 +69,7 @@ class DrawableObject {
             ctx.beginPath();
             ctx.lineWidth = '5';
             ctx.strokeStyle = 'blue';
-            ctx.rect(this.x +40, this.y + 70, this.width - 100, this.height -100);
+           
             ctx.stroke();
         }
     }

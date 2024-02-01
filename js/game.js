@@ -2,6 +2,9 @@ let canvas;
 let world;
 let keyboard = new Keyboard();
 let fullScreen = false;
+let loadingScreenMusic = new Audio('./img_pollo_locco/img/audio/loading_screen.mp3');
+let isMusicPlaying = false;
+
 
 /**
  * 
@@ -127,37 +130,50 @@ function toggleIcon() {
 }
 
 function changeIcon() {
-    let icon = document.getElementById('sound-icon').src;
-
-    if (icon.indexOf('speaker-filled-audio.png') !== -1) {
+    let musicIcon = document.getElementById('sound-icon').src;
+    if (musicIcon.indexOf('speaker-filled-audio.png') != -1) {
         document.getElementById('sound-icon').src = '/El_Pollo_Loco/img_pollo_locco/img/10_background/speaker-mute.png';
     } else {
         document.getElementById('sound-icon').src = '/El_Pollo_Loco/img_pollo_locco/img/10_background/speaker-filled-audio.png';
+        isMusicPlaying = false;
+    }
+}
+let intervalID; // Globale Variable, um das Intervall zu speichern
+
+function togglePlay() {
+    if (isMusicPlaying) {
+        loadingScreenMusic.pause();
+        isMusicPlaying = false;
+    } else {
+        loadingScreenMusic.play();
+        isMusicPlaying = true;
     }
 }
 
-function togglePlay() {
-    let loadingScreenMusic = document.getElementById('loading-screen-music');
-    let isPlaying = !loadingScreenMusic.paused;
-
-
-    if (isPlaying) {
-        loadingScreenMusic.pause();
-
-    } else {
+// In der init()-Funktion oder einem ähnlichen Anfangspunkt
+setInterval(() => {
+    if (isMusicPlaying) {
         loadingScreenMusic.play();
+    } else {
+        loadingScreenMusic.pause();
     }
+}, 1000 / 60);
+
+function stopMusic() {
+    loadingScreenMusic.pause(); // Musik pausieren
+    isMusicPlaying = false;
 }
 
 function closeStartScreen() {
     let startScreenImg = document.getElementById('start-screen-img');
     let startButton = document.getElementById('start-button');
     let bgMusic = document.getElementById('loading-screen-music');
+    stopMusic();
 
     setTimeout(function () {
         startScreenImg.classList.add('itemHidden');
         startButton.classList.add('d-none');
-        bgMusic.src = '/El_Pollo_Loco/img_pollo_locco/img/audio/nothing.mp3';
+        
         init();
     }, 180);
 
@@ -166,6 +182,8 @@ function closeStartScreen() {
         startScreenImg.classList.add('d-none');
     }, 1500);
 }
+
+
 
 function restartGame() {
     location.reload();

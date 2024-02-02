@@ -3,8 +3,9 @@ let world;
 let keyboard = new Keyboard();
 let fullScreen = false;
 let loadingScreenMusic = new Audio('./img_pollo_locco/img/audio/loading_screen.mp3');
-let isMusicPlaying = false;
-
+let backgroundMusic = new Audio('../El_Pollo_Loco/img_pollo_locco/img/audio/background.mp3');
+let isStartScreenMusicPlaying = false;
+let isBackgroundMusicPlaying = false;
 
 /**
  * 
@@ -18,7 +19,6 @@ function init() {
     world = new World(canvas, keyboard);
     console.log('My character is', world.character);
 }
-
 
 
 window.addEventListener("keydown", (event) => {
@@ -73,12 +73,6 @@ window.addEventListener("keyup", (event) => {
         keyboard.D = false;
     }
 });
-
-function setKey(key, state) {
-    keyboard[key] = state;
-}
-
-
 
 function toggleScreenSize() {
     fullScreen = !fullScreen;
@@ -135,56 +129,71 @@ function changeIcon() {
         document.getElementById('sound-icon').src = '/El_Pollo_Loco/img_pollo_locco/img/10_background/speaker-mute.png';
     } else {
         document.getElementById('sound-icon').src = '/El_Pollo_Loco/img_pollo_locco/img/10_background/speaker-filled-audio.png';
-        isMusicPlaying = false;
+        isStartScreenMusicPlaying = false;
     }
 }
 let intervalID; // Globale Variable, um das Intervall zu speichern
 
 function togglePlay() {
-    if (isMusicPlaying) {
+    if (isStartScreenMusicPlaying) {
         loadingScreenMusic.pause();
-        isMusicPlaying = false;
+        isStartScreenMusicPlaying = false;
+        isBackgroundMusicPlaying = false;
     } else {
         loadingScreenMusic.play();
-        isMusicPlaying = true;
+        isStartScreenMusicPlaying = true;
+        isBackgroundMusicPlaying = true;
     }
 }
 
 // In der init()-Funktion oder einem ähnlichen Anfangspunkt
 setInterval(() => {
-    if (isMusicPlaying) {
+    if (isStartScreenMusicPlaying) {
         loadingScreenMusic.play();
     } else {
         loadingScreenMusic.pause();
     }
 }, 1000 / 60);
 
-function stopMusic() {
-    loadingScreenMusic.pause(); // Musik pausieren
-    isMusicPlaying = false;
-}
 
 function closeStartScreen() {
     let startScreenImg = document.getElementById('start-screen-img');
     let startButton = document.getElementById('start-button');
-    let bgMusic = document.getElementById('loading-screen-music');
-    stopMusic();
+    stopStartScreenMusic();
+    startButton.classList.add('d-none');
+    hideHTMLElements(startScreenImg, startButton);
+}
 
+
+function hideHTMLElements(startScreenImg, startButton) {
     setTimeout(function () {
-        startScreenImg.classList.add('itemHidden');
-        startButton.classList.add('d-none');
+        // startScreenImg.classList.add('itemHidden');
+        startScreenImg.src = './img_pollo_locco/img/10_background/loading-test.png';
         
-        init();
-    }, 180);
+    }, 360);
 
     setTimeout(function () {
-        startScreenImg.classList.remove('itemHidden');
+        // startScreenImg.classList.remove('itemHidden');
         startScreenImg.classList.add('d-none');
     }, 1500);
 }
 
+function stopStartScreenMusic() {
+    loadingScreenMusic.src = './img_pollo_locco/img/audio/nothing.mp3';
+    startIngameMusic();
+}
 
+function startIngameMusic() {
+    setInterval(() => {
+        if (isBackgroundMusicPlaying) {
+            backgroundMusic.play();
+        } else {
+            backgroundMusic.pause();
+        }
+    }, 1000 / 60);    
+}
 
 function restartGame() {
     location.reload();
 }
+

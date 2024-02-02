@@ -25,11 +25,43 @@ class MoveableObject extends DrawableObject {
         super();
         this.enemyJumped = false;
         this.jumpTimeout = null;
+        this.checkSound();
     }
 
     collectHeartSound = new Audio('../El_Pollo_Loco/img_pollo_locco/img/audio/pick_heart.mp3');
     collectCoinSound = new Audio('../El_Pollo_Loco/img_pollo_locco/img/audio/super-mario-coin-sound.mp3');
     collectBottleSound = new Audio('../El_Pollo_Loco/img_pollo_locco/img/audio/pick_bottle.mp3');
+
+    walking_sound = new Audio('../El_Pollo_Loco/img_pollo_locco/img/audio/walking.mp3');
+    snoring_sound = new Audio('../El_Pollo_Loco/img_pollo_locco/img/audio/Cartoon_Snoring_SOUND_EFFECT.mp3');
+    endgame_sound = new Audio('../El_Pollo_Loco/img_pollo_locco/img/audio/End_Boss_Music.mp3');
+    lost_sound = new Audio('../El_Pollo_Loco/img_pollo_locco/img/audio/lost_game.mp3');
+
+    toggleVolume() {
+        const soundIcon = document.getElementById('sound-icon');
+        const audioElements = [this.walking_sound, this.snoring_sound, this.endgame_sound, this.lost_sound, this.collectHeartSound, this.collectCoinSound, this.collectBottleSound];
+    
+        // Überprüfen, ob das Bild des Lautsprechers auf stummgeschaltet ist
+        if (soundIcon.src.includes('speaker-mute.png')) {
+            // Setze das Volumen aller Audioelemente auf 0
+            audioElements.forEach(audio => {
+                audio.volume = 0;
+            });
+        } else {
+            // Setze das Volumen aller Audioelemente auf 1
+            audioElements.forEach(audio => {
+                audio.volume = 0.5;
+            });
+        }
+    }
+
+    checkSound() {
+
+        setInterval(() => {
+            this.toggleVolume();
+        }, 1000/60);
+        
+    }
 
     playCollectCoinSound() {
         this.collectCoinSound.play();
@@ -195,12 +227,5 @@ class MoveableObject extends DrawableObject {
                 this.enemyJumped = false;
             }, 800);
         }
-    }
-
-    muteEverySound() {
-        this.collectHeartSound.pause();
-        this.collectCoinSound.pause();
-        this.collectBottleSound.pause();
-        this.background_music.pause();
     }
 }

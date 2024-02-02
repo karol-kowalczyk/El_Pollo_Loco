@@ -68,14 +68,6 @@ class Character extends MoveableObject {
     ]
 
     world;
-
-    walking_sound = new Audio('../El_Pollo_Loco/img_pollo_locco/img/audio/walking.mp3');
-    snoring_sound = new Audio('../El_Pollo_Loco/img_pollo_locco/img/audio/Cartoon_Snoring_SOUND_EFFECT.mp3');
-    endgame_sound = new Audio('../El_Pollo_Loco/img_pollo_locco/img/audio/End_Boss_Music.mp3');
-    lost_sound = new Audio('../El_Pollo_Loco/img_pollo_locco/img/audio/lost_game.mp3');
-    background_music = new Audio('../El_Pollo_Loco/img_pollo_locco/img/audio/background.mp3');
-
-
     constructor() {
         super().loadImage('../El_Pollo_Loco/img_pollo_locco/img/2_character_pepe/2_walk/W-21.png'); 
         this.loadImages(this.IMAGES_WALKING);
@@ -92,7 +84,6 @@ class Character extends MoveableObject {
         this.loadImages(this.IMAGES_DEAD);
         this.loadImages(this.IMAGES_HURT);
         this.loadImages(this.IMAGES_SNORING);
-        this.playBackgroundMusic();
         this.applyGravity();
         this.animate();
     }
@@ -100,7 +91,6 @@ class Character extends MoveableObject {
     animate() {
         let walkingInterval;
         let animationInterval;
-        this.playBackgroundMusic();
 
         walkingInterval = setInterval(() => {
             this.walking_sound.pause();
@@ -125,8 +115,7 @@ class Character extends MoveableObject {
                 this.endgame();
                 this.world.endbossBar.isVisible = true;
             }
-
-
+            
             this.world.camera_x = - this.x + 100;
 
         }, 1000 / 60);
@@ -181,7 +170,6 @@ class Character extends MoveableObject {
 
     endgame() {
         this.endgame_sound.play();
-        this.background_music.pause();
     }
 
     muteEndgame() {
@@ -199,26 +187,11 @@ class Character extends MoveableObject {
         this.background_music.pause();
     }
 
-    soundIcon = document.getElementById('sound-icon');
-
-    checkIfSoundIsMute() {
-        let iconFileName = this.extractFileNameFromPath(document.getElementById('sound-icon').src);
-        if (iconFileName === 'speaker-mute.png') {
-            this.snoring_sound.pause();
-            this.walking_sound.pause();
-            this.endgame_sound.pause();
-            this.lost_sound.pause()
-            this.muteEverySound();
-        }
-    }
-
     extractFileNameFromPath(path) {
         let pathParts = path.split('/');
         return pathParts[pathParts.length - 1];
     }
 
-    playBackgroundMusic() {
-        this.background_music.play();
-    }
+
 
 } 

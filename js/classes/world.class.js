@@ -37,7 +37,7 @@ class World {
         }, 300);
 
         setInterval(() => {
-
+           
             this.checkCollectItems();
         }, 10);
 
@@ -48,7 +48,8 @@ class World {
 
         setInterval(() => {
             this.checkThrowObjects();
-        }, 1000)
+        }, 180);
+
     }
 
     checkThrowObjects() {

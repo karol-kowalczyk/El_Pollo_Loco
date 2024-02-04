@@ -4,6 +4,7 @@ let keyboard = new Keyboard();
 let fullScreen = false;
 let loadingScreenMusic = new Audio('./img_pollo_locco/img/audio/loading_screen.mp3');
 let isStartScreenMusicPlaying = false;
+let dKeyPressed = false;
 
 /**
  * 
@@ -14,7 +15,7 @@ let isStartScreenMusicPlaying = false;
 function init() {
     initLevel();
     canvas = document.getElementById('canvas');
-    
+
     world = new World(canvas, keyboard);
 }
 
@@ -40,8 +41,12 @@ window.addEventListener("keydown", (event) => {
         keyboard.SPACE = true;
     }
 
-    if (event.keyCode == 68) {
+
+
+    if (event.keyCode == 68 && !dKeyPressed) { // Check if 'd' is pressed and not processing
         keyboard.D = true;
+        dKeyPressed = true; // Set flag to true
+        setTimeout(() => { dKeyPressed = false; }, 1000); // Reset flag after 1 second
     }
 });
 
@@ -68,8 +73,11 @@ window.addEventListener("keyup", (event) => {
     }
 
     if (event.keyCode == 68) {
+
         keyboard.D = false;
+
     }
+
 });
 
 function setKey(key, state) {
@@ -147,6 +155,7 @@ function togglePlay() {
 
 // In der init()-Funktion oder einem ähnlichen Anfangspunkt
 setInterval(() => {
+    
     if (isStartScreenMusicPlaying) {
         loadingScreenMusic.play();
     } else {
@@ -159,7 +168,7 @@ function closeStartScreen() {
     let startScreenImg = document.getElementById('start-screen-img');
     let startButton = document.getElementById('start-button');
     stopStartScreenMusic();
-   
+
     hideHTMLElements(startScreenImg, startButton);
 }
 
@@ -183,3 +192,25 @@ function restartGame() {
     location.reload();
 }
 
+function checkScreenWidth() {
+    let rotateDeviceImg = document.getElementById('start-screen');
+    let startButton = document.getElementById('start-button');
+    if (window.innerWidth <= 720) {
+        rotateDeviceImg.src = './El_Pollo_Loco/img_pollo_locco/img/10_background/turn-phone.png'
+        rotateDeviceImg.classList.remove('start-screen-img');
+        rotateDeviceImg.classList.add('rotate-device');
+        startButton.classList.add('d-none');
+    } 
+
+    else {
+        // Wenn die Bildschirmbreite größer als 720px ist
+        rotateDeviceImg.src = './img_pollo_locco/img/9_intro_outro_screens/start/startscreen_2.png';
+        rotateDeviceImg.classList.remove('rotate-device');
+        rotateDeviceImg.classList.add('start-screen-img');
+        startButton.classList.remove('d-none');
+    }
+}
+
+checkScreenWidth();
+
+window.addEventListener('resize', checkScreenWidth);

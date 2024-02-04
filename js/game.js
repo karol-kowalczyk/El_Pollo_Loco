@@ -72,6 +72,10 @@ window.addEventListener("keyup", (event) => {
     }
 });
 
+function setKey(key, state) {
+    keyboard[key] = state;
+}
+
 function toggleScreenSize() {
     fullScreen = !fullScreen;
     if (fullScreen) {

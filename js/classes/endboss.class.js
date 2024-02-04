@@ -101,16 +101,11 @@ class Endboss extends MoveableObject {
         img.src = '../El_Pollo_Loco/img_pollo_locco/img/9_intro_outro_screens/game_over/you_won.png';
         img.classList.remove('d-none');
         img.classList.add('opacity');
-        this.win_sound.play();
         let restartBtn = document.getElementById('restart-button');
         restartBtn.classList.remove('d-none');
         this.toStartScreen();
         }, 1000);
     }
 
-    toStartScreen() {
-        setTimeout(() => {
-            location.reload();
-    }, 5000)
-    }
+   
 }  

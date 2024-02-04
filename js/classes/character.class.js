@@ -172,19 +172,15 @@ class Character extends MoveableObject {
         this.endgame_sound.play();
     }
 
-    muteEndgame() {
-        this.background_music.pause();
-    }
 
     endscreen() {
         let img = document.getElementById('start-screen-img');
         img.src = '../El_Pollo_Loco/img_pollo_locco/img/9_intro_outro_screens/game_over/game over.png';
         img.classList.remove('d-none');
-        this.lost_sound.play();
+        this.playLosingSound();
         let restartBtn = document.getElementById('restart-button');
         restartBtn.classList.remove('d-none');
-        this.muteEndgame();
-        this.background_music.pause();
+        this.toStartScreen();
     }
 
     extractFileNameFromPath(path) {

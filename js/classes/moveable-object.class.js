@@ -67,6 +67,12 @@ class MoveableObject extends DrawableObject {
         }, 1000 / 60);
     }
 
+    playLosingSound() {
+        this.endgame_sound.pause();
+        this.lost_sound.play();
+        
+    }
+
     checkSound() {
 
         setInterval(() => {
@@ -163,6 +169,7 @@ class MoveableObject extends DrawableObject {
         this.energy -= 10;
         this.hurtSound.play();
         if (this.energy <= 0) {
+            this.hurtSound.pause();
             this.energy = 0;
         } else {
             this.lastHit = new Date().getTime();
@@ -173,6 +180,7 @@ class MoveableObject extends DrawableObject {
         this.energy -= 20;
         this.hurtSound.play();
         if (this.energy <= 0) {
+            this.hurtSound.pause();
             this.energy = 0;
         } else {
             this.lastHit = new Date().getTime();
@@ -237,5 +245,11 @@ class MoveableObject extends DrawableObject {
                 this.enemyJumped = false;
             }, 800);
         }
+    }
+
+    toStartScreen() {
+        setTimeout(() => {
+            location.reload();
+    }, 4000)
     }
 }

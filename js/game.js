@@ -191,26 +191,3 @@ function stopStartScreenMusic() {
 function restartGame() {
     location.reload();
 }
-
-function checkScreenWidth() {
-    let rotateDeviceImg = document.getElementById('start-screen');
-    let startButton = document.getElementById('start-button');
-    if (window.innerWidth <= 720) {
-        rotateDeviceImg.src = './El_Pollo_Loco/img_pollo_locco/img/10_background/turn-phone.png'
-        rotateDeviceImg.classList.remove('start-screen-img');
-        rotateDeviceImg.classList.add('rotate-device');
-        startButton.classList.add('d-none');
-    } 
-
-    else {
-        // Wenn die Bildschirmbreite größer als 720px ist
-        rotateDeviceImg.src = './img_pollo_locco/img/9_intro_outro_screens/start/startscreen_2.png';
-        rotateDeviceImg.classList.remove('rotate-device');
-        rotateDeviceImg.classList.add('start-screen-img');
-        startButton.classList.remove('d-none');
-    }
-}
-
-checkScreenWidth();
-
-window.addEventListener('resize', checkScreenWidth);

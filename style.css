@@ -284,15 +284,9 @@ p {
     }
 }
 
-.start-screen-img {
-    height: 480px !important; 
-    width: 720px !important;
-    position: absolute !important;
-    z-index: 1 !important;
-}
-
-.rotate-device {
-    animation: rotate 3s infinite;
-    width: 128px;
-    height: 128px;
+#start-screen {
+    height: 480px;
+    width: 720px;
+    position: absolute;
+    z-index: 1;
 }

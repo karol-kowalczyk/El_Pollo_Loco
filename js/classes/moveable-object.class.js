@@ -31,7 +31,7 @@ class MoveableObject extends DrawableObject {
     collectHeartSound = new Audio('../El_Pollo_Loco/img_pollo_locco/img/audio/pick_heart.mp3');
     collectCoinSound = new Audio('../El_Pollo_Loco/img_pollo_locco/img/audio/super-mario-coin-sound.mp3');
     collectBottleSound = new Audio('../El_Pollo_Loco/img_pollo_locco/img/audio/pick_bottle.mp3');
-
+    hurtSound = new Audio('../El_Pollo_Loco/img_pollo_locco/img/audio/main_character_hurt.mp3');
     walking_sound = new Audio('../El_Pollo_Loco/img_pollo_locco/img/audio/walking.mp3');
     snoring_sound = new Audio('../El_Pollo_Loco/img_pollo_locco/img/audio/Cartoon_Snoring_SOUND_EFFECT.mp3');
     endgame_sound = new Audio('../El_Pollo_Loco/img_pollo_locco/img/audio/End_Boss_Music.mp3');
@@ -39,7 +39,7 @@ class MoveableObject extends DrawableObject {
 
     toggleVolume() {
         const soundIcon = document.getElementById('sound-icon');
-        const audioElements = [this.walking_sound, this.snoring_sound, this.endgame_sound, this.lost_sound, this.collectHeartSound, this.collectCoinSound, this.collectBottleSound];
+        const audioElements = [this.walking_sound, this.snoring_sound, this.endgame_sound, this.lost_sound, this.collectHeartSound, this.collectCoinSound, this.collectBottleSound, this.hurtSound];
     
         // Überprüfen, ob das Bild des Lautsprechers auf stummgeschaltet ist
         if (soundIcon.src.includes('speaker-mute.png')) {
@@ -154,6 +154,7 @@ class MoveableObject extends DrawableObject {
 
     hit() {
         this.energy -= 10;
+        this.hurtSound.play();
         if (this.energy <= 0) {
             this.energy = 0;
         } else {
@@ -163,6 +164,7 @@ class MoveableObject extends DrawableObject {
 
     bigHit() {
         this.energy -= 20;
+        this.hurtSound.play();
         if (this.energy <= 0) {
             this.energy = 0;
         } else {

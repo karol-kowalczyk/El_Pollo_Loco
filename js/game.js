@@ -17,7 +17,6 @@ function init() {
     canvas = document.getElementById('canvas');
     initLevel();
     world = new World(canvas, keyboard);
-    console.log('My character is', world.character);
 }
 
 
@@ -132,7 +131,6 @@ function changeIcon() {
         isStartScreenMusicPlaying = false;
     }
 }
-let intervalID; // Globale Variable, um das Intervall zu speichern
 
 function togglePlay() {
     if (isStartScreenMusicPlaying) {
@@ -146,7 +144,6 @@ function togglePlay() {
     }
 }
 
-// In der init()-Funktion oder einem ähnlichen Anfangspunkt
 setInterval(() => {
     if (isStartScreenMusicPlaying) {
         loadingScreenMusic.play();
@@ -154,7 +151,6 @@ setInterval(() => {
         loadingScreenMusic.pause();
     }
 }, 1000 / 60);
-
 
 function closeStartScreen() {
     let startScreenImg = document.getElementById('start-screen-img');
@@ -164,16 +160,9 @@ function closeStartScreen() {
     hideHTMLElements(startScreenImg, startButton);
 }
 
-
 function hideHTMLElements(startScreenImg, startButton) {
+    init();
     setTimeout(function () {
-        // startScreenImg.classList.add('itemHidden');
-        startScreenImg.src = './img_pollo_locco/img/10_background/loading-test.png';
-        
-    }, 360);
-
-    setTimeout(function () {
-        // startScreenImg.classList.remove('itemHidden');
         startScreenImg.classList.add('d-none');
     }, 1500);
 }

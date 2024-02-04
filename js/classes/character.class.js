@@ -191,7 +191,4 @@ class Character extends MoveableObject {
         let pathParts = path.split('/');
         return pathParts[pathParts.length - 1];
     }
-
-
-
 } 

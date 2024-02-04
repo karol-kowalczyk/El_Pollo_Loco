@@ -3,9 +3,7 @@ let world;
 let keyboard = new Keyboard();
 let fullScreen = false;
 let loadingScreenMusic = new Audio('./img_pollo_locco/img/audio/loading_screen.mp3');
-let backgroundMusic = new Audio('../El_Pollo_Loco/img_pollo_locco/img/audio/background.mp3');
 let isStartScreenMusicPlaying = false;
-let isBackgroundMusicPlaying = false;
 
 /**
  * 
@@ -14,8 +12,9 @@ let isBackgroundMusicPlaying = false;
  * 
  */
 function init() {
-    canvas = document.getElementById('canvas');
     initLevel();
+    canvas = document.getElementById('canvas');
+    
     world = new World(canvas, keyboard);
 }
 
@@ -136,14 +135,13 @@ function togglePlay() {
     if (isStartScreenMusicPlaying) {
         loadingScreenMusic.pause();
         isStartScreenMusicPlaying = false;
-        isBackgroundMusicPlaying = false;
     } else {
         loadingScreenMusic.play();
         isStartScreenMusicPlaying = true;
-        isBackgroundMusicPlaying = true;
     }
 }
 
+// In der init()-Funktion oder einem ähnlichen Anfangspunkt
 setInterval(() => {
     if (isStartScreenMusicPlaying) {
         loadingScreenMusic.play();
@@ -152,34 +150,29 @@ setInterval(() => {
     }
 }, 1000 / 60);
 
+
 function closeStartScreen() {
     let startScreenImg = document.getElementById('start-screen-img');
     let startButton = document.getElementById('start-button');
     stopStartScreenMusic();
-    startButton.classList.add('d-none');
+   
     hideHTMLElements(startScreenImg, startButton);
 }
 
+
 function hideHTMLElements(startScreenImg, startButton) {
+    startButton.classList.add('d-none');
+    // startScreenImg.classList.add('d-none')
+    startScreenImg.src = '/El_Pollo_Loco/img_pollo_locco/img/10_background/loading_screen.png';
     init();
     setTimeout(function () {
+        // startScreenImg.classList.remove('itemHidden');
         startScreenImg.classList.add('d-none');
-    }, 1500);
+    }, 6000);
 }
 
 function stopStartScreenMusic() {
     loadingScreenMusic.src = './img_pollo_locco/img/audio/nothing.mp3';
-    startIngameMusic();
-}
-
-function startIngameMusic() {
-    setInterval(() => {
-        if (isBackgroundMusicPlaying) {
-            backgroundMusic.play();
-        } else {
-            backgroundMusic.pause();
-        }
-    }, 1000 / 60);    
 }
 
 function restartGame() {

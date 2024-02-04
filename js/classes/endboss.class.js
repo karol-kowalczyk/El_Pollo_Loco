@@ -47,7 +47,7 @@ class Endboss extends MoveableObject {
         '../El_Pollo_Loco/img_pollo_locco/img/4_enemie_boss_chicken/4_hurt/G23.png',
     ];
 
-    win_sound = new Audio('../El_Pollo_Loco/img_pollo_locco/img/audio/game-won.wav');
+    
 
     constructor() {
         super().loadImage(this.IMAGES_LOOKING[0]);
@@ -67,7 +67,7 @@ class Endboss extends MoveableObject {
                 this.moveLeft();
                 if (this.isEndbossHurt == true) {
                     this.playAnimation(this.IMAGES_BOSS_HURT);
-                    this.hitCount++;
+                    this.hitCount = this.hitCount+0.5;
                     this.speed += 1;
                     setTimeout(() => {
                         this.isEndbossHurt = false;

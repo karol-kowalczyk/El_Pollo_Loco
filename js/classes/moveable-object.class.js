@@ -28,7 +28,7 @@ class MoveableObject extends DrawableObject {
         this.checkSound();
     }
 
-    collectHeartSound = new Audio('../El_Pollo_Loco/img_pollo_locco/img/audio/pick_heart.mp3');
+    win_sound = new Audio('../El_Pollo_Loco/img_pollo_locco/img/audio/game-won.wav');
     collectCoinSound = new Audio('../El_Pollo_Loco/img_pollo_locco/img/audio/super-mario-coin-sound.mp3');
     collectBottleSound = new Audio('../El_Pollo_Loco/img_pollo_locco/img/audio/pick_bottle.mp3');
     hurtSound = new Audio('../El_Pollo_Loco/img_pollo_locco/img/audio/main_character_hurt.mp3');
@@ -36,16 +36,18 @@ class MoveableObject extends DrawableObject {
     snoring_sound = new Audio('../El_Pollo_Loco/img_pollo_locco/img/audio/Cartoon_Snoring_SOUND_EFFECT.mp3');
     endgame_sound = new Audio('../El_Pollo_Loco/img_pollo_locco/img/audio/End_Boss_Music.mp3');
     lost_sound = new Audio('../El_Pollo_Loco/img_pollo_locco/img/audio/lost_game.mp3');
+    bossHurtSound = new Audio('../El_Pollo_Loco/img_pollo_locco/img/audio/enemy_hurt_sound.mp3');
 
     toggleVolume() {
         const soundIcon = document.getElementById('sound-icon');
-        const audioElements = [this.walking_sound, this.snoring_sound, this.endgame_sound, this.lost_sound, this.collectHeartSound, this.collectCoinSound, this.collectBottleSound, this.hurtSound];
-    
+        const audioElements = [this.walking_sound, this.snoring_sound, this.endgame_sound, this.lost_sound, this.collectCoinSound,
+        this.collectBottleSound, this.hurtSound, this.bossHurtSound];
+
         // Überprüfen, ob das Bild des Lautsprechers auf stummgeschaltet ist
         if (soundIcon.src.includes('speaker-mute.png')) {
             // Setze das Volumen aller Audioelemente auf 0
             audioElements.forEach(audio => {
-                audio.volume = 0;
+                audio.volume = 0.0;
             });
         } else {
             // Setze das Volumen aller Audioelemente auf 1
@@ -54,13 +56,23 @@ class MoveableObject extends DrawableObject {
             });
         }
     }
+    startScreenMusicPlaying(isStartScreenMusicPlaying) {
+        let backgroundMusicInterval = setInterval(() => {
+            if (isStartScreenMusicPlaying) {
+                loadingScreenMusic.play();
+            } else {
+                loadingScreenMusic.pause();
+            }
+
+        }, 1000 / 60);
+    }
 
     checkSound() {
 
         setInterval(() => {
             this.toggleVolume();
-        }, 1000/60);
-        
+        }, 1000 / 60);
+
     }
 
     playCollectCoinSound() {
@@ -69,10 +81,6 @@ class MoveableObject extends DrawableObject {
 
     playCollectBottleSound() {
         this.collectBottleSound.play();
-    }
-
-    playCollectHeartSound() {
-        this.collectHeartSound.play();
     }
 
     applyGravity() {
@@ -148,7 +156,6 @@ class MoveableObject extends DrawableObject {
         }
 
         if (this.energy < 100) {
-            this.playCollectHeartSound();
         }
     }
 
@@ -174,7 +181,8 @@ class MoveableObject extends DrawableObject {
 
     bossHit() {
         this.bossEnergy -= 25;
-        if (this.bossEnergy <= 0) { 
+        this.bossHurtSound.play();
+        if (this.bossEnergy <= 0) {
             this.bossEnergy = 0;
         } else {
             this.lastBossHit = new Date().getTime();

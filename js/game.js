@@ -117,10 +117,10 @@ function hideHTMLElements(startScreenImg, startButton) {
     startButton.classList.add('d-none');
     startScreenImg.src = '/El_Pollo_Loco/img_pollo_locco/img/10_background/loading_screen.png';
     init();
-    deleteStartScreenImg();
+    deleteStartScreenImg(startScreenImg);
 }
 
-function deleteStartScreenImg() {
+function deleteStartScreenImg(startScreenImg) {
     setTimeout(function () {
         startScreenImg.classList.add('d-none');
     }, 6000);

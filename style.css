@@ -294,5 +294,12 @@ p {
 }
 
 #turn-device-img {
-    display: contents;
+    display: none;
+    position: absolute;
+    z-index: 998;
+    animation: rotate 3s infinite;
+    width: 128px;
+    height: 128px;
+    top: 35%;
+    left: 0%;
 }

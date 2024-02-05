@@ -284,9 +284,24 @@ p {
     }
 }
 
+@keyframes rotate {
+    0% {
+        transform: rotate(-47deg);
+    }
+
+    50% {
+        transform: rotate(47deg);
+    }
+
+    100% {
+        transform: rotate(-47deg);
+    }
+}
+
 #start-screen {
     height: 480px;
     width: 720px;
     position: absolute;
     z-index: 1;
 }
+

@@ -3,6 +3,17 @@
     canvas {
         width: 100%;
     }
+
+    #turn-device-img {
+        position: absolute;
+        display: flex;
+        z-index: 998;
+        animation: rotate 3s infinite;
+        width: 128px;
+        height: 128px;
+        top: 35%;
+        left: 45%;
+    }
 }
 
 @media only screen and (max-height: 480px) {

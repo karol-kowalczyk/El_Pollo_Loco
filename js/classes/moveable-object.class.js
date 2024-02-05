@@ -43,19 +43,17 @@ class MoveableObject extends DrawableObject {
         const audioElements = [this.walking_sound, this.snoring_sound, this.endgame_sound, this.lost_sound, this.collectCoinSound,
         this.collectBottleSound, this.hurtSound, this.bossHurtSound];
 
-        // Überprüfen, ob das Bild des Lautsprechers auf stummgeschaltet ist
         if (soundIcon.src.includes('speaker-mute.png')) {
-            // Setze das Volumen aller Audioelemente auf 0
             audioElements.forEach(audio => {
                 audio.volume = 0.0;
             });
         } else {
-            // Setze das Volumen aller Audioelemente auf 1
             audioElements.forEach(audio => {
                 audio.volume = 0.5;
             });
         }
     }
+
     startScreenMusicPlaying(isStartScreenMusicPlaying) {
         let backgroundMusicInterval = setInterval(() => {
             if (isStartScreenMusicPlaying) {
@@ -70,15 +68,12 @@ class MoveableObject extends DrawableObject {
     playLosingSound() {
         this.endgame_sound.pause();
         this.lost_sound.play();
-        
     }
 
     checkSound() {
-
         setInterval(() => {
             this.toggleVolume();
         }, 1000 / 60);
-
     }
 
     playCollectCoinSound() {

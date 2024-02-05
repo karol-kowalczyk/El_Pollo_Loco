@@ -7,7 +7,6 @@ class Heart extends DrawableObject {
         '../El_Pollo_Loco/img_pollo_locco/img/7_statusbars/3_icons/icon_health.png',
         '../El_Pollo_Loco/img_pollo_locco/img/7_statusbars/3_icons/icon_health_2.png'
     ];
-    
 
     constructor() {
         super().loadImage(this.IMAGES_HEALTH[0]);

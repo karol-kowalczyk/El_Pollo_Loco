@@ -2,9 +2,7 @@ class Endboss extends MoveableObject {
     height = 450;
     width = 450;
     y = 0;
-   
     isEndbossHurt = false;
-
     hitCount = -1;
     intervalRef;
 
@@ -47,8 +45,6 @@ class Endboss extends MoveableObject {
         '../El_Pollo_Loco/img_pollo_locco/img/4_enemie_boss_chicken/4_hurt/G23.png',
     ];
 
-    
-
     constructor() {
         super().loadImage(this.IMAGES_LOOKING[0]);
         this.loadImages(this.IMAGES_LOOKING);
@@ -57,8 +53,7 @@ class Endboss extends MoveableObject {
         this.loadImages(this.IMAGES_BOSS_HURT);
         this.x = 7100;
         this.speed = 1.5;
-      this.animate();
-      
+        this.animate();
     }
 
     animate() {
@@ -66,44 +61,59 @@ class Endboss extends MoveableObject {
             if (this.isEndbossWalking == true) {
                 this.moveLeft();
                 if (this.isEndbossHurt == true) {
-                    this.playAnimation(this.IMAGES_BOSS_HURT);
-                    this.hitCount = this.hitCount+0.5;
-                    this.speed += 1;
-                    setTimeout(() => {
-                        this.isEndbossHurt = false;
-                        // Bei einer false-Einstellung den Zähler erhöhen
-                       
-                        // Überprüfen, ob der Zähler vier ist
-                        if (this.hitCount >= 12) {
-                            // Intervall löschen
-                            clearInterval(this.intervalRef);
-                            // Funktion aufrufen, um den Endboss zu animieren
-                            this.animateDeadBossChicken();
-                        }
-                    }, 800);
+                    this.animateHurt();
                 } else if (this.isEndbossWalking == false) {
-                    this.playAnimation(this.IMAGES_DEAD);
+                    this.animateDead();
                 } else {
-                    this.playAnimation(this.IMAGES_WALKING);
+                    this.animateWalking();
                 }
             }
         }, 125)
     }
 
+    animateHurt() {
+        this.playAnimation(this.IMAGES_BOSS_HURT);
+        this.hitCount = this.hitCount + 0.5;
+        this.speed += 1;
+        setTimeout(() => {
+            this.isEndbossHurt = false;
+            if (this.hitCount >= 12) {
+                clearInterval(this.intervalRef);
+                this.animateDeadBossChicken();
+            }
+        }, 800);
+    }
+
+    animateDead() {
+        this.playAnimation(this.IMAGES_DEAD);
+    }
+
+    animateWalking() {
+        this.playAnimation(this.IMAGES_WALKING);
+    }
+
     animateDeadBossChicken() {
-       this.playAnimation(this.IMAGES_DEAD);
-       this.speed = 0;
+        this.playAnimation(this.IMAGES_DEAD);
+        this.speed = 0;
     }
 
     endscreenWin() {
         setTimeout(() => {
+            this.displayWinImage();
+            this.showRestartButton();
+            this.toStartScreen();
+        }, 1000);
+    }
+    
+    displayWinImage() {
         let img = document.getElementById('start-screen');
         img.src = '../El_Pollo_Loco/img_pollo_locco/img/9_intro_outro_screens/game_over/you_won.png';
         img.classList.remove('d-none');
         img.classList.add('opacity');
+    }
+    
+    showRestartButton() {
         let restartBtn = document.getElementById('restart-button');
         restartBtn.classList.remove('d-none');
-        this.toStartScreen();
-        }, 1000);
     }
 }  

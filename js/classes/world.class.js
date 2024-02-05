@@ -1,5 +1,4 @@
 class World {
-
     character = new Character();
     level = level1;
     enemies = level1.enemies;
@@ -33,23 +32,19 @@ class World {
     run() {
         setInterval(() => {
             this.checkCollisionsWithEnemys();
-            
         }, 300);
 
         setInterval(() => {
-           
             this.checkCollectItems();
         }, 10);
 
         setInterval(() => {
             this.checkCollisionsWithEndboss();
-            
         }, 500);
 
         setInterval(() => {
             this.checkThrowObjects();
         }, 180);
-
     }
 
     checkThrowObjects() {
@@ -108,7 +103,7 @@ class World {
         });
     }
 
-    checkCollectItems() {
+    checkCollectHearts() {
         this.level.hearts.forEach((heart) => {
             if (this.character.isCollidingItems(heart)) {
                 this.character.collectHeart();
@@ -119,7 +114,9 @@ class World {
                 }
             }
         });
-
+    }
+    
+    checkCollectCoins() {
         this.level.coins.forEach((coin) => {
             if (this.character.isCollidingItems(coin)) {
                 this.character.collectCoin();
@@ -130,7 +127,9 @@ class World {
                 }
             }
         });
-
+    }
+    
+    checkCollectBottles() {
         this.level.bottles.forEach((bottle) => {
             if (this.character.isCollidingItems(bottle)) {
                 this.character.collectBottle();
@@ -142,38 +141,95 @@ class World {
             }
         });
     }
+    
+    checkCollectItems() {
+        this.checkCollectHearts();
+        this.checkCollectCoins();
+        this.checkCollectBottles();
+    }
 
     setWorld() {
         this.character.world = this;
     }
 
-    draw() {
-        this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height)
-        this.ctx.translate(this.camera_x, 0);
+    drawBackgroundObjects() {
         this.addObjectsToMap(this.level.backgroundObjects);
+    }
+    
+    drawClouds() {
         this.addObjectsToMap(this.level.clouds);
+    }
+    
+    drawEnemies() {
         this.addObjectsToMap(this.level.enemies);
+    }
+    
+    drawCoins() {
         this.addObjectsToMap(this.level.coins);
+    }
+    
+    drawBottles() {
         this.addObjectsToMap(this.level.bottles);
+    }
+    
+    drawHearts() {
         this.addObjectsToMap(this.level.hearts);
+    }
+    
+    drawEndboss() {
         this.addToMap(this.endboss);
-        this.ctx.translate(-this.camera_x, 0);
+    }
+    
+    drawStatusBar() {
         this.addToMap(this.statusBar);
+    }
+    
+    drawEndbossBar() {
         if (this.endbossBar.isVisible == true) {
             this.endboss.isEndbossWalking = true;
             this.addToMap(this.endbossBar);
-            
         }
+    }
+    
+    drawCoinBar() {
         this.addToMap(this.coinBar);
+    }
+    
+    drawBottleBar() {
         this.addToMap(this.bottleBar);
-        this.ctx.translate(this.camera_x, 0);
+    }
+    
+    drawCharacter() {
         this.addToMap(this.character);
+    }
+    
+    drawThrowableObjects() {
         this.addObjectsToMap(this.throwableObjects);
+    }
+    
+    draw() {
+        this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+        this.ctx.translate(this.camera_x, 0);
+        this.drawBackgroundObjects();
+        this.drawClouds();
+        this.drawEnemies();
+        this.drawCoins();
+        this.drawBottles();
+        this.drawHearts();
+        this.drawEndboss();
+        this.ctx.translate(-this.camera_x, 0);
+        this.drawStatusBar();
+        this.drawEndbossBar();
+        this.drawCoinBar();
+        this.drawBottleBar();
+        this.ctx.translate(this.camera_x, 0);
+        this.drawCharacter();
+        this.drawThrowableObjects();
         this.ctx.translate(-this.camera_x, 0);
         let self = this;
         requestAnimationFrame(function () {
             self.draw();
-        },);
+        });
     }
 
     addObjectsToMap(objects) {

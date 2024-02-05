@@ -68,19 +68,16 @@ class Character extends MoveableObject {
     ]
 
     world;
+    
     constructor() {
         super().loadImage('../El_Pollo_Loco/img_pollo_locco/img/2_character_pepe/2_walk/W-21.png'); 
         this.loadImages(this.IMAGES_WALKING);
         this.loadImages(this.IMAGES_JUMPING);
-
         this.endbossInstance = new Endboss();
-
         this.lastKeyPressTime = Date.now();
         setInterval(() => {
             this.checkCharacterIdle();
         }, 1000);
-
-        this.isEndbossWalking;
         this.loadImages(this.IMAGES_DEAD);
         this.loadImages(this.IMAGES_HURT);
         this.loadImages(this.IMAGES_SNORING);
@@ -91,60 +88,104 @@ class Character extends MoveableObject {
     animate() {
         let walkingInterval;
         let animationInterval;
-
-        walkingInterval = setInterval(() => {
-            this.walking_sound.pause();
-            if (this.world.keyboard.RIGHT && this.x < this.endbossInstance.x) {
-                this.otherDirection = false;
-                this.moveRight();
-                this.walking_sound.play();
-                this.snoring_sound.pause();
-            }
-
-            if (this.world.keyboard.LEFT && this.x > 0) {
-                this.otherDirection = true;
-                this.moveLeft();
-                this.walking_sound.play();
-            }
-
-            if (this.world.keyboard.SPACE && !this.isAboveGround()) {
-                this.jump();
-            }
-
-            if (this.x >= 6400) {
-                this.endgame();
-                this.world.endbossBar.isVisible = true;
-            }
-            
-            this.world.camera_x = - this.x + 100;
-
-        }, 1000 / 60);
-
-        animationInterval = setInterval(() => {
-            if (this.isDead()) {
-                this.playAnimation(this.IMAGES_DEAD);
-                setTimeout(() => {
-                    clearInterval(animationInterval);
-                    clearInterval(walkingInterval);
-                    this.endscreen();
-                }, 500);
-            } else if (this.isHurt()) {
-                this.playAnimation(this.IMAGES_HURT);
-            } else if (this.world.keyboard.RIGHT || this.world.keyboard.LEFT) {
-                {
-                    this.isWalking = true;
-                    this.playAnimation(this.IMAGES_WALKING);
-                }
-            } else if (this.isAboveGround()) {
-                this.playAnimation(this.IMAGES_JUMPING);
-            } else if (!this.isAboveGround() && !this.world.keyboard.RIGHT && !this.world.keyboard.LEFT) {
-                this.playAnimation(this.IMAGE_STANDING)
-                this.checkCharacterIdle();
-            }
-
-        }, 100);
+    
+        const startWalkingInterval = () => {
+            walkingInterval = setInterval(() => {
+                this.handleWalking();
+                this.handleJumping();
+                this.handleEndgame();
+                this.handleCamera();
+            }, 1000 / 60);
+        };
+    
+        const startAnimationInterval = () => {
+            animationInterval = setInterval(() => {
+                this.handleAnimations();
+            }, 100);
+        };
+    
+        startWalkingInterval();
+        startAnimationInterval();
     }
-
+    
+    handleWalking() {
+        this.walking_sound.pause();
+        if (this.world.keyboard.RIGHT && this.x < this.endbossInstance.x) {
+            this.otherDirection = false;
+            this.moveRight();
+            this.walking_sound.play();
+            this.snoring_sound.pause();
+        }
+    
+        if (this.world.keyboard.LEFT && this.x > 0) {
+            this.otherDirection = true;
+            this.moveLeft();
+            this.walking_sound.play();
+        }
+    }
+    
+    handleJumping() {
+        if (this.world.keyboard.SPACE && !this.isAboveGround()) {
+            this.jump();
+        }
+    }
+    
+    handleEndgame() {
+        if (this.x >= 6400) {
+            this.endgame();
+            this.world.endbossBar.isVisible = true;
+        }
+    }
+    
+    handleCamera() {
+        this.world.camera_x = - this.x + 100;
+    }
+    
+    handleAnimations() {
+        if (this.isDead()) {
+            this.handleDeadAnimation();
+        } else if (this.isHurt()) {
+            this.handleHurtAnimation();
+        } else if (this.isWalkingCondition()) {
+            this.handleWalkingAnimation();
+        } else if (this.isAboveGround()) {
+            this.handleJumpingAnimation();
+        } else {
+            this.handleStandingAnimation();
+        }
+    }
+    
+    handleDeadAnimation() {
+        this.playAnimation(this.IMAGES_DEAD);
+        setTimeout(() => {
+            clearInterval(animationInterval);
+            clearInterval(walkingInterval);
+            this.endscreen();
+        }, 500);
+    }
+    
+    handleHurtAnimation() {
+        this.playAnimation(this.IMAGES_HURT);
+    }
+    
+    handleWalkingAnimation() {
+        this.isWalking = true;
+        this.playAnimation(this.IMAGES_WALKING);
+    }
+    
+    handleJumpingAnimation() {
+        this.playAnimation(this.IMAGES_JUMPING);
+    }
+    
+    handleStandingAnimation() {
+        this.playAnimation(this.IMAGE_STANDING);
+        this.checkCharacterIdle();
+    }
+    
+    isWalkingCondition() {
+        return this.world.keyboard.RIGHT || this.world.keyboard.LEFT;
+    }
+    
     checkCharacterIdle() {
         const currentTime = Date.now();
         if (!this.isHurt() && !this.isDead() && currentTime - this.lastKeyPressTime >= 2500) {
@@ -174,12 +215,17 @@ class Character extends MoveableObject {
 
     endscreen() {
         let img = document.getElementById('start-screen');
-        img.src = '../El_Pollo_Loco/img_pollo_locco/img/9_intro_outro_screens/game_over/game over.png';
-        img.classList.remove('d-none');
-        this.playLosingSound();
         let restartBtn = document.getElementById('restart-button');
-        restartBtn.classList.remove('d-none');
+        img.src = '../El_Pollo_Loco/img_pollo_locco/img/9_intro_outro_screens/game_over/game over.png';
+        
+        this. addDisplayNone(img, restartBtn);
+        this.playLosingSound();
         this.toStartScreen();
+    }
+
+    addDisplayNone() {
+        img.classList.remove('d-none');
+        restartBtn.classList.remove('d-none');
     }
 
     extractFileNameFromPath(path) {

@@ -306,5 +306,5 @@ p {
 }
 
 #turn-device-img {
-    display: none;
+    display: contents;
 }

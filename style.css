@@ -293,7 +293,7 @@ p {
     z-index: 1;
 }
 
-.turn-device-img {
+#turn-device-img {
     display: none;
     position: absolute;
     z-index: 998;
@@ -301,5 +301,5 @@ p {
     width: 128px;
     height: 128px;
     top: 35%;
-    left: 0%;
+    left: 45%;
 }

@@ -9,9 +9,7 @@
     <link rel="icon" type="image/x-icon" href="../El_Pollo_Loco/img_pollo_locco/img/10_background/mexican-hat.png">
 
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="./style/responsive-style.css">
     <link rel="stylesheet" href="fonts/fonts.css">
-    
 
     <script src="./js/classes/keyboard.class.js"></script>
     <script src="./js/classes/drawable-object.class.js"></script>
@@ -34,13 +32,14 @@
     <script src="./js/classes/throwable-object.class.js"></script>
     <script src="./js/classes/endboss.class.js"></script>
     <script src="./js/levels/level1.js"></script>
+    <script src="js/detect-device-orientation.js"></script>
     <script src="js/game.js"></script>
 </head>
 
 <body>
     <div id="content">
-        <h1>El Pollo Loco</h1>
-
+        <h1 id="headline">El Pollo Loco</h1>
+        <h1 id="turn-device-headline" class="turn-device-headline d-none">Please turn your phone</h1>
         <div id="canvas-container" onclick="closeInstruction()">
 
             <div onclick="closeStartScreen()" id="start-button">Start Game</div>
@@ -71,7 +70,7 @@
                     </div>
                 </div>
             </div>
-            <div class="canvas-icons-div">
+            <div id="canvas-icons-div" class="canvas-icons-div">
                 <div class="icon-div">
                     <img onclick="openGameInstruction(event)" id="gamepad-icon" class="div-icons"
                         src="./img_pollo_locco/img/10_background/game-pad.png" alt="gamepad">
@@ -86,7 +85,7 @@
                 </div>
             </div>
 
-            <div class="phone-icons-div">
+            <div id="phone-icons-div" class="phone-icons-div">
                 <div class="icon-div" ontouchstart="setKey('LEFT', true)" ontouchend="setKey('LEFT', false)">
                     <img  id="left-arrow" class="phone-icons"
                         src="./img_pollo_locco/img/11_phone/left-phone.png" alt="left-arrow">
@@ -108,6 +107,7 @@
             <canvas id="canvas" width="720" height="480">
 
             </canvas>
+            
             <img id="turn-device-img" src="./img_pollo_locco/img/10_background/turn-phone.png" alt="turn-your-device">
             <img id="start-screen"  src="./img_pollo_locco/img/9_intro_outro_screens/start/startscreen_2.png"
                 alt="El_Pollo_Loco" srcset="">

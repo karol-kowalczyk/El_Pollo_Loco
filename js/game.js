@@ -12,10 +12,10 @@ let dKeyPressed = false;
  * The details of the character are then logged to the console.
  * 
  */
+
 function init() {
     initLevel();
     canvas = document.getElementById('canvas');
-
     world = new World(canvas, keyboard);
 }
 
@@ -167,7 +167,6 @@ function closeStartScreen() {
     let startScreenImg = document.getElementById('start-screen');
     let startButton = document.getElementById('start-button');
     stopStartScreenMusic();
-
     hideHTMLElements(startScreenImg, startButton);
 }
 
@@ -187,6 +186,11 @@ function stopStartScreenMusic() {
     loadingScreenMusic.src = './img_pollo_locco/img/audio/nothing.mp3';
 }
 
+
+
+
 function restartGame() {
     location.reload();
 }
+
+

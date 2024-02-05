@@ -77,8 +77,6 @@ h1 {
     z-index: 3;
 }
 
-
-
 .phone-icons {
     cursor: pointer;
     height: 32px;
@@ -277,63 +275,63 @@ p {
     z-index: 1;
 }
 
-#turn-device-img {
-    display: none;
+@keyframes rotate {
+    0% {
+        transform: rotate(-47deg);
+    }
+
+    50% {
+        transform: rotate(47deg);
+    }
+
+    100% {
+        transform: rotate(-47deg);
+    }
+}
+
+.turn-device-headline {
+    font-size: 112px;
+    letter-spacing: 3px;
+    text-shadow: 3px 3px 6px rgba(241, 185, 30, 0.8);
+    top: 0;
+    width: 720px;
+    margin: 20px 0;
+    text-align: center;
+}
+
+.turn-device-img {
+    display: flex !important;
     position: absolute;
     z-index: 998;
-    animation: rotate 3s infinite;
-    width: 128px;
-    height: 128px;
-    top: 35%;
-    left: 45%;
+    animation: rotate 6s infinite;
+    width: 232px;
+    height: 232px;
+    top: 22%;
+    left: 38%;
+    border-radius: 10%;
+    background-color: #FFB900;
 }
 
 @keyframes zoom {
     0% {
-        transform: skew(-20deg) scale(1);
+        transform: skew(-10deg) scale(1);
     }
 
     50% {
-        transform: skew(-20deg) scale(1.1);
+        transform: skew(-10deg) scale(1.1);
     }
 
     100% {
-        transform: skew(-20deg) scale(1);
+        transform: skew(-10deg) scale(1);
     }
 }
 
 /* responsive */
-@media screen and (max-width: 720px) and (orientation: portrait){
-    
-
-    #turn-device-img {
-        display: flex !important;
-        position: absolute;
-        z-index: 998;
-        animation: rotate 3s infinite;
-        width: 128px;
-        height: 128px;
-        top: 35%;
-        left: 45%;
-    }
-
+@media screen and (max-width: 720px) {
     canvas {
         width: 100%;
     }
 
-    @keyframes rotate {
-        0% {
-            transform: rotate(-47deg);
-        }
-    
-        50% {
-            transform: rotate(47deg);
-        }
-    
-        100% {
-            transform: rotate(-47deg);
-        }
-    }
 
 }
 
@@ -378,7 +376,6 @@ p {
 }
 
 @media only screen and (min-height: 480px) {
-    
     body {
         overflow: auto;
     }

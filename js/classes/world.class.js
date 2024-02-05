@@ -1,26 +1,34 @@
+/**
+ * Represents the game world.
+ */
 class World {
-    character = new Character();
-    level = level1;
-    enemies = level1.enemies;
-    clouds = level1.clouds;
-    coins = level1.coins;
-    hearts = level1.hearts;
-    bottles = level1.bottles;
-    endboss = level1.endboss[0];
-    backgroundObjects = level1.backgroundObjects;
-    canvas;
-    ctx;
-    keybard;
-    camera_x = 0;
-    statusBar = new StatusBar();
-    coinBar = new CoinBar();
-    bottleBar = new BottleBar();
-    endbossBar = new EndbossStatusBar();
-    throwableObjects = [];
-    bigEndBoss = new Endboss();
-    chicken = new Chicken();
-
+    /**
+     * Creates an instance of World.
+     * @param {HTMLCanvasElement} canvas - The canvas element.
+     * @param {Keyboard} keyboard - The keyboard input handler.
+     */
     constructor(canvas, keyboard) {
+        this.character = new Character();
+        this.level = level1;
+        this.enemies = level1.enemies;
+        this.clouds = level1.clouds;
+        this.coins = level1.coins;
+        this.hearts = level1.hearts;
+        this.bottles = level1.bottles;
+        this.endboss = level1.endboss[0];
+        this.backgroundObjects = level1.backgroundObjects;
+        this.canvas;
+        this.ctx;
+        this.keybard;
+        this.camera_x = 0;
+        this.statusBar = new StatusBar();
+        this.coinBar = new CoinBar();
+        this.bottleBar = new BottleBar();
+        this.endbossBar = new EndbossStatusBar();
+        this.throwableObjects = [];
+        this.bigEndBoss = new Endboss();
+        this.chicken = new Chicken();
+
         this.ctx = canvas.getContext('2d');
         this.canvas = canvas;
         this.keyboard = keyboard;
@@ -29,6 +37,9 @@ class World {
         this.run();
     }
 
+    /**
+     * Runs the game loops.
+     */
     run() {
         setInterval(() => {
             this.checkCollisionsWithEnemys();
@@ -47,6 +58,9 @@ class World {
         }, 180);
     }
 
+    /**
+     * Checks for thrown object collisions.
+     */
     checkThrowObjects() {
         let currentBottleLength = this.bottleBar.getPercentage();
         if (this.keyboard.D && currentBottleLength > 0) {
@@ -64,6 +78,10 @@ class World {
         }
     }
 
+    /**
+     * Checks collisions with thrown objects.
+     * @param {ThrowableObject} bottle - The thrown object.
+     */
     checkThrownObjectCollision(bottle) {
         this.level.endboss.forEach((boss) => {
             if (bottle.isCollidingThrownItems(boss)) {
@@ -81,6 +99,9 @@ class World {
         });
     }
 
+    /**
+     * Checks collisions with endboss.
+     */
     checkCollisionsWithEndboss() {
         this.level.endboss.forEach((boss) => {
             if (this.character.isColliding(boss)) {
@@ -90,6 +111,9 @@ class World {
         });
     }
 
+    /**
+     * Checks collisions with enemies.
+     */
     checkCollisionsWithEnemys() {
         this.level.enemies.forEach((enemy) => {
             if (this.character.isColliding(enemy) && this.character.y >= 120) {
@@ -103,6 +127,9 @@ class World {
         });
     }
 
+    /**
+     * Checks for collecting hearts.
+     */
     checkCollectHearts() {
         this.level.hearts.forEach((heart) => {
             if (this.character.isCollidingItems(heart)) {
@@ -116,6 +143,9 @@ class World {
         });
     }
     
+    /**
+     * Checks for collecting coins.
+     */
     checkCollectCoins() {
         this.level.coins.forEach((coin) => {
             if (this.character.isCollidingItems(coin)) {
@@ -129,6 +159,9 @@ class World {
         });
     }
     
+    /**
+     * Checks for collecting bottles.
+     */
     checkCollectBottles() {
         this.level.bottles.forEach((bottle) => {
             if (this.character.isCollidingItems(bottle)) {
@@ -142,48 +175,81 @@ class World {
         });
     }
     
+    /**
+     * Checks for collecting items.
+     */
     checkCollectItems() {
         this.checkCollectHearts();
         this.checkCollectCoins();
         this.checkCollectBottles();
     }
 
+    /**
+     * Sets the world for the character.
+     */
     setWorld() {
         this.character.world = this;
     }
 
+    /**
+     * Draws background objects.
+     */
     drawBackgroundObjects() {
         this.addObjectsToMap(this.level.backgroundObjects);
     }
     
+    /**
+     * Draws clouds.
+     */
     drawClouds() {
         this.addObjectsToMap(this.level.clouds);
     }
     
+    /**
+     * Draws enemies.
+     */
     drawEnemies() {
         this.addObjectsToMap(this.level.enemies);
     }
     
+    /**
+     * Draws coins.
+     */
     drawCoins() {
         this.addObjectsToMap(this.level.coins);
     }
     
+    /**
+     * Draws bottles.
+     */
     drawBottles() {
         this.addObjectsToMap(this.level.bottles);
     }
     
+    /**
+     * Draws hearts.
+     */
     drawHearts() {
         this.addObjectsToMap(this.level.hearts);
     }
     
+    /**
+     * Draws the end boss.
+     */
     drawEndboss() {
         this.addToMap(this.endboss);
     }
     
+    /**
+     * Draws the status bar.
+     */
     drawStatusBar() {
         this.addToMap(this.statusBar);
     }
     
+    /**
+     * Draws the end boss bar.
+     */
     drawEndbossBar() {
         if (this.endbossBar.isVisible == true) {
             this.endboss.isEndbossWalking = true;
@@ -191,22 +257,37 @@ class World {
         }
     }
     
+    /**
+     * Draws the coin bar.
+     */
     drawCoinBar() {
         this.addToMap(this.coinBar);
     }
     
+    /**
+     * Draws the bottle bar.
+     */
     drawBottleBar() {
         this.addToMap(this.bottleBar);
     }
     
+    /**
+     * Draws the character.
+     */
     drawCharacter() {
         this.addToMap(this.character);
     }
     
+    /**
+     * Draws throwable objects.
+     */
     drawThrowableObjects() {
         this.addObjectsToMap(this.throwableObjects);
     }
     
+    /**
+     * Draws the game.
+     */
     draw() {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
         this.ctx.translate(this.camera_x, 0);
@@ -232,12 +313,20 @@ class World {
         });
     }
 
+    /**
+     * Adds objects to the map.
+     * @param {Object[]} objects - The objects to be added.
+     */
     addObjectsToMap(objects) {
         objects.forEach(o => {
             this.addToMap(o);
         });
     }
 
+    /**
+     * Adds an object to the map.
+     * @param {Object} mo - The object to be added.
+     */
     addToMap(mo) {
         if (mo.otherDirection) {
             this.flipImage(mo);
@@ -251,6 +340,10 @@ class World {
         }
     }
 
+    /**
+     * Flips the image.
+     * @param {Object} mo - The object whose image is to be flipped.
+     */
     flipImage(mo) {
         this.ctx.save();
         this.ctx.translate(mo.width, 0);
@@ -258,6 +351,10 @@ class World {
         mo.x = mo.x * -1;
     }
 
+    /**
+     * Flips the image back.
+     * @param {Object} mo - The object whose image is to be flipped back.
+     */
     flipImageBack(mo) {
         mo.x = mo.x * -1;
         this.ctx.restore();

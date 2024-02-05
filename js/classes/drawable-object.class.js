@@ -1,3 +1,6 @@
+/**
+ * Represents a drawable object in the game.
+ */
 class DrawableObject {
     x = 100;
     y = 137;
@@ -6,60 +9,32 @@ class DrawableObject {
     imageCache = {};
     currentImage = 0;
 
+    /**
+     * Loads an image from the specified path.
+     * @param {string} path - The path to the image file.
+     */
     loadImage(path) {
         this.img = new Image();
         this.img.src = path;
     }
 
+    /**
+     * Draws the object onto the canvas context.
+     * @param {CanvasRenderingContext2D} ctx - The canvas rendering context.
+     */
     draw(ctx) {
         ctx.drawImage(this.img, this.x, this.y, this.width, this.height);
     }
 
+    /**
+     * Draws a frame around the object for visualization purposes.
+     * The color of the frame varies depending on the type of object.
+     * @param {CanvasRenderingContext2D} ctx - The canvas rendering context.
+     */
     drawFrame(ctx) {
-        if (this instanceof Chicken|| this instanceof BabyChicken) {
-            ctx.beginPath();
-            ctx.lineWidth = '5';
-            ctx.strokeStyle = 'blue';
-            ctx.stroke();
-        }
-
-        if (this instanceof Heart ) {
-            ctx.beginPath();
-            ctx.lineWidth = '5';
-            ctx.strokeStyle = 'blue';
-            ctx.stroke();
-        }
-
-        if (this instanceof Coins ) {
-            ctx.beginPath();
-            ctx.lineWidth = '5';
-            ctx.strokeStyle = 'blue';
-            ctx.stroke();
-        }
-
-        if (this instanceof Bottle) {
-            ctx.beginPath();
-            ctx.lineWidth = '5';
-            ctx.strokeStyle = 'blue';
-            
-            ctx.stroke();
-        }
-
-        if (this instanceof ThrowableObject) {
-            ctx.beginPath();
-            ctx.lineWidth = '5';
-            ctx.strokeStyle = 'blue';
-            ctx.stroke();
-        }
- 
-        if (this instanceof Character ) {
-            ctx.beginPath();
-            ctx.lineWidth = '5';
-            ctx.strokeStyle = 'blue';
-            ctx.stroke();
-        }
-        
-        if (this instanceof Endboss ) {
+        if (this instanceof Chicken || this instanceof BabyChicken || this instanceof Heart ||
+            this instanceof Coins || this instanceof Bottle || this instanceof ThrowableObject ||
+            this instanceof Character || this instanceof Endboss) {
             ctx.beginPath();
             ctx.lineWidth = '5';
             ctx.strokeStyle = 'blue';
@@ -67,6 +42,10 @@ class DrawableObject {
         }
     }
 
+    /**
+     * Loads images from an array of paths into the image cache.
+     * @param {string[]} arr - Array of paths to the image files.
+     */
     loadImages(arr) {
         arr.forEach((path) => {
             let img = new Image();

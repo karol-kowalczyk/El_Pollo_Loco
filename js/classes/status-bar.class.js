@@ -1,5 +1,13 @@
+/**
+ * Represents a status bar object.
+ * @extends DrawableObject
+ */
 class StatusBar extends DrawableObject {
 
+    /**
+     * Array of image paths for different percentage levels of the status bar.
+     * @type {string[]}
+     */
     IMAGES = [
         '../El_Pollo_Loco/img_pollo_locco/img/7_statusbars/1_statusbar/2_statusbar_health/green/0.png', // 0
         '../El_Pollo_Loco/img_pollo_locco/img/7_statusbars/1_statusbar/2_statusbar_health/green/20.png', // 1
@@ -9,8 +17,15 @@ class StatusBar extends DrawableObject {
         '../El_Pollo_Loco/img_pollo_locco/img/7_statusbars/1_statusbar/2_statusbar_health/green/100.png' // 5
     ];
 
+    /**
+     * The current percentage of the status bar.
+     * @type {number}
+     */
     percentage = 100;
 
+    /**
+     * Constructs a new StatusBar object.
+     */
     constructor() {
         super();
         this.loadImages(this.IMAGES);
@@ -21,12 +36,20 @@ class StatusBar extends DrawableObject {
         this.setPercentage(100);
     }
 
+    /**
+     * Sets the percentage of the status bar and updates its image accordingly.
+     * @param {number} percentage - The new percentage value.
+     */
     setPercentage(percentage) {
         this.percentage = percentage;
         let path = this.IMAGES[this.resolveImageIndex()];
         this.img = this.imageCache[path];
     }
 
+    /**
+     * Resolves the image index based on the current percentage.
+     * @returns {number} - The index of the image in the IMAGES array.
+     */
     resolveImageIndex() {
         if (this.percentage == 100) {
             return 5;

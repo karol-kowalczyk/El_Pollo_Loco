@@ -1,3 +1,7 @@
+/**
+ * Represents the status bar for the end boss in the game.
+ * @extends DrawableObject
+ */
 class EndbossStatusBar extends DrawableObject {
 
     endboss = new Endboss();
@@ -14,6 +18,10 @@ class EndbossStatusBar extends DrawableObject {
     percentage = 100;
     isVisible = false;
 
+    /**
+     * Constructs an instance of the EndbossStatusBar class.
+     * Loads images, sets initial dimensions and position, and initializes the percentage.
+     */
     constructor() {
         super();
         this.loadImages(this.IMAGES);
@@ -24,12 +32,20 @@ class EndbossStatusBar extends DrawableObject {
         this.setPercentage(100);
     }
 
+    /**
+     * Sets the percentage of the end boss's health and updates the image accordingly.
+     * @param {number} percentage - The percentage of the end boss's health.
+     */
     setPercentage(percentage) {
         this.percentage = percentage;
         let path = this.IMAGES[this.resolveImageIndex()];
         this.img = this.imageCache[path];
     }
 
+    /**
+     * Resolves the index of the image in the IMAGES array based on the current health percentage.
+     * @returns {number} - The index of the image in the IMAGES array.
+     */
     resolveImageIndex() {
         if (this.percentage == 100) {
             return 5;

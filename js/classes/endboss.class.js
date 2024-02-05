@@ -1,3 +1,8 @@
+/**
+ * Represents an end boss character in the game.
+ * @extends MoveableObject
+ */
+
 class Endboss extends MoveableObject {
     height = 450;
     width = 450;
@@ -45,6 +50,11 @@ class Endboss extends MoveableObject {
         '../El_Pollo_Loco/img_pollo_locco/img/4_enemie_boss_chicken/4_hurt/G23.png',
     ];
 
+    /**
+     * Constructs an instance of the EndbossChicken class.
+     * Loads initial images and sets initial properties such as position and speed.
+     * Initiates the animation loop for the end boss.
+     */
     constructor() {
         super().loadImage(this.IMAGES_LOOKING[0]);
         this.loadImages(this.IMAGES_LOOKING);
@@ -56,6 +66,10 @@ class Endboss extends MoveableObject {
         this.animate();
     }
 
+    /**
+     * Initiates the animation loop for the end boss.
+     * Checks the state of the boss (walking, hurt, dead) and plays the appropriate animation.
+     */
     animate() {
         this.intervalRef = setInterval(() => {
             if (this.isEndbossWalking == true) {
@@ -71,6 +85,11 @@ class Endboss extends MoveableObject {
         }, 125)
     }
 
+    /**
+     * Plays the animation for the end boss being hurt.
+     * Updates the animation, hit count, and speed.
+     * Sets a timeout to reset the hurt state and triggers the dead animation if hit count exceeds 12.
+     */
     animateHurt() {
         this.playAnimation(this.IMAGES_BOSS_HURT);
         this.hitCount = this.hitCount + 0.5;
@@ -84,19 +103,33 @@ class Endboss extends MoveableObject {
         }, 800);
     }
 
+    /**
+     * Plays the animation for the end boss being dead.
+     */
     animateDead() {
         this.playAnimation(this.IMAGES_DEAD);
     }
 
+    /**
+     * Plays the animation for the end boss walking.
+     */
     animateWalking() {
         this.playAnimation(this.IMAGES_WALKING);
     }
 
+    /**
+     * Plays the animation for the end boss being dead as a boss chicken.
+     * Resets the speed to 0.
+     */
     animateDeadBossChicken() {
         this.playAnimation(this.IMAGES_DEAD);
         this.speed = 0;
     }
 
+    /**
+     * Displays the win image on the end screen after a delay of 1000 milliseconds.
+     * Shows the restart button and navigates to the start screen.
+     */
     endscreenWin() {
         setTimeout(() => {
             this.displayWinImage();
@@ -104,14 +137,20 @@ class Endboss extends MoveableObject {
             this.toStartScreen();
         }, 1000);
     }
-    
+
+    /**
+     * Displays the win image on the end screen.
+     */
     displayWinImage() {
         let img = document.getElementById('start-screen');
         img.src = '../El_Pollo_Loco/img_pollo_locco/img/9_intro_outro_screens/game_over/you_won.png';
         img.classList.remove('d-none');
         img.classList.add('opacity');
     }
-    
+
+    /**
+     * Shows the restart button on the end screen.
+     */
     showRestartButton() {
         let restartBtn = document.getElementById('restart-button');
         restartBtn.classList.remove('d-none');

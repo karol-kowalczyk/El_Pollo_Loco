@@ -21,12 +21,12 @@ body {
 }
 
 canvas {
-    background-color: black;
     display: block;
     z-index: 1;
 }
 
 .canvas {
+    background-color: black;
     position: fixed !important;
     left: 0 !important;
     top: 0 !important;
@@ -305,3 +305,6 @@ p {
     z-index: 1;
 }
 
+#turn-device-img {
+    display: none;
+}

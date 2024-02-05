@@ -165,7 +165,7 @@ setInterval(() => {
 
 
 function closeStartScreen() {
-    let startScreenImg = document.getElementById('start-screen-img');
+    let startScreenImg = document.getElementById('start-screen');
     let startButton = document.getElementById('start-button');
     stopStartScreenMusic();
 
@@ -176,7 +176,7 @@ function closeStartScreen() {
 function hideHTMLElements(startScreenImg, startButton) {
     startButton.classList.add('d-none');
     // startScreenImg.classList.add('d-none')
-    startScreenImg.src = '/El_Pollo_Loco/img_pollo_locco/img/10_background/loading_screen.png';
+    startScreenImg.src = 'El_Pollo_Loco/img_pollo_locco/img/10_background/loading_screen.png';
     init();
     setTimeout(function () {
         // startScreenImg.classList.remove('itemHidden');

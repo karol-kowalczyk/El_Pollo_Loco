@@ -1,5 +1,5 @@
 /**
- * Represents the coin bar status indicator in the game.
+ * Represents a coin bar status indicator in the game.
  * @extends DrawableObject
  */
 class CoinBar extends DrawableObject {
@@ -16,8 +16,7 @@ class CoinBar extends DrawableObject {
     percentage = 0;
 
     /**
-     * Constructs an instance of the CoinBar class.
-     * Loads images, sets initial dimensions and position, and initializes the percentage.
+     * Initializes the coin bar with default settings.
      */
     constructor() {
         super();
@@ -30,8 +29,8 @@ class CoinBar extends DrawableObject {
     }
 
     /**
-     * Sets the percentage of the coin bar and updates the image accordingly.
-     * @param {number} percentage - The percentage to be set.
+     * Sets the percentage of the coin bar and updates its appearance.
+     * @param {number} percentage - The percentage value (0-100).
      */
     setPercentage(percentage) {
         this.percentage = percentage;
@@ -40,11 +39,11 @@ class CoinBar extends DrawableObject {
     }
 
     /**
-     * Resolves the index of the image in the IMAGES_COINBAR array based on the current percentage.
-     * @returns {number} - The index of the image.
+     * Resolves the index of the image to use based on the percentage.
+     * @returns {number} The index of the image to use.
      */
     resolveImageIndex() {
-        if (this.percentage == 100) {
+        if (this.percentage === 100) {
             return 0;
         } else if (this.percentage >= 80) {
             return 1;

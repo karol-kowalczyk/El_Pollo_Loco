@@ -7,7 +7,9 @@ let isStartScreenMusicPlaying = false;
 let dKeyPressed = false;
 
 /**
- * Initializes the game by calling initLevel and creating a new World object.
+ * Initializes the game by setting up the level and creating a world instance.
+ * @function
+ * @name init
  */
 function init() {
     initLevel();
@@ -16,7 +18,9 @@ function init() {
 }
 
 /**
- * Toggles the fullscreen mode of the game.
+ * Toggles the game screen to fullscreen mode.
+ * @function
+ * @name toggleFullscreen
  */
 function toggleFullscreen() {
     enterFullscreen(document.getElementById('canvas-container'));
@@ -27,7 +31,9 @@ function toggleFullscreen() {
 }
 
 /**
- * Toggles the screen size between fullscreen and normal size.
+ * Toggles the game screen size between fullscreen and normal size.
+ * @function
+ * @name toggleScreenSize
  */
 function toggleScreenSize() {
     fullScreen = !fullScreen;
@@ -39,7 +45,9 @@ function toggleScreenSize() {
 }
 
 /**
- * Enters fullscreen mode for the specified element.
+ * Enters fullscreen mode for the specified HTML element.
+ * @function
+ * @name enterFullscreen
  * @param {HTMLElement} element - The HTML element to enter fullscreen mode.
  */
 function enterFullscreen(element) {
@@ -54,6 +62,8 @@ function enterFullscreen(element) {
 
 /**
  * Exits fullscreen mode.
+ * @function
+ * @name exitFullscreen
  */
 function exitFullscreen() {
     if (document.exitFullscreen) {
@@ -64,8 +74,10 @@ function exitFullscreen() {
 }
 
 /**
- * Opens the game instructions modal.
- * @param {Event} event - The click event.
+ * Opens the game instruction panel.
+ * @function
+ * @name openGameInstruction
+ * @param {Event} event - The event object.
  */
 function openGameInstruction(event) {
     event.stopPropagation();
@@ -74,7 +86,9 @@ function openGameInstruction(event) {
 }
 
 /**
- * Closes the game instructions modal.
+ * Closes the game instruction panel.
+ * @function
+ * @name closeInstruction
  */
 function closeInstruction() {
     let gameInstruction = document.getElementById('game-instruction');
@@ -82,7 +96,9 @@ function closeInstruction() {
 }
 
 /**
- * Toggles the sound icon and controls the start screen music.
+ * Toggles the sound icon and the background music.
+ * @function
+ * @name toggleIcon
  */
 function toggleIcon() {
     event.stopPropagation();
@@ -91,7 +107,9 @@ function toggleIcon() {
 }
 
 /**
- * Changes the sound icon between mute and unmute.
+ * Changes the sound icon based on its current state.
+ * @function
+ * @name changeIcon
  */
 function changeIcon() {
     let musicIcon = document.getElementById('sound-icon').src;
@@ -104,7 +122,9 @@ function changeIcon() {
 }
 
 /**
- * Toggles the play/pause state of the start screen music.
+ * Toggles the play/pause state of the background music.
+ * @function
+ * @name togglePlay
  */
 function togglePlay() {
     if (isStartScreenMusicPlaying) {
@@ -117,19 +137,10 @@ function togglePlay() {
 }
 
 /**
- * Sets up an interval to play or pause the start screen music based on the isStartScreenMusicPlaying flag.
- */
-setInterval(() => {
-    if (isStartScreenMusicPlaying) {
-        loadingScreenMusic.play();
-    } else {
-        loadingScreenMusic.pause();
-    }
-}, 1000 / 60);
-
-/**
- * Initializes the elements of the start screen.
- * @returns {Object} An object containing references to start screen elements.
+ * Initializes elements of the start screen.
+ * @function
+ * @name initializeStartScreenElements
+ * @returns {Object} - An object containing references to start screen elements.
  */
 function initializeStartScreenElements() {
     let startScreenImg = document.getElementById('start-screen');
@@ -139,7 +150,9 @@ function initializeStartScreenElements() {
 }
 
 /**
- * Closes the start screen by hiding its elements and stopping the start screen music.
+ * Closes the start screen and starts the game.
+ * @function
+ * @name closeStartScreen
  */
 function closeStartScreen() {
     let { startScreenImg, startButton, phoneIconsDiv } = initializeStartScreenElements();
@@ -149,9 +162,11 @@ function closeStartScreen() {
 }
 
 /**
- * Hides specified HTML elements and initializes the game.
- * @param {HTMLElement} startScreenImg - The image element of the start screen.
- * @param {HTMLElement} startButton - The button element of the start screen.
+ * Hides HTML elements of the start screen after a delay and initializes the game.
+ * @function
+ * @name hideHTMLElements
+ * @param {HTMLElement} startScreenImg - The start screen image element.
+ * @param {HTMLElement} startButton - The start button element.
  */
 function hideHTMLElements(startScreenImg, startButton) {
     startButton.classList.add('d-none');
@@ -161,8 +176,10 @@ function hideHTMLElements(startScreenImg, startButton) {
 }
 
 /**
- * Deletes the start screen image element after a delay.
- * @param {HTMLElement} startScreenImg - The image element of the start screen.
+ * Deletes the start screen image after a delay.
+ * @function
+ * @name deleteStartScreenImg
+ * @param {HTMLElement} startScreenImg - The start screen image element.
  */
 function deleteStartScreenImg(startScreenImg) {
     setTimeout(function () {
@@ -171,14 +188,18 @@ function deleteStartScreenImg(startScreenImg) {
 }
 
 /**
- * Stops the start screen music by changing its source to a silent audio file.
+ * Stops the start screen music.
+ * @function
+ * @name stopStartScreenMusic
  */
 function stopStartScreenMusic() {
     loadingScreenMusic.src = './img_pollo_locco/img/audio/nothing.mp3';
 }
 
 /**
- * Restarts the game by reloading the page.
+ * Reloads the game to restart it.
+ * @function
+ * @name restartGame
  */
 function restartGame() {
     location.reload();

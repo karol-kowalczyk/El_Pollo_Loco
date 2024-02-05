@@ -1,5 +1,5 @@
 /**
- * Represents a baby chicken entity that extends MoveableObject.
+ * Represents a baby chicken object that inherits from MoveableObject.
  * @extends MoveableObject
  */
 class BabyChicken extends MoveableObject {
@@ -40,17 +40,20 @@ class BabyChicken extends MoveableObject {
         '../El_Pollo_Loco/img_pollo_locco/img/3_enemies_chicken/chicken_small/2_dead/dead.png'
     ]
 
+    /**
+     * Creates an instance of BabyChicken.
+     */
     constructor() {
         super().loadImage('../El_Pollo_Loco/img_pollo_locco/img/3_enemies_chicken/chicken_normal/1_walk/1_w.png');
         this.loadImages(this.IMAGES_WALKING);
         this.loadImages(this.IMAGES_DEATH);
-        this.x = 3000 + Math.random() * 6000;
+        this.x = 3000 + Math.random() * 6000; 
         this.speed = 10 + Math.random() * 2;
         this.animate();
     }
 
     /**
-     * Animates the baby chicken.
+     * Initiates the animation of the baby chicken.
      */
     animate() {
         setInterval(() => {
@@ -64,7 +67,7 @@ class BabyChicken extends MoveableObject {
     }
 
     /**
-     * Removes the baby chicken from the map.
+     * Removes the baby chicken from the map after a delay.
      */
     removeFromMap() {
         setTimeout(() => {
@@ -73,6 +76,6 @@ class BabyChicken extends MoveableObject {
 
         setTimeout(() => {
             this.playAnimation(this.IMAGES_DEATH);
-        }, 200);
+        }, 200); 
     }
 }

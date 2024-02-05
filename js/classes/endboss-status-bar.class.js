@@ -1,11 +1,10 @@
 /**
- * Represents the status bar for the end boss in the game.
+ * Represents a status bar for the end boss.
  * @extends DrawableObject
  */
 class EndbossStatusBar extends DrawableObject {
 
     endboss = new Endboss();
-
     IMAGES = [
         '../El_Pollo_Loco/img_pollo_locco/img/7_statusbars/2_statusbar_endboss/blue/blue0.png',
         '../El_Pollo_Loco/img_pollo_locco/img/7_statusbars/2_statusbar_endboss/blue/blue20.png',
@@ -19,9 +18,8 @@ class EndbossStatusBar extends DrawableObject {
     isVisible = false;
 
     /**
-     * Constructs an instance of the EndbossStatusBar class.
-     * Loads images, sets initial dimensions and position, and initializes the percentage.
-     */
+         * Constructs a new EndbossStatusBar object.
+         */
     constructor() {
         super();
         this.loadImages(this.IMAGES);
@@ -33,8 +31,8 @@ class EndbossStatusBar extends DrawableObject {
     }
 
     /**
-     * Sets the percentage of the end boss's health and updates the image accordingly.
-     * @param {number} percentage - The percentage of the end boss's health.
+     * Sets the percentage of the status bar.
+     * @param {number} percentage - The percentage value to set.
      */
     setPercentage(percentage) {
         this.percentage = percentage;
@@ -43,8 +41,8 @@ class EndbossStatusBar extends DrawableObject {
     }
 
     /**
-     * Resolves the index of the image in the IMAGES array based on the current health percentage.
-     * @returns {number} - The index of the image in the IMAGES array.
+     * Resolves the index of the image based on the current percentage.
+     * @returns {number} - The index of the image.
      */
     resolveImageIndex() {
         if (this.percentage == 100) {

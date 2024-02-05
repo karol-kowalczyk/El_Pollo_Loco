@@ -1,5 +1,6 @@
 /**
- * Represents a drawable object in the game.
+ * Represents a drawable object.
+ * 
  */
 class DrawableObject {
     x = 100;
@@ -10,8 +11,8 @@ class DrawableObject {
     currentImage = 0;
 
     /**
-     * Loads an image from the specified path.
-     * @param {string} path - The path to the image file.
+     * Loads an image from the given path.
+     * @param {string} path - The path to the image.
      */
     loadImage(path) {
         this.img = new Image();
@@ -19,7 +20,7 @@ class DrawableObject {
     }
 
     /**
-     * Draws the object onto the canvas context.
+     * Draws the object on the canvas context.
      * @param {CanvasRenderingContext2D} ctx - The canvas rendering context.
      */
     draw(ctx) {
@@ -27,14 +28,11 @@ class DrawableObject {
     }
 
     /**
-     * Draws a frame around the object for visualization purposes.
-     * The color of the frame varies depending on the type of object.
+     * Draws a frame around the object based on its type.
      * @param {CanvasRenderingContext2D} ctx - The canvas rendering context.
      */
     drawFrame(ctx) {
-        if (this instanceof Chicken || this instanceof BabyChicken || this instanceof Heart ||
-            this instanceof Coins || this instanceof Bottle || this instanceof ThrowableObject ||
-            this instanceof Character || this instanceof Endboss) {
+        if (this instanceof Chicken || this instanceof BabyChicken || this instanceof Heart || this instanceof Coins || this instanceof Bottle || this instanceof ThrowableObject || this instanceof Character || this instanceof Endboss) {
             ctx.beginPath();
             ctx.lineWidth = '5';
             ctx.strokeStyle = 'blue';
@@ -43,8 +41,8 @@ class DrawableObject {
     }
 
     /**
-     * Loads images from an array of paths into the image cache.
-     * @param {string[]} arr - Array of paths to the image files.
+     * Loads multiple images into the cache.
+     * @param {string[]} arr - Array of image paths.
      */
     loadImages(arr) {
         arr.forEach((path) => {

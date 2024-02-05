@@ -1,5 +1,5 @@
 /**
- * Represents the main character in the game.
+ * Represents a character in the game.
  * @extends MoveableObject
  */
 class Character extends MoveableObject {
@@ -74,11 +74,13 @@ class Character extends MoveableObject {
     world;
 
     /**
-     * Initializes the main character in the game.
-     * Loads initial images, sets up intervals for animation and character controls,
-     * applies gravity, and starts animation.
+     * Represents a character in the game.
+     * @constructor
      */
     constructor() {
+        /**
+         * Loads initial images and sets up character.
+         */
         super().loadImage('../El_Pollo_Loco/img_pollo_locco/img/2_character_pepe/2_walk/W-21.png');
         this.loadImages(this.IMAGES_WALKING);
         this.loadImages(this.IMAGES_JUMPING);
@@ -95,7 +97,7 @@ class Character extends MoveableObject {
     }
 
     /**
-     * Initiates animation loops for character movement and animations.
+     * Animates the character's movements and actions.
      */
     animate() {
         let walkingInterval;
@@ -121,7 +123,7 @@ class Character extends MoveableObject {
     }
 
     /**
-     * Handles character movement based on user input.
+     * Handles character walking behavior.
      */
     handleWalking() {
         this.walking_sound.pause();
@@ -140,7 +142,7 @@ class Character extends MoveableObject {
     }
 
     /**
-     * Handles character jumping based on user input.
+     * Handles character jumping behavior.
      */
     handleJumping() {
         if (this.world.keyboard.SPACE && !this.isAboveGround()) {
@@ -149,7 +151,7 @@ class Character extends MoveableObject {
     }
 
     /**
-     * Handles endgame conditions for the character.
+     * Handles endgame condition.
      */
     handleEndgame() {
         if (this.x >= 6400) {
@@ -159,7 +161,7 @@ class Character extends MoveableObject {
     }
 
     /**
-     * Handles camera movement based on character position.
+     * Handles camera movement.
      */
     handleCamera() {
         this.world.camera_x = - this.x + 100;
@@ -182,18 +184,8 @@ class Character extends MoveableObject {
         }
     }
 
-    handleDeadAnimation() {
-        this.playAnimation(this.IMAGES_DEAD);
-        setTimeout(() => {
-            clearInterval(this.animationInterval);
-            clearInterval(this.walkingInterval);
-            this.endscreen();
-        }, 500);
-    }
-
     /**
-     * Handles the animation when the character is dead.
-     * Plays the death animation and triggers endscreen after a delay.
+     * Handles dead animation state.
      */
     handleDeadAnimation() {
         this.playAnimation(this.IMAGES_DEAD);
@@ -205,16 +197,14 @@ class Character extends MoveableObject {
     }
 
     /**
-     * Handles the animation when the character is hurt.
-     * Plays the hurt animation.
+     * Handles hurt animation state.
      */
     handleHurtAnimation() {
         this.playAnimation(this.IMAGES_HURT);
     }
 
     /**
-     * Handles the animation when the character is walking.
-     * Plays the walking animation.
+     * Handles walking animation state.
      */
     handleWalkingAnimation() {
         this.isWalking = true;
@@ -222,16 +212,14 @@ class Character extends MoveableObject {
     }
 
     /**
-     * Handles the animation when the character is jumping.
-     * Plays the jumping animation.
+     * Handles jumping animation state.
      */
     handleJumpingAnimation() {
         this.playAnimation(this.IMAGES_JUMPING);
     }
 
     /**
-     * Handles the animation when the character is standing idle.
-     * Plays the standing animation and checks for character idleness.
+     * Handles standing animation state.
      */
     handleStandingAnimation() {
         this.playAnimation(this.IMAGE_STANDING);
@@ -239,15 +227,15 @@ class Character extends MoveableObject {
     }
 
     /**
-     * Checks if the character is currently walking.
-     * @returns {boolean} True if the character is walking, otherwise false.
+     * Checks if character is in walking condition.
+     * @returns {boolean} Whether the character is walking.
      */
     isWalkingCondition() {
         return this.world.keyboard.RIGHT || this.world.keyboard.LEFT;
     }
 
     /**
-     * Checks the character's idleness and plays snoring animation if idle.
+     * Checks if character is idle and plays snoring animation.
      */
     checkCharacterIdle() {
         const currentTime = Date.now();
@@ -258,7 +246,7 @@ class Character extends MoveableObject {
     }
 
     /**
-     * Overrides the moveRight method to update the last key press time.
+     * Moves character right and updates last key press time.
      */
     moveRight() {
         super.moveRight();
@@ -266,7 +254,7 @@ class Character extends MoveableObject {
     }
 
     /**
-     * Overrides the moveLeft method to update the last key press time.
+     * Moves character left and updates last key press time.
      */
     moveLeft() {
         super.moveLeft();
@@ -274,7 +262,7 @@ class Character extends MoveableObject {
     }
 
     /**
-     * Overrides the jump method to update the last key press time.
+     * Makes character jump and updates last key press time.
      */
     jump() {
         super.jump();
@@ -282,14 +270,14 @@ class Character extends MoveableObject {
     }
 
     /**
-     * Plays the endgame sound effect.
+     * Initiates endgame sequence.
      */
     endgame() {
         this.endgame_sound.play();
     }
 
     /**
-     * Sets up the endscreen with appropriate images and sounds.
+     * Initiates end screen display.
      */
     endscreen() {
         let img = document.getElementById('start-screen');
@@ -302,9 +290,9 @@ class Character extends MoveableObject {
     }
 
     /**
-     * Adds the 'd-none' class to hide elements.
-     * @param {HTMLElement} img - The image element.
-     * @param {HTMLElement} restartBtn - The restart button element.
+     * Displays specified elements by removing 'd-none' class.
+     * @param {Element} img - The image element to display.
+     * @param {Element} restartBtn - The restart button element to display.
      */
     addDisplayNone(img, restartBtn) {
         img.classList.remove('d-none');
@@ -312,7 +300,7 @@ class Character extends MoveableObject {
     }
 
     /**
-     * Extracts the file name from a given path.
+     * Extracts file name from a given path.
      * @param {string} path - The file path.
      * @returns {string} The extracted file name.
      */

@@ -1,11 +1,22 @@
 /**
- * Represents the bottle bar in the game.
+ * Represents a bottle bar object that extends a drawable object.
  * @extends DrawableObject
  */
 class BottleBar extends DrawableObject {
+    
+    IMAGES_BOTTLEBAR = [
+        '../El_Pollo_Loco/img_pollo_locco/img/7_statusbars/1_statusbar/3_statusbar_bottle/orange/100.png',
+        '../El_Pollo_Loco/img_pollo_locco/img/7_statusbars/1_statusbar/3_statusbar_bottle/orange/80.png',
+        '../El_Pollo_Loco/img_pollo_locco/img/7_statusbars/1_statusbar/3_statusbar_bottle/orange/60.png',
+        '../El_Pollo_Loco/img_pollo_locco/img/7_statusbars/1_statusbar/3_statusbar_bottle/orange/40.png',
+        '../El_Pollo_Loco/img_pollo_locco/img/7_statusbars/1_statusbar/3_statusbar_bottle/orange/20.png',
+        '../El_Pollo_Loco/img_pollo_locco/img/7_statusbars/1_statusbar/3_statusbar_bottle/orange/0.png'
+    ];
+
+    percentage = 0;
+
     /**
-     * Initializes the bottle bar with default settings.
-     * Loads images, sets dimensions and position, and sets initial percentage.
+     * Creates an instance of BottleBar.
      */
     constructor() {
         super();
@@ -18,7 +29,7 @@ class BottleBar extends DrawableObject {
     }
 
     /**
-     * Sets the percentage of the bottle bar and updates the displayed image.
+     * Sets the percentage of the bottle bar.
      * @param {number} percentage - The percentage value to set.
      */
     setPercentage(percentage) {
@@ -28,7 +39,7 @@ class BottleBar extends DrawableObject {
     }
 
     /**
-     * Determines the index of the image based on the current percentage.
+     * Resolves the index of the image based on the current percentage.
      * @returns {number} The index of the image in the IMAGES_BOTTLEBAR array.
      */
     resolveImageIndex() {
@@ -48,8 +59,8 @@ class BottleBar extends DrawableObject {
     }
 
     /**
-     * Retrieves the current percentage of the bottle bar.
-     * @returns {number} The current percentage.
+     * Gets the current percentage of the bottle bar.
+     * @returns {number} The current percentage value.
      */
     getPercentage() {
         return this.percentage;

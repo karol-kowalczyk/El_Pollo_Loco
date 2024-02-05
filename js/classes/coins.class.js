@@ -1,5 +1,5 @@
 /**
- * Represents a coins object in the game.
+ * Represents a collection of coins in the game.
  * @extends DrawableObject
  */
 class Coins extends DrawableObject {
@@ -13,8 +13,7 @@ class Coins extends DrawableObject {
     ];
 
     /**
-     * Constructs an instance of the Coins class.
-     * Loads initial images, sets initial dimensions and position, and initiates animation.
+     * Initializes the coins collection and sets its position.
      */
     constructor() {
         super().loadImage(this.IMAGES_COINS[0]);
@@ -24,8 +23,7 @@ class Coins extends DrawableObject {
     }
 
     /**
-     * Initiates the animation loop for the coins object.
-     * Plays the animation at an interval of 2 frames per second (0.5 seconds per frame).
+     * Animates the coins collection.
      */
     animate() {
         setInterval(() => {
@@ -34,8 +32,8 @@ class Coins extends DrawableObject {
     }
 
     /**
-     * Plays the animation for the coins object.
-     * @param {string[]} images - Array of image paths representing the animation frames.
+     * Plays the animation by cycling through the images.
+     * @param {string[]} images - Array of image paths to animate.
      */
     playAnimation(images) {
         let i = this.currentImage % images.length;
@@ -45,7 +43,7 @@ class Coins extends DrawableObject {
     }
 
     /**
-     * Removes the coins object from the map by setting its horizontal position to a large negative value.
+     * Removes the coins collection from the map.
      */
     removeFromMap() {
         this.x = -1000;

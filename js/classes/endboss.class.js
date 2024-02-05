@@ -1,8 +1,7 @@
 /**
- * Represents an end boss character in the game.
+ * Represents an end boss.
  * @extends MoveableObject
  */
-
 class Endboss extends MoveableObject {
     height = 450;
     width = 450;
@@ -51,10 +50,8 @@ class Endboss extends MoveableObject {
     ];
 
     /**
-     * Constructs an instance of the EndbossChicken class.
-     * Loads initial images and sets initial properties such as position and speed.
-     * Initiates the animation loop for the end boss.
-     */
+         * Constructs a new Endboss object.
+         */
     constructor() {
         super().loadImage(this.IMAGES_LOOKING[0]);
         this.loadImages(this.IMAGES_LOOKING);
@@ -67,8 +64,7 @@ class Endboss extends MoveableObject {
     }
 
     /**
-     * Initiates the animation loop for the end boss.
-     * Checks the state of the boss (walking, hurt, dead) and plays the appropriate animation.
+     * Initiates the animation of the end boss.
      */
     animate() {
         this.intervalRef = setInterval(() => {
@@ -86,9 +82,7 @@ class Endboss extends MoveableObject {
     }
 
     /**
-     * Plays the animation for the end boss being hurt.
-     * Updates the animation, hit count, and speed.
-     * Sets a timeout to reset the hurt state and triggers the dead animation if hit count exceeds 12.
+     * Animates the end boss when hurt.
      */
     animateHurt() {
         this.playAnimation(this.IMAGES_BOSS_HURT);
@@ -104,22 +98,21 @@ class Endboss extends MoveableObject {
     }
 
     /**
-     * Plays the animation for the end boss being dead.
+     * Animates the end boss when dead.
      */
     animateDead() {
         this.playAnimation(this.IMAGES_DEAD);
     }
 
     /**
-     * Plays the animation for the end boss walking.
+     * Animates the end boss walking.
      */
     animateWalking() {
         this.playAnimation(this.IMAGES_WALKING);
     }
 
     /**
-     * Plays the animation for the end boss being dead as a boss chicken.
-     * Resets the speed to 0.
+     * Animates the end boss when dead and stops its movement.
      */
     animateDeadBossChicken() {
         this.playAnimation(this.IMAGES_DEAD);
@@ -127,8 +120,7 @@ class Endboss extends MoveableObject {
     }
 
     /**
-     * Displays the win image on the end screen after a delay of 1000 milliseconds.
-     * Shows the restart button and navigates to the start screen.
+     * Displays the win image and restart button after winning the game.
      */
     endscreenWin() {
         setTimeout(() => {
@@ -139,7 +131,7 @@ class Endboss extends MoveableObject {
     }
 
     /**
-     * Displays the win image on the end screen.
+     * Displays the win image.
      */
     displayWinImage() {
         let img = document.getElementById('start-screen');
@@ -149,7 +141,7 @@ class Endboss extends MoveableObject {
     }
 
     /**
-     * Shows the restart button on the end screen.
+     * Shows the restart button.
      */
     showRestartButton() {
         let restartBtn = document.getElementById('restart-button');

@@ -1,17 +1,21 @@
 /**
- * Represents a bottle object in the game.
+ * Represents a bottle object that extends MoveableObject.
  * @extends MoveableObject
  */
 class Bottle extends MoveableObject {
+
+    width = 100;
+    height = 100;
+    IMAGES_BOTTLES = [
+        '../El_Pollo_Loco/img_pollo_locco/img/6_salsa_bottle/1_salsa_bottle_on_ground.png',
+        '../El_Pollo_Loco/img_pollo_locco/img/6_salsa_bottle/2_salsa_bottle_on_ground.png',
+    ];
+
     /**
-     * Initializes a bottle object with default settings.
-     * Loads images, sets dimensions, position, and initiates animation.
-     */
+        * Creates an instance of Bottle.
+        */
     constructor() {
-        super();
-        this.width = 100;
-        this.height = 100;
-        this.loadImage(this.IMAGES_BOTTLES[0]);
+        super().loadImage(this.IMAGES_BOTTLES[0]);
         this.x = 200 + Math.random() * 10000;
         this.y = 320 + Math.random() * -10;
         this.loadImages(this.IMAGES_BOTTLES);
@@ -19,7 +23,7 @@ class Bottle extends MoveableObject {
     }
 
     /**
-     * Initiates the animation loop for the bottle object.
+     * Animates the bottle.
      */
     animate() {
         setInterval(() => {
@@ -28,8 +32,8 @@ class Bottle extends MoveableObject {
     }
 
     /**
-     * Plays the animation for the bottle object.
-     * @param {string[]} images - Array of image paths for animation.
+     * Plays animation of the bottle using the provided images.
+     * @param {string[]} images - Array of paths to images.
      */
     playAnimation(images) {
         let i = this.currentImage % images.length;
@@ -39,7 +43,7 @@ class Bottle extends MoveableObject {
     }
 
     /**
-     * Removes the bottle object from the map by moving it off-screen.
+     * Removes the bottle from the map.
      */
     removeFromMap() {
         this.x = -1000;

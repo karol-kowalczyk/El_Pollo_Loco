@@ -1,8 +1,7 @@
 /**
- * Represents a heart object in the game.
+ * Represents a heart object that extends a drawable object.
  * @extends DrawableObject
  */
-
 class Heart extends DrawableObject {
 
     y = 60;
@@ -13,6 +12,9 @@ class Heart extends DrawableObject {
         '../El_Pollo_Loco/img_pollo_locco/img/7_statusbars/3_icons/icon_health_2.png'
     ];
 
+    /**
+      * Constructs a new Heart object.
+      */
     constructor() {
         super().loadImage(this.IMAGES_HEALTH[0]);
         this.loadImages(this.IMAGES_HEALTH);
@@ -22,9 +24,7 @@ class Heart extends DrawableObject {
     }
 
     /**
-     * Initiates the animation loop for an object.
-     * Calls the playAnimation method at an interval of 2 frames per second (0.5 seconds per frame).
-     * The animation is based on the provided array of images representing the health status of the object.
+     * Initiates animation for the heart object.
      */
     animate() {
         setInterval(() => {
@@ -33,9 +33,8 @@ class Heart extends DrawableObject {
     }
 
     /**
-     * Plays the next frame of animation from the provided array of images.
-     * Updates the object's image based on the current frame.
-     * @param {string[]} images - Array of image paths representing the animation frames.
+     * Plays animation for the heart object.
+     * @param {string[]} images - Array of image paths to be animated.
      */
     playAnimation(images) {
         let i = this.currentImage % images.length;
@@ -45,7 +44,7 @@ class Heart extends DrawableObject {
     }
 
     /**
-     * Removes the object from the map by setting its horizontal position to a large negative value.
+     * Removes the heart object from the map.
      */
     removeFromMap() {
         this.x = -1000;

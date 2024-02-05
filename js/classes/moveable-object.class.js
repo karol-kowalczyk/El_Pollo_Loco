@@ -25,6 +25,9 @@ class MoveableObject extends DrawableObject {
         bottom: -100
     };
 
+    /**
+     * Constructs a new MoveableObject.
+     */
     constructor() {
         super();
         this.enemyJumped = false;
@@ -43,55 +46,54 @@ class MoveableObject extends DrawableObject {
     bossHurtSound = new Audio('../El_Pollo_Loco/img_pollo_locco/img/audio/enemy_hurt_sound.mp3');
 
     /**
-     * Toggles the volume of various audio elements in the game.
-     * If the sound is currently muted, it unmutes it and sets the volume to 0.5 for all audio elements.
-     * If the sound is currently unmuted, it mutes it by setting the volume to 0.0 for all audio elements.
+     * Toggles the volume of multiple audio elements based on the state of the sound icon.
      */
     toggleVolume() {
+        /** @type {HTMLImageElement} */
         const soundIcon = document.getElementById('sound-icon');
+
+        /** @type {HTMLAudioElement[]} */
         const audioElements = [this.walking_sound, this.snoring_sound, this.endgame_sound, this.lost_sound, this.collectCoinSound,
         this.collectBottleSound, this.hurtSound, this.bossHurtSound];
 
         if (soundIcon.src.includes('speaker-mute.png')) {
             audioElements.forEach(audio => {
+                /** @type {number} */
                 audio.volume = 0.0;
             });
         } else {
             audioElements.forEach(audio => {
+                /** @type {number} */
                 audio.volume = 0.5;
             });
         }
     }
 
     /**
-     * Controls the playing of the start screen music based on the provided boolean value.
-     * If the boolean value is true, the start screen music is played; otherwise, it is paused.
-     * @param {boolean} isStartScreenMusicPlaying - Indicates whether the start screen music should be playing.
+     * Controls the playing and pausing of the background music on the start screen.
+     * @param {boolean} isStartScreenMusicPlaying - Indicates whether the start screen music should be playing or not.
      */
     startScreenMusicPlaying(isStartScreenMusicPlaying) {
+        /** @type {number} */
         let backgroundMusicInterval = setInterval(() => {
             if (isStartScreenMusicPlaying) {
                 loadingScreenMusic.play();
             } else {
                 loadingScreenMusic.pause();
             }
-
         }, 1000 / 60);
     }
 
     /**
-     * Plays the losing sound effect by pausing the endgame sound and playing the lost sound.
+     * Plays the losing sound by pausing the endgame sound and playing the lost sound.
      */
     playLosingSound() {
         this.endgame_sound.pause();
         this.lost_sound.play();
     }
 
-
     /**
-     * Periodically toggles the volume of various audio elements in the game.
-     * This function is called repeatedly at an interval of approximately 60 times per second (60 FPS).
-     * It internally calls the toggleVolume method to control the volume state.
+     * Checks and toggles the volume periodically.
      */
     checkSound() {
         setInterval(() => {
@@ -100,25 +102,21 @@ class MoveableObject extends DrawableObject {
     }
 
     /**
-     * Plays the sound effect for collecting coins.
-     * This function triggers the playing of the collect coin sound effect.
+     * Plays the collect coin sound.
      */
     playCollectCoinSound() {
         this.collectCoinSound.play();
     }
 
     /**
-     * Plays the sound effect for collecting bottles.
-     * This function triggers the playing of the collect bottle sound effect.
+     * Plays the collect bottle sound.
      */
     playCollectBottleSound() {
         this.collectBottleSound.play();
     }
 
     /**
-     * Applies gravity to the object, causing it to fall downwards.
-     * Gravity is simulated by decrementing the vertical position (y-coordinate) of the object and adjusting its vertical speed accordingly.
-     * This function is called repeatedly at an interval of approximately 25 times per second (25 FPS).
+     * Applies gravity to the character's vertical position.
      */
     applyGravity() {
         setInterval(() => {
@@ -130,10 +128,8 @@ class MoveableObject extends DrawableObject {
     }
 
     /**
-     * Determines whether the object is above the ground level.
-     * If the object is an instance of ThrowableObject, it's always considered above the ground.
-     * Otherwise, it checks whether the object's vertical position (y-coordinate) is less than 120 pixels.
-     * @returns {boolean} - True if the object is above the ground, false otherwise.
+     * Checks if the character is above the ground.
+     * @returns {boolean} - Returns true if the character is above the ground, false otherwise.
      */
     isAboveGround() {
         if (this instanceof ThrowableObject) {
@@ -144,10 +140,9 @@ class MoveableObject extends DrawableObject {
     }
 
     /**
-     * Determines whether this object is colliding with another movable object.
-     * Collision detection is based on the positions and dimensions of the objects along with their offsets.
-     * @param {MovableObject} mo - The movable object to check for collision with.
-     * @returns {boolean} - True if a collision is detected, false otherwise.
+     * Checks if the character is colliding with another movable object.
+     * @param {MovableObject} mo - The movable object to check for collision.
+     * @returns {boolean} - Returns true if there is a collision, false otherwise.
      */
     isColliding(mo) {
         return this.x + this.width - this.offset.right > mo.x + mo.offset.left &&
@@ -157,10 +152,9 @@ class MoveableObject extends DrawableObject {
     }
 
     /**
-     * Determines whether this object is colliding with an item.
-     * Collision detection is based on the positions and dimensions of the objects with fixed offsets.
-     * @param {Item} item - The item to check for collision with.
-     * @returns {boolean} - True if a collision is detected, false otherwise.
+     * Checks if the character is colliding with an item.
+     * @param {Item} item - The item to check for collision.
+     * @returns {boolean} - Returns true if there is a collision, false otherwise.
      */
     isCollidingItems(item) {
         return this.x + this.width - 90 > item.x &&
@@ -170,10 +164,9 @@ class MoveableObject extends DrawableObject {
     }
 
     /**
-     * Determines whether this object is colliding with a thrown item.
-     * Collision detection is based on the positions and dimensions of the objects.
-     * @param {ThrowableObject} mo - The thrown item to check for collision with.
-     * @returns {boolean} - True if a collision is detected, false otherwise.
+     * Checks if the character is colliding with a thrown item.
+     * @param {ThrownItem} mo - The thrown item to check for collision.
+     * @returns {boolean} - Returns true if there is a collision, false otherwise.
      */
     isCollidingThrownItems(mo) {
         return this.x + this.width > mo.x &&
@@ -183,8 +176,7 @@ class MoveableObject extends DrawableObject {
     }
 
     /**
-     * Increases the coin count by 20 and checks if it reaches the maximum value.
-     * If the coin count is less than 100, it triggers the collection sound effect.
+     * Collects coins, plays collect coin sound, and updates the coin count.
      */
     collectCoin() {
         this.coin += 20;
@@ -198,8 +190,7 @@ class MoveableObject extends DrawableObject {
     }
 
     /**
-     * Increases the bottle count by 20 and checks if it reaches the maximum value.
-     * If the bottle count is less than 100, it triggers the collection sound effect.
+     * Collects bottles, plays collect bottle sound, and updates the bottle count.
      */
     collectBottle() {
         this.bottle += 20;
@@ -212,7 +203,7 @@ class MoveableObject extends DrawableObject {
     }
 
     /**
-     * Decreases the bottle count by 20 and ensures it doesn't fall below zero.
+     * Throws bottles, decreases bottle count, and ensures the bottle count does not go below zero.
      */
     throwBottles() {
         this.bottle -= 20;
@@ -222,8 +213,7 @@ class MoveableObject extends DrawableObject {
     }
 
     /**
-     * Increases the energy level by 20 and checks if it reaches the maximum value.
-     * If the energy level is less than 100, it doesn't trigger any additional action.
+     * Collects hearts, updates energy, and ensures energy does not exceed 100.
      */
     collectHeart() {
         this.energy += 20;
@@ -233,8 +223,7 @@ class MoveableObject extends DrawableObject {
     }
 
     /**
-     * Decreases the energy level by 10, plays a hurt sound effect, and updates the last hit timestamp.
-     * If the energy level drops to or below zero, it pauses the hurt sound and resets the energy to zero.
+     * Handles the character being hit, plays hurt sound, and updates energy.
      */
     hit() {
         this.energy -= 10;
@@ -248,8 +237,7 @@ class MoveableObject extends DrawableObject {
     }
 
     /**
-     * Decreases the energy level by 20, plays a hurt sound effect, and updates the last hit timestamp.
-     * If the energy level drops to or below zero, it pauses the hurt sound and resets the energy to zero.
+     * Handles a big hit, plays hurt sound, and updates energy.
      */
     bigHit() {
         this.energy -= 20;
@@ -263,9 +251,7 @@ class MoveableObject extends DrawableObject {
     }
 
     /**
-     * Decreases the boss's energy level by 25 and plays a boss hurt sound effect.
-     * If the boss's energy level drops to or below zero, it sets the energy to zero.
-     * Otherwise, it updates the last boss hit timestamp.
+     * Handles a hit on the boss, plays boss hurt sound, and updates boss energy.
      */
     bossHit() {
         this.bossEnergy -= 25;
@@ -278,8 +264,7 @@ class MoveableObject extends DrawableObject {
     }
 
     /**
-     * Increases the energy level by 20 and checks if it reaches the maximum value.
-     * If the energy level is less than 100, it updates the last heal timestamp.
+     * Handles contact with a life item, updates energy, and ensures energy does not exceed 100.
      */
     contactWithLifeItem() {
         this.energy += 20;
@@ -291,8 +276,8 @@ class MoveableObject extends DrawableObject {
     }
 
     /**
-     * Checks if the player character was recently hit (within the last 0.5 seconds).
-     * @returns {boolean} - True if the character was recently hit, false otherwise.
+     * Checks if the character is currently hurt based on the time elapsed since the last hit.
+     * @returns {boolean} - Returns true if the character is currently hurt, false otherwise.
      */
     isHurt() {
         let timepassed = new Date().getTime() - this.lastHit;
@@ -301,24 +286,24 @@ class MoveableObject extends DrawableObject {
     }
 
     /**
-     * Checks if the player character is dead (energy level equals zero).
-     * @returns {boolean} - True if the character is dead, false otherwise.
+     * Checks if the character is dead (energy is zero).
+     * @returns {boolean} - Returns true if the character is dead, false otherwise.
      */
     isDead() {
-        return this.energy === 0;
+        return this.energy == 0;
     }
 
     /**
-     * Checks if the end boss is dead (boss energy level equals zero).
-     * @returns {boolean} - True if the end boss is dead, false otherwise.
+     * Checks if the end boss is dead (boss energy is zero).
+     * @returns {boolean} - Returns true if the end boss is dead, false otherwise.
      */
     isEndbossDead() {
-        return this.bossEnergy === 0;
+        return this.bossEnergy == 0;
     }
 
     /**
-     * Plays the next frame of animation from the provided array of images.
-     * @param {string[]} images - Array of image paths representing the animation frames.
+     * Plays animation by updating the character's image.
+     * @param {string[]} images - Array of image paths for animation.
      */
     playAnimation(images) {
         let i = this.currentImage % images.length;
@@ -328,23 +313,21 @@ class MoveableObject extends DrawableObject {
     }
 
     /**
-     * Moves the character to the right by its speed value.
+     * Moves the character to the right.
      */
     moveRight() {
         this.x += this.speed;
     }
 
     /**
-     * Moves the character to the left by its speed value.
+     * Moves the character to the left.
      */
     moveLeft() {
         this.x -= this.speed;
     }
 
     /**
-     * Makes the character jump if it hasn't already jumped.
-     * Adjusts the character's vertical position, speed, and acceleration for the jump.
-     * Sets a timeout to reset the enemyJumped flag after 800 milliseconds.
+     * Makes the character jump.
      */
     jump() {
         if (!this.enemyJumped) {
@@ -359,11 +342,12 @@ class MoveableObject extends DrawableObject {
     }
 
     /**
-     * Reloads the page after a delay of 4000 milliseconds, effectively navigating to the start screen.
+     * Redirects to the start screen after a delay.
      */
     toStartScreen() {
         setTimeout(() => {
             location.reload();
         }, 4000)
     }
+
 }

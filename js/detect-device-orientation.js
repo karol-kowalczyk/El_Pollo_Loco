@@ -1,3 +1,8 @@
+/**
+ * Event listener for the window resize event, which calls the checkScreenWidth function.
+ * @function
+ * @name windowResizeListener
+ */
 window.addEventListener('resize', checkScreenWidth);
 
 const elements = [
@@ -11,8 +16,10 @@ const elements = [
 ];
 
 /**
- * Checks the screen orientation.
- * @returns {boolean} True if the screen is in portrait orientation, false otherwise.
+ * Checks the screen orientation and returns true if it's portrait mode, false otherwise.
+ * @function
+ * @name checkScreenOrientation
+ * @returns {boolean} - True if the screen orientation is portrait, false otherwise.
  */
 function checkScreenOrientation() {
     const portrait = window.matchMedia("(orientation: portrait)").matches;
@@ -21,8 +28,10 @@ function checkScreenOrientation() {
 
 /**
  * Toggles the visibility of an element based on screen orientation.
- * @param {boolean} portrait - Whether the screen is in portrait orientation.
- * @param {string} id - The ID of the element to toggle.
+ * @function
+ * @name toggleElementVisibility
+ * @param {boolean} portrait - Whether the screen orientation is portrait.
+ * @param {string} id - The ID of the element to toggle visibility for.
  */
 function toggleElementVisibility(portrait, id) {
     const element = document.getElementById(id);
@@ -34,8 +43,10 @@ function toggleElementVisibility(portrait, id) {
 }
 
 /**
- * Toggles the visibility of all elements based on screen orientation.
- * @param {boolean} portrait - Whether the screen is in portrait orientation.
+ * Toggles the visibility of multiple elements based on screen orientation.
+ * @function
+ * @name toggleElementsVisibility
+ * @param {boolean} portrait - Whether the screen orientation is portrait.
  */
 function toggleElementsVisibility(portrait) {
     elements.forEach(id => {
@@ -44,7 +55,9 @@ function toggleElementsVisibility(portrait) {
 }
 
 /**
- * Checks the screen width and adjusts element visibility accordingly.
+ * Checks the screen width and toggles the visibility of elements accordingly.
+ * @function
+ * @name checkScreenWidth
  */
 function checkScreenWidth() {
     const portrait = checkScreenOrientation();

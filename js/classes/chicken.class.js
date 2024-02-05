@@ -1,8 +1,9 @@
 /**
- * Represents a chicken enemy object in the game.
+ * Represents a chicken enemy in the game.
  * @extends MoveableObject
  */
 class Chicken extends MoveableObject {
+
     height = 100;
     y = 320;
     isAnimating = true;
@@ -31,8 +32,7 @@ class Chicken extends MoveableObject {
     ];
 
     /**
-     * Constructs an instance of the Chicken class.
-     * Loads initial images, sets initial dimensions and position, and initiates animation.
+     * Initializes chicken's properties and animations.
      */
     constructor() {
         super().loadImage('../El_Pollo_Loco/img_pollo_locco/img/3_enemies_chicken/chicken_normal/1_walk/1_w.png');
@@ -44,8 +44,7 @@ class Chicken extends MoveableObject {
     }
 
     /**
-     * Initiates the animation loop for the chicken object.
-     * Moves the chicken left and plays the walking animation.
+     * Animates the chicken's movements.
      */
     animate() {
         setInterval(() => {
@@ -59,8 +58,7 @@ class Chicken extends MoveableObject {
     }
 
     /**
-     * Removes the chicken object from the map.
-     * Delays the removal and plays the death animation.
+     * Removes the chicken from the map.
      */
     removeFromMap() {
         setTimeout(() => {
@@ -69,6 +67,6 @@ class Chicken extends MoveableObject {
 
         setTimeout(() => {
             this.playAnimation(this.IMAGES_DEATH);
-        }, 200);
+        }, 200); 
     }
 }

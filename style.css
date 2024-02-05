@@ -301,3 +301,85 @@ p {
         transform: skew(-20deg) scale(1);
     }
 }
+
+/* responsive */
+@media screen and (max-width: 720px) and (orientation: portrait){
+    
+
+    #turn-device-img {
+        display: flex !important;
+        position: absolute;
+        z-index: 998;
+        animation: rotate 3s infinite;
+        width: 128px;
+        height: 128px;
+        top: 35%;
+        left: 45%;
+    }
+
+    canvas {
+        width: 100%;
+    }
+
+    @keyframes rotate {
+        0% {
+            transform: rotate(-47deg);
+        }
+    
+        50% {
+            transform: rotate(47deg);
+        }
+    
+        100% {
+            transform: rotate(-47deg);
+        }
+    }
+
+}
+
+@media only screen and (max-height: 480px) {
+    canvas {
+        height: 100svh;
+        overflow-y: hidden;
+    }
+
+    body {
+        overflow: hidden;
+    }
+}
+
+@media only screen and (max-height: 680px) {
+    #canvas-container {
+        height: 480px;
+        width: 720px;
+        display: flex;
+        align-items: flex-end;
+        justify-content: flex-end;
+        position: absolute;
+        top: 60%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 999;
+    }
+
+}
+
+@media only screen and (max-height: 630px) {
+    h1 {
+        margin: 0;
+        font-size: 98px;
+    }
+}
+
+@media only screen and (max-height: 580px) {
+    h1 {
+        margin: 0;
+    }
+}
+
+@media only screen and (min-height: 480px) {
+    
+    body {
+        overflow: auto;
+    }
+}

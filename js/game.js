@@ -19,14 +19,18 @@ function init() {
     world = new World(canvas, keyboard);
 }
 
+function toggleFullscreen() {
+    enterFullscreen(document.getElementById('canvas-container'));
+    document.getElementById('start-screen').style.width = '100%';
+    document.getElementById('start-screen').style.height = '100%';
+    document.getElementById('canvas').style.width = '100%';
+    document.getElementById('canvas').style.height = '100%';
+}
+
 function toggleScreenSize() {
     fullScreen = !fullScreen;
     if (fullScreen) {
-        enterFullscreen(document.getElementById('canvas-container'));
-        document.getElementById('start-screen').style.width = '100%';
-        document.getElementById('start-screen').style.height = '100%';
-        document.getElementById('canvas').style.width = '100%';
-        document.getElementById('canvas').style.height = '100%';
+        toggleFullscreen();
     } else {
         exitFullscreen();
     }
@@ -95,19 +99,28 @@ setInterval(() => {
     }
 }, 1000 / 60);
 
-function closeStartScreen() {
+function initializeStartScreenElements() {
     let startScreenImg = document.getElementById('start-screen');
     let startButton = document.getElementById('start-button');
+    let phoneIconsDiv = document.getElementById('phone-icons-div');
+    return { startScreenImg, startButton, phoneIconsDiv };
+}
+
+function closeStartScreen() {
+    let { startScreenImg, startButton, phoneIconsDiv } = initializeStartScreenElements();
+    phoneIconsDiv.classList.add('d-none');
     stopStartScreenMusic();
     hideHTMLElements(startScreenImg, startButton);
-    let phoneIconsDiv = document.getElementById('phone-icons-div');
-    phoneIconsDiv.classList.add('d-none');
 }
 
 function hideHTMLElements(startScreenImg, startButton) {
     startButton.classList.add('d-none');
     startScreenImg.src = '/El_Pollo_Loco/img_pollo_locco/img/10_background/loading_screen.png';
     init();
+    deleteStartScreenImg();
+}
+
+function deleteStartScreenImg() {
     setTimeout(function () {
         startScreenImg.classList.add('d-none');
     }, 6000);

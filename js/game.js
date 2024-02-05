@@ -155,7 +155,6 @@ function togglePlay() {
 
 // In der init()-Funktion oder einem ähnlichen Anfangspunkt
 setInterval(() => {
-    
     if (isStartScreenMusicPlaying) {
         loadingScreenMusic.play();
     } else {
@@ -176,7 +175,7 @@ function closeStartScreen() {
 function hideHTMLElements(startScreenImg, startButton) {
     startButton.classList.add('d-none');
     // startScreenImg.classList.add('d-none')
-    startScreenImg.src = 'El_Pollo_Loco/img_pollo_locco/img/10_background/loading_screen.png';
+    startScreenImg.src = '/El_Pollo_Loco/img_pollo_locco/img/10_background/loading_screen.png';
     init();
     setTimeout(function () {
         // startScreenImg.classList.remove('itemHidden');

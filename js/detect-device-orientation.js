@@ -12,10 +12,8 @@ function checkScreenWidth() {
     let startButton = document.getElementById('start-button');
     let headline = document.getElementById('headline');
 
-    console.log(portrait);
-
     if (portrait) {
-        if(window.innerWidth <= 720)
+        turnDeviceImg.classList.remove('d-none');
         turnDeviceHeadline.classList.add('turn-device-headline');
         turnDeviceHeadline.classList.remove('d-none');
         turnDeviceImg.classList.add('turn-device-img');

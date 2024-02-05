@@ -97,7 +97,7 @@ class Endboss extends MoveableObject {
 
     endscreenWin() {
         setTimeout(() => {
-        let img = document.getElementById('start-screen-img');
+        let img = document.getElementById('start-screen');
         img.src = '../El_Pollo_Loco/img_pollo_locco/img/9_intro_outro_screens/game_over/you_won.png';
         img.classList.remove('d-none');
         img.classList.add('opacity');
@@ -106,6 +106,4 @@ class Endboss extends MoveableObject {
         this.toStartScreen();
         }, 1000);
     }
-
-   
 }  

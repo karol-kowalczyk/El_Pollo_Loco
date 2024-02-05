@@ -19,77 +19,12 @@ function init() {
     world = new World(canvas, keyboard);
 }
 
-
-window.addEventListener("keydown", (event) => {
-    if (event.keyCode == 39) {
-        keyboard.RIGHT = true;
-    }
-
-    if (event.keyCode == 37) {
-        keyboard.LEFT = true;
-    }
-
-    if (event.keyCode == 38) {
-        keyboard.UP = true;
-    }
-
-    if (event.keyCode == 40) {
-        keyboard.DOWN = true;
-
-    }
-    if (event.keyCode == 32) {
-        keyboard.SPACE = true;
-    }
-
-
-
-    if (event.keyCode == 68 && !dKeyPressed) { // Check if 'd' is pressed and not processing
-        keyboard.D = true;
-        dKeyPressed = true; // Set flag to true
-        setTimeout(() => { dKeyPressed = false; }, 1000); // Reset flag after 1 second
-    }
-});
-
-
-window.addEventListener("keyup", (event) => {
-    if (event.keyCode == 39) {
-        keyboard.RIGHT = false;
-    }
-
-    if (event.keyCode == 37) {
-        keyboard.LEFT = false;
-    }
-
-    if (event.keyCode == 38) {
-        keyboard.UP = false;
-    }
-
-    if (event.keyCode == 40) {
-        keyboard.DOWN = false;
-
-    }
-    if (event.keyCode == 32) {
-        keyboard.SPACE = false;
-    }
-
-    if (event.keyCode == 68) {
-
-        keyboard.D = false;
-
-    }
-
-});
-
-function setKey(key, state) {
-    keyboard[key] = state;
-}
-
 function toggleScreenSize() {
     fullScreen = !fullScreen;
     if (fullScreen) {
         enterFullscreen(document.getElementById('canvas-container'));
-        document.getElementById('start-screen-img').style.width = '100%';
-        document.getElementById('start-screen-img').style.height = '100%';
+        document.getElementById('start-screen').style.width = '100%';
+        document.getElementById('start-screen').style.height = '100%';
         document.getElementById('canvas').style.width = '100%';
         document.getElementById('canvas').style.height = '100%';
     } else {
@@ -119,7 +54,6 @@ function openGameInstruction(event) {
     event.stopPropagation();
     let gameInstruction = document.getElementById('game-instruction');
     gameInstruction.classList.toggle('d-none');
-
 }
 
 function closeInstruction() {
@@ -153,7 +87,6 @@ function togglePlay() {
     }
 }
 
-// In der init()-Funktion oder einem ähnlichen Anfangspunkt
 setInterval(() => {
     if (isStartScreenMusicPlaying) {
         loadingScreenMusic.play();
@@ -162,22 +95,20 @@ setInterval(() => {
     }
 }, 1000 / 60);
 
-
 function closeStartScreen() {
     let startScreenImg = document.getElementById('start-screen');
     let startButton = document.getElementById('start-button');
     stopStartScreenMusic();
     hideHTMLElements(startScreenImg, startButton);
+    let phoneIconsDiv = document.getElementById('phone-icons-div');
+    phoneIconsDiv.classList.add('d-none');
 }
-
 
 function hideHTMLElements(startScreenImg, startButton) {
     startButton.classList.add('d-none');
-    // startScreenImg.classList.add('d-none')
     startScreenImg.src = '/El_Pollo_Loco/img_pollo_locco/img/10_background/loading_screen.png';
     init();
     setTimeout(function () {
-        // startScreenImg.classList.remove('itemHidden');
         startScreenImg.classList.add('d-none');
     }, 6000);
 }
@@ -186,11 +117,6 @@ function stopStartScreenMusic() {
     loadingScreenMusic.src = './img_pollo_locco/img/audio/nothing.mp3';
 }
 
-
-
-
 function restartGame() {
     location.reload();
 }
-
-

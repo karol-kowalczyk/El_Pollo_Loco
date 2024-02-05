@@ -16,6 +16,7 @@ class ThrowableObject extends MoveableObject {
         '../El_Pollo_Loco/img_pollo_locco/img/6_salsa_bottle/bottle_rotation/4_bottle_rotation.png',
     ];
 
+    iconFileName = this.extractFileNameFromPath(document.getElementById('sound-icon').src);
     splashedBottleSound = new Audio('../El_Pollo_Loco/img_pollo_locco/img/audio/splashed_bottle.mp3');
 
     constructor(x, y) {
@@ -27,7 +28,6 @@ class ThrowableObject extends MoveableObject {
         this.height = 100;
         this.width = 100;
         this.throw(100, 150);
-
     }
 
     throw() {
@@ -43,19 +43,15 @@ class ThrowableObject extends MoveableObject {
     }
 
     extractFileNameFromPath(path) {
-        // Teile den Pfad an den Schrägstrichen auf und nimm den letzten Teil (Dateiname)
         let pathParts = path.split('/');
         return pathParts[pathParts.length - 1];
     }
 
     splashedBottle() {
         clearInterval(this.intervalId);
-        
-        let iconFileName = this.extractFileNameFromPath(document.getElementById('sound-icon').src);
-        
         this.playAnimation(this.IMAGES_SPLASH);
        
-        if (iconFileName === 'speaker-mute.png') {
+        if (this.iconFileName === 'speaker-mute.png') {
             this.splashedBottleSound.pause();
         } else {
             this.splashedBottleSound.play();

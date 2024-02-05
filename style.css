@@ -293,7 +293,7 @@ p {
     z-index: 1;
 }
 
-#turn-device-img {
+.turn-device-img {
     display: none;
     position: absolute;
     z-index: 998;

@@ -31,6 +31,8 @@ class Chicken extends MoveableObject {
         '../El_Pollo_Loco/img_pollo_locco/img/3_enemies_chicken/chicken_normal/2_dead/dead.png'
     ];
 
+    chicken_sound = new Audio('../El_Pollo_Loco/img_pollo_locco/img/audio/Chickens-sound-effect-.mp3');
+
     /**
      * Initializes chicken's properties and animations.
      */
@@ -67,6 +69,8 @@ class Chicken extends MoveableObject {
 
         setTimeout(() => {
             this.playAnimation(this.IMAGES_DEATH);
+            if(this.mute == false)
+            this.chicken_sound.play();
         }, 200); 
     }
 }

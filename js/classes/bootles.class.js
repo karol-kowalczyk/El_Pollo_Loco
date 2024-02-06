@@ -6,6 +6,7 @@ class Bottle extends MoveableObject {
 
     width = 100;
     height = 100;
+    collectBottleSound = new Audio('../El_Pollo_Loco/img_pollo_locco/img/audio/pick_bottle.mp3');
     IMAGES_BOTTLES = [
         '../El_Pollo_Loco/img_pollo_locco/img/6_salsa_bottle/1_salsa_bottle_on_ground.png',
         '../El_Pollo_Loco/img_pollo_locco/img/6_salsa_bottle/2_salsa_bottle_on_ground.png',
@@ -47,5 +48,8 @@ class Bottle extends MoveableObject {
      */
     removeFromMap() {
         this.x = -1000;
+        if(this.mute == false) {
+            this.collectBottleSound.play();
+        }
     }
 }

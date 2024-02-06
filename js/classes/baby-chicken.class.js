@@ -47,10 +47,12 @@ class BabyChicken extends MoveableObject {
         super().loadImage('../El_Pollo_Loco/img_pollo_locco/img/3_enemies_chicken/chicken_normal/1_walk/1_w.png');
         this.loadImages(this.IMAGES_WALKING);
         this.loadImages(this.IMAGES_DEATH);
-        this.x = 3000 + Math.random() * 6000; 
+        this.x = 3000 + Math.random() * 6000;
         this.speed = 10 + Math.random() * 2;
         this.animate();
     }
+
+    chicken_sound = new Audio('../El_Pollo_Loco/img_pollo_locco/img/audio/Chickens-sound-effect-.mp3');
 
     /**
      * Initiates the animation of the baby chicken.
@@ -76,6 +78,8 @@ class BabyChicken extends MoveableObject {
 
         setTimeout(() => {
             this.playAnimation(this.IMAGES_DEATH);
-        }, 200); 
+            if (this.mute == false)
+                this.chicken_sound.play();
+        }, 200);
     }
 }

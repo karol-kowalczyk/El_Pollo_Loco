@@ -36,8 +36,8 @@ class MoveableObject extends DrawableObject {
     }
 
     win_sound = new Audio('../El_Pollo_Loco/img_pollo_locco/img/audio/game-won.wav');
-    collectCoinSound = new Audio('../El_Pollo_Loco/img_pollo_locco/img/audio/super-mario-coin-sound.mp3');
-    collectBottleSound = new Audio('../El_Pollo_Loco/img_pollo_locco/img/audio/pick_bottle.mp3');
+    
+    
     hurtSound = new Audio('../El_Pollo_Loco/img_pollo_locco/img/audio/main_character_hurt.mp3');
     walking_sound = new Audio('../El_Pollo_Loco/img_pollo_locco/img/audio/walking.mp3');
     snoring_sound = new Audio('../El_Pollo_Loco/img_pollo_locco/img/audio/Cartoon_Snoring_SOUND_EFFECT.mp3');
@@ -49,22 +49,17 @@ class MoveableObject extends DrawableObject {
      * Toggles the volume of multiple audio elements based on the state of the sound icon.
      */
     toggleVolume() {
-        /** @type {HTMLImageElement} */
         const soundIcon = document.getElementById('sound-icon');
 
-        /** @type {HTMLAudioElement[]} */
-        const audioElements = [this.walking_sound, this.snoring_sound, this.endgame_sound, this.lost_sound, this.collectCoinSound,
-        this.collectBottleSound, this.hurtSound, this.bossHurtSound];
+        const audioElements = [this.walking_sound, this.snoring_sound, this.endgame_sound, this.lost_sound, this.hurtSound, this.bossHurtSound];
 
         if (soundIcon.src.includes('speaker-mute.png')) {
             audioElements.forEach(audio => {
-                /** @type {number} */
                 audio.volume = 0.0;
                 this.mute = true;
             });
         } else {
             audioElements.forEach(audio => {
-                /** @type {number} */
                 audio.volume = 0.5;
                 this.mute = false;
             });
@@ -102,21 +97,7 @@ class MoveableObject extends DrawableObject {
             this.toggleVolume();
         }, 1000 / 60);
     }
-
-    /**
-     * Plays the collect coin sound.
-     */
-    playCollectCoinSound() {
-        this.collectCoinSound.play();
-    }
-
-    /**
-     * Plays the collect bottle sound.
-     */
-    playCollectBottleSound() {
-        this.collectBottleSound.play();
-    }
-
+    
     /**
      * Applies gravity to the character's vertical position.
      */
@@ -185,10 +166,6 @@ class MoveableObject extends DrawableObject {
         if (this.coin >= 100) {
             this.coin = 100;
         }
-
-        if (this.coin < 100) {
-            this.playCollectCoinSound();
-        }
     }
 
     /**
@@ -198,9 +175,6 @@ class MoveableObject extends DrawableObject {
         this.bottle += 20;
         if (this.bottle >= 100) {
             this.bottle = 100;
-        }
-        if (this.bottle < 100) {
-            this.playCollectBottleSound();
         }
     }
 

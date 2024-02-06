@@ -1,12 +1,13 @@
 /**
  * Represents a collection of coins in the game.
- * @extends DrawableObject
+ * @extends MoveableObject
  */
-class Coins extends DrawableObject {
+class Coins extends MoveableObject {
 
     y = 250;
     width = 200;
     height = 200;
+    collectCoinSound = new Audio('../El_Pollo_Loco/img_pollo_locco/img/audio/super-mario-coin-sound.mp3');
     IMAGES_COINS = [
         '../El_Pollo_Loco/img_pollo_locco/img/8_coin/coin_1.png',
         '../El_Pollo_Loco/img_pollo_locco/img/8_coin/coin_2.png'
@@ -47,5 +48,7 @@ class Coins extends DrawableObject {
      */
     removeFromMap() {
         this.x = -1000;
+        if(this.mute == false) 
+        this.collectCoinSound.play();
     }
 }

@@ -38,9 +38,9 @@ class MoveableObject extends DrawableObject {
     win_sound = new Audio('../El_Pollo_Loco/img_pollo_locco/img/audio/game-won.wav');
     
     
-    hurtSound = new Audio('../El_Pollo_Loco/img_pollo_locco/img/audio/main_character_hurt.mp3');
-    walking_sound = new Audio('../El_Pollo_Loco/img_pollo_locco/img/audio/walking.mp3');
-    snoring_sound = new Audio('../El_Pollo_Loco/img_pollo_locco/img/audio/Cartoon_Snoring_SOUND_EFFECT.mp3');
+    
+    
+    
     endgame_sound = new Audio('../El_Pollo_Loco/img_pollo_locco/img/audio/End_Boss_Music.mp3');
     lost_sound = new Audio('../El_Pollo_Loco/img_pollo_locco/img/audio/lost_game.mp3');
     bossHurtSound = new Audio('../El_Pollo_Loco/img_pollo_locco/img/audio/enemy_hurt_sound.mp3');
@@ -51,7 +51,7 @@ class MoveableObject extends DrawableObject {
     toggleVolume() {
         const soundIcon = document.getElementById('sound-icon');
 
-        const audioElements = [this.walking_sound, this.snoring_sound, this.endgame_sound, this.lost_sound, this.hurtSound, this.bossHurtSound];
+        const audioElements =  [this.endgame_sound, this.lost_sound, this.bossHurtSound];
 
         if (soundIcon.src.includes('speaker-mute.png')) {
             audioElements.forEach(audio => {
@@ -97,7 +97,7 @@ class MoveableObject extends DrawableObject {
             this.toggleVolume();
         }, 1000 / 60);
     }
-    
+
     /**
      * Applies gravity to the character's vertical position.
      */
@@ -195,34 +195,6 @@ class MoveableObject extends DrawableObject {
         this.energy += 20;
         if (this.energy >= 100) {
             this.energy = 100;
-        }
-    }
-
-    /**
-     * Handles the character being hit, plays hurt sound, and updates energy.
-     */
-    hit() {
-        this.energy -= 10;
-        this.hurtSound.play();
-        if (this.energy <= 0) {
-            this.hurtSound.pause();
-            this.energy = 0;
-        } else {
-            this.lastHit = new Date().getTime();
-        }
-    }
-
-    /**
-     * Handles a big hit, plays hurt sound, and updates energy.
-     */
-    bigHit() {
-        this.energy -= 20;
-        this.hurtSound.play();
-        if (this.energy <= 0) {
-            this.hurtSound.pause();
-            this.energy = 0;
-        } else {
-            this.lastHit = new Date().getTime();
         }
     }
 

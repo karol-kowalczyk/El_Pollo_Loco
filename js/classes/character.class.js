@@ -72,6 +72,9 @@ class Character extends MoveableObject {
     ]
 
     jump_sound = new Audio('../El_Pollo_Loco/img_pollo_locco/img/audio/jump-pepe.mp3');
+    hurtSound = new Audio('../El_Pollo_Loco/img_pollo_locco/img/audio/main_character_hurt.mp3');
+    walking_sound = new Audio('../El_Pollo_Loco/img_pollo_locco/img/audio/walking.mp3');
+    snoring_sound = new Audio('../El_Pollo_Loco/img_pollo_locco/img/audio/Cartoon_Snoring_SOUND_EFFECT.mp3');
 
     world;
 
@@ -128,18 +131,27 @@ class Character extends MoveableObject {
      * Handles character walking behavior.
      */
     handleWalking() {
-        this.walking_sound.pause();
         if (this.world.keyboard.RIGHT && this.x < this.endbossInstance.x) {
             this.otherDirection = false;
             this.moveRight();
-            this.walking_sound.play();
-            this.snoring_sound.pause();
+            if (this.mute == false) {
+                this.walking_sound.play();
+            }
+
+            if (this.mute == true) {
+                this.snoring_sound.pause();
+            }
         }
 
         if (this.world.keyboard.LEFT && this.x > 0) {
             this.otherDirection = true;
             this.moveLeft();
-            this.walking_sound.play();
+            if (this.mute == false) {
+                this.walking_sound.play();
+            }
+            if (this.mute == true) {
+                this.snoring_sound.pause();
+            }
         }
     }
 
@@ -243,7 +255,9 @@ class Character extends MoveableObject {
         const currentTime = Date.now();
         if (!this.isHurt() && !this.isDead() && currentTime - this.lastKeyPressTime >= 2500) {
             this.playAnimation(this.IMAGES_SNORING);
-            this.snoring_sound.play();
+            if (this.mute == false) {
+                this.snoring_sound.play();
+            }
         }
     }
 
@@ -270,7 +284,7 @@ class Character extends MoveableObject {
         super.jump();
         this.lastKeyPressTime = Date.now();
 
-        if(this.mute == false) {
+        if (this.mute == false) {
             this.jump_sound.play();
         }
     }
@@ -313,5 +327,37 @@ class Character extends MoveableObject {
     extractFileNameFromPath(path) {
         let pathParts = path.split('/');
         return pathParts[pathParts.length - 1];
+    }
+
+    /**
+    * Handles the character being hit, plays hurt sound, and updates energy.
+    */
+    hit() {
+        this.energy -= 10;
+        if (this.mute == false) {
+            this.hurtSound.play();
+        }
+        if (this.energy <= 0) {
+            this.hurtSound.pause();
+            this.energy = 0;
+        } else {
+            this.lastHit = new Date().getTime();
+        }
+    }
+
+    /**
+    * Handles a big hit, plays hurt sound, and updates energy.
+    */
+    bigHit() {
+        this.energy -= 20;
+        if (this.mute == false) {
+            this.hurtSound.play();
+        }
+        if (this.energy <= 0) {
+            this.hurtSound.pause();
+            this.energy = 0;
+        } else {
+            this.lastHit = new Date().getTime();
+        }
     }
 } 

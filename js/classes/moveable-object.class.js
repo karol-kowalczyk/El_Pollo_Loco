@@ -60,11 +60,13 @@ class MoveableObject extends DrawableObject {
             audioElements.forEach(audio => {
                 /** @type {number} */
                 audio.volume = 0.0;
+                this.mute = true;
             });
         } else {
             audioElements.forEach(audio => {
                 /** @type {number} */
                 audio.volume = 0.5;
+                this.mute = false;
             });
         }
     }

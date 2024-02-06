@@ -71,6 +71,8 @@ class Character extends MoveableObject {
         '../El_Pollo_Loco/img_pollo_locco/img/2_character_pepe/1_idle/long_idle/I-20.png',
     ]
 
+    jump_sound = new Audio('../El_Pollo_Loco/img_pollo_locco/img/audio/jump-pepe.mp3');
+
     world;
 
     /**
@@ -262,11 +264,15 @@ class Character extends MoveableObject {
     }
 
     /**
-     * Makes character jump and updates last key press time.
+     * Makes character jump and updates last key press time. Plays jump sound, if boolean is false;
      */
     jump() {
         super.jump();
         this.lastKeyPressTime = Date.now();
+
+        if(this.mute == false) {
+            this.jump_sound.play();
+        }
     }
 
     /**

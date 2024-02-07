@@ -11,7 +11,7 @@ class DrawableObject {
     mute = true;
     currentImage = 0;
     endgame_sound = new Audio('../El_Pollo_Loco/img_pollo_locco/img/audio/End_Boss_Music.mp3');
-    win_sound = new Audio('../El_Pollo_Loco/img_pollo_locco/img/audio/game-won.wav');
+    win_sound = new Audio('../El_Pollo_Loco/img_pollo_locco/img/audio/game-won.mp3');
 
     /**
      * Loads an image from the given path.

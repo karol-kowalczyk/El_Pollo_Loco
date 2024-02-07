@@ -59,7 +59,7 @@ class Chicken extends MoveableObject {
         this.loadImages(this.IMAGES_WALKING);
         this.loadImages(this.IMAGES_DEATH);
         this.x = 2200 + Math.random() * 8000;
-        this.speed = 2 + Math.random() * 1;
+        this.speed = 20 + Math.random() * 2;
         this.animate();
     }
 
@@ -74,7 +74,7 @@ class Chicken extends MoveableObject {
             } else {
                 this.removeFromMap();
             }
-        }, 50);
+        }, 500);
     }
 
     /**
@@ -90,6 +90,6 @@ class Chicken extends MoveableObject {
             this.playAnimation(this.IMAGES_DEATH);
             if (!this.mute)
                 this.chicken_sound.play();
-        }, 1000);
+        }, 10);
     }
 }

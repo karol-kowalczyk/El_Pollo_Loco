@@ -33,17 +33,6 @@ class Bottle extends MoveableObject {
     }
 
     /**
-     * Plays animation of the bottle using the provided images.
-     * @param {string[]} images - Array of paths to images.
-     */
-    playAnimation(images) {
-        let i = this.currentImage % images.length;
-        let path = images[i];
-        this.img = this.imageCache[path];
-        this.currentImage++;
-    }
-
-    /**
      * Removes the bottle from the map.
      */
     removeFromMap() {

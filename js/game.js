@@ -156,7 +156,9 @@ function initializeStartScreenElements() {
  */
 function closeStartScreen() {
     let { startScreenImg, startButton, phoneIconsDiv } = initializeStartScreenElements();
-    phoneIconsDiv.classList.add('d-none');
+    if (window.width >= 1000) {
+        phoneIconsDiv.classList.add('d-none');
+    }
     stopStartScreenMusic();
     hideHTMLElements(startScreenImg, startButton);
 }

@@ -19,7 +19,7 @@ class Heart extends MoveableObject {
     constructor() {
         super().loadImage(this.IMAGES_HEALTH[0]);
         this.loadImages(this.IMAGES_HEALTH);
-        this.x = 1200 + Math.random() * 10000;
+        this.x = 1200 + Math.random() * 11000;
         this.y = this.y * Math.random() * 2;
         this.animate();
     }
@@ -31,17 +31,6 @@ class Heart extends MoveableObject {
         setInterval(() => {
             this.playAnimation(this.IMAGES_HEALTH);
         }, 1000 / 2);
-    }
-
-    /**
-     * Plays animation for the heart object.
-     * @param {string[]} images - Array of image paths to be animated.
-     */
-    playAnimation(images) {
-        let i = this.currentImage % images.length;
-        let path = images[i];
-        this.img = this.imageCache[path];
-        this.currentImage++;
     }
 
     /**

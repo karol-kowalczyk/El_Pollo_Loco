@@ -71,7 +71,7 @@ class BabyChicken extends MoveableObject {
             } else {
                 this.removeFromMap();
             }
-        }, 1000);
+        }, 1200);
     }
 
     /**

@@ -312,6 +312,7 @@ class MoveableObject extends DrawableObject {
      * Plays the losing sound by pausing the endgame sound and playing the losing sound.
      */
     playLosingSound() {
+        this.soundIcon.src = '../El_Pollo_Loco/img_pollo_locco/img/10_background/speaker-mute.png';
         loadingScreenMusic.pause();
         this.endgame_sound.pause();
         this.losing_sound.play();

@@ -103,14 +103,22 @@ class Character extends MoveableObject {
     }
 
     /**
-     * Animates the character's movements and actions.
-     */
+   * Animates the character's movements and actions.
+   */
     animate() {
+        /**
+         * Executes a series of actions repeatedly at specified intervals.
+         * @returns {void}
+         */
         setInterval(() => {
             this.handleEndgame();
             this.handleAnimations();
         }, 100);
 
+        /**
+         * Executes a series of actions repeatedly at specified intervals to control character's movements.
+         * @returns {void}
+         */
         setInterval(() => {
             this.handleWalking();
             this.handleJumping();
@@ -119,39 +127,55 @@ class Character extends MoveableObject {
     }
 
     /**
-    * Stops an interval.
-    * @param {number} intervalId - The ID of the interval to stop.
-    * @returns {void}
-    */
+     * Stops a running interval.
+     * @param {number} intervalId - The ID of the interval to stop.
+     * @returns {void}
+     */
     stopInterval(intervalId) {
         clearInterval(intervalId);
     }
 
     /**
      * Handles character walking behavior.
+     * @returns {void}
      */
     handleWalking() {
         if (this.world.keyboard.RIGHT && this.x < this.endbossInstance.x) {
-            this.otherDirection = false;
-            this.moveRight();
-            if (this.mute == false) {
-                this.walking_sound.play();
-            }
-
-            if (this.mute == true) {
-                this.snoring_sound.pause();
-            }
+            this.walkingRight();
         }
 
         if (this.world.keyboard.LEFT && this.x > 0) {
-            this.otherDirection = true;
-            this.moveLeft();
-            if (this.mute == false) {
-                this.walking_sound.play();
-            }
-            if (this.mute == true) {
-                this.snoring_sound.pause();
-            }
+            this.walkingLeft();
+        }
+    }
+
+    /**
+     * Moves the character to the left and triggers associated actions.
+     * @returns {void}
+     */
+    walkingLeft() {
+        this.otherDirection = true;
+        this.moveLeft();
+        if (!this.mute) {
+            this.walking_sound.play();
+        }
+        if (this.mute) {
+            this.snoring_sound.pause();
+        }
+    }
+
+    /**
+     * Moves the character to the right and triggers associated actions.
+     * @returns {void}
+     */
+    walkingRight() {
+        this.otherDirection = false;
+        this.moveRight();
+        if (!this.mute) {
+            this.walking_sound.play();
+        }
+        if (this.mute) {
+            this.snoring_sound.pause();
         }
     }
 
@@ -311,18 +335,29 @@ class Character extends MoveableObject {
     hit() {
         this.energy -= 10;
         this.hitVar = true;
-        if (this.mute == false) {
+        this.checkLasthit();
+        setTimeout(() => {
+            this.hitVar = false;
+        }, 800)
+    }
+
+    /**
+     * Checks if the character has been hit recently and updates last hit time.
+     * If character's energy is depleted, stops hurt sound and sets energy to 0.
+     * @returns {void}
+     */
+    checkLasthit() {
+        if (this.mute === false) {
             this.hurtSound.play();
         }
         if (this.energy <= 0) {
-            this.hurtSound.pause();
+            if (this.mute === false) {
+                this.hurtSound.pause();
+            }
             this.energy = 0;
         } else {
             this.lastHit = new Date().getTime();
         }
-        setTimeout(() => {
-            this.hitVar = false;
-        }, 800)
     }
 
     /**

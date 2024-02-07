@@ -33,17 +33,6 @@ class Coins extends MoveableObject {
     }
 
     /**
-     * Plays the animation by cycling through the images.
-     * @param {string[]} images - Array of image paths to animate.
-     */
-    playAnimation(images) {
-        let i = this.currentImage % images.length;
-        let path = images[i];
-        this.img = this.imageCache[path];
-        this.currentImage++;
-    }
-
-    /**
      * Removes the coins collection from the map.
      */
     removeFromMap() {

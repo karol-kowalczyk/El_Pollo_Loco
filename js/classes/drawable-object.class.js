@@ -8,6 +8,7 @@ class DrawableObject {
     width = 100;
     height = 150;
     imageCache = {};
+    mute = true;
     currentImage = 0;
     endgame_sound = new Audio('../El_Pollo_Loco/img_pollo_locco/img/audio/End_Boss_Music.mp3');
     win_sound = new Audio('../El_Pollo_Loco/img_pollo_locco/img/audio/game-won.wav');
@@ -52,5 +53,33 @@ class DrawableObject {
             img.src = path;
             this.imageCache[path] = img;
         });
+    }
+
+    /**
+     * Toggles the volume of multiple audio elements based on the state of the sound icon.
+     */
+    toggleVolume() {
+        const audioElements = [this.main_music];
+
+        if (this.soundIcon.src.includes('speaker-mute.png')) {
+            audioElements.forEach(audio => {
+                audio.volume = 0.0;
+                this.mute = true;
+            });
+        } else {
+            audioElements.forEach(audio => {
+                audio.volume = 0.5;
+                this.mute = false;
+            });
+        }
+    }
+
+    /**
+     * Checks and toggles the volume periodically.
+     */
+    checkSound() {
+        setInterval(() => {
+            this.toggleVolume();
+        }, 1000 / 60);
     }
 }

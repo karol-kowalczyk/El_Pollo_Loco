@@ -8,6 +8,7 @@ class Coins extends MoveableObject {
     width = 200;
     height = 200;
     collectCoinSound = new Audio('../El_Pollo_Loco/img_pollo_locco/img/audio/super-mario-coin-sound.mp3');
+    
     IMAGES_COINS = [
         '../El_Pollo_Loco/img_pollo_locco/img/8_coin/coin_1.png',
         '../El_Pollo_Loco/img_pollo_locco/img/8_coin/coin_2.png'
@@ -19,7 +20,7 @@ class Coins extends MoveableObject {
     constructor() {
         super().loadImage(this.IMAGES_COINS[0]);
         this.loadImages(this.IMAGES_COINS);
-        this.x = 500 + Math.random() * 10000; 
+        this.x = 500 + Math.random() * 10000;
         this.animate();
     }
 
@@ -37,7 +38,7 @@ class Coins extends MoveableObject {
      */
     removeFromMap() {
         this.x = -1000;
-        if(this.mute == false) 
-        this.collectCoinSound.play();
+        if (this.mute == false)
+            this.collectCoinSound.play();
     }
 }

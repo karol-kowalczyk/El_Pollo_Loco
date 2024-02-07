@@ -13,7 +13,6 @@ class MoveableObject extends DrawableObject {
     lastBossHit = 0;
     lastHeal = 0;
     coin = 0;
-    mute = true;
     iconClicked = 0;
     bottle = 0;
     hitVar = false;
@@ -38,35 +37,6 @@ class MoveableObject extends DrawableObject {
         this.enemyJumped = false;
         this.jumpTimeout = null;
         this.checkSound();
-    }
-
-    /**
-     * Toggles the volume of multiple audio elements based on the state of the sound icon.
-     */
-    toggleVolume() {
-        
-        const audioElements = [this.main_music];
-
-        if (this.soundIcon.src.includes('speaker-mute.png')) {
-            audioElements.forEach(audio => {
-                audio.volume = 0.0;
-                this.mute = true;
-            });
-        } else {
-            audioElements.forEach(audio => {
-                audio.volume = 0.5;
-                this.mute = false;
-            });
-        }
-    }
-
-    /**
-     * Checks and toggles the volume periodically.
-     */
-    checkSound() {
-        setInterval(() => {
-            this.toggleVolume();
-        }, 1000 / 60);
     }
 
     /**

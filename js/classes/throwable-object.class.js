@@ -70,7 +70,7 @@ class ThrowableObject extends MoveableObject {
     splashedBottle() {
         clearInterval(this.intervalId);
         this.playAnimation(this.IMAGES_SPLASH);
-
+        
         if (this.iconFileName === 'speaker-mute.png') {
             this.splashedBottleSound.pause();
         } else {

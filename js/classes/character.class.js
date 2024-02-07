@@ -150,6 +150,13 @@ class Character extends MoveableObject {
     }
 
     /**
+     * Plays walking sound, if main character is walking/=.
+     */
+    walkingSound() {
+        this.walking_sound.play();
+    }
+
+    /**
      * Moves the character to the left and triggers associated actions.
      * @returns {void}
      */
@@ -157,7 +164,7 @@ class Character extends MoveableObject {
         this.otherDirection = true;
         this.moveLeft();
         if (!this.mute) {
-            this.walking_sound.play();
+            this.walkingSound();
         }
         if (this.mute) {
             this.snoring_sound.pause();
@@ -172,7 +179,7 @@ class Character extends MoveableObject {
         this.otherDirection = false;
         this.moveRight();
         if (!this.mute) {
-            this.walking_sound.play();
+            this.walkingSound();
         }
         if (this.mute) {
             this.snoring_sound.pause();
@@ -287,7 +294,7 @@ class Character extends MoveableObject {
         if (!this.isHurt() && !this.isDead() && currentTime - this.lastKeyPressTime >= 2500) {
             this.playAnimation(this.IMAGES_SNORING);
             if (this.mute == false) {
-                playSnoringSound();
+                this.playSnoringSound();
             }
         }
     }

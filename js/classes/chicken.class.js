@@ -74,7 +74,7 @@ class Chicken extends MoveableObject {
             } else {
                 this.removeFromMap();
             }
-        }, 200);
+        }, 50);
     }
 
     /**

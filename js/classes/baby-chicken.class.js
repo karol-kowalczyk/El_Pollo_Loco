@@ -12,7 +12,7 @@ class BabyChicken extends MoveableObject {
         top: -30,
         left: 0,
         right: 0,
-        bottom: -10
+        bottom: 0
     };
 
     IMAGES_WALKING = [
@@ -52,16 +52,13 @@ class BabyChicken extends MoveableObject {
         super().loadImage('../El_Pollo_Loco/img_pollo_locco/img/3_enemies_chicken/chicken_normal/1_walk/1_w.png');
         this.loadImages(this.IMAGES_WALKING);
         this.loadImages(this.IMAGES_DEATH);
-        this.x = 3000 + Math.random() * 6000;
+        this.x = 1500 + Math.random() * 6700;
         this.speed = 5 + Math.random() * 2;
         this.animate();
     }
 
     chicken_sound = new Audio('../El_Pollo_Loco/img_pollo_locco/img/audio/Chickens-sound-effect-.mp3');
 
-    /**
-     * Initiates the animation of the baby chicken.
-     */
     animate() {
         setInterval(() => {
             if (this.isAnimating) {
@@ -70,21 +67,22 @@ class BabyChicken extends MoveableObject {
             } else {
                 this.removeFromMap();
             }
-        }, 1200);
+        }, 1000);
     }
 
     /**
-     * Removes the baby chicken from the map after a delay.
+     * Removes the chicken from the map.
      */
     removeFromMap() {
         setTimeout(() => {
             this.x = -1000;
+            clearInterval(playDeathAnimation); // Beende das Intervall, wenn setTimeout ausgeführt wird
         }, 400);
 
-        setTimeout(() => {
+        let playDeathAnimation = setInterval(() => {
             this.playAnimation(this.IMAGES_DEATH);
-            if (this.mute == false)
+            if (!this.mute)
                 this.chicken_sound.play();
-        }, 200);
+        }, 20);
     }
 }

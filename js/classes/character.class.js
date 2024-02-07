@@ -352,7 +352,7 @@ class Character extends MoveableObject {
         this.checkLasthit();
         setTimeout(() => {
             this.hitVar = false;
-        }, 800)
+        }, 1200)
     }
 
     /**

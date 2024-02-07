@@ -273,6 +273,13 @@ class Character extends MoveableObject {
     }
 
     /**
+     * Plays snoring sound.
+     */
+    playSnoringSound() {
+        this.snoring_sound.play();
+    }
+
+    /**
      * Checks if character is idle and plays snoring animation.
      */
     checkCharacterIdle() {
@@ -280,7 +287,7 @@ class Character extends MoveableObject {
         if (!this.isHurt() && !this.isDead() && currentTime - this.lastKeyPressTime >= 2500) {
             this.playAnimation(this.IMAGES_SNORING);
             if (this.mute == false) {
-                this.snoring_sound.play();
+                playSnoringSound();
             }
         }
     }

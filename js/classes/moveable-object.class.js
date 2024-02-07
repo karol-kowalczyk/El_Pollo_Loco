@@ -221,7 +221,11 @@ class MoveableObject extends DrawableObject {
     * Makes the main character disappear by setting its x-coordinate to a value far off-screen.
     */
     mainCharacterDisappear() {
-        world.character.x = -1000;
+        world.character.energy = 100;
+        this.percentage = 100;
+        setTimeout(() => {
+            world.character.x = -100000;
+        }, 3000);
     }
 
     /**
@@ -229,13 +233,14 @@ class MoveableObject extends DrawableObject {
     */
     endscreenWin() {
         this.soundIcon.src = '../El_Pollo_Loco/img_pollo_locco/img/10_background/speaker-mute.png';
+        this.win = true;
+        this.playLosingSound();
+        this.mainCharacterDisappear();
         setTimeout(() => {
             this.displayWinImage();
             this.showRestartButton();
             this.toStartScreen();
-            loadingScreenMusic.pause();
-            this.mainCharacterDisappear();
-        }, 500);
+        }, 3000);
     }
 
     /**
@@ -282,9 +287,15 @@ class MoveableObject extends DrawableObject {
      * Plays the losing sound by pausing the endgame sound and playing the losing sound.
      */
     playLosingSound() {
+        if(this.win == true) { 
+            this.win_sound.play();
+            this.endgame_sound.pause();
+        } else {
+            this.losing_sound.play();
+        }
         this.soundIcon.src = '../El_Pollo_Loco/img_pollo_locco/img/10_background/speaker-mute.png';
         loadingScreenMusic.pause();
         this.endgame_sound.pause();
-        this.losing_sound.play();
+       
     }
 }

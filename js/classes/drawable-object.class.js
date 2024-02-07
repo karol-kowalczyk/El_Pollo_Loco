@@ -7,6 +7,7 @@ class DrawableObject {
     y = 137;
     width = 100;
     height = 150;
+    percentage = 100;
     imageCache = {};
     mute = true;
     currentImage = 0;

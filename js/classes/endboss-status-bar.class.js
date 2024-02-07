@@ -13,7 +13,6 @@ class EndbossStatusBar extends MoveableObject {
         '../El_Pollo_Loco/img_pollo_locco/img/7_statusbars/2_statusbar_endboss/blue/blue100.png',
     ];
 
-    percentage = 100;
     isVisible = false;
 
     /**

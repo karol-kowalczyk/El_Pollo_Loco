@@ -58,7 +58,7 @@ class Chicken extends MoveableObject {
         super().loadImage('../El_Pollo_Loco/img_pollo_locco/img/3_enemies_chicken/chicken_normal/1_walk/1_w.png');
         this.loadImages(this.IMAGES_WALKING);
         this.loadImages(this.IMAGES_DEATH);
-        this.x = 2000 + Math.random() * 8000;
+        this.x = 2200 + Math.random() * 8000;
         this.speed = 2 + Math.random() * 1;
         this.animate();
     }
@@ -74,7 +74,7 @@ class Chicken extends MoveableObject {
             } else {
                 this.removeFromMap();
             }
-        }, 1000);
+        }, 100);
     }
 
     /**

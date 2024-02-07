@@ -238,7 +238,7 @@ class Character extends MoveableObject {
             clearInterval(this.animationInterval);
             clearInterval(this.walkingInterval);
             this.endscreen();
-        }, 500);
+        }, 1500);
     }
 
     /**

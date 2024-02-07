@@ -84,7 +84,7 @@ class Chicken extends MoveableObject {
         setTimeout(() => {
             this.x = -1000;
             clearInterval(playDeathAnimation); // Beende das Intervall, wenn setTimeout ausgeführt wird
-        }, 400);
+        }, 300);
 
         let playDeathAnimation = setInterval(() => {
             this.playAnimation(this.IMAGES_DEATH);

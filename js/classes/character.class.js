@@ -107,30 +107,23 @@ class Character extends MoveableObject {
      */
     animate() {
         setInterval(() => {
+            this.handleEndgame();
+            this.handleAnimations();
+        }, 100);
+
+        setInterval(() => {
             this.handleWalking();
             this.handleJumping();
             this.handleCamera();
         }, 1000 / 60);
-
-        setInterval(() => {
-            this.handleAnimations();
-        }, 100);
-    };
-
-    /**
-    * Interval for handling endgame conditions.
-    * @type {number}
-    */
-    endgameInterv = setInterval(() => {
-        this.handleEndgame();
-    }, 200);
+    }
 
     /**
     * Stops an interval.
     * @param {number} intervalId - The ID of the interval to stop.
     * @returns {void}
     */
-    stopEndGameInterval(intervalId) {
+    stopInterval(intervalId) {
         clearInterval(intervalId);
     }
 
@@ -293,27 +286,6 @@ class Character extends MoveableObject {
     }
 
     /**
-     * Plays the losing sound by pausing the endgame sound and playing the losing sound.
-     */
-    playLosingSound() {
-        loadingScreenMusic.pause();
-        this.losing_sound.play();
-    }
-
-    /**
-     * Initiates end screen display.
-     */
-    endscreen() {
-        let img = document.getElementById('start-screen');
-        let restartBtn = document.getElementById('restart-button');
-        img.src = '../El_Pollo_Loco/img_pollo_locco/img/9_intro_outro_screens/game_over/game over.png';
-
-        this.addDisplayNone(img, restartBtn);
-        this.playLosingSound();
-        this.toStartScreen();
-    }
-
-    /**
      * Displays specified elements by removing 'd-none' class.
      * @param {Element} img - The image element to display.
      * @param {Element} restartBtn - The restart button element to display.
@@ -350,7 +322,7 @@ class Character extends MoveableObject {
         }
         setTimeout(() => {
             this.hitVar = false;
-        },1000)
+        }, 800)
     }
 
     /**

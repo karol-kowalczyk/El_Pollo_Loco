@@ -8,6 +8,12 @@ class BabyChicken extends MoveableObject {
     height = 50;
     y = 360;
     isAnimating = true;
+    offset = {
+        top: -30,
+        left: 0,
+        right: 0,
+        bottom: -10
+    };
 
     IMAGES_WALKING = [
         '../El_Pollo_Loco/img_pollo_locco/img/3_enemies_chicken/chicken_small/1_walk/1_w.png',
@@ -47,7 +53,7 @@ class BabyChicken extends MoveableObject {
         super().loadImage('../El_Pollo_Loco/img_pollo_locco/img/3_enemies_chicken/chicken_normal/1_walk/1_w.png');
         this.loadImages(this.IMAGES_WALKING);
         this.loadImages(this.IMAGES_DEATH);
-        this.x = 3000 + Math.random() * 6000;
+        this.x = 1500 + Math.random() * 6000;
         this.speed = 10 + Math.random() * 2;
         this.animate();
     }

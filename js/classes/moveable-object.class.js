@@ -18,13 +18,16 @@ class MoveableObject extends DrawableObject {
     bottle = 0;
     hitVar = false;
     isEndbossWalking = false;
+    win = false;
     main_music = new Audio('../El_Pollo_Loco/img_pollo_locco/img/audio/Game-Music.mp3');
+    world;
+    soundIcon = document.getElementById('sound-icon');
 
     offset = {
         top: 0,
         left: 0,
         right: 0,
-        bottom: -100
+        bottom: 0
     };
 
     /**
@@ -36,15 +39,15 @@ class MoveableObject extends DrawableObject {
         this.jumpTimeout = null;
         this.checkSound();
     }
-    
+
     /**
      * Toggles the volume of multiple audio elements based on the state of the sound icon.
      */
     toggleVolume() {
-        const soundIcon = document.getElementById('sound-icon');
-        const audioElements =  [this.main_music];
+        
+        const audioElements = [this.main_music];
 
-        if (soundIcon.src.includes('speaker-mute.png')) {
+        if (this.soundIcon.src.includes('speaker-mute.png')) {
             audioElements.forEach(audio => {
                 audio.volume = 0.0;
                 this.mute = true;
@@ -245,12 +248,72 @@ class MoveableObject extends DrawableObject {
     }
 
     /**
-     * Redirects to the start screen after a delay.
+    * Makes the main character disappear by setting its x-coordinate to a value far off-screen.
+    */
+    mainCharacterDisappear() {
+        world.character.x = -1000;
+    }
+
+    /**
+    * Displays the win image and restart button after winning the game.
+    */
+    endscreenWin() {
+        this.soundIcon.src = '../El_Pollo_Loco/img_pollo_locco/img/10_background/speaker-mute.png';
+        setTimeout(() => {
+            this.displayWinImage();
+            this.showRestartButton();
+            this.toStartScreen();
+            loadingScreenMusic.pause();
+            this.mainCharacterDisappear();
+        }, 500);
+    }
+
+    /**
+     * Displays the win image.
      */
+    displayWinImage() {
+        let img = document.getElementById('start-screen');
+        img.src = '../El_Pollo_Loco/img_pollo_locco/img/9_intro_outro_screens/game_over/you_won.png';
+        img.classList.remove('d-none');
+    }
+
+    /**
+     * Shows the restart button.
+     */
+    showRestartButton() {
+        let restartBtn = document.getElementById('restart-button');
+        restartBtn.classList.remove('d-none');
+    }
+
+    /**
+    * Redirects to the start screen after a delay.
+    */
     toStartScreen() {
         setTimeout(() => {
             location.reload();
-        }, 4000)
+        }, 10000)
     }
 
+    /**
+    * Initiates end screen display.
+    */
+    endscreen() {
+        let img = document.getElementById('start-screen');
+        let restartBtn = document.getElementById('restart-button');
+        this.mute = true;
+        img.src = '../El_Pollo_Loco/img_pollo_locco/img/9_intro_outro_screens/game_over/game over.png';
+        this.mainCharacterDisappear();
+        this.addDisplayNone(img, restartBtn);
+        this.playLosingSound();
+        this.toStartScreen();
+    }
+
+    /**
+     * Plays the losing sound by pausing the endgame sound and playing the losing sound.
+     */
+    playLosingSound() {
+        loadingScreenMusic.pause();
+        this.endgame_sound.pause();
+        this.losing_sound.play();
+    }
 }

@@ -1,10 +1,9 @@
 /**
  * Represents a status bar for the end boss.
- * @extends DrawableObject
+ * @extends MoveableObject
  */
-class EndbossStatusBar extends DrawableObject {
-
-    endboss = new Endboss();
+class EndbossStatusBar extends MoveableObject {
+     
     IMAGES = [
         '../El_Pollo_Loco/img_pollo_locco/img/7_statusbars/2_statusbar_endboss/blue/blue0.png',
         '../El_Pollo_Loco/img_pollo_locco/img/7_statusbars/2_statusbar_endboss/blue/blue20.png',
@@ -56,7 +55,7 @@ class EndbossStatusBar extends DrawableObject {
         } else if (this.percentage >= 20) {
             return 1;
         } else {
-            this.endboss.endscreenWin();
+            this.endscreenWin();
             return 0;
         }
     }

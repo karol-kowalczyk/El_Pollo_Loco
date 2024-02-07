@@ -21,7 +21,7 @@ body {
 }
 
 canvas {
-    display: block;
+    display: block !important;
     z-index: 1;
 }
 

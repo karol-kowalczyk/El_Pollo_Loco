@@ -17,7 +17,7 @@ body {
     padding-right: 296px;
     height: 56px;
     width: 396px;
-    z-index: 2;
+    z-index: 3;
 }
 
 canvas {
@@ -238,7 +238,7 @@ p {
     border-radius: 10px;
     transform: skew(-20deg) scale(1);
     animation: zoom 1.5s infinite;
-    z-index: 2;
+    z-index: 3;
     margin-bottom: 360px;
 }
 
@@ -260,7 +260,7 @@ p {
     border-radius: 10px;
     transform: skew(-20deg) scale(1);
     animation: zoom 1.5s infinite;
-    z-index: 2;
+    z-index: 3;
     margin-bottom: 360px;
 }
 

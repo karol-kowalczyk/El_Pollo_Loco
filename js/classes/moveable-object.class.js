@@ -16,7 +16,9 @@ class MoveableObject extends DrawableObject {
     mute = true;
     iconClicked = 0;
     bottle = 0;
+    hitVar = false;
     isEndbossWalking = false;
+    main_music = new Audio('../El_Pollo_Loco/img_pollo_locco/img/audio/Game-Music.mp3');
 
     offset = {
         top: 0,
@@ -24,8 +26,6 @@ class MoveableObject extends DrawableObject {
         right: 0,
         bottom: -100
     };
-
-    game_sound = new Audio('../El_Pollo_Loco/img_pollo_locco/img/audio/lost_game.mp3');
 
     /**
      * Constructs a new MoveableObject.
@@ -35,25 +35,14 @@ class MoveableObject extends DrawableObject {
         this.enemyJumped = false;
         this.jumpTimeout = null;
         this.checkSound();
-        this.game_sound.play();
     }
-
-    win_sound = new Audio('../El_Pollo_Loco/img_pollo_locco/img/audio/game-won.wav');
     
-    
-    
-    
-   
-    endgame_sound = new Audio('../El_Pollo_Loco/img_pollo_locco/img/audio/End_Boss_Music.mp3');
-    lost_sound = new Audio('../El_Pollo_Loco/img_pollo_locco/img/audio/lost_game.mp3');
-    
-
     /**
      * Toggles the volume of multiple audio elements based on the state of the sound icon.
      */
     toggleVolume() {
         const soundIcon = document.getElementById('sound-icon');
-        const audioElements =  [this.win_sound];
+        const audioElements =  [this.main_music];
 
         if (soundIcon.src.includes('speaker-mute.png')) {
             audioElements.forEach(audio => {
@@ -66,14 +55,6 @@ class MoveableObject extends DrawableObject {
                 this.mute = false;
             });
         }
-    }
-
-    /**
-     * Plays the losing sound by pausing the endgame sound and playing the lost sound.
-     */
-    playLosingSound() {
-        this.endgame_sound.pause();
-        this.lost_sound.play();
     }
 
     /**

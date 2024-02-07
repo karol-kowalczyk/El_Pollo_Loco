@@ -3,7 +3,7 @@ let world;
 let keyboard = new Keyboard();
 let fullScreen = false;
 let loadingScreenMusic = new Audio('./img_pollo_locco/img/audio/loading_screen.mp3');
-let isStartScreenMusicPlaying = false;
+let isLoadingScreenMusicPlaying = false;
 let dKeyPressed = false;
 
 /**
@@ -117,7 +117,7 @@ function changeIcon() {
         document.getElementById('sound-icon').src = '/El_Pollo_Loco/img_pollo_locco/img/10_background/speaker-mute.png';
     } else {
         document.getElementById('sound-icon').src = '/El_Pollo_Loco/img_pollo_locco/img/10_background/speaker-filled-audio.png';
-        isStartScreenMusicPlaying = false;
+        isLoadingScreenMusicPlaying = false;
     }
 }
 
@@ -127,12 +127,12 @@ function changeIcon() {
  * @name togglePlay
  */
 function togglePlay() {
-    if (isStartScreenMusicPlaying) {
+    if (isLoadingScreenMusicPlaying) {
         loadingScreenMusic.pause();
-        isStartScreenMusicPlaying = false;
+        isLoadingScreenMusicPlaying = false;
     } else {
         loadingScreenMusic.play();
-        isStartScreenMusicPlaying = true;
+        isLoadingScreenMusicPlaying = true;
     }
 }
 
@@ -193,7 +193,10 @@ function deleteStartScreenImg(startScreenImg) {
  * @name stopStartScreenMusic
  */
 function stopStartScreenMusic() {
-    loadingScreenMusic.src = '../El_Pollo_Loco/img_pollo_locco/img/audio/Game-Music.mp3';
+    loadingScreenMusic.src = './img_pollo_locco/img/audio/Game-Music.mp3';
+    if (isLoadingScreenMusicPlaying) {
+        loadingScreenMusic.play();
+    }
 }
 
 /**

@@ -75,6 +75,7 @@ class Character extends MoveableObject {
     hurtSound = new Audio('../El_Pollo_Loco/img_pollo_locco/img/audio/main_character_hurt.mp3');
     walking_sound = new Audio('../El_Pollo_Loco/img_pollo_locco/img/audio/walking.mp3');
     snoring_sound = new Audio('../El_Pollo_Loco/img_pollo_locco/img/audio/Cartoon_Snoring_SOUND_EFFECT.mp3');
+    losing_sound = new Audio('../El_Pollo_Loco/img_pollo_locco/img/audio/lost_game.mp3');
 
     world;
 
@@ -105,26 +106,32 @@ class Character extends MoveableObject {
      * Animates the character's movements and actions.
      */
     animate() {
-        let walkingInterval;
-        let animationInterval;
+        setInterval(() => {
+            this.handleWalking();
+            this.handleJumping();
+            this.handleCamera();
+        }, 1000 / 60);
 
-        const startWalkingInterval = () => {
-            walkingInterval = setInterval(() => {
-                this.handleWalking();
-                this.handleJumping();
-                this.handleEndgame();
-                this.handleCamera();
-            }, 1000 / 60);
-        };
+        setInterval(() => {
+            this.handleAnimations();
+        }, 100);
+    };
 
-        const startAnimationInterval = () => {
-            animationInterval = setInterval(() => {
-                this.handleAnimations();
-            }, 100);
-        };
+    /**
+    * Interval for handling endgame conditions.
+    * @type {number}
+    */
+    endgameInterv = setInterval(() => {
+        this.handleEndgame();
+    }, 200);
 
-        startWalkingInterval();
-        startAnimationInterval();
+    /**
+    * Stops an interval.
+    * @param {number} intervalId - The ID of the interval to stop.
+    * @returns {void}
+    */
+    stopEndGameInterval(intervalId) {
+        clearInterval(intervalId);
     }
 
     /**
@@ -278,22 +285,19 @@ class Character extends MoveableObject {
     }
 
     /**
-     * Makes character jump and updates last key press time. Plays jump sound, if boolean is false;
-     */
-    jump() {
-        super.jump();
-        this.lastKeyPressTime = Date.now();
-
-        if (this.mute == false) {
-            this.jump_sound.play();
-        }
-    }
-
-    /**
      * Initiates endgame sequence.
      */
     endgame() {
         this.endgame_sound.play();
+        loadingScreenMusic.pause();
+    }
+
+    /**
+     * Plays the losing sound by pausing the endgame sound and playing the losing sound.
+     */
+    playLosingSound() {
+        loadingScreenMusic.pause();
+        this.losing_sound.play();
     }
 
     /**
@@ -334,6 +338,7 @@ class Character extends MoveableObject {
     */
     hit() {
         this.energy -= 10;
+        this.hitVar = true;
         if (this.mute == false) {
             this.hurtSound.play();
         }
@@ -342,6 +347,23 @@ class Character extends MoveableObject {
             this.energy = 0;
         } else {
             this.lastHit = new Date().getTime();
+        }
+        setTimeout(() => {
+            this.hitVar = false;
+        },1000)
+    }
+
+    /**
+    * Makes character jump and updates last key press time. Plays jump sound, if boolean is false;
+    */
+    jump() {
+        if (this.hitVar == false) {
+            super.jump();
+            this.lastKeyPressTime = Date.now();
+
+            if (this.mute == false) {
+                this.jump_sound.play();
+            }
         }
     }
 

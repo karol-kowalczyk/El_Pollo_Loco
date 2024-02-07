@@ -10,6 +10,7 @@ class Endboss extends MoveableObject {
     hitCount = -1;
     intervalRef;
     bossHurtSound = new Audio('../El_Pollo_Loco/img_pollo_locco/img/audio/enemy_hurt_sound.mp3');
+    win_sound = new Audio('../El_Pollo_Loco/img_pollo_locco/img/audio/game-won.wav');
 
     IMAGES_LOOKING = [
         '../El_Pollo_Loco/img_pollo_locco/img/4_enemie_boss_chicken/2_alert/G5.png',
@@ -121,6 +122,14 @@ class Endboss extends MoveableObject {
     }
 
     /**
+    * Stops the endgame interval and pauses the endgame sound.
+    * @returns {void}
+    */
+    stopEndgameSound() {
+        this.endgame_sound.pause();
+    }
+
+    /**
      * Displays the win image and restart button after winning the game.
      */
     endscreenWin() {
@@ -128,7 +137,17 @@ class Endboss extends MoveableObject {
             this.displayWinImage();
             this.showRestartButton();
             this.toStartScreen();
+            loadingScreenMusic.pause();
+            this.stopEndgameSound()
+            this.winGameSound();
         }, 1000);
+    }
+
+    /**
+     * Plays win game sound.
+     */
+    winGameSound() {
+        this.win_sound.play();
     }
 
     /**
@@ -138,7 +157,6 @@ class Endboss extends MoveableObject {
         let img = document.getElementById('start-screen');
         img.src = '../El_Pollo_Loco/img_pollo_locco/img/9_intro_outro_screens/game_over/you_won.png';
         img.classList.remove('d-none');
-        img.classList.add('opacity');
     }
 
     /**
@@ -150,8 +168,8 @@ class Endboss extends MoveableObject {
     }
 
     /**
- * Handles a hit on the boss, plays boss hurt sound, and updates boss energy.
- */
+    * Handles a hit on the boss, plays boss hurt sound, and updates boss energy.
+    */
     bossHit() {
         this.bossEnergy -= 25;
         if (this.mute == false) {

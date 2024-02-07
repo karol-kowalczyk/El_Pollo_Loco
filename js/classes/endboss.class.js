@@ -9,6 +9,7 @@ class Endboss extends MoveableObject {
     isEndbossHurt = false;
     hitCount = -1;
     intervalRef;
+    bossHurtSound = new Audio('../El_Pollo_Loco/img_pollo_locco/img/audio/enemy_hurt_sound.mp3');
 
     IMAGES_LOOKING = [
         '../El_Pollo_Loco/img_pollo_locco/img/4_enemie_boss_chicken/2_alert/G5.png',
@@ -146,5 +147,20 @@ class Endboss extends MoveableObject {
     showRestartButton() {
         let restartBtn = document.getElementById('restart-button');
         restartBtn.classList.remove('d-none');
+    }
+
+    /**
+ * Handles a hit on the boss, plays boss hurt sound, and updates boss energy.
+ */
+    bossHit() {
+        this.bossEnergy -= 25;
+        if (this.mute == false) {
+            this.bossHurtSound.play();
+        }
+        if (this.bossEnergy <= 0) {
+            this.bossEnergy = 0;
+        } else {
+            this.lastBossHit = new Date().getTime();
+        }
     }
 }  

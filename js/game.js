@@ -193,7 +193,7 @@ function deleteStartScreenImg(startScreenImg) {
  * @name stopStartScreenMusic
  */
 function stopStartScreenMusic() {
-    loadingScreenMusic.src = './img_pollo_locco/img/audio/nothing.mp3';
+    loadingScreenMusic.src = '../El_Pollo_Loco/img_pollo_locco/img/audio/Game-Music.mp3';
 }
 
 /**

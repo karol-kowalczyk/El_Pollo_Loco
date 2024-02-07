@@ -25,6 +25,8 @@ class MoveableObject extends DrawableObject {
         bottom: -100
     };
 
+    game_sound = new Audio('../El_Pollo_Loco/img_pollo_locco/img/audio/lost_game.mp3');
+
     /**
      * Constructs a new MoveableObject.
      */
@@ -33,6 +35,7 @@ class MoveableObject extends DrawableObject {
         this.enemyJumped = false;
         this.jumpTimeout = null;
         this.checkSound();
+        this.game_sound.play();
     }
 
     win_sound = new Audio('../El_Pollo_Loco/img_pollo_locco/img/audio/game-won.wav');
@@ -40,18 +43,17 @@ class MoveableObject extends DrawableObject {
     
     
     
-    
+   
     endgame_sound = new Audio('../El_Pollo_Loco/img_pollo_locco/img/audio/End_Boss_Music.mp3');
     lost_sound = new Audio('../El_Pollo_Loco/img_pollo_locco/img/audio/lost_game.mp3');
-    bossHurtSound = new Audio('../El_Pollo_Loco/img_pollo_locco/img/audio/enemy_hurt_sound.mp3');
+    
 
     /**
      * Toggles the volume of multiple audio elements based on the state of the sound icon.
      */
     toggleVolume() {
         const soundIcon = document.getElementById('sound-icon');
-
-        const audioElements =  [this.endgame_sound, this.lost_sound, this.bossHurtSound];
+        const audioElements =  [this.win_sound];
 
         if (soundIcon.src.includes('speaker-mute.png')) {
             audioElements.forEach(audio => {
@@ -64,21 +66,6 @@ class MoveableObject extends DrawableObject {
                 this.mute = false;
             });
         }
-    }
-
-    /**
-     * Controls the playing and pausing of the background music on the start screen.
-     * @param {boolean} isStartScreenMusicPlaying - Indicates whether the start screen music should be playing or not.
-     */
-    startScreenMusicPlaying(isStartScreenMusicPlaying) {
-        /** @type {number} */
-        let backgroundMusicInterval = setInterval(() => {
-            if (isStartScreenMusicPlaying) {
-                loadingScreenMusic.play();
-            } else {
-                loadingScreenMusic.pause();
-            }
-        }, 1000 / 60);
     }
 
     /**
@@ -195,19 +182,6 @@ class MoveableObject extends DrawableObject {
         this.energy += 20;
         if (this.energy >= 100) {
             this.energy = 100;
-        }
-    }
-
-    /**
-     * Handles a hit on the boss, plays boss hurt sound, and updates boss energy.
-     */
-    bossHit() {
-        this.bossEnergy -= 25;
-        this.bossHurtSound.play();
-        if (this.bossEnergy <= 0) {
-            this.bossEnergy = 0;
-        } else {
-            this.lastBossHit = new Date().getTime();
         }
     }
 

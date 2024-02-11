@@ -17,8 +17,6 @@ class MoveableObject extends DrawableObject {
     bottle = 0;
     hitVar = false;
     isEndbossWalking = false;
-    win = false;
-    main_music = new Audio('../El_Pollo_Loco/img_pollo_locco/img/audio/Game-Music.mp3');
     world;
     soundIcon = document.getElementById('sound-icon');
 
@@ -275,7 +273,6 @@ class MoveableObject extends DrawableObject {
     endscreen() {
         let img = document.getElementById('start-screen');
         let restartBtn = document.getElementById('restart-button');
-        this.mute = true;
         img.src = '../El_Pollo_Loco/img_pollo_locco/img/9_intro_outro_screens/game_over/game over.png';
         this.mainCharacterDisappear();
         this.addDisplayNone(img, restartBtn);
@@ -287,15 +284,11 @@ class MoveableObject extends DrawableObject {
      * Plays the losing sound by pausing the endgame sound and playing the losing sound.
      */
     playLosingSound() {
-        if(this.win == true) { 
-            this.win_sound.play();
-            this.endgame_sound.pause();
-        } else {
+        this.lose = true;
+        if (this.mute == false) {
             this.losing_sound.play();
+            this.endgame_sound.pause();
+            this.main_music.src ='../El_Pollo_Loco/img_pollo_locco/img/audio/nothing.mp3';
         }
-        this.soundIcon.src = '../El_Pollo_Loco/img_pollo_locco/img/10_background/speaker-mute.png';
-        loadingScreenMusic.pause();
-        this.endgame_sound.pause();
-       
     }
 }

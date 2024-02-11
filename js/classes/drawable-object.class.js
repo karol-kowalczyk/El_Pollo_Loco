@@ -10,9 +10,12 @@ class DrawableObject {
     percentage = 100;
     imageCache = {};
     mute = true;
+    win = false;
+    lose = false;
     currentImage = 0;
     endgame_sound = new Audio('../El_Pollo_Loco/img_pollo_locco/img/audio/End_Boss_Music.mp3');
     win_sound = new Audio('../El_Pollo_Loco/img_pollo_locco/img/audio/game-won.mp3');
+    main_music = new Audio('../El_Pollo_Loco/img_pollo_locco/img/audio/Game-Music.mp3');
 
     /**
      * Loads an image from the given path.
@@ -61,13 +64,21 @@ class DrawableObject {
      */
     toggleVolume() {
         const audioElements = [this.main_music];
+        console.log(this.win);
 
         if (this.soundIcon.src.includes('speaker-mute.png')) {
             audioElements.forEach(audio => {
                 audio.volume = 0.0;
                 this.mute = true;
             });
-        } else {
+        } else if (this.soundIcon.src.includes('speaker-filled-audio.png') && this.win == true) {
+            this.main_music.pause();
+            loadingScreenMusic.pause()
+        } else if (this.soundIcon.src.includes('speaker-filled-audio.png') && this.lose == true) {
+            this.main_music.pause();
+            loadingScreenMusic.pause();
+        }   
+        else if (this.soundIcon.src.includes('speaker-filled-audio.png') && this.lose == false && this.win == false ) {
             audioElements.forEach(audio => {
                 audio.volume = 0.5;
                 this.mute = false;

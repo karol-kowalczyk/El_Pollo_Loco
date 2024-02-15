@@ -12,6 +12,7 @@ class DrawableObject {
     mute = true;
     win = false;
     lose = false;
+    meetEndBoss = false;
     currentImage = 0;
     endgame_sound = new Audio('../El_Pollo_Loco/img_pollo_locco/img/audio/End_Boss_Music.mp3');
     win_sound = new Audio('../El_Pollo_Loco/img_pollo_locco/img/audio/game-won.mp3');
@@ -64,8 +65,6 @@ class DrawableObject {
      */
     toggleVolume() {
         const audioElements = [this.main_music];
-        console.log(this.win);
-
         if (this.soundIcon.src.includes('speaker-mute.png')) {
             audioElements.forEach(audio => {
                 audio.volume = 0.0;

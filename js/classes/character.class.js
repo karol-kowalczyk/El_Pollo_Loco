@@ -94,7 +94,7 @@ class Character extends MoveableObject {
         this.lastKeyPressTime = Date.now();
         setInterval(() => {
             this.checkCharacterIdle();
-        }, 1000);
+        }, 50);
         this.loadImages(this.IMAGES_DEAD);
         this.loadImages(this.IMAGES_HURT);
         this.loadImages(this.IMAGES_SNORING);
@@ -178,7 +178,7 @@ class Character extends MoveableObject {
     walkingRight() {
         this.otherDirection = false;
         this.moveRight();
-        if (!this.mute) {
+        if (!this.mute && !this.lose) {
             this.walkingSound();
         }
         if (this.mute) {
@@ -200,8 +200,24 @@ class Character extends MoveableObject {
      */
     handleEndgame() {
         if (this.x >= 6400) {
-            this.endgame();
+            this.meetEndBoss = true;
             this.world.endbossBar.isVisible = true;
+        }
+        if (this.meetEndBoss) {
+            if (this.mute == false && !this.lose) {
+                if (this.won == false) { 
+                    this.endgame_sound.play();
+                 loadingScreenMusic.pause();
+                } else {
+                    this.endgame_sound.pause();
+                }
+
+            } else {
+                this.endgame_sound.pause();
+            }
+        }
+        else {
+            this.endgame_sound.pause();
         }
     }
 
@@ -280,21 +296,14 @@ class Character extends MoveableObject {
     }
 
     /**
-     * Plays snoring sound.
-     */
-    playSnoringSound() {
-        this.snoring_sound.play();
-    }
-
-    /**
      * Checks if character is idle and plays snoring animation.
      */
     checkCharacterIdle() {
         const currentTime = Date.now();
         if (!this.isHurt() && !this.isDead() && currentTime - this.lastKeyPressTime >= 2500) {
             this.playAnimation(this.IMAGES_SNORING);
-            if (this.mute == false) {
-                this.playSnoringSound();
+            if (this.mute == false && !this.lose) {
+                this.snoring_sound.play();
             }
         }
     }
@@ -313,14 +322,6 @@ class Character extends MoveableObject {
     moveLeft() {
         super.moveLeft();
         this.lastKeyPressTime = Date.now();
-    }
-
-    /**
-     * Initiates endgame sequence.
-     */
-    endgame() {
-        this.endgame_sound.play();
-        loadingScreenMusic.pause();
     }
 
     /**
@@ -361,7 +362,7 @@ class Character extends MoveableObject {
      * @returns {void}
      */
     checkLasthit() {
-        if (this.mute === false) {
+        if (this.mute == false && !this.lose) {
             this.hurtSound.play();
         }
         if (this.energy <= 0) {
@@ -382,11 +383,11 @@ class Character extends MoveableObject {
             super.jump();
             this.lastKeyPressTime = Date.now();
 
-            if (this.mute == false) {
+            if (this.mute == false && this.lose == false) {
                 this.jump_sound.play();
             }
         }
-    }
+    }     
 
     /**
     * Handles a big hit, plays hurt sound, and updates energy.

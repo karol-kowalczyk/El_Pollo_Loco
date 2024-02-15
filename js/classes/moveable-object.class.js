@@ -17,8 +17,10 @@ class MoveableObject extends DrawableObject {
     bottle = 0;
     hitVar = false;
     isEndbossWalking = false;
+    won = false;
     world;
     soundIcon = document.getElementById('sound-icon');
+    losing_sound = new Audio('../El_Pollo_Loco/img_pollo_locco/img/audio/lost_game.mp3');
 
     offset = {
         top: 0,
@@ -230,9 +232,10 @@ class MoveableObject extends DrawableObject {
     * Displays the win image and restart button after winning the game.
     */
     endscreenWin() {
-        this.soundIcon.src = '../El_Pollo_Loco/img_pollo_locco/img/10_background/speaker-mute.png';
-        this.win = true;
-        this.playLosingSound();
+        this.won = true;
+        if(this.mute == false) {
+            this.win_sound.play();
+        }
         this.mainCharacterDisappear();
         setTimeout(() => {
             this.displayWinImage();
@@ -287,7 +290,6 @@ class MoveableObject extends DrawableObject {
         this.lose = true;
         if (this.mute == false) {
             this.losing_sound.play();
-            this.endgame_sound.pause();
             this.main_music.src ='../El_Pollo_Loco/img_pollo_locco/img/audio/nothing.mp3';
         }
     }

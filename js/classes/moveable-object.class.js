@@ -288,7 +288,7 @@ class MoveableObject extends DrawableObject {
         if (this.mute == false) {
             this.losing_sound.play();
             this.endgame_sound.pause();
-            this.main_music.src ='../El_Pollo_Loco/img_pollo_locco/img/audio/nothing.mp3'
+            this.main_music.src ='../El_Pollo_Loco/img_pollo_locco/img/audio/nothing.mp3';
         }
     }
 }

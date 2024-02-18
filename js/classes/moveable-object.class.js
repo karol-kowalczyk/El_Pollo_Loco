@@ -232,6 +232,8 @@ class MoveableObject extends DrawableObject {
     * Displays the win image and restart button after winning the game.
     */
     endscreenWin() {
+        let startScreenImg = document.getElementById('start-screen');
+        startScreenImg.style.zIndex = '1';
         this.won = true;
         this.winningSection = true;
         loadingScreenMusic.pause();

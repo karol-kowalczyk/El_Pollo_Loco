@@ -273,7 +273,9 @@ class Character extends MoveableObject {
      * Handles hurt animation state.
      */
     handleHurtAnimation() {
-        this.playAnimation(this.IMAGES_HURT);
+        if (this.hurt = true) {
+            this.playAnimation(this.IMAGES_HURT);
+        }
     }
 
     /**
@@ -374,12 +376,14 @@ class Character extends MoveableObject {
     * Handles the character being hit, plays hurt sound, and updates energy.
     */
     hit() {
-        this.energy -= 10;
-        this.hitVar = true;
-        this.checkLasthit();
-        setTimeout(() => {
-            this.hitVar = false;
-        }, 1200)
+        if (this.hurt = true) {
+            this.energy -= 5;
+            this.hitVar = true;
+            this.checkLasthit();
+            setTimeout(() => {
+                this.hitVar = false;
+            }, 1200)
+        }
     }
 
     /**

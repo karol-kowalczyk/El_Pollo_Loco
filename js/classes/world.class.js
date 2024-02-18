@@ -146,24 +146,61 @@ class World {
     }
 
     /**
-     * Checks collisions between the character and enemies.
+     * Checks collisions with enemies and performs corresponding actions.
      */
     checkCollisionsWithEnemys() {
         this.level.enemies.forEach((enemy) => {
-            if (this.character.isColliding(enemy) && this.character.y >= 120) {
-                this.character.hit();
-                this.statusBar.setPercentage(this.character.energy);
-            }
-            else if (this.character.isColliding(enemy)) {
-                enemy.removeFromMap();
-                this.character.jump();
+            if (this.character.isColliding(enemy)) {
+                this.handleCollision(enemy);
             }
         });
     }
 
     /**
- * Checks collision between the character and hearts, collects hearts, and updates the status bar accordingly.
- */
+     * Handles the collision based on the state of the character.
+     * @param {Enemy} enemy - The enemy collided with.
+     */
+    handleCollision(enemy) {
+        if (this.character.y >= 120) {
+            this.handleHurtCollision();
+        } else {
+            this.handleNormalCollision(enemy);
+        }
+    }
+
+    /**
+     * Handles the collision when it results in damage.
+     */
+    handleHurtCollision() {
+        this.hurt = true;
+        this.character.hit();
+        this.statusBar.setPercentage(this.character.energy);
+        this.setHurtTimeout();
+    }
+
+    /**
+     * Handles the collision when it does not result in damage.
+     * @param {Enemy} enemy - The enemy collided with.
+     */
+    handleNormalCollision(enemy) {
+        this.hurt = false;
+        enemy.removeFromMap();
+        this.character.jump();
+        this.setHurtTimeout();
+    }
+
+    /**
+     * Sets the timer for resetting the hurt flag after a certain time.
+     */
+    setHurtTimeout() {
+        setTimeout(() => {
+            this.hurt = false;
+        }, 5000);
+    }
+
+    /**
+     * Checks collision between the character and hearts, collects hearts, and updates the status bar accordingly.
+     */
     checkCollectHearts() {
         this.level.hearts.forEach((heart) => {
             if (this.character.isCollidingItems(heart)) {

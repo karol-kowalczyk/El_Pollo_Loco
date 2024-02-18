@@ -156,9 +156,11 @@ class MoveableObject extends DrawableObject {
      * @returns {boolean} - Returns true if the character is currently hurt, false otherwise.
      */
     isHurt() {
-        let timepassed = new Date().getTime() - this.lastHit;
-        timepassed = timepassed / 1000;
-        return timepassed < 0.5;
+        if (this.hurt == true) {
+            let timepassed = new Date().getTime() - this.lastHit;
+            timepassed = timepassed / 1000;
+            return timepassed < 0.5;
+        }
     }
 
     /**

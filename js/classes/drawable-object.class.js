@@ -67,7 +67,6 @@ class DrawableObject {
     toggleVolume() {
         const audioElements = [this.main_music];
         const soundIconSrc = this.soundIcon.src;
-
         if (soundIconSrc.includes('speaker-mute.png')) {
             this.setVolumeAndMute(audioElements, 0.0, true);
         } else if (soundIconSrc.includes('speaker-filled-audio.png')) {

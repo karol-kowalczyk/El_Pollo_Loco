@@ -1,0 +1,47 @@
+.turn-device-headline {
+    font-size: 112px;
+    letter-spacing: 3px;
+    text-shadow: 3px 3px 6px rgba(241, 185, 30, 0.8);
+    top: 0;
+    width: 720px;
+    margin: 20px 0;
+    text-align: center;
+}
+
+.turn-device-img {
+    display: flex;
+    position: absolute;
+    z-index: 998;
+    animation: rotate 6s infinite;
+    width: 232px;
+    height: 232px;
+    top: 22%;
+    left: 20%;
+    border-radius: 10%;
+} 
+
+#turn-device-img {
+    display: flex;
+    position: absolute;
+    z-index: 998;
+    animation: rotate 6s infinite;
+    width: 232px;
+    height: 232px;
+    top: 22%;
+    left: 20%;
+    border-radius: 10%;
+}
+
+@keyframes rotate {
+    0% {
+        transform: rotate(-47deg);
+    }
+
+    50% {
+        transform: rotate(47deg);
+    }
+
+    100% {
+        transform: rotate(-47deg);
+    }
+}

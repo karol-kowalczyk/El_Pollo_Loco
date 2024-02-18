@@ -229,18 +229,16 @@ class MoveableObject extends DrawableObject {
     }
 
     /**
-    * Displays the win image and restart button after winning the game.
-    */
+     * Displays the win image and restart button after winning the game.
+     */
     endscreenWin() {
-        let startScreenImg = document.getElementById('start-screen');
+        const startScreenImg = document.getElementById('start-screen');
         startScreenImg.style.zIndex = '1';
         this.won = true;
         this.winningSection = true;
         loadingScreenMusic.pause();
-        if (this.mute == false) {
-            setTimeout(() => {
-                this.win_sound.play();
-            }, 1000)
+        if (!this.mute) {
+            setTimeout(() => this.win_sound.play(), 1000);
         }
         this.mainCharacterDisappear();
         setTimeout(() => {
@@ -249,6 +247,7 @@ class MoveableObject extends DrawableObject {
             this.toStartScreen();
         }, 3000);
     }
+
 
     /**
      * Displays the win image.

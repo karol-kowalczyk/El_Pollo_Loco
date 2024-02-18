@@ -62,28 +62,42 @@ class DrawableObject {
     }
 
     /**
-     * Toggles the volume of multiple audio elements based on the state of the sound icon.
-     */
+   * Toggles the volume of multiple audio elements based on the state of the sound icon.
+   */
     toggleVolume() {
         const audioElements = [this.main_music];
-        if (this.soundIcon.src.includes('speaker-mute.png')) {
-            audioElements.forEach(audio => {
-                audio.volume = 0.0;
-                this.mute = true;
-            });
-        } else if (this.soundIcon.src.includes('speaker-filled-audio.png') && this.win == true) {
-            this.main_music.pause();
-            loadingScreenMusic.pause()
-        } else if (this.soundIcon.src.includes('speaker-filled-audio.png') && this.lose == true) {
-            this.main_music.pause();
-            loadingScreenMusic.pause();
-        }   
-        else if (this.soundIcon.src.includes('speaker-filled-audio.png') && this.lose == false && this.win == false ) {
-            audioElements.forEach(audio => {
-                audio.volume = 0.5;
-                this.mute = false;
-            });
+        const soundIconSrc = this.soundIcon.src;
+
+        if (soundIconSrc.includes('speaker-mute.png')) {
+            this.setVolumeAndMute(audioElements, 0.0, true);
+        } else if (soundIconSrc.includes('speaker-filled-audio.png')) {
+            if (this.win || this.lose) {
+                this.pauseAudioElements();
+            } else {
+                this.setVolumeAndMute(audioElements, 0.5, false);
+            }
         }
+    }
+
+    /**
+     * Sets volume and mute state for audio elements.
+     * @param {Array} audioElements Array of audio elements.
+     * @param {number} volume Desired volume level.
+     * @param {boolean} mute Mute state.
+     */
+    setVolumeAndMute(audioElements, volume, mute) {
+        audioElements.forEach(audio => {
+            audio.volume = volume;
+        });
+        this.mute = mute;
+    }
+
+    /**
+     * Pauses main music and loading screen music.
+     */
+    pauseAudioElements() {
+        this.main_music.pause();
+        loadingScreenMusic.pause(); // Assuming loadingScreenMusic is globally accessible
     }
 
     /**

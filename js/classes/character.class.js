@@ -192,21 +192,45 @@ class Character extends MoveableObject {
             this.meetEndBoss = true;
             this.world.endbossBar.isVisible = true;
         }
-        if (this.meetEndBoss) {
-            if (this.mute == false && !this.lose) {
-                if (this.won == false) {
-                    this.endgame_sound.play();
-                } else {
-                    this.snoring_sound.pause();
-                }
+        this.handleSound();
+    }
 
-            } else {
-                this.endgame_sound.pause();
+    /**
+     * Handles sound effects based on game state.
+     */
+    handleSound() {
+        if (this.meetEndBoss && !this.lose) {
+            if (!this.mute) {
+                if (!this.won) {
+                    this.playEndgameSound();
+                } else {
+                    this.pauseSnoringSound();
+                }
             }
+        } else {
+            this.pauseEndgameSound();
         }
-        else {
-            this.endgame_sound.pause();
-        }
+    }
+
+    /**
+     * Plays endgame sound.
+     */
+    playEndgameSound() {
+        this.endgame_sound.play();
+    }
+
+    /**
+     * Pauses endgame sound.
+     */
+    pauseEndgameSound() {
+        this.endgame_sound.pause();
+    }
+
+    /**
+     * Pauses snoring sound.
+     */
+    pauseSnoringSound() {
+        this.snoring_sound.pause();
     }
 
     /**
@@ -287,12 +311,26 @@ class Character extends MoveableObject {
      * Checks if character is idle and plays snoring animation.
      */
     checkCharacterIdle() {
-        const currentTime = Date.now();
-        if (!this.isHurt() && !this.isDead() && currentTime - 3000 - this.lastKeyPressTime >= 2500) {
+        if (this.isCharacterIdle()) {
             this.playAnimation(this.IMAGES_SNORING);
-            if (this.mute == false && !this.lose) {
-                this.snoring_sound.play();
-            }
+            this.playSnoringSound();
+        }
+    }
+
+    /**
+     * Checks if the character is idle based on certain conditions.
+     */
+    isCharacterIdle() {
+        const currentTime = Date.now();
+        return !this.isHurt() && !this.isDead() && currentTime - 3000 - this.lastKeyPressTime >= 2500;
+    }
+
+    /**
+     * Plays the snoring sound if conditions are met.
+     */
+    playSnoringSound() {
+        if (!this.mute && !this.lose) {
+            this.snoring_sound.play();
         }
     }
 
@@ -370,7 +408,6 @@ class Character extends MoveableObject {
         if (this.hitVar == false) {
             super.jump();
             this.lastKeyPressTime = Date.now();
-
             if (this.mute == false && this.lose == false) {
                 this.jump_sound.play();
             }

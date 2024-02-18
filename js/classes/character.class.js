@@ -196,19 +196,16 @@ class Character extends MoveableObject {
             if (this.mute == false && !this.lose) {
                 if (this.won == false) {
                     this.endgame_sound.play();
-                    loadingScreenMusic.pause();
                 } else {
                     this.snoring_sound.pause();
                 }
 
             } else {
                 this.endgame_sound.pause();
-                this.main_music.src = '../El_Pollo_Loco/img_pollo_locco/img/audio/nothing.mp3';
             }
         }
         else {
             this.endgame_sound.pause();
-            this.main_music.src = '../El_Pollo_Loco/img_pollo_locco/img/audio/nothing.mp3';
         }
     }
 
@@ -297,8 +294,8 @@ class Character extends MoveableObject {
                 this.snoring_sound.play();
                 setTimeout(() => {
                     this.snoring_sound.src = '../El_Pollo_Loco/img_pollo_locco/img/audio/nothing.mp3';
-                }, 20000)
-            } 
+                }, 15000)
+            }
         }
     }
 

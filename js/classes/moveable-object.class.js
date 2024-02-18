@@ -279,6 +279,7 @@ class MoveableObject extends DrawableObject {
     */
     endscreen() {
         let img = document.getElementById('start-screen');
+        img.style.zIndex = '1';
         let restartBtn = document.getElementById('restart-button');
         img.src = '../El_Pollo_Loco/img_pollo_locco/img/9_intro_outro_screens/game_over/game over.png';
         this.mainCharacterDisappear();

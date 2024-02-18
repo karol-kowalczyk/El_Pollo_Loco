@@ -182,8 +182,8 @@ function hideHTMLElements(startScreenImg, startButton) {
 function deleteStartScreenImg(startScreenImg, startButton) {
     setTimeout(function () {
         startScreenImg.classList.add('d-none');
-        startScreenImg.style.zIndex = '0';
-        startButton.style.zIndex = '0';
+        startScreenImg.style.zIndex = '-1';
+        startButton.style.zIndex = '-1';
     }, 6000);
 }
 

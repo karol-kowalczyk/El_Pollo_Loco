@@ -298,7 +298,7 @@ p {
     text-align: center;
 }
 
-.turn-device-img {
+#turn-device-img {
     display: flex;
     position: absolute;
     z-index: 998;
@@ -306,7 +306,7 @@ p {
     width: 232px;
     height: 232px;
     top: 22%;
-    left: 38%;
+    left: 20%;
     border-radius: 10%;
 }
 

@@ -1,5 +1,4 @@
 let level1; 
-gameStarted = true;
 
 function initLevel() { level1 = new Level(
 [

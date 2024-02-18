@@ -292,9 +292,6 @@ class Character extends MoveableObject {
             this.playAnimation(this.IMAGES_SNORING);
             if (this.mute == false && !this.lose) {
                 this.snoring_sound.play();
-                setTimeout(() => {
-                    this.snoring_sound.src = '../El_Pollo_Loco/img_pollo_locco/img/audio/nothing.mp3';
-                }, 15000)
             }
         }
     }

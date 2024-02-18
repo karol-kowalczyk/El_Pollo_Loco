@@ -93,5 +93,9 @@ class DrawableObject {
         setInterval(() => {
             this.toggleVolume();
         }, 1000 / 60);
+
+        setTimeout(() => {
+            this.snoring_sound.src = '../El_Pollo_Loco/img_pollo_locco/img/audio/nothing.mp3';
+        }, 20000)
     }
 }

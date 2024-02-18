@@ -11,7 +11,7 @@ const elements = [
     'start-screen',
     'canvas-icons-div',
     'phone-icons-div',
-    // 'start-button',
+    'start-button',
     'headline',
     'canvas'
 ];

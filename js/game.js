@@ -145,8 +145,7 @@ function togglePlay() {
 function initializeStartScreenElements() {
     let startScreenImg = document.getElementById('start-screen');
     let startButton = document.getElementById('start-button');
-    let phoneIconsDiv = document.getElementById('phone-icons-div');
-    return { startScreenImg, startButton, phoneIconsDiv };
+    return { startScreenImg, startButton};
 }
 
 /**
@@ -155,8 +154,7 @@ function initializeStartScreenElements() {
  * @name closeStartScreen
  */
 function closeStartScreen() {
-    let { startScreenImg, startButton, phoneIconsDiv } = initializeStartScreenElements();
-    phoneIconsDiv.classList.add('d-none');
+    let { startScreenImg, startButton } = initializeStartScreenElements();
     stopStartScreenMusic();
     hideHTMLElements(startScreenImg, startButton);
 }
@@ -172,7 +170,7 @@ function hideHTMLElements(startScreenImg, startButton) {
     startButton.classList.add('d-none');
     startScreenImg.src = '/El_Pollo_Loco/img_pollo_locco/img/10_background/loading_screen.png';
     init();
-    deleteStartScreenImg(startScreenImg);
+    deleteStartScreenImg(startScreenImg, startButton);
 }
 
 /**
@@ -181,9 +179,11 @@ function hideHTMLElements(startScreenImg, startButton) {
  * @name deleteStartScreenImg
  * @param {HTMLElement} startScreenImg - The start screen image element.
  */
-function deleteStartScreenImg(startScreenImg) {
+function deleteStartScreenImg(startScreenImg, startButton) {
     setTimeout(function () {
         startScreenImg.classList.add('d-none');
+        startScreenImg.style.zIndex = '0';
+        startButton.style.zIndex = '0';
     }, 6000);
 }
 

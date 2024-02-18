@@ -8,10 +8,10 @@ window.addEventListener('resize', checkScreenWidth);
 const elements = [
     'turn-device-img',
     'turn-device-headline',
-    'start-screen',
+    // 'start-screen',
     'canvas-icons-div',
     'phone-icons-div',
-    'start-button',
+    // 'start-button',
     'headline',
     'canvas'
 ];

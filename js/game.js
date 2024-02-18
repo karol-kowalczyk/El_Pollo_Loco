@@ -2,6 +2,7 @@ let canvas;
 let world;
 let keyboard = new Keyboard();
 let fullScreen = false;
+let gameStarted = false;
 let loadingScreenMusic = new Audio('./img_pollo_locco/img/audio/loading_screen.mp3');
 let isLoadingScreenMusicPlaying = false;
 let dKeyPressed = false;
@@ -156,8 +157,10 @@ function initializeStartScreenElements() {
  */
 function closeStartScreen() {
     let { startScreenImg, startButton, phoneIconsDiv } = initializeStartScreenElements();
-    if (window.width >= 1000) {
+    if (window.width >= 1000 && gameStarted == false) {
         phoneIconsDiv.classList.add('d-none');
+    } else {
+        phoneIconsDiv.classList.remove('d-none');
     }
     stopStartScreenMusic();
     hideHTMLElements(startScreenImg, startButton);

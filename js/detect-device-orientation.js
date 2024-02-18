@@ -12,7 +12,8 @@ const elements = [
     'canvas-icons-div',
     'phone-icons-div',
     'start-button',
-    'headline'
+    'headline',
+    'canvas'
 ];
 
 /**

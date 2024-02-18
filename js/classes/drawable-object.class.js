@@ -14,7 +14,6 @@ class DrawableObject {
     lose = false;
     meetEndBoss = false;
     currentImage = 0;
-    endgame_sound = new Audio('../El_Pollo_Loco/img_pollo_locco/img/audio/End_Boss_Music.mp3');
     win_sound = new Audio('../El_Pollo_Loco/img_pollo_locco/img/audio/game-won.mp3');
     main_music = new Audio('../El_Pollo_Loco/img_pollo_locco/img/audio/Game-Music.mp3');
     snoring_sound = new Audio('../El_Pollo_Loco/img_pollo_locco/img/audio/Cartoon_Snoring_SOUND_EFFECT.mp3');

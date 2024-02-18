@@ -192,38 +192,6 @@ class Character extends MoveableObject {
             this.meetEndBoss = true;
             this.world.endbossBar.isVisible = true;
         }
-        this.handleSound();
-    }
-
-    /**
-     * Handles sound effects based on game state.
-     */
-    handleSound() {
-        if (this.meetEndBoss && !this.lose) {
-            if (!this.mute) {
-                if (!this.won) {
-                    this.playEndgameSound();
-                } else {
-                    this.pauseSnoringSound();
-                }
-            }
-        } else {
-            this.pauseEndgameSound();
-        }
-    }
-
-    /**
-     * Plays endgame sound.
-     */
-    playEndgameSound() {
-        this.endgame_sound.play();
-    }
-
-    /**
-     * Pauses endgame sound.
-     */
-    pauseEndgameSound() {
-        this.endgame_sound.pause();
     }
 
     /**

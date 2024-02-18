@@ -54,6 +54,7 @@ class EndbossStatusBar extends MoveableObject {
         } else if (this.percentage >= 20) {
             return 1;
         } else {
+            this.won = true;
             this.endscreenWin();
             return 0;
         }

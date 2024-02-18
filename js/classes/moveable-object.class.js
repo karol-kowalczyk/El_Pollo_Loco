@@ -156,9 +156,11 @@ class MoveableObject extends DrawableObject {
      * @returns {boolean} - Returns true if the character is currently hurt, false otherwise.
      */
     isHurt() {
-        let timepassed = new Date().getTime() - this.lastHit;
-        timepassed = timepassed / 1000;
-        return timepassed < 0.5;
+        if (this.won == false) {
+            let timepassed = new Date().getTime() - this.lastHit;
+            timepassed = timepassed / 1000;
+            return timepassed < 0.5;
+        }
     }
 
     /**
@@ -232,9 +234,11 @@ class MoveableObject extends DrawableObject {
     * Displays the win image and restart button after winning the game.
     */
     endscreenWin() {
-        this.won = true;
-        if(this.mute == false) {
-            this.win_sound.play();
+        this.winningSection = true;
+        if (this.mute == false) {
+            setTimeout(() => {
+                this.win_sound.play();
+            }, 1000)
         }
         this.mainCharacterDisappear();
         setTimeout(() => {
@@ -284,13 +288,13 @@ class MoveableObject extends DrawableObject {
     }
 
     /**
-     * Plays the losing sound by pausing the endgame sound and playing the losing sound.
+     * Plays the losing sound.
      */
     playLosingSound() {
         this.lose = true;
         if (this.mute == false) {
             this.losing_sound.play();
-            this.main_music.src ='../El_Pollo_Loco/img_pollo_locco/img/audio/nothing.mp3';
+            this.main_music.src = '../El_Pollo_Loco/img_pollo_locco/img/audio/nothing.mp3';
         }
     }
-}
+}  

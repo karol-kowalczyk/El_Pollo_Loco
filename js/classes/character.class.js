@@ -74,7 +74,6 @@ class Character extends MoveableObject {
     jump_sound = new Audio('../El_Pollo_Loco/img_pollo_locco/img/audio/jump-pepe.mp3');
     hurtSound = new Audio('../El_Pollo_Loco/img_pollo_locco/img/audio/main_character_hurt.mp3');
     walking_sound = new Audio('../El_Pollo_Loco/img_pollo_locco/img/audio/walking.mp3');
-    snoring_sound = new Audio('../El_Pollo_Loco/img_pollo_locco/img/audio/Cartoon_Snoring_SOUND_EFFECT.mp3');
     losing_sound = new Audio('../El_Pollo_Loco/img_pollo_locco/img/audio/lost_game.mp3');
 
     world;
@@ -92,12 +91,10 @@ class Character extends MoveableObject {
         this.loadImages(this.IMAGES_JUMPING);
         this.endbossInstance = new Endboss();
         this.lastKeyPressTime = Date.now();
-        setInterval(() => {
-            this.checkCharacterIdle();
-        }, 50);
         this.loadImages(this.IMAGES_DEAD);
         this.loadImages(this.IMAGES_HURT);
         this.loadImages(this.IMAGES_SNORING);
+        this.checkCharacterIdle();
         this.applyGravity();
         this.animate();
     }
@@ -106,19 +103,11 @@ class Character extends MoveableObject {
    * Animates the character's movements and actions.
    */
     animate() {
-        /**
-         * Executes a series of actions repeatedly at specified intervals.
-         * @returns {void}
-         */
         setInterval(() => {
             this.handleEndgame();
             this.handleAnimations();
         }, 100);
 
-        /**
-         * Executes a series of actions repeatedly at specified intervals to control character's movements.
-         * @returns {void}
-         */
         setInterval(() => {
             this.handleWalking();
             this.handleJumping();
@@ -205,19 +194,21 @@ class Character extends MoveableObject {
         }
         if (this.meetEndBoss) {
             if (this.mute == false && !this.lose) {
-                if (this.won == false) { 
+                if (this.won == false) {
                     this.endgame_sound.play();
-                 loadingScreenMusic.pause();
+                    loadingScreenMusic.pause();
                 } else {
-                    this.endgame_sound.pause();
+                    this.snoring_sound.pause();
                 }
 
             } else {
                 this.endgame_sound.pause();
+                this.main_music.src = '../El_Pollo_Loco/img_pollo_locco/img/audio/nothing.mp3';
             }
         }
         else {
             this.endgame_sound.pause();
+            this.main_music.src = '../El_Pollo_Loco/img_pollo_locco/img/audio/nothing.mp3';
         }
     }
 
@@ -300,11 +291,14 @@ class Character extends MoveableObject {
      */
     checkCharacterIdle() {
         const currentTime = Date.now();
-        if (!this.isHurt() && !this.isDead() && currentTime - this.lastKeyPressTime >= 2500) {
+        if (!this.isHurt() && !this.isDead() && currentTime - 3000 - this.lastKeyPressTime >= 2500) {
             this.playAnimation(this.IMAGES_SNORING);
             if (this.mute == false && !this.lose) {
                 this.snoring_sound.play();
-            }
+                setTimeout(() => {
+                    this.snoring_sound.src = '../El_Pollo_Loco/img_pollo_locco/img/audio/nothing.mp3';
+                }, 20000)
+            } 
         }
     }
 
@@ -387,7 +381,7 @@ class Character extends MoveableObject {
                 this.jump_sound.play();
             }
         }
-    }     
+    }
 
     /**
     * Handles a big hit, plays hurt sound, and updates energy.

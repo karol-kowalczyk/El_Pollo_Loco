@@ -16,30 +16,43 @@ const elements = [
     'canvas'
 ];
 
+const phoneBtns = 'phone-icons-div';
+
 /**
- * Checks the screen orientation and returns true if it's portrait mode, false otherwise.
+ * Checks the screen orientation and returns "portrait" if it's portrait mode, "landscape" otherwise.
  * @function
  * @name checkScreenOrientation
- * @returns {boolean} - True if the screen orientation is portrait, false otherwise.
+ * @returns {string} - "portrait" if the screen orientation is portrait, "landscape" otherwise.
  */
 function checkScreenOrientation() {
-    const portrait = window.matchMedia("(orientation: portrait)").matches;
-    return portrait;
+    return window.matchMedia("(orientation: portrait)").matches ? "portrait" : "landscape";
 }
 
 /**
- * Toggles the visibility of an element based on screen orientation.
+ * Toggles the visibility of an element based on screen orientation and screen width.
  * @function
  * @name toggleElementVisibility
- * @param {boolean} portrait - Whether the screen orientation is portrait.
+ * @param {string} orientation - The screen orientation ("portrait" or "landscape").
  * @param {string} id - The ID of the element to toggle visibility for.
  */
-function toggleElementVisibility(portrait, id) {
+function toggleElementVisibility(orientation, id) {
     const element = document.getElementById(id);
-    if (portrait) {
+    if (orientation == "portrait") {
         element.classList.toggle('d-none', !id.includes('turn-device'));
     } else {
         element.classList.toggle('d-none', id.includes('turn-device'));
+    }
+
+    if (id === phoneBtns) {
+        if (orientation == "landscape") {
+            if (window.innerWidth <= 900) {
+                element.classList.remove('d-none');
+            } else {
+                element.classList.add('d-none');
+            }
+        } else {
+            element.classList.add('d-none');
+        }
     }
 }
 
@@ -47,11 +60,11 @@ function toggleElementVisibility(portrait, id) {
  * Toggles the visibility of multiple elements based on screen orientation.
  * @function
  * @name toggleElementsVisibility
- * @param {boolean} portrait - Whether the screen orientation is portrait.
+ * @param {string} orientation - The screen orientation ("portrait" or "landscape").
  */
-function toggleElementsVisibility(portrait) {
+function toggleElementsVisibility(orientation) {
     elements.forEach(id => {
-        toggleElementVisibility(portrait, id);
+        toggleElementVisibility(orientation, id);
     });
 }
 
@@ -61,6 +74,6 @@ function toggleElementsVisibility(portrait) {
  * @name checkScreenWidth
  */
 function checkScreenWidth() {
-    const portrait = checkScreenOrientation();
-    toggleElementsVisibility(portrait);
+    const orientation = checkScreenOrientation();
+    toggleElementsVisibility(orientation);
 }

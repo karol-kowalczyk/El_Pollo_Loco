@@ -45,10 +45,10 @@ function toggleElementVisibility(orientation, id) {
 
     if (id === phoneBtns) {
         if (orientation == "landscape") {
-            if (window.innerWidth <= 900) {
-                element.classList.remove('d-none');
-            } else {
+            if (window.innerWidth >= 900) {
                 element.classList.add('d-none');
+            } else {
+                element.classList.remove('d-none');
             }
         } else {
             element.classList.add('d-none');

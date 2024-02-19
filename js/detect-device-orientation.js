@@ -10,7 +10,6 @@ const elements = [
     'turn-device-headline',
     'start-screen',
     'canvas-icons-div',
-    'phone-icons-div',
     'start-button',
     'headline',
     'canvas'

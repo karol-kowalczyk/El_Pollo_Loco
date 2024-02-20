@@ -71,7 +71,7 @@ class World {
          */
         setInterval(() => {
             this.checkThrowObjects();
-        }, 250);
+        }, 180);
     }
 
     /**
@@ -108,7 +108,7 @@ class World {
                     clearInterval(intervalId);
                 }
                 this.checkThrownObjectCollision(bottle);
-            }, 1200);
+            }, 1000);
         }
     }
 

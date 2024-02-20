@@ -9,7 +9,13 @@ class Character extends MoveableObject {
     speed = 10;
     speedY = 0.1;
     y = -180;
-    
+    offset = {
+        top: 0,
+        left: 0,
+        right: 40,
+        bottom: -20
+    };
+
     IMAGES_WALKING = [
         '../El_Pollo_Loco/img_pollo_locco/img/2_character_pepe/2_walk/W-21.png',
         '../El_Pollo_Loco/img_pollo_locco/img/2_character_pepe/2_walk/W-22.png',
@@ -135,6 +141,26 @@ class Character extends MoveableObject {
 
         if (this.world.keyboard.LEFT && this.x > 0) {
             this.walkingLeft();
+        }
+
+        // Block the jump function if character is walking
+        if (this.isWalkingCondition()) {
+            MoveableObject.prototype.jump = function () {
+                // Do nothing or handle differently if needed
+            };
+        } else {
+            // Re-enable the jump function
+            MoveableObject.prototype.jump = function () {
+                if (!this.enemyJumped) {
+                    this.speedY = 30;
+                    this.y = 120;
+                    this.acceleration = 2.5;
+                    this.enemyJumped = true;
+                    this.jumpTimeout = setTimeout(() => {
+                        this.enemyJumped = false;
+                    }, 800);
+                }
+            };
         }
     }
 

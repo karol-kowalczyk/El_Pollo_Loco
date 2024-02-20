@@ -8,7 +8,7 @@ class Chicken extends MoveableObject {
     y = 320;
     isAnimating = true;
     offset = {
-        top: -20,
+        top: 60,
         left: 0,
         right: 0,
         bottom: -10

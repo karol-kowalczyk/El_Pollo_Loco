@@ -161,7 +161,7 @@ class World {
      * @param {Enemy} enemy - The enemy collided with.
      */
     handleCollision(enemy) {
-        if (this.character.y >= 120) {
+        if (this.character.y >= 110) {
             this.handleHurtCollision();
         } else {
             this.handleNormalCollision(enemy);

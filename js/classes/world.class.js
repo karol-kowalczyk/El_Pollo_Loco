@@ -108,7 +108,7 @@ class World {
                     clearInterval(intervalId);
                 }
                 this.checkThrownObjectCollision(bottle);
-            }, 1000);
+            }, 1200);
         }
     }
 

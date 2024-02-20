@@ -28,7 +28,7 @@ function toggleFullscreen() {
     document.getElementById('start-screen').style.height = '100%';
     document.getElementById('canvas').style.width = '100%';
     document.getElementById('canvas').style.height = '100%';
-    document.getElementById('phone-icons-div').style.width = '360';
+    document.getElementById('phone-icons-div').style.width = '350';
 }
 
 /**

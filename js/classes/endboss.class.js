@@ -11,6 +11,13 @@ class Endboss extends MoveableObject {
     intervalRef;
     bossHurtSound = new Audio('../El_Pollo_Loco/img_pollo_locco/img/audio/enemy_hurt_sound.mp3');
 
+    offset = {
+        top: 0,
+        left: -50,
+        right: 40,
+        bottom: -20
+    };
+
     IMAGES_LOOKING = [
         '../El_Pollo_Loco/img_pollo_locco/img/4_enemie_boss_chicken/2_alert/G5.png',
         '../El_Pollo_Loco/img_pollo_locco/img/4_enemie_boss_chicken/2_alert/G6.png',

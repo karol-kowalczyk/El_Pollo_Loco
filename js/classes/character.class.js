@@ -131,38 +131,78 @@ class Character extends MoveableObject {
     }
 
     /**
-     * Handles character walking behavior.
-     * @returns {void}
-     */
-    handleWalking() {
-        if (this.world.keyboard.RIGHT && this.x < this.endbossInstance.x) {
-            this.walkingRight();
-        }
-
-        if (this.world.keyboard.LEFT && this.x > 0) {
-            this.walkingLeft();
-        }
-
-        // Block the jump function if character is walking
-        if (this.isWalkingCondition()) {
-            MoveableObject.prototype.jump = function () {
-                // Do nothing or handle differently if needed
-            };
-        } else {
-            // Re-enable the jump function
-            MoveableObject.prototype.jump = function () {
-                if (!this.enemyJumped) {
-                    this.speedY = 30;
-                    this.y = 120;
-                    this.acceleration = 2.5;
-                    this.enemyJumped = true;
-                    this.jumpTimeout = setTimeout(() => {
-                        this.enemyJumped = false;
-                    }, 800);
-                }
-            };
-        }
+ * Handles character walking behavior.
+ * @returns {void}
+ */
+handleWalking() {
+    if (this.isWalkingRight()) {
+        this.walkingRight();
     }
+
+    if (this.isWalkingLeft()) {
+        this.walkingLeft();
+    }
+
+    this.blockJumpIfWalking();
+}
+
+/**
+ * Checks if the character is walking right.
+ * @returns {boolean} - Returns true if the character is walking right, false otherwise.
+ */
+isWalkingRight() {
+    return this.world.keyboard.RIGHT && this.x < this.endbossInstance.x;
+}
+
+/**
+ * Checks if the character is walking left.
+ * @returns {boolean} - Returns true if the character is walking left, false otherwise.
+ */
+isWalkingLeft() {
+    return this.world.keyboard.LEFT && this.x > 0;
+}
+
+/**
+ * Blocks the jump function if the character is walking.
+ * Re-enables the jump function if the character is not walking.
+ * @returns {void}
+ */
+blockJumpIfWalking() {
+    if (this.isWalkingCondition()) {
+        this.disableJump();
+    } else {
+        this.enableJump();
+    }
+}
+
+/**
+ * Disables the jump function.
+ * @returns {void}
+ */
+disableJump() {
+    MoveableObject.prototype.jump = function () {
+        // Do nothing or handle differently if needed
+    };
+}
+
+/**
+ * Enables the jump function and handles character jumping.
+ * @returns {void}
+ */
+enableJump() {
+    MoveableObject.prototype.jump = function () {
+        if (!this.enemyJumped) {
+            this.speedY = 30;
+            this.y = 120;
+            this.acceleration = 2.5;
+            this.enemyJumped = true;
+            this.jumpTimeout = setTimeout(() => {
+                this.enemyJumped = false;
+            }, 800);
+        }
+    };
+}
+
 
     /**
      * Plays walking sound, if main character is walking/=.

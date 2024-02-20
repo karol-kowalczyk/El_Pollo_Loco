@@ -13,7 +13,7 @@ class Endboss extends MoveableObject {
 
     offset = {
         top: 0,
-        left: -50,
+        left: 50,
         right: 40,
         bottom: -20
     };
@@ -94,7 +94,7 @@ class Endboss extends MoveableObject {
      */
     animateHurt() {
         this.playAnimation(this.IMAGES_BOSS_HURT);
-        this.hitCount = this.hitCount + 0.5;
+        this.hitCount = this.hitCount + 0.75;
         this.speed += 1;
         setTimeout(() => {
             this.isEndbossHurt = false;
@@ -102,7 +102,7 @@ class Endboss extends MoveableObject {
                 clearInterval(this.intervalRef);
                 this.animateDeadBossChicken();
             }
-        }, 800);
+        }, 600);
     }
 
     /**

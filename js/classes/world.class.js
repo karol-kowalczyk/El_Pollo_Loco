@@ -47,7 +47,7 @@ class World {
          */
         setInterval(() => {
             this.checkCollisionsWithEnemys();
-        }, 150);
+        }, 1000/60);
 
         /**
          * Interval for checking item collection.

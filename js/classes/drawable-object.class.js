@@ -62,8 +62,8 @@ class DrawableObject {
     }
 
     /**
-   * Toggles the volume of multiple audio elements based on the state of the sound icon.
-   */
+    * Toggles the volume of multiple audio elements based on the state of the sound icon.
+    */
     toggleVolume() {
         const audioElements = [this.main_music];
         const soundIconSrc = this.soundIcon.src;

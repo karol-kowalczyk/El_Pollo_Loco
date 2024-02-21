@@ -107,8 +107,8 @@ h1 {
 }
 
 .icon-div {
-    height: 36px;
-    width: 36px;
+    height: 88px;
+    width: 88px;
 }
 
 .div-icons {
@@ -267,6 +267,17 @@ p {
     background-color: #FFB900;
 }
 
+#leftKey {
+    background-image: url('./img_pollo_locco/img/11_phone/left-phone.png');
+    background-repeat: none;
+    width: 70px;
+    height: 70px;
+    background-size: 35px 35px;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+}
+
 #start-screen {
     height: 480px;
     width: 720px;
@@ -423,3 +434,5 @@ p {
         height: 100%;
     }
 }
+
+

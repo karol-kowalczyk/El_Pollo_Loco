@@ -84,7 +84,7 @@ h1 {
     width: 32px;
 }
 
-#left-arrow:hover {
+/* #left-arrow:hover {
     height: 36px;
     width: 36px;
 }
@@ -102,7 +102,7 @@ h1 {
 #throw-btn:hover {
     height: 36px;
     width: 36px;
-}
+} */
 
 .d-none {
     display: none !important;

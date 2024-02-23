@@ -4,7 +4,6 @@
  * @name windowResizeListener
  */
 window.addEventListener('resize', checkScreenWidth);
-
 const elements = [
     'turn-device-img',
     'turn-device-headline',

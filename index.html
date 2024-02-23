@@ -41,10 +41,8 @@
         <h1 id="headline">El Pollo Loco</h1>
         <h1 id="turn-device-headline" class="turn-device-headline d-none">Please turn your phone</h1>
         <div id="canvas-container" onclick="closeInstruction()">
-
             <div onclick="closeStartScreen()" id="start-button">Start Game</div>
             <div onclick="restartGame()" id="restart-button" class="d-none">Back to menu</div>
-
             <div id="game-instruction" class="d-none" onclick="event.stopPropagation();">
                 <div id="game-instruction-header">
                     <div class="empty">X</div>
@@ -84,34 +82,32 @@
                         src="/El_Pollo_Loco/img_pollo_locco/img/10_background/fullscreen.png" alt="fullscreen">
                 </div>
             </div>
-
             <div id="phone-icons-div" class="d-none phone-icons-div">
                 <div class="icon-div" ontouchstart="setKey('LEFT', true)" ontouchend="setKey('LEFT', false)">
-                    <img  id="left-arrow" class="phone-icons"
-                        src="./img_pollo_locco/img/11_phone/left-phone.png" alt="left-arrow">
+                    <img id="left-arrow" class="phone-icons" src="./img_pollo_locco/img/11_phone/left-phone.png"
+                        alt="left-arrow">
                 </div>
                 <div class="icon-div" ontouchstart="setKey('RIGHT', true)" ontouchend="setKey('RIGHT', false)">
-                    <img  id="right-arrow" class="phone-icons"
+                    <img id="right-arrow" class="phone-icons"
                         src="/El_Pollo_Loco/img_pollo_locco/img/11_phone/right-phone.png" alt="right-arrow">
                 </div>
                 <div class="icon-div" ontouchstart="setKey('SPACE', true)" ontouchend="setKey('SPACE', false)">
-                    <img id="jump-btn"  class="phone-icons"
+                    <img id="jump-btn" class="phone-icons"
                         src="/El_Pollo_Loco/img_pollo_locco/img/11_phone/space_phone.png" alt="jump">
                 </div>
-                <div class="icon-div"  ontouchstart="setKey('D', true)" ontouchend="setKey('D', false)">
-                    <img id="throw-btn"  class="phone-icons"
+                <div class="icon-div" ontouchstart="setKey('D', true)" ontouchend="setKey('D', false)">
+                    <img id="throw-btn" class="phone-icons"
                         src="/El_Pollo_Loco/img_pollo_locco/img/11_phone/throw-phone.png" alt="throw-bottle">
                 </div>
             </div>
-
             <canvas id="canvas" width="720" height="480">
-
             </canvas>
-            
-            <img id="turn-device-img" class="turn-device-img d-none" src="./img_pollo_locco/img/10_background/turn-phone.png" alt="turn-your-device">
+
+            <img id="turn-device-img" class="turn-device-img d-none"
+                src="./img_pollo_locco/img/10_background/turn-phone.png" alt="turn-your-device">
             <img id="start-screen" src="./img_pollo_locco/img/9_intro_outro_screens/start/startscreen_2.png"
                 alt="El_Pollo_Loco" srcset="">
-            
+
         </div>
     </div>
 </body>
